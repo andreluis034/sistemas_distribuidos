@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_outer_classname = "OSDProto";
+option objc_class_prefix = "O";
+
+package GrupoA.OSD.OSDService;
+
+service OSD {
+    rpc putFile (FileData) returns (EmptyMessage) {}
+}
+
+message FileData{
+    string hash = 1;
+    bytes objectData = 2;
+}
+
+message EmptyMessage {
+}
