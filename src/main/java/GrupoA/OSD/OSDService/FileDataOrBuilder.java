@@ -8,14 +8,9 @@ public interface FileDataOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string hash = 1;</code>
+   * <code>int64 hash = 1;</code>
    */
-  java.lang.String getHash();
-  /**
-   * <code>string hash = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getHashBytes();
+  long getHash();
 
   /**
    * <code>bytes objectData = 2;</code>

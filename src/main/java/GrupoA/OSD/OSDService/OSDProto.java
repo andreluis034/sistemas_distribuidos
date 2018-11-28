@@ -34,7 +34,7 @@ public final class OSDProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\tOSD.proto\022\025GrupoA.OSD.OSDService\",\n\010Fi" +
-      "leData\022\014\n\004hash\030\001 \001(\t\022\022\n\nobjectData\030\002 \001(\014" +
+      "leData\022\014\n\004hash\030\001 \001(\003\022\022\n\nobjectData\030\002 \001(\014" +
       "\"\016\n\014EmptyMessage2X\n\003OSD\022Q\n\007putFile\022\037.Gru" +
       "poA.OSD.OSDService.FileData\032#.GrupoA.OSD" +
       ".OSDService.EmptyMessage\"\000B\020B\010OSDProtoP\001" +
