@@ -12,7 +12,7 @@ service OSD {
 }
 
 message FileData{
-    string hash = 1;
+    int64 hash = 1;
     bytes objectData = 2;
 }
 
