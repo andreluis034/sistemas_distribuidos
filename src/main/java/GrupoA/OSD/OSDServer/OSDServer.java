@@ -16,6 +16,7 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
     public void putFile(FileData request, StreamObserver<EmptyMessage> responseObserver) {
         EmptyMessage reply = EmptyMessage.newBuilder().build();
 
+        System.out.println(request.getObjectData().size());
         System.out.println(request.getHash());
 
         responseObserver.onNext(reply);
@@ -35,7 +36,7 @@ public class OSDServer {
                 .addService(new OSDImpl())
                 .build()
                 .start();
-
+        System.err.println("*** server start");
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
