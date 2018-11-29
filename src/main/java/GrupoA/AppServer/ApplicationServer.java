@@ -36,12 +36,12 @@ public class ApplicationServer {
             }
 
             ObjectData od;
-            byte[] response = {}, odArray;
+            int fileSize = fileContents.length;
+            byte[] response = new byte[fileSize], odArray; //TODO guardar tamanho do ficheiro no controller
             for (int p = 0; p < part; p++) {
                 od = client.getObject(path.toString(), p);
                 odArray = od.getObjectData().toByteArray();
-
-                System.arraycopy(odArray, 0, response, response.length, odArray.length);
+                System.arraycopy(odArray, 0, response, Math.min(maxBlockSize * p, fileSize), odArray.length );
             }
             System.out.println(Arrays.equals(response, fileContents));
         } catch (StatusRuntimeException e) {
