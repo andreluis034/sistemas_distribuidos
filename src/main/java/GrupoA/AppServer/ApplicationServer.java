@@ -27,7 +27,7 @@ public class ApplicationServer {
             for (int current_size = 0; current_size < fileContents.length; current_size += maxBlockSize) {
                 client.putObject(
                         Arrays.copyOfRange(fileContents, current_size,
-                            Math.min(current_size + maxBlockSize, fileContents.length)),
+                                Math.min(current_size + maxBlockSize, fileContents.length)),
                         path.toString(),
                         part
                 );
@@ -35,8 +35,15 @@ public class ApplicationServer {
                 part++;
             }
 
-            ObjectData od = client.getObject(path.toString(), 1);
-            System.out.println(Arrays.equals(od.getObjectData().toByteArray(), fileContents));
+            ObjectData od;
+            byte[] response = {}, odArray;
+            for (int p = 0; p < part; p++) {
+                od = client.getObject(path.toString(), p);
+                odArray = od.getObjectData().toByteArray();
+
+                System.arraycopy(odArray, 0, response, response.length, odArray.length);
+            }
+            System.out.println(Arrays.equals(response, fileContents));
         } catch (StatusRuntimeException e) {
             System.err.println("RPC failed: " + e.getStatus());
         } finally {
