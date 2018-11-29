@@ -1,5 +1,6 @@
 package GrupoA.OSD.OSDClient;
 
+import GrupoA.OSD.OSDService.GetObjectArgs;
 import GrupoA.OSD.OSDService.ObjectData;
 import GrupoA.OSD.OSDService.OSDGrpc;
 import com.google.protobuf.ByteString;
@@ -52,9 +53,21 @@ public class OSDClient {
         this.putObject(ObjectData.newBuilder().setHash(hash).setObjectData(ByteString.copyFrom(data)).build());
     }
 
+    private ObjectData getObject(long hash) {
+        return this.blockingStub.getObject(GetObjectArgs.newBuilder().setHash(hash).build());
+    }
+
+    public ObjectData getObject(String path, int part) {
+        long pathHash = GrupoA.Utility.Jenkins.hash64(path.getBytes());
+        long finalHash = GrupoA.Utility.Jenkins.hash64(HashToBytes(pathHash, part));
+        return this.getObject(finalHash);
+    }
+
     public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
+
+
 /*
     public static void main(String[] args) throws Exception {
         OSDClient client = new OSDClient("localhost", 50051);

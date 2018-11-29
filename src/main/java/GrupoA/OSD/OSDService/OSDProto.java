@@ -39,7 +39,7 @@ public final class OSDProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\tOSD.proto\022\025GrupoA.OSD.OSDService\"\035\n\rGe" +
-      "tObjectArgs\022\014\n\004hash\030\001 \001(\t\".\n\nObjectData\022" +
+      "tObjectArgs\022\014\n\004hash\030\001 \001(\003\".\n\nObjectData\022" +
       "\014\n\004hash\030\001 \001(\003\022\022\n\nobjectData\030\002 \001(\014\"\016\n\014Emp" +
       "tyMessage2\264\001\n\003OSD\022U\n\tputObject\022!.GrupoA." +
       "OSD.OSDService.ObjectData\032#.GrupoA.OSD.O" +

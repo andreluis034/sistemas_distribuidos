@@ -1,15 +1,20 @@
 package GrupoA.OSD.OSDServer;
 
 import GrupoA.OSD.OSDService.EmptyMessage;
+import GrupoA.OSD.OSDService.GetObjectArgs;
 import GrupoA.OSD.OSDService.ObjectData;
 import GrupoA.OSD.OSDService.OSDGrpc;
 
+import com.google.protobuf.ByteString;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 class OSDImpl extends OSDGrpc.OSDImplBase {
 
@@ -29,6 +34,23 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
 
         }
         responseObserver.onNext(reply);
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void getObject(GetObjectArgs args, StreamObserver<ObjectData> responseObserver) {
+        ObjectData.Builder reply = ObjectData.newBuilder();
+
+        try {
+            Path path = Paths.get( Long.toHexString(args.getHash()));
+            byte[] fileContents =  Files.readAllBytes(path);
+            reply
+                    .setHash(args.getHash())
+                    .setObjectData(ByteString.copyFrom(fileContents));
+        } catch (Exception e) { //TODO FILE NOT FOUND
+
+        }
+        responseObserver.onNext(reply.build());
         responseObserver.onCompleted();
     }
 }
