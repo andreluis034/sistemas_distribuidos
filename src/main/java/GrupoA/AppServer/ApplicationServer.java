@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class ApplicationServer {
+    private final static int maxBlockSize = 3670016; //2^21 + 2^20 + 2^19 Bytes (to avoid GRPC overhead)
+
     public static void main(String[] args) throws Exception {
 
         Path currentRelativePath = Paths.get("");
@@ -21,7 +23,18 @@ public class ApplicationServer {
         OSDClient client = new OSDClient("localhost", 50051);
  //TODO Send to client
         try {
-            client.putObject(fileContents, path.toString(), 1);
+            int part = 0;
+            for (int current_size = 0; current_size < fileContents.length; current_size += maxBlockSize) {
+                client.putObject(
+                        Arrays.copyOfRange(fileContents, current_size,
+                            Math.min(current_size + maxBlockSize, fileContents.length)),
+                        path.toString(),
+                        part
+                );
+
+                part++;
+            }
+
             ObjectData od = client.getObject(path.toString(), 1);
             System.out.println(Arrays.equals(od.getObjectData().toByteArray(), fileContents));
         } catch (StatusRuntimeException e) {
