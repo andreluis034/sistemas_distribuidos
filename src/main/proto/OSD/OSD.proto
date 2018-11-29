@@ -8,10 +8,17 @@ option objc_class_prefix = "O";
 package GrupoA.OSD.OSDService;
 
 service OSD {
-    rpc putFile (FileData) returns (EmptyMessage) {}
+    rpc putObject (ObjectData) returns (EmptyMessage) {}
+
+    rpc getObject (
 }
 
-message FileData{
+
+message GetObjectArgs {
+    
+}
+
+message ObjectData{
     int64 hash = 1;
     bytes objectData = 2;
 }

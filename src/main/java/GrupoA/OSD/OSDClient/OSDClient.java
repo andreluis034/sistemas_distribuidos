@@ -5,8 +5,8 @@ import GrupoA.OSD.OSDService.OSDGrpc;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.StatusRuntimeException;
 
+import java.nio.ByteBuffer;
 import java.util.concurrent.TimeUnit;
 
 public class OSDClient {
@@ -28,15 +28,28 @@ public class OSDClient {
         this.channel = channel;
         blockingStub = OSDGrpc.newBlockingStub(channel);
     }
-    private void putFile(FileData fd){
+    private void putObject(FileData fd){
 
-        this.blockingStub.putFile(fd);
+        this.blockingStub.putObject(fd);
     }
-    public void putFile(byte[] data ) {
-        this.putFile(data, GrupoA.Utility.Jenkins.hash64(data));
+
+    private static byte[] HashToBytes(long a, int c) {
+        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES + Integer.BYTES);
+        buffer.putLong(a);
+        buffer.putInt(c);
+        return buffer.array();
     }
-    public void putFile(byte[] data, long hash){
-        this.putFile(FileData.newBuilder().setHash(hash).setObjectData(ByteString.copyFrom(data)).build());
+    // 1235324534534_5345534534534
+    // A2FFD3_DSDS354_1
+    public void putObject(byte[] data, String path, int part) {
+       // long dataHash = GrupoA.Utility.Jenkins.hash64(data);
+        long pathHash = GrupoA.Utility.Jenkins.hash64(path.getBytes());
+        long finalHash = GrupoA.Utility.Jenkins.hash64(HashToBytes(pathHash, part));
+
+        this.putObject(data, finalHash);
+    }
+    public void putObject(byte[] data, long hash){
+        this.putObject(FileData.newBuilder().setHash(hash).setObjectData(ByteString.copyFrom(data)).build());
     }
 
     public void shutdown() throws InterruptedException {
@@ -48,7 +61,7 @@ public class OSDClient {
 
         FileData fd = FileData.newBuilder().setHash("Cenas").setObjectData(ByteString.EMPTY).build();
         try {
-            client.blockingStub.putFile(fd);
+            client.blockingStub.putObject(fd);
 
         } catch (StatusRuntimeException e) {
             System.err.println("RPC failed: " + e.getStatus());

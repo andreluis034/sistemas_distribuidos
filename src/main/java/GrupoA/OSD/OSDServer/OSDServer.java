@@ -8,17 +8,26 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 class OSDImpl extends OSDGrpc.OSDImplBase {
 
     @Override
-    public void putFile(FileData request, StreamObserver<EmptyMessage> responseObserver) {
+    public void putObject(FileData request, StreamObserver<EmptyMessage> responseObserver) {
         EmptyMessage reply = EmptyMessage.newBuilder().build();
 
         System.out.println(request.getObjectData().size());
-        System.out.println(request.getHash());
+        String hash = Long.toHexString(request.getHash());
+        System.out.println(hash);
 
+        try {
+            FileOutputStream fos = new FileOutputStream(hash);
+            fos.write(request.getObjectData().toByteArray());
+            fos.close();
+        } catch (Exception e) {
+
+        }
         responseObserver.onNext(reply);
         responseObserver.onCompleted();
     }

@@ -35,10 +35,10 @@ public final class OSDProto {
     java.lang.String[] descriptorData = {
       "\n\tOSD.proto\022\025GrupoA.OSD.OSDService\",\n\010Fi" +
       "leData\022\014\n\004hash\030\001 \001(\003\022\022\n\nobjectData\030\002 \001(\014" +
-      "\"\016\n\014EmptyMessage2X\n\003OSD\022Q\n\007putFile\022\037.Gru" +
-      "poA.OSD.OSDService.FileData\032#.GrupoA.OSD" +
-      ".OSDService.EmptyMessage\"\000B\020B\010OSDProtoP\001" +
-      "\242\002\001Ob\006proto3"
+      "\"\016\n\014EmptyMessage2Z\n\003OSD\022S\n\tputObject\022\037.G" +
+      "rupoA.OSD.OSDService.FileData\032#.GrupoA.O" +
+      "SD.OSDService.EmptyMessage\"\000B\020B\010OSDProto" +
+      "P\001\242\002\001Ob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

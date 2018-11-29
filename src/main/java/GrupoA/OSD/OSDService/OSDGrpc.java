@@ -28,35 +28,35 @@ public final class OSDGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.FileData,
-      GrupoA.OSD.OSDService.EmptyMessage> getPutFileMethod;
+      GrupoA.OSD.OSDService.EmptyMessage> getPutObjectMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "putFile",
+      fullMethodName = SERVICE_NAME + '/' + "putObject",
       requestType = GrupoA.OSD.OSDService.FileData.class,
       responseType = GrupoA.OSD.OSDService.EmptyMessage.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.FileData,
-      GrupoA.OSD.OSDService.EmptyMessage> getPutFileMethod() {
-    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.FileData, GrupoA.OSD.OSDService.EmptyMessage> getPutFileMethod;
-    if ((getPutFileMethod = OSDGrpc.getPutFileMethod) == null) {
+      GrupoA.OSD.OSDService.EmptyMessage> getPutObjectMethod() {
+    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.FileData, GrupoA.OSD.OSDService.EmptyMessage> getPutObjectMethod;
+    if ((getPutObjectMethod = OSDGrpc.getPutObjectMethod) == null) {
       synchronized (OSDGrpc.class) {
-        if ((getPutFileMethod = OSDGrpc.getPutFileMethod) == null) {
-          OSDGrpc.getPutFileMethod = getPutFileMethod = 
+        if ((getPutObjectMethod = OSDGrpc.getPutObjectMethod) == null) {
+          OSDGrpc.getPutObjectMethod = getPutObjectMethod = 
               io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.FileData, GrupoA.OSD.OSDService.EmptyMessage>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "GrupoA.OSD.OSDService.OSD", "putFile"))
+                  "GrupoA.OSD.OSDService.OSD", "putObject"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.OSD.OSDService.FileData.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.OSD.OSDService.EmptyMessage.getDefaultInstance()))
-                  .setSchemaDescriptor(new OSDMethodDescriptorSupplier("putFile"))
+                  .setSchemaDescriptor(new OSDMethodDescriptorSupplier("putObject"))
                   .build();
           }
         }
      }
-     return getPutFileMethod;
+     return getPutObjectMethod;
   }
 
   /**
@@ -88,20 +88,20 @@ public final class OSDGrpc {
 
     /**
      */
-    public void putFile(GrupoA.OSD.OSDService.FileData request,
+    public void putObject(GrupoA.OSD.OSDService.FileData request,
         io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
-      asyncUnimplementedUnaryCall(getPutFileMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getPutObjectMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getPutFileMethod(),
+            getPutObjectMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 GrupoA.OSD.OSDService.FileData,
                 GrupoA.OSD.OSDService.EmptyMessage>(
-                  this, METHODID_PUT_FILE)))
+                  this, METHODID_PUT_OBJECT)))
           .build();
     }
   }
@@ -126,10 +126,10 @@ public final class OSDGrpc {
 
     /**
      */
-    public void putFile(GrupoA.OSD.OSDService.FileData request,
+    public void putObject(GrupoA.OSD.OSDService.FileData request,
         io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getPutFileMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getPutObjectMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -153,9 +153,9 @@ public final class OSDGrpc {
 
     /**
      */
-    public GrupoA.OSD.OSDService.EmptyMessage putFile(GrupoA.OSD.OSDService.FileData request) {
+    public GrupoA.OSD.OSDService.EmptyMessage putObject(GrupoA.OSD.OSDService.FileData request) {
       return blockingUnaryCall(
-          getChannel(), getPutFileMethod(), getCallOptions(), request);
+          getChannel(), getPutObjectMethod(), getCallOptions(), request);
     }
   }
 
@@ -179,14 +179,14 @@ public final class OSDGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.EmptyMessage> putFile(
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.EmptyMessage> putObject(
         GrupoA.OSD.OSDService.FileData request) {
       return futureUnaryCall(
-          getChannel().newCall(getPutFileMethod(), getCallOptions()), request);
+          getChannel().newCall(getPutObjectMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_PUT_FILE = 0;
+  private static final int METHODID_PUT_OBJECT = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -205,8 +205,8 @@ public final class OSDGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_PUT_FILE:
-          serviceImpl.putFile((GrupoA.OSD.OSDService.FileData) request,
+        case METHODID_PUT_OBJECT:
+          serviceImpl.putObject((GrupoA.OSD.OSDService.FileData) request,
               (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage>) responseObserver);
           break;
         default:
@@ -270,7 +270,7 @@ public final class OSDGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new OSDFileDescriptorSupplier())
-              .addMethod(getPutFileMethod())
+              .addMethod(getPutObjectMethod())
               .build();
         }
       }

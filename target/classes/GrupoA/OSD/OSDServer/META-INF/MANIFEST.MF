@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: GrupoA.OSD.OSDServer.OSDServer
-

@@ -19,7 +19,7 @@ public class ApplicationServer {
         OSDClient client = new OSDClient("localhost", 50051);
 
         try {
-            client.putFile(fileContents);
+            client.putObject(fileContents, path.toString(), 1);
         } catch (StatusRuntimeException e) {
             System.err.println("RPC failed: " + e.getStatus());
         } finally {
