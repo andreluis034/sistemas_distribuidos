@@ -19,7 +19,7 @@ public class OSDClient {
                 // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
                 // needing certificates.
                 .usePlaintext()
-                .perRpcBufferLimit((long) (Math.pow(2,20) + Math.pow(2,16)))
+                //.maxInboundMessageSize((int) (Math.pow(2,20) + Math.pow(2,16)))
                 .build());
     }
 
@@ -28,8 +28,12 @@ public class OSDClient {
         this.channel = channel;
         blockingStub = OSDGrpc.newBlockingStub(channel);
     }
-    public void putFile(FileData fd){
+    private void putFile(FileData fd){
+
         this.blockingStub.putFile(fd);
+    }
+    public void putFile(byte[] data ) {
+        this.putFile(data, GrupoA.Utility.Jenkins.hash64(data));
     }
     public void putFile(byte[] data, long hash){
         this.putFile(FileData.newBuilder().setHash(hash).setObjectData(ByteString.copyFrom(data)).build());

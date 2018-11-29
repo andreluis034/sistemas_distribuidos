@@ -1,4 +1,4 @@
-package GrupoA.AppServer.Utility;
+package GrupoA.Utility;
 
 //Jenkins Implementation from https://github.com/vkandy/jenkins-hash-java
 public class Jenkins {

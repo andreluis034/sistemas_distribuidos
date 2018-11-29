@@ -8,11 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="455cb227-4467-4991-b677-1778cbe55071" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/sistemas_distribuidos_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GrupoA/OSD/OSDServer/OSDImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GrupoA/OSD/OSDServer/OSDImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GrupoA/OSD/OSDServer/OSDServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GrupoA/OSD/OSDServer/OSDServer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GrupoA/OSD/OSDServer/OSDServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GrupoA/OSD/OSDServer/OSDServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Utility/Jenkins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/Utility/Jenkins.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/GrupoA/OSD/OSDService/FileData$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GrupoA/OSD/OSDService/FileData$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/GrupoA/OSD/OSDService/FileData$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GrupoA/OSD/OSDService/FileData$Builder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/GrupoA/OSD/OSDService/FileData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GrupoA/OSD/OSDService/FileData.class" afterDir="false" />
@@ -42,8 +41,8 @@
       <file leaf-file-name="OSDServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10">
-              <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+            <state relative-caret-position="231">
+              <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#989#1374#0" expanded="true" />
@@ -65,18 +64,18 @@
       <file leaf-file-name="OSDClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="21" column="76" lean-forward="true" selection-start-line="21" selection-start-column="76" selection-end-line="21" selection-end-column="76" />
+            <state relative-caret-position="136">
+              <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1065#1066#0" expanded="true" />
-                <element signature="e#1084#1085#0" expanded="true" />
+                <element signature="e#1245#1246#0" expanded="true" />
+                <element signature="e#1295#1296#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="279">
@@ -85,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApplicationServer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ApplicationServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="239">
+              <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,10 +97,10 @@
         </entry>
       </file>
       <file leaf-file-name="Jenkins.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Utility/Jenkins.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/Utility/Jenkins.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
-              <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+              <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
               <folding>
                 <element signature="e#1041#1042#0" expanded="true" />
                 <element signature="e#1102#1103#0" expanded="true" />
@@ -128,10 +127,10 @@
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/Server.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Utility/Jenkins.java" />
         <option value="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" />
       </list>
     </option>
   </component>
@@ -212,16 +211,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="AppServer" type="462c0819:PsiDirectoryNode" />
-              <item name="Utility" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
               <item name="OSD" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -287,6 +276,7 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -386,12 +376,12 @@
       <option name="presentableId" value="Default" />
       <updated>1542884406354</updated>
       <workItem from="1542884411277" duration="1317000" />
-      <workItem from="1543430842451" duration="3417000" />
+      <workItem from="1543430842451" duration="4529000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4734000" />
+    <option name="totallyTimeSpent" value="5846000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -399,7 +389,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32909605" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -440,12 +430,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/EmptyMessage.java</url>
           <properties />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java</url>
-          <line>28</line>
-          <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
       </breakpoints>
       <option name="time" value="3" />
     </breakpoint-manager>
@@ -484,10 +468,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Utility/Jenkins.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/Utility/Jenkins.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
           <folding>
             <element signature="e#1041#1042#0" expanded="true" />
             <element signature="e#1102#1103#0" expanded="true" />
@@ -502,10 +486,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+        <state relative-caret-position="231">
+          <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#989#1374#0" expanded="true" />
@@ -514,32 +505,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/grpc/grpc-netty-shaded/1.16.1/grpc-netty-shaded-1.16.1.jar!/io/grpc/netty/shaded/io/netty/util/concurrent/AbstractEventExecutor.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="58">
+          <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="21" column="76" lean-forward="true" selection-start-line="21" selection-start-column="76" selection-end-line="21" selection-end-column="76" />
+        <state relative-caret-position="136">
+          <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1065#1066#0" expanded="true" />
-            <element signature="e#1084#1085#0" expanded="true" />
+            <element signature="e#1245#1246#0" expanded="true" />
+            <element signature="e#1295#1296#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
+        <state relative-caret-position="239">
+          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -562,7 +553,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited />
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -610,7 +601,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: com.google.api.grpc:proto-google-common-protos:1.0.0</last-edited>
+          <last-edited />
           <splitter-proportions>
             <option name="proportions">
               <list>
