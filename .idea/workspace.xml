@@ -8,6 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="455cb227-4467-4991-b677-1778cbe55071" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/FileObjectManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/d4de8b108aa861ed" beforeDir="false" afterPath="$PROJECT_DIR$/d4de8b108aa861ed" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" afterDir="false" />
     </list>
@@ -57,8 +59,8 @@
       <file leaf-file-name="OSDClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+            <state relative-caret-position="142">
+              <caret line="59" column="22" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,8 +80,20 @@
       <file leaf-file-name="ApplicationServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="367">
+              <caret line="39" column="111" selection-start-line="39" selection-start-column="111" selection-end-line="39" selection-end-column="111" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileObjectManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/FileObjectManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -130,6 +144,7 @@
         <option value="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/FileObjectManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" />
       </list>
     </option>
@@ -203,65 +218,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
               <item name="AppServer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="OSD" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="OSD" type="462c0819:PsiDirectoryNode" />
-              <item name="OSDClient" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="OSD" type="462c0819:PsiDirectoryNode" />
-              <item name="OSDServer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="OSD" type="462c0819:PsiDirectoryNode" />
-              <item name="OSDServer" type="462c0819:PsiDirectoryNode" />
-              <item name="OSDServer.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="OSD" type="462c0819:PsiDirectoryNode" />
-              <item name="OSDService" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="Utility" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
@@ -395,12 +351,12 @@
       <option name="presentableId" value="Default" />
       <updated>1542884406354</updated>
       <workItem from="1542884411277" duration="1317000" />
-      <workItem from="1543430842451" duration="10886000" />
+      <workItem from="1543430842451" duration="12734000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12203000" />
+    <option name="totallyTimeSpent" value="14051000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -429,7 +385,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.31779662" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21879195" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21879195" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32909605" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -437,7 +393,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" visible="true" weight="0.32485875" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" visible="true" weight="0.32485875" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -521,13 +477,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-58">
@@ -554,10 +503,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/FileObjectManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+        <state relative-caret-position="142">
+          <caret line="59" column="22" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -566,8 +532,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="367">
+          <caret line="39" column="111" selection-start-line="39" selection-start-column="111" selection-end-line="39" selection-end-column="111" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

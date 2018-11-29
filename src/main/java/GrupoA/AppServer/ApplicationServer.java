@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 public class ApplicationServer {
     private final static int maxBlockSize = 3670016; //2^21 + 2^20 + 2^19 Bytes (to avoid GRPC overhead)
@@ -23,27 +24,20 @@ public class ApplicationServer {
         OSDClient client = new OSDClient("localhost", 50051);
  //TODO Send to client
         try {
-            int part = 0;
-            for (int current_size = 0; current_size < fileContents.length; current_size += maxBlockSize) {
-                client.putObject(
-                        Arrays.copyOfRange(fileContents, current_size,
-                                Math.min(current_size + maxBlockSize, fileContents.length)),
-                        path.toString(),
-                        part
-                );
-
-                part++;
+            List<byte[]> parts = FileObjectManager.SplitByteArray(fileContents);
+            int i = 0;
+            for(byte[] part : parts) {
+                client.putObject(part, path.toString(), i);
+                i++;
             }
-
             ObjectData od;
-            int fileSize = fileContents.length;
-            byte[] response = new byte[fileSize], odArray; //TODO guardar tamanho do ficheiro no controller
-            for (int p = 0; p < part; p++) {
-                od = client.getObject(path.toString(), p);
-                odArray = od.getObjectData().toByteArray();
-                System.arraycopy(odArray, 0, response, Math.min(maxBlockSize * p, fileSize), odArray.length );
+            int fileSize = fileContents.length;//TODO guardar tamanho do ficheiro no controller
+            parts.clear();
+
+            for(int j = 0; j < parts.size(); ++j) {
+                parts.add(client.getObject(path.toString(), j).getObjectData().toByteArray());
             }
-            System.out.println(Arrays.equals(response, fileContents));
+            System.out.println(Arrays.equals(FileObjectManager.JoinByteArrays(parts, fileSize), fileContents));
         } catch (StatusRuntimeException e) {
             System.err.println("RPC failed: " + e.getStatus());
         } finally {
