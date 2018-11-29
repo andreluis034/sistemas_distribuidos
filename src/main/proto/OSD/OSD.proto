@@ -10,12 +10,12 @@ package GrupoA.OSD.OSDService;
 service OSD {
     rpc putObject (ObjectData) returns (EmptyMessage) {}
 
-    rpc getObject (
+    rpc getObject (GetObjectArgs) returns (ObjectData) {}
 }
 
 
 message GetObjectArgs {
-    
+    string hash = 1;
 }
 
 message ObjectData{

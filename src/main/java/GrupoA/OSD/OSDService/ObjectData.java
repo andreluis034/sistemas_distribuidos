@@ -4,18 +4,18 @@
 package GrupoA.OSD.OSDService;
 
 /**
- * Protobuf type {@code GrupoA.OSD.OSDService.FileData}
+ * Protobuf type {@code GrupoA.OSD.OSDService.ObjectData}
  */
-public  final class FileData extends
+public  final class ObjectData extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:GrupoA.OSD.OSDService.FileData)
-    FileDataOrBuilder {
+    // @@protoc_insertion_point(message_implements:GrupoA.OSD.OSDService.ObjectData)
+    ObjectDataOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use FileData.newBuilder() to construct.
-  private FileData(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use ObjectData.newBuilder() to construct.
+  private ObjectData(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private FileData() {
+  private ObjectData() {
     hash_ = 0L;
     objectData_ = com.google.protobuf.ByteString.EMPTY;
   }
@@ -25,7 +25,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private FileData(
+  private ObjectData(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -75,15 +75,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_FileData_descriptor;
+    return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_ObjectData_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_FileData_fieldAccessorTable
+    return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_ObjectData_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            GrupoA.OSD.OSDService.FileData.class, GrupoA.OSD.OSDService.FileData.Builder.class);
+            GrupoA.OSD.OSDService.ObjectData.class, GrupoA.OSD.OSDService.ObjectData.Builder.class);
   }
 
   public static final int HASH_FIELD_NUMBER = 1;
@@ -151,10 +151,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof GrupoA.OSD.OSDService.FileData)) {
+    if (!(obj instanceof GrupoA.OSD.OSDService.ObjectData)) {
       return super.equals(obj);
     }
-    GrupoA.OSD.OSDService.FileData other = (GrupoA.OSD.OSDService.FileData) obj;
+    GrupoA.OSD.OSDService.ObjectData other = (GrupoA.OSD.OSDService.ObjectData) obj;
 
     boolean result = true;
     result = result && (getHash()
@@ -182,69 +182,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static GrupoA.OSD.OSDService.FileData parseFrom(
+  public static GrupoA.OSD.OSDService.ObjectData parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.OSD.OSDService.FileData parseFrom(
+  public static GrupoA.OSD.OSDService.ObjectData parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.OSD.OSDService.FileData parseFrom(
+  public static GrupoA.OSD.OSDService.ObjectData parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.OSD.OSDService.FileData parseFrom(
+  public static GrupoA.OSD.OSDService.ObjectData parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.OSD.OSDService.FileData parseFrom(byte[] data)
+  public static GrupoA.OSD.OSDService.ObjectData parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.OSD.OSDService.FileData parseFrom(
+  public static GrupoA.OSD.OSDService.ObjectData parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.OSD.OSDService.FileData parseFrom(java.io.InputStream input)
+  public static GrupoA.OSD.OSDService.ObjectData parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static GrupoA.OSD.OSDService.FileData parseFrom(
+  public static GrupoA.OSD.OSDService.ObjectData parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static GrupoA.OSD.OSDService.FileData parseDelimitedFrom(java.io.InputStream input)
+  public static GrupoA.OSD.OSDService.ObjectData parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static GrupoA.OSD.OSDService.FileData parseDelimitedFrom(
+  public static GrupoA.OSD.OSDService.ObjectData parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static GrupoA.OSD.OSDService.FileData parseFrom(
+  public static GrupoA.OSD.OSDService.ObjectData parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static GrupoA.OSD.OSDService.FileData parseFrom(
+  public static GrupoA.OSD.OSDService.ObjectData parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -257,7 +257,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(GrupoA.OSD.OSDService.FileData prototype) {
+  public static Builder newBuilder(GrupoA.OSD.OSDService.ObjectData prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -273,26 +273,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code GrupoA.OSD.OSDService.FileData}
+   * Protobuf type {@code GrupoA.OSD.OSDService.ObjectData}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:GrupoA.OSD.OSDService.FileData)
-      GrupoA.OSD.OSDService.FileDataOrBuilder {
+      // @@protoc_insertion_point(builder_implements:GrupoA.OSD.OSDService.ObjectData)
+      GrupoA.OSD.OSDService.ObjectDataOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_FileData_descriptor;
+      return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_ObjectData_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_FileData_fieldAccessorTable
+      return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_ObjectData_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              GrupoA.OSD.OSDService.FileData.class, GrupoA.OSD.OSDService.FileData.Builder.class);
+              GrupoA.OSD.OSDService.ObjectData.class, GrupoA.OSD.OSDService.ObjectData.Builder.class);
     }
 
-    // Construct using GrupoA.OSD.OSDService.FileData.newBuilder()
+    // Construct using GrupoA.OSD.OSDService.ObjectData.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -320,17 +320,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_FileData_descriptor;
+      return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_ObjectData_descriptor;
     }
 
     @java.lang.Override
-    public GrupoA.OSD.OSDService.FileData getDefaultInstanceForType() {
-      return GrupoA.OSD.OSDService.FileData.getDefaultInstance();
+    public GrupoA.OSD.OSDService.ObjectData getDefaultInstanceForType() {
+      return GrupoA.OSD.OSDService.ObjectData.getDefaultInstance();
     }
 
     @java.lang.Override
-    public GrupoA.OSD.OSDService.FileData build() {
-      GrupoA.OSD.OSDService.FileData result = buildPartial();
+    public GrupoA.OSD.OSDService.ObjectData build() {
+      GrupoA.OSD.OSDService.ObjectData result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -338,8 +338,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public GrupoA.OSD.OSDService.FileData buildPartial() {
-      GrupoA.OSD.OSDService.FileData result = new GrupoA.OSD.OSDService.FileData(this);
+    public GrupoA.OSD.OSDService.ObjectData buildPartial() {
+      GrupoA.OSD.OSDService.ObjectData result = new GrupoA.OSD.OSDService.ObjectData(this);
       result.hash_ = hash_;
       result.objectData_ = objectData_;
       onBuilt();
@@ -380,16 +380,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof GrupoA.OSD.OSDService.FileData) {
-        return mergeFrom((GrupoA.OSD.OSDService.FileData)other);
+      if (other instanceof GrupoA.OSD.OSDService.ObjectData) {
+        return mergeFrom((GrupoA.OSD.OSDService.ObjectData)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(GrupoA.OSD.OSDService.FileData other) {
-      if (other == GrupoA.OSD.OSDService.FileData.getDefaultInstance()) return this;
+    public Builder mergeFrom(GrupoA.OSD.OSDService.ObjectData other) {
+      if (other == GrupoA.OSD.OSDService.ObjectData.getDefaultInstance()) return this;
       if (other.getHash() != 0L) {
         setHash(other.getHash());
       }
@@ -411,11 +411,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      GrupoA.OSD.OSDService.FileData parsedMessage = null;
+      GrupoA.OSD.OSDService.ObjectData parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (GrupoA.OSD.OSDService.FileData) e.getUnfinishedMessage();
+        parsedMessage = (GrupoA.OSD.OSDService.ObjectData) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -492,41 +492,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:GrupoA.OSD.OSDService.FileData)
+    // @@protoc_insertion_point(builder_scope:GrupoA.OSD.OSDService.ObjectData)
   }
 
-  // @@protoc_insertion_point(class_scope:GrupoA.OSD.OSDService.FileData)
-  private static final GrupoA.OSD.OSDService.FileData DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:GrupoA.OSD.OSDService.ObjectData)
+  private static final GrupoA.OSD.OSDService.ObjectData DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new GrupoA.OSD.OSDService.FileData();
+    DEFAULT_INSTANCE = new GrupoA.OSD.OSDService.ObjectData();
   }
 
-  public static GrupoA.OSD.OSDService.FileData getDefaultInstance() {
+  public static GrupoA.OSD.OSDService.ObjectData getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<FileData>
-      PARSER = new com.google.protobuf.AbstractParser<FileData>() {
+  private static final com.google.protobuf.Parser<ObjectData>
+      PARSER = new com.google.protobuf.AbstractParser<ObjectData>() {
     @java.lang.Override
-    public FileData parsePartialFrom(
+    public ObjectData parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new FileData(input, extensionRegistry);
+      return new ObjectData(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<FileData> parser() {
+  public static com.google.protobuf.Parser<ObjectData> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<FileData> getParserForType() {
+  public com.google.protobuf.Parser<ObjectData> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public GrupoA.OSD.OSDService.FileData getDefaultInstanceForType() {
+  public GrupoA.OSD.OSDService.ObjectData getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

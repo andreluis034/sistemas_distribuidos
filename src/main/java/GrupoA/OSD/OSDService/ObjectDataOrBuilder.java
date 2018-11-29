@@ -3,8 +3,8 @@
 
 package GrupoA.OSD.OSDService;
 
-public interface FileDataOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:GrupoA.OSD.OSDService.FileData)
+public interface ObjectDataOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:GrupoA.OSD.OSDService.ObjectData)
     com.google.protobuf.MessageOrBuilder {
 
   /**

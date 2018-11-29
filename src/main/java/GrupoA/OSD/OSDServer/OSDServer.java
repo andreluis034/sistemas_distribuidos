@@ -1,7 +1,7 @@
 package GrupoA.OSD.OSDServer;
 
 import GrupoA.OSD.OSDService.EmptyMessage;
-import GrupoA.OSD.OSDService.FileData;
+import GrupoA.OSD.OSDService.ObjectData;
 import GrupoA.OSD.OSDService.OSDGrpc;
 
 import io.grpc.Server;
@@ -14,7 +14,7 @@ import java.io.IOException;
 class OSDImpl extends OSDGrpc.OSDImplBase {
 
     @Override
-    public void putObject(FileData request, StreamObserver<EmptyMessage> responseObserver) {
+    public void putObject(ObjectData request, StreamObserver<EmptyMessage> responseObserver) {
         EmptyMessage reply = EmptyMessage.newBuilder().build();
 
         System.out.println(request.getObjectData().size());

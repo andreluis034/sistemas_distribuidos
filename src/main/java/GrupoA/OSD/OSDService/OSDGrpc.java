@@ -27,28 +27,28 @@ public final class OSDGrpc {
   public static final String SERVICE_NAME = "GrupoA.OSD.OSDService.OSD";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.FileData,
+  private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.ObjectData,
       GrupoA.OSD.OSDService.EmptyMessage> getPutObjectMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "putObject",
-      requestType = GrupoA.OSD.OSDService.FileData.class,
+      requestType = GrupoA.OSD.OSDService.ObjectData.class,
       responseType = GrupoA.OSD.OSDService.EmptyMessage.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.FileData,
+  public static io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.ObjectData,
       GrupoA.OSD.OSDService.EmptyMessage> getPutObjectMethod() {
-    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.FileData, GrupoA.OSD.OSDService.EmptyMessage> getPutObjectMethod;
+    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.ObjectData, GrupoA.OSD.OSDService.EmptyMessage> getPutObjectMethod;
     if ((getPutObjectMethod = OSDGrpc.getPutObjectMethod) == null) {
       synchronized (OSDGrpc.class) {
         if ((getPutObjectMethod = OSDGrpc.getPutObjectMethod) == null) {
           OSDGrpc.getPutObjectMethod = getPutObjectMethod = 
-              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.FileData, GrupoA.OSD.OSDService.EmptyMessage>newBuilder()
+              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.ObjectData, GrupoA.OSD.OSDService.EmptyMessage>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "GrupoA.OSD.OSDService.OSD", "putObject"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  GrupoA.OSD.OSDService.FileData.getDefaultInstance()))
+                  GrupoA.OSD.OSDService.ObjectData.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.OSD.OSDService.EmptyMessage.getDefaultInstance()))
                   .setSchemaDescriptor(new OSDMethodDescriptorSupplier("putObject"))
@@ -57,6 +57,38 @@ public final class OSDGrpc {
         }
      }
      return getPutObjectMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
+      GrupoA.OSD.OSDService.ObjectData> getGetObjectMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getObject",
+      requestType = GrupoA.OSD.OSDService.GetObjectArgs.class,
+      responseType = GrupoA.OSD.OSDService.ObjectData.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
+      GrupoA.OSD.OSDService.ObjectData> getGetObjectMethod() {
+    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.ObjectData> getGetObjectMethod;
+    if ((getGetObjectMethod = OSDGrpc.getGetObjectMethod) == null) {
+      synchronized (OSDGrpc.class) {
+        if ((getGetObjectMethod = OSDGrpc.getGetObjectMethod) == null) {
+          OSDGrpc.getGetObjectMethod = getGetObjectMethod = 
+              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.ObjectData>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "GrupoA.OSD.OSDService.OSD", "getObject"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.OSD.OSDService.GetObjectArgs.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.OSD.OSDService.ObjectData.getDefaultInstance()))
+                  .setSchemaDescriptor(new OSDMethodDescriptorSupplier("getObject"))
+                  .build();
+          }
+        }
+     }
+     return getGetObjectMethod;
   }
 
   /**
@@ -88,9 +120,16 @@ public final class OSDGrpc {
 
     /**
      */
-    public void putObject(GrupoA.OSD.OSDService.FileData request,
+    public void putObject(GrupoA.OSD.OSDService.ObjectData request,
         io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
       asyncUnimplementedUnaryCall(getPutObjectMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void getObject(GrupoA.OSD.OSDService.GetObjectArgs request,
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.ObjectData> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetObjectMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -99,9 +138,16 @@ public final class OSDGrpc {
             getPutObjectMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                GrupoA.OSD.OSDService.FileData,
+                GrupoA.OSD.OSDService.ObjectData,
                 GrupoA.OSD.OSDService.EmptyMessage>(
                   this, METHODID_PUT_OBJECT)))
+          .addMethod(
+            getGetObjectMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                GrupoA.OSD.OSDService.GetObjectArgs,
+                GrupoA.OSD.OSDService.ObjectData>(
+                  this, METHODID_GET_OBJECT)))
           .build();
     }
   }
@@ -126,10 +172,18 @@ public final class OSDGrpc {
 
     /**
      */
-    public void putObject(GrupoA.OSD.OSDService.FileData request,
+    public void putObject(GrupoA.OSD.OSDService.ObjectData request,
         io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getPutObjectMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void getObject(GrupoA.OSD.OSDService.GetObjectArgs request,
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.ObjectData> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetObjectMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -153,9 +207,16 @@ public final class OSDGrpc {
 
     /**
      */
-    public GrupoA.OSD.OSDService.EmptyMessage putObject(GrupoA.OSD.OSDService.FileData request) {
+    public GrupoA.OSD.OSDService.EmptyMessage putObject(GrupoA.OSD.OSDService.ObjectData request) {
       return blockingUnaryCall(
           getChannel(), getPutObjectMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GrupoA.OSD.OSDService.ObjectData getObject(GrupoA.OSD.OSDService.GetObjectArgs request) {
+      return blockingUnaryCall(
+          getChannel(), getGetObjectMethod(), getCallOptions(), request);
     }
   }
 
@@ -180,13 +241,22 @@ public final class OSDGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.EmptyMessage> putObject(
-        GrupoA.OSD.OSDService.FileData request) {
+        GrupoA.OSD.OSDService.ObjectData request) {
       return futureUnaryCall(
           getChannel().newCall(getPutObjectMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.ObjectData> getObject(
+        GrupoA.OSD.OSDService.GetObjectArgs request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetObjectMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_PUT_OBJECT = 0;
+  private static final int METHODID_GET_OBJECT = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -206,8 +276,12 @@ public final class OSDGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_PUT_OBJECT:
-          serviceImpl.putObject((GrupoA.OSD.OSDService.FileData) request,
+          serviceImpl.putObject((GrupoA.OSD.OSDService.ObjectData) request,
               (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage>) responseObserver);
+          break;
+        case METHODID_GET_OBJECT:
+          serviceImpl.getObject((GrupoA.OSD.OSDService.GetObjectArgs) request,
+              (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.ObjectData>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -271,6 +345,7 @@ public final class OSDGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new OSDFileDescriptorSupplier())
               .addMethod(getPutObjectMethod())
+              .addMethod(getGetObjectMethod())
               .build();
         }
       }

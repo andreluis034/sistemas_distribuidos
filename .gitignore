@@ -70,3 +70,4 @@ cenas.dat
 *.class
 #Maven stuff
 */target/**
+target/

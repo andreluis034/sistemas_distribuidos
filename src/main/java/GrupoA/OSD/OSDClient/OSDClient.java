@@ -1,6 +1,6 @@
 package GrupoA.OSD.OSDClient;
 
-import GrupoA.OSD.OSDService.FileData;
+import GrupoA.OSD.OSDService.ObjectData;
 import GrupoA.OSD.OSDService.OSDGrpc;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
@@ -28,9 +28,9 @@ public class OSDClient {
         this.channel = channel;
         blockingStub = OSDGrpc.newBlockingStub(channel);
     }
-    private void putObject(FileData fd){
+    private void putObject(ObjectData od){
 
-        this.blockingStub.putObject(fd);
+        this.blockingStub.putObject(od);
     }
 
     private static byte[] HashToBytes(long a, int c) {
@@ -49,7 +49,7 @@ public class OSDClient {
         this.putObject(data, finalHash);
     }
     public void putObject(byte[] data, long hash){
-        this.putObject(FileData.newBuilder().setHash(hash).setObjectData(ByteString.copyFrom(data)).build());
+        this.putObject(ObjectData.newBuilder().setHash(hash).setObjectData(ByteString.copyFrom(data)).build());
     }
 
     public void shutdown() throws InterruptedException {

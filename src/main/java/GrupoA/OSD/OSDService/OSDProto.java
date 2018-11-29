@@ -15,10 +15,15 @@ public final class OSDProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_GrupoA_OSD_OSDService_FileData_descriptor;
+    internal_static_GrupoA_OSD_OSDService_GetObjectArgs_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_GrupoA_OSD_OSDService_FileData_fieldAccessorTable;
+      internal_static_GrupoA_OSD_OSDService_GetObjectArgs_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GrupoA_OSD_OSDService_ObjectData_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GrupoA_OSD_OSDService_ObjectData_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_GrupoA_OSD_OSDService_EmptyMessage_descriptor;
   static final 
@@ -33,12 +38,15 @@ public final class OSDProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tOSD.proto\022\025GrupoA.OSD.OSDService\",\n\010Fi" +
-      "leData\022\014\n\004hash\030\001 \001(\003\022\022\n\nobjectData\030\002 \001(\014" +
-      "\"\016\n\014EmptyMessage2Z\n\003OSD\022S\n\tputObject\022\037.G" +
-      "rupoA.OSD.OSDService.FileData\032#.GrupoA.O" +
-      "SD.OSDService.EmptyMessage\"\000B\020B\010OSDProto" +
-      "P\001\242\002\001Ob\006proto3"
+      "\n\tOSD.proto\022\025GrupoA.OSD.OSDService\"\035\n\rGe" +
+      "tObjectArgs\022\014\n\004hash\030\001 \001(\t\".\n\nObjectData\022" +
+      "\014\n\004hash\030\001 \001(\003\022\022\n\nobjectData\030\002 \001(\014\"\016\n\014Emp" +
+      "tyMessage2\264\001\n\003OSD\022U\n\tputObject\022!.GrupoA." +
+      "OSD.OSDService.ObjectData\032#.GrupoA.OSD.O" +
+      "SDService.EmptyMessage\"\000\022V\n\tgetObject\022$." +
+      "GrupoA.OSD.OSDService.GetObjectArgs\032!.Gr" +
+      "upoA.OSD.OSDService.ObjectData\"\000B\020B\010OSDP" +
+      "rotoP\001\242\002\001Ob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -52,14 +60,20 @@ public final class OSDProto {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_GrupoA_OSD_OSDService_FileData_descriptor =
+    internal_static_GrupoA_OSD_OSDService_GetObjectArgs_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_GrupoA_OSD_OSDService_FileData_fieldAccessorTable = new
+    internal_static_GrupoA_OSD_OSDService_GetObjectArgs_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_GrupoA_OSD_OSDService_FileData_descriptor,
+        internal_static_GrupoA_OSD_OSDService_GetObjectArgs_descriptor,
+        new java.lang.String[] { "Hash", });
+    internal_static_GrupoA_OSD_OSDService_ObjectData_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_GrupoA_OSD_OSDService_ObjectData_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GrupoA_OSD_OSDService_ObjectData_descriptor,
         new java.lang.String[] { "Hash", "ObjectData", });
     internal_static_GrupoA_OSD_OSDService_EmptyMessage_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_GrupoA_OSD_OSDService_EmptyMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_OSD_OSDService_EmptyMessage_descriptor,
