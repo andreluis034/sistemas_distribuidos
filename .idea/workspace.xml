@@ -9,13 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="455cb227-4467-4991-b677-1778cbe55071" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/GetObjectArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/GetObjectArgs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/GetObjectArgsOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/GetObjectArgsOrBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDProto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDProto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/d4de8b108aa861ed" beforeDir="false" afterPath="$PROJECT_DIR$/d4de8b108aa861ed" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -84,8 +78,8 @@
       <file leaf-file-name="ApplicationServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+            <state relative-caret-position="267">
+              <caret line="35" column="13" lean-forward="true" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -289,10 +283,10 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -306,7 +300,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ApplicationServer">
+  <component name="RunManager" selected="Application.OSDServer">
     <configuration name="ApplicationServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GrupoA.AppServer.ApplicationServer" />
       <module name="sistemas_distribuidos" />
@@ -376,8 +370,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ApplicationServer" />
         <item itemvalue="Application.OSDServer" />
+        <item itemvalue="Application.ApplicationServer" />
       </list>
     </recent_temporary>
   </component>
@@ -392,12 +386,12 @@
       <option name="presentableId" value="Default" />
       <updated>1542884406354</updated>
       <workItem from="1542884411277" duration="1317000" />
-      <workItem from="1543430842451" duration="8238000" />
+      <workItem from="1543430842451" duration="10197000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9555000" />
+    <option name="totallyTimeSpent" value="11514000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -410,7 +404,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32909605" />
@@ -426,7 +419,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.31779662" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21879195" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21879195" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32909605" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -434,7 +427,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" visible="true" weight="0.32485875" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" visible="true" weight="0.32485875" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -556,8 +549,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        <state relative-caret-position="267">
+          <caret line="35" column="13" lean-forward="true" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
