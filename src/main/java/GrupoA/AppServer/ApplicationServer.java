@@ -9,12 +9,40 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+import org.glassfish.jersey.servlet.ServletContainer;
 
 public class ApplicationServer {
     private final static int maxBlockSize = 3670016; //2^21 + 2^20 + 2^19 Bytes (to avoid GRPC overhead)
 
+    private static void startJetty(int port) throws Exception {
+        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        context.setContextPath("/");
+
+        Server jettyServer = new Server(port);
+        jettyServer.setHandler(context);
+
+        ServletHolder jerseyServlet = context.addServlet(
+                org.glassfish.jersey.servlet.ServletContainer.class, "/*");
+        jerseyServlet.setInitOrder(0);
+        jerseyServlet.setInitParameter(
+                "jersey.config.server.provider.classnames",
+                GrupoA.AppServer.Routes.Cephish.class.getCanonicalName());
+        try {
+            jettyServer.start();
+            jettyServer.join();
+
+        } catch(Exception e) {
+            throw e;
+        } finally{
+            jettyServer.destroy();
+        }
+    }
     public static void main(String[] args) throws Exception {
 
+        startJetty(9595);
         Path currentRelativePath = Paths.get("");
         String s = currentRelativePath.toAbsolutePath().toString();
         System.out.println("Current relative path is: " + s);

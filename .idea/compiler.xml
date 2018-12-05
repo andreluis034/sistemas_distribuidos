@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="sistemas_distribuidos" />
+        <module name="SistemasDistribuidos" />
       </profile>
     </annotationProcessing>
   </component>
