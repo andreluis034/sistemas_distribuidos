@@ -1,12 +1,10 @@
 package GrupoA.StorageController;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
-
+import javax.annotation.Nullable;
 import java.util.SortedSet;
 
-class FSTree {
-    public Node root;
+public interface FSTree {
+    Node root = null;
 
     enum NodeType {
         FileNode,
@@ -17,7 +15,7 @@ class FSTree {
         abstract NodeType getNodeType();
         String nodeName;
 
-        public int compareTo(Node node) {
+        public int compareTo(@Nullable Node node) {
             if (node == null) {
                 return 1;
             }
