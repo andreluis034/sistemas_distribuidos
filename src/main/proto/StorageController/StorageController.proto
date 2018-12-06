@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_outer_classname = "StorageControllerProto";
+option objc_class_prefix = "O";
+
+package GrupoA.StorageController.StorageControllerService;
+
+service StorageController {
+    rpc getMetadata (getMetadataArgs) returns (EmptyMessage) {}
+
+    rpc getObject (GetObjectArgs) returns (ObjectData) {}
+}
+
+
+message getMetadataArgs {
+    string filePath = 1;
+}
+
+message Metada {
+    enum MetadaType {
+        DIR = 0;
+        FILE = 1;
+      }
+}
+
+message ObjectData{
+    int64 hash = 1;
+    bytes objectData = 2;
+}
+
+message EmptyMessage {
+}
