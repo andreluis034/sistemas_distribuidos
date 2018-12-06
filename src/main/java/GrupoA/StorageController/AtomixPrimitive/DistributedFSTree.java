@@ -1,12 +1,16 @@
 package GrupoA.StorageController.AtomixPrimitive;
 
-import GrupoA.StorageController.FSTree;
 import io.atomix.primitive.SyncPrimitive;
 
-public interface DistributedFSTree extends SyncPrimitive, FSTree {
-    /*
-    Implement stuff
+public interface DistributedFSTree extends SyncPrimitive {
+    /**
+        TODO: Call stuff
      */
+    void mkDir(String path);
+    void mkFile(String path);
+    void rmDir(String path);
+    void rmFile(String path);
+    void ls(String path);
 
     @Override
     AsyncDistributedFSTree async();

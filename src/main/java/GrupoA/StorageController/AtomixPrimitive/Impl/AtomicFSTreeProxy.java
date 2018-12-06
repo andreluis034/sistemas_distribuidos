@@ -22,12 +22,27 @@ public class AtomicFSTreeProxy
     }
 
     @Override
-    public AtomicFSTree sync() {
-        return null;
+    public AtomicFSTree sync(Duration operationTimeout) {
+        return new BlockingAtomicFSTree(this, operationTimeout.toMillis());
     }
 
     @Override
-    public AtomicFSTree sync(Duration operationTimeout) {
-        return new BlockingAtomicFSTree(this, operationTimeout.toMillis());
+    public void mdDir(String path) {
+
+    }
+
+    @Override
+    public void rmdDir(String path) {
+
+    }
+
+    @Override
+    public void mdFile(String path) {
+
+    }
+
+    @Override
+    public void rmdFile(String path) {
+
     }
 }

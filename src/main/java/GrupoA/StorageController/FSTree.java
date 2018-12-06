@@ -3,7 +3,7 @@ package GrupoA.StorageController;
 import javax.annotation.Nullable;
 import java.util.SortedSet;
 
-public interface FSTree {
+public class FSTree {
     Node root = null;
 
     enum NodeType {

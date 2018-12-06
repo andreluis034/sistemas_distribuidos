@@ -1,6 +1,7 @@
 package GrupoA.StorageController.AtomixPrimitive.Impl;
 
 import GrupoA.StorageController.AtomixPrimitive.AtomicFSTreeType;
+import GrupoA.StorageController.FSTree;
 import io.atomix.primitive.PrimitiveType;
 import io.atomix.primitive.service.AbstractPrimitiveService;
 import io.atomix.primitive.service.BackupInput;
@@ -19,21 +20,49 @@ public class AbstractAtomicFSTreeService
 
     private static final Serializer SERIALIZER = Serializer.using(Namespace.builder()
             .register(AtomicFSTreeType.instance().namespace())
-            //.register(LockHolder.class)
+            .register(FSTree.class)
             .register(SessionId.class)
             .build());
+
+    FSTree tree;
+
 
     AbstractAtomicFSTreeService(PrimitiveType primitiveType) {
         super(primitiveType, AtomicFSTreeClient.class);
     }
 
     @Override
-    public void backup(BackupOutput backupOutput) {
+    public void backup(BackupOutput output) {
+        output.writeObject(tree);
+    }
+
+    @Override
+    public void restore(BackupInput input) {
+        tree = input.readObject();
+    }
+
+    @Override
+    public void mkDir(String path) {
 
     }
 
     @Override
-    public void restore(BackupInput backupInput) {
+    public void rmDir(String path) {
+
+    }
+
+    @Override
+    public void mkFile(String path) {
+
+    }
+
+    @Override
+    public void rmFile(String path) {
+
+    }
+
+    @Override
+    public void ls(String path) {
 
     }
 }
