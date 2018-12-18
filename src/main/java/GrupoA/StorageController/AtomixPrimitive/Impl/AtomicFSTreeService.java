@@ -9,7 +9,7 @@ public interface AtomicFSTreeService {
     boolean mkDir(String path);
 
     @Command("rmdir")
-    void rmDir(String path);
+    boolean rmDir(String path);
 
     @Command("mkfile")
     void mkFile(String path);

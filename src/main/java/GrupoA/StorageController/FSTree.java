@@ -6,7 +6,7 @@ import java.util.SortedSet;
 public class FSTree {
     private DirNode root;
 
-    FSTree() {
+    public FSTree() {
         root = new DirNode("/");
         root.children = null;
     }
