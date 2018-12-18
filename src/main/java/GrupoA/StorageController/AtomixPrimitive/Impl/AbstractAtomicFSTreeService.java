@@ -13,6 +13,8 @@ import io.atomix.utils.serializer.Serializer;
 import java.util.Iterator;
 import java.util.SortedSet;
 
+import static GrupoA.StorageController.FSTree.NodeType.FileNode;
+
 /**
     TODO: Implement the methods here
  */
@@ -65,7 +67,7 @@ public class AbstractAtomicFSTreeService
     */
 
     @Override
-    public void mkDir(String path) {
+    public boolean mkDir(String path) {
         int flag;
         String[] parts = path.split("/");
 
@@ -74,7 +76,7 @@ public class AbstractAtomicFSTreeService
         for (int i = 0; i < parts.length; i++) {
             String part = parts[i];
             flag = 0;
-            
+
             for (FSTree.Node node : set) {
                 if (part.compareTo(node.getNodeName()) == 0) {
                     if (node.getNodeType() != FSTree.NodeType.DirNode)
@@ -89,14 +91,28 @@ public class AbstractAtomicFSTreeService
                 }
             }
 
-            // Couldn't create the directory, as there is
-            // something wrong with the provided path.
-            // (It only enters this 'if' if either a part of
-            // the path is a file or it doesn't exist)
+            // It only enters this 'if' if either a part of
+            // the path is a file or it doesn't exist; or it
+            // was able to reach the final part of the path,
+            // which means it is ready to create the directory
             if (flag == 0) {
+
+                // Everything was OK
+                if (i == parts.length - 1) {
+                    FSTree.DirNode node = new FSTree.DirNode(part);
+                    set.add(node);
+                    currentNode.setChildren(set);
+
+                    return true;
+                }
+
+                // Couldn't create the directory, as there is
+                // something wrong with the provided path.
                 break;
             }
         }
+
+        return false;
     }
 
     @Override

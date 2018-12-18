@@ -6,7 +6,7 @@ import io.atomix.primitive.operation.Command;
 public interface AtomicFSTreeService {
 
     @Command("mkdir")
-    void mkDir(String path);
+    boolean mkDir(String path);
 
     @Command("rmdir")
     void rmDir(String path);

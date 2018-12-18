@@ -7,9 +7,8 @@ public class FSTree {
     private DirNode root;
 
     FSTree() {
-        root = new DirNode();
-        ((DirNode) root).nodeName = "/";
-        ((DirNode) root).children = null;
+        root = new DirNode("/");
+        root.children = null;
     }
 
     public DirNode getRoot() {
@@ -21,7 +20,7 @@ public class FSTree {
         DirNode
     }
 
-    public abstract class Node implements Comparable<Node> {
+    public static abstract class Node implements Comparable<Node> {
         public abstract NodeType getNodeType();
         String nodeName;
 
@@ -38,7 +37,7 @@ public class FSTree {
         }
     }
 
-    public class FileNode extends Node {
+    public static class FileNode extends Node {
         Long hash;
         Integer fileSize, blocks;
 
@@ -48,8 +47,12 @@ public class FSTree {
         }
     }
 
-    public class DirNode extends Node {
+    public static class DirNode extends Node {
         SortedSet<Node> children;
+
+        public DirNode(String name) {
+            this.nodeName = name;
+        }
 
         @Override
         public NodeType getNodeType() {
@@ -60,12 +63,14 @@ public class FSTree {
             return children;
         }
 
+        public void setChildren(SortedSet<Node> children) {
+            this.children = children;
+        }
+
         public SortedSet<Node> addChildren(DirNode parent, Node child) {
             parent.getChildren().add(child);
 
             return parent.getChildren();
         }
     }
-
-
 }
