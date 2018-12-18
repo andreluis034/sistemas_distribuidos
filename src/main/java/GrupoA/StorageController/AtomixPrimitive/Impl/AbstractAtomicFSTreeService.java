@@ -80,8 +80,7 @@ public class AbstractAtomicFSTreeService
             for (FSTree.Node node : set) {
                 if (part.compareTo(node.getNodeName()) == 0) {
                     if (node.getNodeType() != FSTree.NodeType.DirNode)
-                        break;
-
+                        return false;
 
                     currentNode = (FSTree.DirNode)node;
                     set = currentNode.getChildren();
