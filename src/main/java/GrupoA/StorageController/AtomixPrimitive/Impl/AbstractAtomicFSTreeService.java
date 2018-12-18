@@ -10,6 +10,8 @@ import io.atomix.primitive.session.SessionId;
 import io.atomix.utils.serializer.Namespace;
 import io.atomix.utils.serializer.Serializer;
 
+import java.util.Iterator;
+import java.util.SortedSet;
 
 /**
     TODO: Implement the methods here
@@ -24,11 +26,16 @@ public class AbstractAtomicFSTreeService
             .register(SessionId.class)
             .build());
 
-    FSTree tree;
+    private FSTree tree;
 
 
     AbstractAtomicFSTreeService(PrimitiveType primitiveType) {
         super(primitiveType, AtomicFSTreeClient.class);
+    }
+
+    @Override
+    public Serializer serializer() {
+        return SERIALIZER;
     }
 
     @Override
@@ -41,9 +48,55 @@ public class AbstractAtomicFSTreeService
         tree = input.readObject();
     }
 
+    /*
+    @Override
+    public void onClose(Session session) {
+        //release(session.sessionID) || releaseSession(session)
+    }
+
+    @Override
+    public void onExpire(Session session) {
+        //release(session.sessionID) || releaseSession(session)
+    }
+
+    private void release(SessionId sessionId) {
+
+    }
+    */
+
     @Override
     public void mkDir(String path) {
+        int flag;
+        String[] parts = path.split("/");
 
+        FSTree.DirNode currentNode = tree.getRoot();
+        SortedSet<FSTree.Node> set = currentNode.getChildren();
+        for (int i = 0; i < parts.length; i++) {
+            String part = parts[i];
+            flag = 0;
+            
+            for (FSTree.Node node : set) {
+                if (part.compareTo(node.getNodeName()) == 0) {
+                    if (node.getNodeType() != FSTree.NodeType.DirNode)
+                        break;
+
+
+                    currentNode = (FSTree.DirNode)node;
+                    set = currentNode.getChildren();
+                    flag = 1;
+
+                    break;
+                }
+            }
+
+            // Couldn't create the directory, as there is
+            // something wrong with the provided path.
+            // (It only enters this 'if' if either a part of
+            // the path is a file or it doesn't exist)
+            if (flag == 0) {
+                break;
+            }
+        }
     }
 
     @Override

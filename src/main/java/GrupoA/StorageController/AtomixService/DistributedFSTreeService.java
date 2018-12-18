@@ -6,6 +6,10 @@ import io.atomix.primitive.operation.Query;
 
 public interface DistributedFSTreeService {
 
+    /**
+     * TODO: Declare stuff here, implement here: DefaultDistributedFSTreeService
+     */
+
     /*
     @Command - Indicates the method modifies the state of the primitive
     @Query - Indicates the method queries but does not modify the state of the primitive
