@@ -7,16 +7,16 @@ import java.util.LinkedList;
 public interface AtomicFSTreeService {
 
     @Command("mkdir")
-    boolean mkDir(String path);
+    Boolean mkDir(String path);
 
     @Command("rmdir")
-    boolean rmDir(String path);
+    Boolean rmDir(String path);
 
     @Command("mkfile")
-    boolean mkFile(String path, int fileSize, int blocks, long hash);
+    Boolean mkFile(String path, int fileSize, int blocks, long hash);
 
     @Command("rmfile")
-    boolean rmFile(String path);
+    Boolean rmFile(String path);
 
     @Command("ls")
     LinkedList<String> ls(String path);

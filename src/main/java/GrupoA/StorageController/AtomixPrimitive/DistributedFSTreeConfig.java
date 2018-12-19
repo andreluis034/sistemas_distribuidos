@@ -7,7 +7,7 @@ public class DistributedFSTreeConfig
         extends PrimitiveConfig<DistributedFSTreeConfig> {
 
     @Override
-    public PrimitiveType getType() {
+    public PrimitiveType<DistributedFSTreeBuilder, DistributedFSTreeConfig, DistributedFSTree>  getType() {
         return DistributedFSTreeType.instance();
     }
 }

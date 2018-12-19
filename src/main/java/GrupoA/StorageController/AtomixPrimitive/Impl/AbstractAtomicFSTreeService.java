@@ -74,7 +74,7 @@ public class AbstractAtomicFSTreeService
     */
 
     @Override
-    public boolean mkDir(String path) {
+    public Boolean mkDir(String path) {
         // Can't create the root
         if (path.compareTo("/") == 0) {
             return false;
@@ -130,7 +130,7 @@ public class AbstractAtomicFSTreeService
     }
 
     @Override
-    public boolean rmDir(String path) {
+    public Boolean rmDir(String path) {
         // Can't remove the root
         if (path.compareTo("/") == 0) {
             return false;
@@ -175,7 +175,7 @@ public class AbstractAtomicFSTreeService
     }
 
     @Override
-    public boolean mkFile(String path, int fileSize, int blocks, long hash) {
+    public Boolean mkFile(String path, int fileSize, int blocks, long hash) {
         // Can't create the root
         if (path.compareTo("/") == 0) {
             return false;
@@ -230,7 +230,7 @@ public class AbstractAtomicFSTreeService
     }
 
     @Override
-    public boolean rmFile(String path) {
+    public Boolean rmFile(String path) {
         // Can't remove the root
         if (path.compareTo("/") == 0) {
             return false;

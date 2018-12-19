@@ -2,15 +2,17 @@ package GrupoA.StorageController.AtomixPrimitive;
 
 import io.atomix.primitive.SyncPrimitive;
 
+import java.util.LinkedList;
+
 public interface DistributedFSTree extends SyncPrimitive {
     /**
         TODO: Call stuff here
      */
-    void mkDir(String path);
-    void mkFile(String path);
-    void rmDir(String path);
-    void rmFile(String path);
-    void ls(String path);
+    Boolean mkDir(String path);
+    Boolean rmDir(String path);
+    Boolean mkFile(String path, int fileSize, int blocks, long hash);
+    Boolean rmFile(String path);
+    LinkedList<String> ls(String path);
 
     @Override
     AsyncDistributedFSTree async();
