@@ -1,7 +1,8 @@
 package GrupoA.StorageController.AtomixPrimitive.Impl;
 
-
 import io.atomix.primitive.operation.Command;
+
+import java.util.LinkedList;
 
 public interface AtomicFSTreeService {
 
@@ -12,11 +13,11 @@ public interface AtomicFSTreeService {
     boolean rmDir(String path);
 
     @Command("mkfile")
-    void mkFile(String path);
+    boolean mkFile(String path, int fileSize, int blocks, long hash);
 
     @Command("rmfile")
-    void rmFile(String path);
+    boolean rmFile(String path);
 
     @Command("ls")
-    void ls(String path);
+    LinkedList<String> ls(String path);
 }

@@ -41,6 +41,13 @@ public class FSTree {
         Long hash;
         Integer fileSize, blocks;
 
+        public FileNode(String name, long hash, int fileSize, int blocks) {
+            this.nodeName = name;
+            this.hash = hash;
+            this.fileSize = fileSize;
+            this.blocks = blocks;
+        }
+
         @Override
         public NodeType getNodeType() {
             return NodeType.FileNode;
@@ -65,12 +72,6 @@ public class FSTree {
 
         public void setChildren(SortedSet<Node> children) {
             this.children = children;
-        }
-
-        public SortedSet<Node> addChildren(DirNode parent, Node child) {
-            parent.getChildren().add(child);
-
-            return parent.getChildren();
         }
     }
 }
