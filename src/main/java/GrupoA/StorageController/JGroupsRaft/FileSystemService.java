@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class FileSystemService implements StateMachine, RAFT.RoleChange {
     protected JChannel ch;
     protected RaftHandle raft;
-    protected FSTree fsTree;
+    protected FSTree fsTree = new FSTree();
     protected long replyTimeout = 20 * 1000; // 20 seconds
     public FileSystemService(JChannel ch){
         this.setChannel(ch);
@@ -24,24 +24,24 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
     protected enum Command {mkDir, rmDir, mkFile, rmFile, ls}
 
-    protected boolean mkDir(String path) throws Exception {
+    public boolean mkDir(String path) throws Exception {
         return (boolean)invoke(Command.mkDir, path);
     }
 
-    protected boolean rmDir(String path) throws Exception {
+    public boolean rmDir(String path) throws Exception {
         return (boolean)invoke(Command.rmDir, path);
     }
 
-    protected boolean mkFile(String path, int fileSize, int blocks, long hash) throws Exception {
+    public boolean mkFile(String path, int fileSize, int blocks, long hash) throws Exception {
         return (boolean)invoke(Command.mkFile, path, fileSize, blocks, hash);
     }
 
-    protected boolean rmFile(String path) throws Exception {
+    public boolean rmFile(String path) throws Exception {
         return (boolean)invoke(Command.rmFile, path);
     }
 
     @SuppressWarnings("unchecked")
-    protected LinkedList<String> ls(String path) throws Exception {
+    public LinkedList<String> ls(String path) throws Exception {
         return (LinkedList<String>) invoke(Command.ls, path);
     }
 
@@ -53,42 +53,53 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
     @Override
     public byte[] apply(byte[] bytes, int offset, int length) throws Exception {
+        System.out.println("Apply");
         ByteArrayDataInputStream in = new ByteArrayDataInputStream(bytes, offset, length);
         Command command = Command.values()[in.readByte()];
         String path = Bits.readAsciiString(in).toString();
-
+        System.out.println(command);
+        System.out.println(path);
         boolean bool_return_value;
 
-        switch(command) {
-            case mkDir:
-                bool_return_value = fsTree.mkDir(path);
-                return Util.objectToByteBuffer(bool_return_value);
-            case rmDir:
-                bool_return_value = fsTree.rmDir(path);
-                return Util.objectToByteBuffer(bool_return_value);
-            case mkFile:
-                int fileSize = Bits.readInt(in);
-                int blocks = Bits.readInt(in);
-                long hash = Bits.readLong(in);
+        try {
+            switch(command) {
+                case mkDir:
+                    System.out.println("Creating Directory");
+                    bool_return_value = fsTree.mkDir(path);
+                    System.out.println("Returned Value: "+bool_return_value);
+                    return Util.objectToByteBuffer(bool_return_value);
+                case rmDir:
+                    bool_return_value = fsTree.rmDir(path);
+                    return Util.objectToByteBuffer(bool_return_value);
+                case mkFile:
+                    int fileSize = Bits.readInt(in);
+                    int blocks = Bits.readInt(in);
+                    long hash = Bits.readLong(in);
 
-                bool_return_value = fsTree.mkFile(path, fileSize, blocks, hash);
-                return Util.objectToByteBuffer(bool_return_value);
-            case rmFile:
-                bool_return_value = fsTree.rmFile(path);
-                return Util.objectToByteBuffer(bool_return_value);
-            case ls:
-                LinkedList<String> return_value;
+                    bool_return_value = fsTree.mkFile(path, fileSize, blocks, hash);
+                    return Util.objectToByteBuffer(bool_return_value);
+                case rmFile:
+                    bool_return_value = fsTree.rmFile(path);
+                    return Util.objectToByteBuffer(bool_return_value);
+                case ls:
+                    LinkedList<String> return_value;
 
-                return_value = fsTree.ls(path);
-                return Util.objectToByteBuffer(return_value);
-            default:
-                throw new IllegalArgumentException("command " + command + " is unknown");
+                    return_value = fsTree.ls(path);
+                    return Util.objectToByteBuffer(return_value);
+                default:
+                    throw new IllegalArgumentException("command " + command + " is unknown");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
         }
+
     }
 
     protected Object invoke(Command command, String path) throws Exception {
         ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(256);
-
+        System.out.println(command);
+        System.out.println(path);
         try {
             out.writeByte(command.ordinal());
             Bits.writeAsciiString(new AsciiString(path), out);
@@ -123,6 +134,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
     @Override
     public void readContentFrom(DataInput dataInput) throws Exception {
+        System.out.println("readContentFrom");
         int arrayLength = dataInput.readInt();
         byte[] byteArray = new byte[arrayLength];
 
@@ -135,6 +147,8 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
     @Override
     public void writeContentTo(DataOutput dataOutput) throws Exception {
+        System.out.println("writeContentTo");
+
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream out = new ObjectOutputStream(bos);
         out.writeObject(fsTree);

@@ -3,13 +3,13 @@ package GrupoA.StorageController;
 import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class FSTree {
     private DirNode root;
 
     public FSTree() {
         root = new DirNode("/");
-        root.children = null;
     }
 
     public DirNode getRoot() {
@@ -60,6 +60,7 @@ public class FSTree {
 
         public DirNode(String name) {
             this.nodeName = name;
+            this.children = new TreeSet<>();
         }
 
         @Override
@@ -68,7 +69,7 @@ public class FSTree {
         }
 
         public SortedSet<Node> getChildren() {
-            return children;
+            return this.children;
         }
 
         public void setChildren(SortedSet<Node> children) {
@@ -77,22 +78,36 @@ public class FSTree {
     }
 
     public synchronized Boolean mkDir(String path) {
+        System.out.println("FSTree.mkDir(" + path + ")");
+
         // Can't create the root
         if (path.compareTo("/") == 0) {
             return false;
         }
-
         int flag;
         String[] parts = path.split("/");
 
+        System.out.println("Parts:"+parts.length);
+        for (String part : parts) {
+            System.out.println("Part: " + part);
+        }
         FSTree.DirNode currentNode = this.getRoot();
-        SortedSet<FSTree.Node> set = currentNode.getChildren();
+
         for (int i = 0; i < parts.length; i++) {
+            System.out.println("Starting mkDir loop "+i);
             String part = parts[i];
-            flag = 0;
+            System.out.println("For '"+part+"'");
+            if(part.equals(""))
+                continue;
+            boolean foundDirectory = false;
+            SortedSet<FSTree.Node> set = currentNode.getChildren();
+            System.out.println(set);
 
             for (FSTree.Node node : set) {
-                if (part.compareTo(node.getNodeName()) == 0) {
+                System.out.println("node: " +node);
+                if (part.equals(node.getNodeName())) {
+                    //somewhere a long the path we found a file that
+                    //was assumed to be a directory
                     if (node.getNodeType() != FSTree.NodeType.DirNode)
                         return false;
 
@@ -101,9 +116,7 @@ public class FSTree {
                         return false;
 
                     currentNode = (FSTree.DirNode)node;
-                    set = currentNode.getChildren();
-                    flag = 1;
-
+                    foundDirectory = true;
                     break;
                 }
             }
@@ -111,13 +124,19 @@ public class FSTree {
             // It only enters this 'if' if a part of the path doesn't exist;
             // or it was able to reach the final part of the path,
             // which means it is ready to create the directory.
-            if (flag == 0) {
+            System.out.println("foundDirectory: " + foundDirectory);
+            if (!foundDirectory) {
 
                 // Everything was OK
+                System.out.println("i: " + i);
+                System.out.println("parts.length: " + i);
                 if (i == parts.length - 1) {
+                    System.out.println("Finally creating: " + part);
                     FSTree.DirNode newNode = new FSTree.DirNode(part);
                     set.add(newNode);
-                    currentNode.setChildren(set);
+                    System.out.println("Set: ");
+                    System.out.println(set);
+                    //currentNode.setChildren(set);
 
                     return true;
                 }
@@ -132,6 +151,8 @@ public class FSTree {
     }
 
     public synchronized Boolean rmDir(String path) {
+        System.out.println("FSTree.rmDir(" + path + ")");
+
         // Can't remove the root
         if (path.compareTo("/") == 0) {
             return false;
@@ -176,6 +197,8 @@ public class FSTree {
     }
 
     public synchronized Boolean mkFile(String path, int fileSize, int blocks, long hash) {
+        System.out.printf("FSTree.mkFile(%s, %d, %d, %l)\n", path, fileSize, blocks, hash);
+
         // Can't create the root
         if (path.compareTo("/") == 0) {
             return false;
@@ -230,6 +253,8 @@ public class FSTree {
     }
 
     public synchronized Boolean rmFile(String path) {
+        System.out.println("FSTree.rmFile(" + path + ")");
+
         // Can't remove the root
         if (path.compareTo("/") == 0) {
             return false;
@@ -291,6 +316,8 @@ public class FSTree {
     }
 
     public synchronized LinkedList<String> ls(String path) {
+        System.out.println("FSTree.ls(" + path + ")");
+
         FSTree.DirNode currentNode = this.getRoot();
         SortedSet<FSTree.Node> set = currentNode.getChildren();
 
