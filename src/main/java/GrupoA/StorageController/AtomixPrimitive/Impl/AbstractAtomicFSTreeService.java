@@ -75,6 +75,7 @@ public class AbstractAtomicFSTreeService
 
     @Override
     public Boolean mkDir(String path) {
+        /*
         // Can't create the root
         if (path.compareTo("/") == 0) {
             return false;
@@ -126,11 +127,13 @@ public class AbstractAtomicFSTreeService
             }
         }
 
+*/
         return false;
     }
 
     @Override
     public Boolean rmDir(String path) {
+        /*
         // Can't remove the root
         if (path.compareTo("/") == 0) {
             return false;
@@ -170,12 +173,13 @@ public class AbstractAtomicFSTreeService
                 break;
             }
         }
-
+        */
         return false;
     }
 
     @Override
     public Boolean mkFile(String path, int fileSize, int blocks, long hash) {
+        /*
         // Can't create the root
         if (path.compareTo("/") == 0) {
             return false;
@@ -225,12 +229,13 @@ public class AbstractAtomicFSTreeService
                 break;
             }
         }
-
+*/
         return false;
     }
 
     @Override
     public Boolean rmFile(String path) {
+        /*
         // Can't remove the root
         if (path.compareTo("/") == 0) {
             return false;
@@ -274,7 +279,7 @@ public class AbstractAtomicFSTreeService
                 break;
             }
         }
-
+*/
         return false;
     }
 
@@ -293,6 +298,7 @@ public class AbstractAtomicFSTreeService
 
     @Override
     public LinkedList<String> ls(String path) {
+        /*
         FSTree.DirNode currentNode = tree.getRoot();
         SortedSet<FSTree.Node> set = currentNode.getChildren();
 
@@ -332,7 +338,7 @@ public class AbstractAtomicFSTreeService
                 }
             }
         }
-
+*/
         return null;
     }
 }

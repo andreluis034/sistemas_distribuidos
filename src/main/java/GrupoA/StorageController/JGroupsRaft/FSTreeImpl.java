@@ -11,26 +11,47 @@ public class FSTreeImpl implements IFileSystem {
 
     @Override
     public boolean mkDir(String path) {
-        return fsService.mkDir(path);
+        try {
+            return fsService.mkDir(path);
+        } catch(Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public boolean mkFile(String path) {
-        return fsService.mkFile(path);
+    public boolean mkFile(String path, int fileSize, int blocks, long hash) {
+        try {
+            return fsService.mkFile(path, fileSize, blocks, hash);
+        } catch(Exception e) {
+            throw new RuntimeException(e);
+
+        }
     }
 
     @Override
     public boolean rmDir(String path) {
-        return fsService.rmDir(path);
+        try {
+            return fsService.rmDir(path);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public boolean rmFile(String path) {
-        return fsService.rmFile(path);
+        try {
+            return fsService.rmFile(path);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public LinkedList<String> ls(String path) {
-        return fsService.ls(path);
+        try {
+            return fsService.ls(path);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
