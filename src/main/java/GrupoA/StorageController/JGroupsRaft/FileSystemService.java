@@ -146,6 +146,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         dataOutput.write(byteArray);
     }
 
+    //TODO singleton service
     @Override
     public void roleChanged(Role role) {
         System.out.println("-> Changed role to " + role);
