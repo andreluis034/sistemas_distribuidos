@@ -2,10 +2,10 @@ package GrupoA.StorageController.JGroupsRaft;
 
 import java.util.LinkedList;
 
-public class FSTreeImpl implements IFileSystem {
+public class FileSystemImpl implements IFileSystem {
     protected final FileSystemService fsService;
 
-    public FSTreeImpl(FileSystemService fsService) {
+    public FileSystemImpl(FileSystemService fsService) {
         this.fsService = fsService;
     }
 
