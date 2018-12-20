@@ -14,7 +14,6 @@ public interface AsyncAtomicFSTree extends AsyncPrimitive {
         return sync(Duration.ofMillis(DistributedPrimitive.DEFAULT_OPERATION_TIMEOUT_MILLIS));
     }
 
-
     CompletableFuture<Boolean> mkDir(String path);
     CompletableFuture<Boolean> rmDir(String path);
     CompletableFuture<Boolean> mkFile(String path, int fileSize, int blocks, long hash);

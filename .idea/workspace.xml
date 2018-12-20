@@ -7,27 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="455cb227-4467-4991-b677-1778cbe55071" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/storage_controller_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/ObjectStorageOps.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/FileSystemService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/IFileSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/FSTreeImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/storage_controller_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/sistemas_distribuidos_jar/sistemas_distribuidos.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/sistemas_distribuidos_jar/sistemas_distribuidos.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AsyncAtomicFSTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AsyncAtomicFSTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AsyncDistributedFSTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AsyncDistributedFSTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AtomicFSTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AtomicFSTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AtomicFSTreeConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AtomicFSTreeConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/DistributedFSTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/DistributedFSTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/DistributedFSTreeConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/DistributedFSTreeConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AbstractAtomicFSTreeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AbstractAtomicFSTreeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingAtomicFSTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingAtomicFSTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingDistributedFSTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingDistributedFSTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/DelegatingAsyncDistributedFSTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/DelegatingAsyncDistributedFSTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixService/DistributedFSTreeClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixService/DistributedFSTreeClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/FileSystemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/FileSystemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/IFileSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/IFileSystem.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,94 +31,78 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BlockingDistributedFSTree.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingDistributedFSTree.java">
+      <file leaf-file-name="FSTree.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/FSTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="24" selection-start-line="24" selection-end-line="49" selection-end-column="5" />
+            <state relative-caret-position="110">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding>
-                <element signature="e#816#817#0" expanded="true" />
-                <element signature="e#862#863#0" expanded="true" />
-                <element signature="e#920#921#0" expanded="true" />
-                <element signature="e#966#967#0" expanded="true" />
-                <element signature="e#1168#1169#0" expanded="true" />
-                <element signature="e#1215#1216#0" expanded="true" />
-                <element signature="e#1281#1282#0" expanded="true" />
-                <element signature="e#1324#1325#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#268#269#0" expanded="true" />
+                <element signature="e#295#296#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractAtomicFSTreeService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FSTreeImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/FSTreeImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
+              <folding>
+                <element signature="e#264#265#0" expanded="true" />
+                <element signature="e#306#307#0" expanded="true" />
+                <element signature="e#359#360#0" expanded="true" />
+                <element signature="e#401#402#0" expanded="true" />
+                <element signature="e#297#298#0" expanded="true" />
+                <element signature="e#325#326#0" expanded="true" />
+                <element signature="e#380#381#0" expanded="true" />
+                <element signature="e#408#409#0" expanded="true" />
+                <element signature="e#464#465#0" expanded="true" />
+                <element signature="e#492#493#0" expanded="true" />
+                <element signature="e#554#555#0" expanded="true" />
+                <element signature="e#581#582#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IFileSystem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/IFileSystem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileSystemService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/FileSystemService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="660">
+              <caret line="41" column="34" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+              <folding>
+                <element signature="e#729#730#0" expanded="true" />
+                <element signature="e#755#756#0" expanded="true" />
+                <element signature="e#801#802#0" expanded="true" />
+                <element signature="e#828#829#0" expanded="true" />
+                <element signature="e#869#870#0" expanded="true" />
+                <element signature="e#896#897#0" expanded="true" />
+                <element signature="e#937#938#0" expanded="true" />
+                <element signature="e#964#965#0" expanded="true" />
+                <element signature="e#1005#1006#0" expanded="true" />
+                <element signature="e#1032#1033#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractAtomicFSTreeService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AbstractAtomicFSTreeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="295" selection-start-line="295" selection-end-line="295" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AtomicFSTreeProxy.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeProxy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="50" column="69" selection-start-line="50" selection-start-column="69" selection-end-line="50" selection-end-column="69" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProxyClient.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/io/atomix/atomix-primitive/3.0.6/atomix-primitive-3.0.6.jar!/io/atomix/primitive/proxy/ProxyClient.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="73" column="36" selection-start-line="73" selection-start-column="36" selection-end-line="73" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AtomicFSTreeService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlockingAtomicFSTree.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingAtomicFSTree.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-256">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding>
-                <element signature="e#740#741#0" expanded="true" />
-                <element signature="e#794#795#0" expanded="true" />
-                <element signature="e#852#853#0" expanded="true" />
-                <element signature="e#906#907#0" expanded="true" />
-                <element signature="e#1140#1141#0" expanded="true" />
-                <element signature="e#1195#1196#0" expanded="true" />
-                <element signature="e#1262#1263#0" expanded="true" />
-                <element signature="e#1313#1314#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DistributedFSTree.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/DistributedFSTree.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+            <state relative-caret-position="455">
+              <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -173,18 +145,22 @@
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixService/DistributedFSTreeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/Node.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/FSTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AsyncAtomicFSTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AtomicFSTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/DelegatingAsyncDistributedFSTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AsyncDistributedFSTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/DistributedFSTree.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingDistributedFSTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingAtomicFSTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeProxy.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AbstractAtomicFSTreeService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixService/DistributedFSTreeClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingDistributedFSTree.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AsyncAtomicFSTree.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeProxy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/FSTree.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/FileSystemService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/IFileSystem.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/FSTreeImpl.java" />
       </list>
     </option>
   </component>
@@ -205,10 +181,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="66" />
-    <option name="y" value="25" />
-    <option name="width" value="1854" />
-    <option name="height" value="1055" />
+    <option name="x" value="-281" />
+    <option name="y" value="-4" />
+    <option name="width" value="1855" />
+    <option name="height" value="562" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -269,28 +245,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
               <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-              <item name="AtomixPrimitive" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-              <item name="AtomixPrimitive" type="462c0819:PsiDirectoryNode" />
-              <item name="Impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-              <item name="AtomixService" type="462c0819:PsiDirectoryNode" />
+              <item name="JGroupsRaft" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
@@ -312,7 +267,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="/media/mario/UBUNTU 16_0/Trabalhos/Outros/projectCAS_Java" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -326,6 +281,136 @@
       <recent name="GrupoA.StorageController.AtomixPrimitive" />
       <recent name="GrupoA.StorageController" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/artifacts/sistemas_distribuidos_jar/sistemas_distribuidos.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pom.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AsyncAtomicFSTree.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AsyncDistributedFSTree.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AtomicFSTree.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AtomicFSTreeConfig.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/DistributedFSTree.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/DistributedFSTreeConfig.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AbstractAtomicFSTreeService.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeProxy.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeService.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingAtomicFSTree.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingDistributedFSTree.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/DelegatingAsyncDistributedFSTree.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/artifacts/storage_controller_jar.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/ObjectStorageOps.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/FileSystemService.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/IFileSystem.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/META-INF/MANIFEST.MF</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -480,7 +565,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41744000" />
+    <option name="totallyTimeSpent" value="48316000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -492,40 +577,64 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067115" side_tool="true" weight="0.39804772" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.32485875" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32909605" />
-      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.2821285" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="8" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067115" side_tool="true" weight="0.39804772" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3394794" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32968536" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.31779662" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.23476523" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.23519646" />
       <window_info anchor="right" id="Bean Validation" order="4" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32831326" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="SciView" order="4" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" sideWeight="0.5010846" side_tool="true" weight="0.22966242" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.32485875" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" id="SciView" order="4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32968536" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067115" side_tool="true" weight="0.39804772" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.23476523" />
+      <window_info id="Favorites" order="2" sideWeight="0.5010846" side_tool="true" weight="0.22966242" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Java Enterprise" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.31779662" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Bean Validation" order="4" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3394794" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32909605" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32831326" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.32485875" />
+      <window_info anchor="right" id="SciView" order="4" />
+      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.2821285" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info id="Designer" order="2" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,31 +664,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/jre/lib/rt.jar!/java/lang/System.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/Utility/Jenkins.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="39" column="111" selection-start-line="39" selection-start-column="111" selection-end-line="39" selection-end-column="111" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -657,23 +741,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixService/DistributedFSTreeClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/DistributedFSTreeConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -712,23 +779,6 @@
     </entry>
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/lang/String.class" />
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/Node.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1709">
-          <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/FSTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="74" column="9" selection-start-line="74" selection-start-column="9" selection-end-line="74" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AtomicFSTreeConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -759,20 +809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AtomicFSTreeBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -796,30 +832,6 @@
           <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AsyncAtomicFSTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="21" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/DelegatingAsyncDistributedFSTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-142">
-          <caret line="13" column="29" lean-forward="true" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-          <folding>
-            <element signature="e#764#765#0" expanded="true" />
-            <element signature="e#809#810#0" expanded="true" />
-            <element signature="e#886#887#0" expanded="true" />
-            <element signature="e#931#932#0" expanded="true" />
-            <element signature="e#1170#1171#0" expanded="true" />
-            <element signature="e#1216#1217#0" expanded="true" />
-            <element signature="e#1301#1302#0" expanded="true" />
-            <element signature="e#1343#1344#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -859,23 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingDistributedFSTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="24" selection-start-line="24" selection-end-line="49" selection-end-column="5" />
-          <folding>
-            <element signature="e#816#817#0" expanded="true" />
-            <element signature="e#862#863#0" expanded="true" />
-            <element signature="e#920#921#0" expanded="true" />
-            <element signature="e#966#967#0" expanded="true" />
-            <element signature="e#1168#1169#0" expanded="true" />
-            <element signature="e#1215#1216#0" expanded="true" />
-            <element signature="e#1281#1282#0" expanded="true" />
-            <element signature="e#1324#1325#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingAtomicFSTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-256">
@@ -895,8 +890,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+        <state relative-caret-position="418">
+          <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -910,22 +905,153 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeProxy.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="50" column="69" selection-start-line="50" selection-start-column="69" selection-end-line="50" selection-end-column="69" />
+        <state relative-caret-position="56">
+          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AbstractAtomicFSTreeService.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/atomix/atomix-primitive/3.0.6/atomix-primitive-3.0.6.jar!/io/atomix/primitive/AsyncPrimitive.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="295" selection-start-line="295" selection-end-line="295" />
+        <state relative-caret-position="110">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/DelegatingAsyncDistributedFSTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="22" column="29" lean-forward="true" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/AsyncAtomicFSTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="method#sync#0;class#AsyncAtomicFSTree#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="719">
+          <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/BlockingDistributedFSTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="35" column="76" selection-start-line="35" selection-start-column="76" selection-end-line="35" selection-end-column="76" />
+          <folding>
+            <element signature="method#mkFile#0;class#BlockingDistributedFSTree#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixService/DistributedFSTreeClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AtomicFSTreeClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="92" column="8" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/AtomixPrimitive/Impl/AbstractAtomicFSTreeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/FSTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#268#269#0" expanded="true" />
+            <element signature="e#295#296#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/IFileSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/FSTreeImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="e#264#265#0" expanded="true" />
+            <element signature="e#306#307#0" expanded="true" />
+            <element signature="e#359#360#0" expanded="true" />
+            <element signature="e#401#402#0" expanded="true" />
+            <element signature="e#297#298#0" expanded="true" />
+            <element signature="e#325#326#0" expanded="true" />
+            <element signature="e#380#381#0" expanded="true" />
+            <element signature="e#408#409#0" expanded="true" />
+            <element signature="e#464#465#0" expanded="true" />
+            <element signature="e#492#493#0" expanded="true" />
+            <element signature="e#554#555#0" expanded="true" />
+            <element signature="e#581#582#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/JGroupsRaft/FileSystemService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="41" column="34" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+          <folding>
+            <element signature="e#729#730#0" expanded="true" />
+            <element signature="e#755#756#0" expanded="true" />
+            <element signature="e#801#802#0" expanded="true" />
+            <element signature="e#828#829#0" expanded="true" />
+            <element signature="e#869#870#0" expanded="true" />
+            <element signature="e#896#897#0" expanded="true" />
+            <element signature="e#937#938#0" expanded="true" />
+            <element signature="e#964#965#0" expanded="true" />
+            <element signature="e#1005#1006#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
           </folding>
         </state>
       </provider>

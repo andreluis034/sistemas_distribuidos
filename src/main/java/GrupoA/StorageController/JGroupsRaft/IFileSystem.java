@@ -2,6 +2,7 @@ package GrupoA.StorageController.JGroupsRaft;
 
 import GrupoA.StorageController.FSTree;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public interface IFileSystem {
@@ -13,5 +14,5 @@ public interface IFileSystem {
 
     boolean rmFile(String path);
 
-    List<FSTree.Node> ls(String path);
+    LinkedList<String> ls(String path);
 }

@@ -33,8 +33,7 @@ public class BlockingDistributedFSTree extends Synchronous<AsyncDistributedFSTre
         return this.async().rmDir(path).join();
     }
     @Override
-    public Boolean mkFile(String path, int fileSize, int blocks, long hash)
-    {
+    public Boolean mkFile(String path, int fileSize, int blocks, long hash) {
         return this.async().mkFile(path, fileSize, blocks, hash).join();
     }
     @Override

@@ -7,6 +7,7 @@ import io.atomix.primitive.AbstractAsyncPrimitive;
 import io.atomix.primitive.PrimitiveRegistry;
 import io.atomix.primitive.PrimitiveState;
 import io.atomix.primitive.proxy.ProxyClient;
+import io.atomix.utils.time.Version;
 
 import java.time.Duration;
 import java.util.LinkedList;
@@ -24,10 +25,8 @@ public class AtomicFSTreeProxy
     private void onStateChange(PrimitiveState state) {
     }
 
-
     @Override
     public CompletableFuture<Boolean> mkDir(String path) {
-
         return getProxyClient().applyBy(name(), service -> service.mkDir(path));
     }
 
@@ -56,10 +55,10 @@ public class AtomicFSTreeProxy
         return new BlockingAtomicFSTree(this, operationTimeout.toMillis());
     }
 
-
     //TODO THIS
     @Override
     public void mdDir(String path) {
+
     }
 
     @Override
