@@ -1,31 +1,18 @@
 package GrupoA.StorageController;
 
-import GrupoA.StorageController.AtomixPrimitive.*;
-import io.atomix.cluster.Node;
-import io.atomix.cluster.discovery.BootstrapDiscoveryProvider;
-import io.atomix.cluster.discovery.MulticastDiscoveryProvider;
-import io.atomix.core.Atomix;
-import io.atomix.core.AtomixBuilder;
-import io.atomix.core.profile.Profile;
-import io.atomix.primitive.Replication;
-import io.atomix.protocols.backup.MultiPrimaryProtocol;
-import io.atomix.protocols.backup.partition.PrimaryBackupPartitionGroup;
-import io.atomix.protocols.raft.MultiRaftProtocol;
-import io.atomix.protocols.raft.ReadConsistency;
-import io.atomix.protocols.raft.partition.RaftPartitionGroup;
-import io.atomix.utils.net.Address;
+import GrupoA.StorageController.JGroupsRaft.FileSystemService;
+import org.jgroups.JChannel;
+import org.jgroups.util.Util;
 
-import java.io.File;
-import java.util.concurrent.ThreadLocalRandom;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class EntryPoint {
     private static List<String> getLocalAddresses() throws SocketException {
@@ -49,7 +36,50 @@ public class EntryPoint {
         return addresses;
     }
 
-    public static void main(String[] args) throws Exception {
+    protected static void loop(FileSystemService service) throws Exception {
+        boolean looping=true;
+        while(looping) {
+            try {
+                int key=Util.keyPress("[1] mkDir [2] ls\n");
+
+                switch(key) {
+                    case '1':
+                        System.out.println("mkDir");
+                        boolean val = service.mkDir("/etc"
+                                + ThreadLocalRandom.current().nextInt(0, (int) Math.pow(2,16)));
+                        System.out.printf("%s: %s\n", "ls", val);
+                        break;
+                    case '2':
+                        System.out.println("ls");
+                        List<String> nodes = service.ls("/");
+                        for (String node :
+                                nodes) {
+                            System.out.println(node);
+                        }
+                        break;
+                    case 'x':
+                        looping=false;
+                        break;
+                }
+            }
+            catch(Throwable t) {
+                System.err.println(t.toString());
+            }
+        }
+    }
+
+    private static void startRaft(String raftId) throws Exception{
+        JChannel ch = new JChannel("./raft.xml").name(raftId);
+        FileSystemService service = new FileSystemService(ch);
+        System.out.println("Connecting");
+        ch.connect("FSTreeCluster");
+        System.out.println("Connected");
+        System.out.println(raftId);
+        loop(service);
+
+    }
+
+   /* public static void atomix_func(String[] args) throws  Exception {
         String memberId = args.length == 0 ?
                 "member" + ThreadLocalRandom.current().nextInt(0, (int) Math.pow(2,16))
                 : args[0];
@@ -72,29 +102,47 @@ public class EntryPoint {
                 .withPartitionGroups(
                         PrimaryBackupPartitionGroup.builder("data")
                                 .withNumPartitions(32)
-                                .build());//*/
+                                .build());//
 
         //Atomix at = new Atomix("atomix.conf");
-       // at
+        // at
         System.out.println("14:57");
         System.out.println(memberId);
 
 
-        Atomix at = builder.build();//*/
+        Atomix at = builder.build();//
         at.start().join();
         System.out.println("Created cluster");
-        DistributedFSTree fsTree = at.primitiveBuilder("FSTree", DistributedFSTreeType.instance())
+        DistributedFSTree fsTree = at.getPrimitive("FSTree", DistributedFSTreeType.instance());
+
+     /*   DistributedFSTree fsTree = at.primitiveBuilder("FSTree", DistributedFSTreeType.instance())
                 .withProtocol(MultiPrimaryProtocol.builder()
                         .withReplication(Replication.ASYNCHRONOUS)
                         .withBackups(2)
                         .build())
                 .build();
-        System.out.println("Calling LS");
-        fsTree.ls("Hello");
+        //System.out.println("Calling LS");
+        //fsTree.ls("Hello");
 
         //DistributedFSTree fsTree= at.getPrimitive("FSTree", DistributedFSTreeType.instance());
         System.out.println("Got primitive tree");
 
+        if(memberId.equals("member1")) {
+            // DistributedFSTree fsTree = atomix.getPrimitive("FSTree", DistributedFSTreeType.instance());
+
+            Boolean result  = fsTree.mkDir("/etc");
+            System.out.println(result);
+
+            List<String> dirs = fsTree.ls("/");
+            for (String dir :
+                    dirs) {
+                System.out.println(dir);
+            }
+        }
+
+    }*/
+    public static void main(String[] args) throws Exception {
+        startRaft(args[0]);
     }
 
     public static void foo(){
