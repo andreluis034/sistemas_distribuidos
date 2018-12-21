@@ -1,7 +1,6 @@
 package GrupoA.StorageController;
 
-import GrupoA.StorageController.JGroupsRaft.FileSystemService;
-import org.jgroups.JChannel;
+import GrupoA.StorageController.RaftServices.FileSystemService;
 import org.jgroups.util.Util;
 
 
@@ -69,12 +68,8 @@ public class EntryPoint {
     }
 
     private static void startRaft(String raftId) throws Exception{
-        JChannel ch = new JChannel("./raft.xml").name(raftId);
-        FileSystemService service = new FileSystemService(ch);
-        System.out.println("Connecting");
-        ch.connect("FSTreeCluster");
-        System.out.println("Connected");
-        System.out.println(raftId);
+
+        FileSystemService service = FileSystemService.getInstance("./raft.xml", raftId);
         loop(service);
 
     }

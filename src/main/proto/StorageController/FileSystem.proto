@@ -5,16 +5,17 @@ option java_multiple_files = true;
 option java_outer_classname = "StorageControllerProto";
 option objc_class_prefix = "O";
 
-package GrupoA.StorageController.StorageControllerService;
+package GrupoA.StorageController.gRPCService.FileSystem;
 
 service StorageController {
-    rpc getMetadata (getMetadataArgs) returns (EmptyMessage) {}
-
-    rpc getObject (GetObjectArgs) returns (ObjectData) {}
+//    rpc mkFile (pathOnlyArgs) returns (BooleanMessage) {}
+    rpc rmFile (pathOnlyArgs) returns (BooleanMessage) {}
+    rpc rmDir (pathOnlyArgs) returns (BooleanMessage) {}
+    rpc mkDir (pathOnlyArgs) returns (BooleanMessage) {}
 }
 
 
-message getMetadataArgs {
+message pathOnlyArgs {
     string filePath = 1;
 }
 
@@ -30,5 +31,6 @@ message ObjectData{
     bytes objectData = 2;
 }
 
-message EmptyMessage {
+message BooleanMessage {
+    bool result = 1;
 }

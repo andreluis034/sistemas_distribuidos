@@ -66,7 +66,7 @@ public class FSTree {
             return false;
         int flag;
         String[] parts = path.split("/");
-        String dirName = parts[parts.length]; //TODO Pode have um path que termine em barra e isto da porcaria
+        String dirName = parts[parts.length - 1]; //TODO Pode have um path que termine em barra e isto da porcaria
         Node parent = this.getNode(joinPathExceptLastN(parts, 1));
         if(parent == null || parent.getNodeType() != NodeType.DirNode)
             return false;
@@ -118,7 +118,7 @@ public class FSTree {
             return false;
         int flag;
         String[] parts = path.split("/");
-        String fileName = parts[parts.length]; //TODO Pode have um path que termine em barra e isto da porcaria
+        String fileName = parts[parts.length - 1]; //TODO Pode have um path que termine em barra e isto da porcaria
         Node parent = this.getNode(joinPathExceptLastN(parts, 1));
         if(parent == null || parent.getNodeType() != NodeType.DirNode)
             return false;

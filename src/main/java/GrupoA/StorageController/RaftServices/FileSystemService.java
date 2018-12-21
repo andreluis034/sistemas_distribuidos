@@ -1,4 +1,4 @@
-package GrupoA.StorageController.JGroupsRaft;
+package GrupoA.StorageController.RaftServices;
 
 import GrupoA.StorageController.FileSystem.FSTree;
 import org.jgroups.JChannel;
@@ -9,7 +9,6 @@ import org.jgroups.raft.RaftHandle;
 import org.jgroups.util.*;
 
 import java.io.*;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +17,19 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
     protected RaftHandle raft;
     protected FSTree fsTree = new FSTree();
     protected long replyTimeout = 20 * 1000; // 20 seconds
-    public FileSystemService(JChannel ch){
+
+    private static FileSystemService service = null;
+    public synchronized static FileSystemService getInstance(String config, String raftId) throws Exception {
+
+        if(service == null) {
+            JChannel ch = new JChannel("./raft.xml").name(raftId);
+            service = new FileSystemService(ch);
+            ch.connect("FSTreeCluster");
+        }
+        return service;
+    }
+
+    private FileSystemService(JChannel ch){
         this.setChannel(ch);
     }
 
