@@ -114,7 +114,8 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
     }
 
     protected Object invoke(Command command, String path, int fileSize, int blocks, long hash) throws Exception {
-        ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(256);
+        //Size: length of string + null terminator, int size = 4, long size = 8
+        ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(path.length() + 1 + 4+4+8);
 
         try {
             out.writeByte(command.ordinal());
