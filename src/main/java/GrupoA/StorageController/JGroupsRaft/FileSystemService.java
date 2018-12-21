@@ -10,6 +10,7 @@ import org.jgroups.util.*;
 
 import java.io.*;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class FileSystemService implements StateMachine, RAFT.RoleChange {
@@ -40,8 +41,8 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
     }
 
     @SuppressWarnings("unchecked")
-    public LinkedList<String> ls(String path) throws Exception {
-        return (LinkedList<String>) invoke(Command.ls, path);
+    public List<String> ls(String path) throws Exception {
+        return (List<String>) invoke(Command.ls, path);
     }
 
     public void setChannel(JChannel ch) {
@@ -81,7 +82,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
                     bool_return_value = fsTree.rmFile(path);
                     return Util.objectToByteBuffer(bool_return_value);
                 case ls:
-                    LinkedList<String> return_value;
+                    List<String> return_value;
 
                     return_value = fsTree.ls(path);
                     return Util.objectToByteBuffer(return_value);
