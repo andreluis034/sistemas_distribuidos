@@ -1,7 +1,6 @@
 package GrupoA.StorageController.JGroupsRaft;
 
-import GrupoA.StorageController.FSTree;
-import org.jgroups.Channel;
+import GrupoA.StorageController.FileSystem.FSTree;
 import org.jgroups.JChannel;
 import org.jgroups.protocols.raft.RAFT;
 import org.jgroups.protocols.raft.Role;

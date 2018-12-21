@@ -1,7 +1,7 @@
 package GrupoA.StorageController.AtomixPrimitive.Impl;
 
 import GrupoA.StorageController.AtomixPrimitive.AtomicFSTreeType;
-import GrupoA.StorageController.FSTree;
+import GrupoA.StorageController.FileSystem.FSTree;
 import io.atomix.primitive.PrimitiveType;
 import io.atomix.primitive.service.AbstractPrimitiveService;
 import io.atomix.primitive.service.BackupInput;
