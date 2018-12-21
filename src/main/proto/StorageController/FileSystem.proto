@@ -2,12 +2,12 @@ syntax = "proto3";
 
 
 option java_multiple_files = true;
-option java_outer_classname = "StorageControllerProto";
+option java_outer_classname = "FileSystemProto";
 option objc_class_prefix = "O";
 
 package GrupoA.StorageController.gRPCService.FileSystem;
 
-service StorageController {
+service FileSystem {
 //    rpc mkFile (pathOnlyArgs) returns (BooleanMessage) {}
     rpc rmFile (pathOnlyArgs) returns (BooleanMessage) {}
     rpc rmDir (pathOnlyArgs) returns (BooleanMessage) {}
