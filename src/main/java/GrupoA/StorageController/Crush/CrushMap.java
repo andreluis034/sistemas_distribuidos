@@ -15,7 +15,6 @@ public class CrushMap implements ICrushMap {
         this.Version = version;
     }
 
-
     @Override
     public int getVersion() {
         return this.Version;
@@ -27,7 +26,13 @@ public class CrushMap implements ICrushMap {
     }
 
     @Override
-    public int getLeaderOsdOfPg(int pg) {
+    public int getLeaderOsdOfPg(int pgID) {
+        for (PlacementGroup pg : PGs) {
+            if (pg.getPgID() == pgID) {
+                for (ObjectStorageDaemon osd : pg.)
+            }
+        }
+
         return 0;
     }
 }

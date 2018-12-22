@@ -5,16 +5,23 @@ import org.jgroups.protocols.raft.RAFT;
 import org.jgroups.protocols.raft.Role;
 import org.jgroups.protocols.raft.StateMachine;
 import org.jgroups.raft.RaftHandle;
+import org.jgroups.util.AsciiString;
+import org.jgroups.util.Bits;
+import org.jgroups.util.ByteArrayDataOutputStream;
+import org.jgroups.util.Util;
 
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class CrushMapService implements StateMachine, RAFT.RoleChange {
-
     private static CrushMapService service = null;
     protected JChannel ch;
     protected RaftHandle raft;
+    protected long replyTimeout = 20 * 1000; // 20 seconds
+
+    protected enum Command {leaderOSDofPG, }
 
     private ICrushMap latestMap;
     private final HashMap<Integer, ICrushMap> mapOfMaps = new HashMap<>();
@@ -23,7 +30,6 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
         return service;
     }
     public synchronized static CrushMapService getInstance(String config, String raftId) throws Exception {
-
         if(service == null) {
             JChannel ch = new JChannel(config).name(raftId);
             service = new CrushMapService(ch);
@@ -31,7 +37,6 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
         }
         return service;
     }
-
 
     private CrushMapService(JChannel ch){
         this.setChannel(ch);
@@ -44,8 +49,27 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
     }
 
     @Override
-    public byte[] apply(byte[] bytes, int i, int i1) throws Exception {
+    public byte[] apply(byte[] bytes, int offset, int length) throws Exception {
         return new byte[0];
+    }
+
+    public int getLeaderOsdOfPg(int pg) throws Exception {
+        return (int)invoke(pg);
+    }
+
+    protected Object invoke(int pg) throws Exception {
+        // Size: sizeof(int)(= 4) + 1
+        ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(5);
+        try {
+            out.writeByte(pg);
+        } catch(Exception ex) {
+            throw new Exception("Serialization failure (PgID = " + pg + ")");
+        }
+
+        byte[] buf = out.buffer();
+        byte[] rsp = raft.set(buf, 0, out.position(), replyTimeout, TimeUnit.MILLISECONDS);
+
+        return Util.objectFromByteBuffer(rsp);
     }
 
     @Override

@@ -4,10 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PlacementGroup {
-    private int pgNumber = 0;
+    private int pgID = 0;
     private List<ObjectStorageDaemon> OSDs = new LinkedList<>();
 
-    public int getPgNumber(){
-        return this.pgNumber;
+    public int getPgID(){
+        return this.pgID;
+    }
+
+    public List<ObjectStorageDaemon> getOSDs() {
+        return this.OSDs;
     }
 }

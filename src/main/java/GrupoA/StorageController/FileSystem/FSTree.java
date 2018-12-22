@@ -1,13 +1,32 @@
 package GrupoA.StorageController.FileSystem;
 
 import javax.annotation.Nullable;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class FSTree {
     private DirNode root;
+    private File journal;
+    public Path journal_path;
 
     public FSTree() {
         root = new DirNode("/");
+        journal = new File("journal.txt");
+
+        try {
+            if (!journal.exists())
+                if (!journal.createNewFile())
+                    throw new IOException("Couldn't create log file");
+
+            journal_path = Paths.get("journal.txt");
+            Files.write(journal_path, Collections.singleton("Logs started @ " + new Date()));
+        } catch (IOException ignored) {
+            System.err.println("Couldn't create log file\n");
+        }
     }
 
     public DirNode getRoot() {
@@ -19,7 +38,6 @@ public class FSTree {
         DirNode
     }
 
-
     /**
      * Gets the node that corresponds to the give path
      * @param path the path to search for
@@ -28,6 +46,7 @@ public class FSTree {
     public synchronized Node getNode(String path)  {
         if(path.equals("/"))
             return this.getRoot();
+
         String[] splittedPath  = path.split("/");
         Node currentNode = this.getRoot();
         for (int i = 0; i < splittedPath.length; ++i) {
@@ -59,12 +78,17 @@ public class FSTree {
      * @return true if the directory was created
      */
     public synchronized Boolean mkDir(String path) {
-        System.out.println("FSTree.mkDir(\"" + path + "\")");
+        try {
+            Files.write(journal_path, Collections.singleton("FSTree.mkDir(\"" + path + "\")"));
+        } catch (IOException ignored) {
+            System.out.println("FSTree.mkDir(\"" + path + "\")");
+            System.err.println("Couldn't write to log file");
+        }
 
         // Can't create the root
         if (path.equals("/"))
             return false;
-        int flag;
+
         String[] parts = path.split("/");
         String dirName = parts[parts.length - 1]; //TODO Pode have um path que termine em barra e isto da porcaria
         Node parent = this.getNode(joinPathExceptLastN(parts, 1));
@@ -85,7 +109,12 @@ public class FSTree {
      * @return True if the directory was removed
      */
     public synchronized Boolean rmDir(String path) {
-        System.out.println("FSTree.rmDir(" + path + ")");
+        try {
+            Files.write(journal_path, Collections.singleton("FSTree.rmDir(\"" + path + "\")"));
+        } catch (IOException ignored) {
+            System.out.println("FSTree.rmDir(\"" + path + "\")");
+            System.err.println("Couldn't write to log file");
+        }
 
         // Can't remove the root
         if (path.equals("/"))
@@ -111,12 +140,18 @@ public class FSTree {
      * @return true if the file was created
      */
     public synchronized Boolean mkFile(String path, int fileSize, int blocks, long hash) {
-        System.out.printf("FSTree.mkFile(%s, %d, %d, %l)\n", path, fileSize, blocks, hash);
+        try {
+            Files.write(journal_path, Collections.singleton("FSTree.mkFile(\"" + path + "\", " + fileSize
+                    + ", " + blocks + ", " + hash + ")"));
+        } catch (IOException ignored) {
+            System.out.println("FSTree.mkFile(\"" + path + "\", " + fileSize + ", " + blocks + ", " + hash + ")");
+            System.err.println("Couldn't write to log file");
+        }
 
         // Can't create the root
         if (path.equals("/"))
             return false;
-        int flag;
+
         String[] parts = path.split("/");
         String fileName = parts[parts.length - 1]; //TODO Pode have um path que termine em barra e isto da porcaria
         Node parent = this.getNode(joinPathExceptLastN(parts, 1));
@@ -136,7 +171,12 @@ public class FSTree {
      * @return true if file has been deleted, false if otherwise
      */
     public synchronized Boolean rmFile(String path) {
-        System.out.println("FSTree.rmFile(" + path + ")");
+        try {
+            Files.write(journal_path, Collections.singleton("FSTree.rmFile(\"" + path + "\")"));
+        } catch (IOException ignored) {
+            System.out.println("FSTree.rmFile(\"" + path + "\")");
+            System.err.println("Couldn't write to log file");
+        }
 
         if (path.equals("/"))
             return false;
@@ -156,10 +196,17 @@ public class FSTree {
      * @return the list of files and directories
      */
     public synchronized List<String> ls(String path) {
-        System.out.println("FSTree.ls(" + path + ")");
+        try {
+            Files.write(journal_path, Collections.singleton("FSTree.ls(" + path + ")"));
+        } catch (IOException ignored) {
+            System.out.println("FSTree.ls(\"" + path + "\")");
+            System.err.println("Couldn't write to log file");
+        }
+
         Node node = this.getNode(path);
         if(node == null)
             return null;
+
         List<String> output = new LinkedList<>();
         if(node.getNodeType() == NodeType.FileNode){
             output.add("File: " + node.nodeName);

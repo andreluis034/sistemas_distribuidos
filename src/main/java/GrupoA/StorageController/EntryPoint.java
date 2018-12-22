@@ -68,10 +68,8 @@ public class EntryPoint {
     }
 
     private static void startRaft(String raftId) throws Exception{
-
         FileSystemService service = FileSystemService.getInstance("./raft.xml", raftId);
         loop(service);
-
     }
 
    /* public static void atomix_func(String[] args) throws  Exception {
