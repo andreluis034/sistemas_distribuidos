@@ -15,14 +15,14 @@ public class FSTree {
 
     public FSTree() {
         root = new DirNode("/");
-        journal = new File("journal.txt");
+        journal = new File("FSTree_journal.txt");
 
         try {
             if (!journal.exists())
                 if (!journal.createNewFile())
                     throw new IOException("Couldn't create log file");
 
-            journal_path = Paths.get("journal.txt");
+            journal_path = Paths.get("FSTree_journal.txt");
             Files.write(journal_path, Collections.singleton("Logs started @ " + new Date()));
         } catch (IOException ignored) {
             System.err.println("Couldn't create log file\n");
