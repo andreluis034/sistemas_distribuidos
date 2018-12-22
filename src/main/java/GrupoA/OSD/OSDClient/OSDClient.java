@@ -66,21 +66,5 @@ public class OSDClient {
     public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
-
-
-/*
-    public static void main(String[] args) throws Exception {
-        OSDClient client = new OSDClient("localhost", 50051);
-
-        FileData fd = FileData.newBuilder().setHash("Cenas").setObjectData(ByteString.EMPTY).build();
-        try {
-            client.blockingStub.putObject(fd);
-
-        } catch (StatusRuntimeException e) {
-            System.err.println("RPC failed: " + e.getStatus());
-        } finally {
-            client.shutdown();
-        }
-    }*/
 }
 

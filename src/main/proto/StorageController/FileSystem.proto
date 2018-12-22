@@ -12,8 +12,36 @@ service FileSystem {
     rpc rmFile (pathOnlyArgs) returns (BooleanMessage) {}
     rpc rmDir (pathOnlyArgs) returns (BooleanMessage) {}
     rpc mkDir (pathOnlyArgs) returns (BooleanMessage) {}
+
+    rpc getAttr (IntArg) returns (iNodeAttributes) {}
 }
 
+message IntArg {
+    int32 iNode = 1;
+}
+
+/**
+        public String Name;
+
+        public Byte UserPermissions;
+        public Byte GroupPermissions;
+        public Byte OthersPermissions;
+        public Long OwnerId;
+        public Long GroupId;
+        public Long INodeNumber;
+        public Long Size;
+        public Long ParentINodeNumber;*/
+message iNodeAttributes {
+    string name = 1;
+    int32 UserPermissions = 2;
+    int32 GroupPermissions = 3;
+    int32 OtherPermissions = 4;
+    int64 OwnerId = 5;
+    int64 GroupId = 6;
+    int64 INodeNumber = 7;
+    int64 ParentINodeNumber = 8;
+    int64 Size = 9;
+}
 
 message pathOnlyArgs {
     string filePath = 1;

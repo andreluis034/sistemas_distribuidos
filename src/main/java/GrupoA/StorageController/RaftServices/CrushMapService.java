@@ -24,8 +24,8 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
     protected enum Command {leaderOSDofPG, }
 
     private ICrushMap latestMap;
-    private final HashMap<Integer, ICrushMap> mapOfMaps = new HashMap<>();
-
+    private final HashMap<Integer, ICrushMap> mapOfCrushMaps = new HashMap<>();
+    private int nextVersion = 0;
     public synchronized static CrushMapService getInstance() {
         return service;
     }

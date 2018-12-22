@@ -13,6 +13,10 @@ public class FSTree {
     private File journal;
     public Path journal_path;
 
+    public long nextiNode = 1;
+
+    private Hashtable<Long, Node> inodeTable = new Hashtable<Long, Node>();
+
     public FSTree() {
         root = new DirNode("/");
         journal = new File("journal.txt");
@@ -98,7 +102,7 @@ public class FSTree {
         if(((DirNode)parent).getChild(dirName) != null)
             return false;
 
-        ((DirNode)parent).addChild(newDir);
+        this.addNode((DirNode)parent, newDir);
         return true;
 
     }
@@ -127,7 +131,8 @@ public class FSTree {
         if(dirNode.children.size() != 0) //Cannot remove non-empty dir
             return false;
 
-        dirNode.Parent.removeChild(dirNode);
+
+        this.removeNode(dirNode.Parent, dirNode);
         return true;
     }
 
@@ -161,7 +166,8 @@ public class FSTree {
         if(((DirNode)parent).getChild(fileName) != null) // duplicate Entry
             return false;
 
-        ((DirNode)parent).addChild(newFile);
+
+        this.addNode((DirNode)parent, newFile);
         return true;
     }
 
@@ -185,7 +191,7 @@ public class FSTree {
         if(node == null || node.getNodeType() != NodeType.FileNode)
             return false;
 
-        node.Parent.removeChild(node);
+        this.removeNode(node.Parent, node);
         return true;
     }
 
@@ -223,7 +229,24 @@ public class FSTree {
     }
 
 
+    private synchronized long getNextINode() {
+        return this.nextiNode++;
+    }
+
+    private synchronized void addNode(DirNode parent, Node child) {
+        child.iNode = getNextINode();
+        this.inodeTable.put(child.iNode, child);
+        parent.addChild(child);
+    }
+
+    private synchronized void removeNode(DirNode parent, Node child) {
+        this.inodeTable.remove(child.iNode);
+        parent.removeChild(child);
+    }
+
     public static abstract class Node implements Comparable<Node> {
+
+        public long iNode = 0;
 
         public abstract NodeType getNodeType();
         String nodeName;

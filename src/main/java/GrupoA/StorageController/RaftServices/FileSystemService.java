@@ -1,5 +1,6 @@
 package GrupoA.StorageController.RaftServices;
 
+import GrupoA.StorageController.Crush.ObjectStorageDaemon;
 import GrupoA.StorageController.FileSystem.FSTree;
 import org.jgroups.JChannel;
 import org.jgroups.protocols.raft.RAFT;
@@ -45,7 +46,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         raft.addRoleListener(this);
     }
 
-    protected enum Command {mkDir, rmDir, mkFile, rmFile, ls}
+    protected enum Command {mkDir, rmDir, mkFile, rmFile, ls, getINode}
 
     public boolean mkDir(String path) throws Exception {
         return (boolean)invoke(Command.mkDir, path);
@@ -66,6 +67,10 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
     @SuppressWarnings("unchecked")
     public List<String> ls(String path) throws Exception {
         return (List<String>)invoke(Command.ls, path);
+    }
+
+    public FSTree.Node getINode(long iNode) {
+
     }
 
     @Override
@@ -183,6 +188,10 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
             e.printStackTrace();
             throw e;
         }
+
+    }
+
+    protected Object invoke(Command command, int iNode) {
 
     }
 

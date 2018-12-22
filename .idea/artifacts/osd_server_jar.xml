@@ -6,7 +6,6 @@
         <element id="file-copy" path="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/META-INF/MANIFEST.MF" />
       </element>
       <element id="module-output" name="sistemas_distribuidos" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/guava/guava/26.0-android/guava-26.0-android.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/grpc/grpc-context/1.16.1/grpc-context-1.16.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/checkerframework/checker-compat-qual/2.5.2/checker-compat-qual-2.5.2.jar" path-in-jar="/" />
@@ -23,6 +22,7 @@
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/api/grpc/proto-google-common-protos/1.0.0/proto-google-common-protos-1.0.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.7/gson-2.7.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/opencensus/opencensus-contrib-grpc-metrics/0.12.3/opencensus-contrib-grpc-metrics-0.12.3.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Maven: com.google.guava:guava:22.0" />
     </root>
   </artifact>
 </component>
