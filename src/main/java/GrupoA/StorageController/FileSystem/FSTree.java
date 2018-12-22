@@ -209,16 +209,34 @@ public class FSTree {
         Long hash;
         Integer fileSize, blocks;
 
+        int CrushMapVersion = 0;
+
+        public enum RedundancyType {
+            Erasue,
+            Duplicate
+        }
+
+        public RedundancyType redundancy;
+
         public FileNode(String name, long hash, int fileSize, int blocks) {
             this.nodeName = name;
             this.hash = hash;
             this.fileSize = fileSize;
             this.blocks = blocks;
+            this.redundancy = RedundancyType.Duplicate;
         }
 
         @Override
         public NodeType getNodeType() {
             return NodeType.FileNode;
+        }
+
+        public int getCrushMapVersion() {
+            return this.CrushMapVersion;
+        }
+
+        public int setCrushMapVersion(int version) {
+            return this.CrushMapVersion = version;
         }
     }
 
