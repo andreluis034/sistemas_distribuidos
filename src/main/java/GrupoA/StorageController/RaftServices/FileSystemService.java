@@ -19,6 +19,9 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
     protected long replyTimeout = 20 * 1000; // 20 seconds
 
     private static FileSystemService service = null;
+    public synchronized static FileSystemService getInstance() {
+        return service;
+    }
     public synchronized static FileSystemService getInstance(String config, String raftId) throws Exception {
 
         if(service == null) {
@@ -31,6 +34,12 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
     private FileSystemService(JChannel ch){
         this.setChannel(ch);
+    }
+
+    public void setChannel(JChannel ch) {
+        this.ch=ch;
+        this.raft=new RaftHandle(this.ch, this);
+        raft.addRoleListener(this);
     }
 
     protected enum Command {mkDir, rmDir, mkFile, rmFile, ls}
@@ -56,11 +65,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         return (List<String>) invoke(Command.ls, path);
     }
 
-    public void setChannel(JChannel ch) {
-        this.ch=ch;
-        this.raft=new RaftHandle(this.ch, this);
-        raft.addRoleListener(this);
-    }
+
 
     @Override
     public byte[] apply(byte[] bytes, int offset, int length) throws Exception {
@@ -175,6 +180,6 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
     //TODO singleton service
     @Override
     public void roleChanged(Role role) {
-        System.out.println("-> Changed role to " + role);
+        System.out.println("[FileSystemService]-> Changed role to " + role);
     }
 }
