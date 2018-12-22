@@ -40,7 +40,7 @@ public class CrushMapImpl implements ICrushMap {
      * @return the OSD
      */
     @Override
-    public int getLeaderOsdOfPg(int pg) {
+    public String getLeaderOsdOfPg(int pg) {
         return crushMapService.getMap(this.version).getLeaderOsdOfPg(pg);
     }
 }

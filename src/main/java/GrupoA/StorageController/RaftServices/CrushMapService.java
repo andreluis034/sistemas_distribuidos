@@ -1,18 +1,21 @@
 package GrupoA.StorageController.RaftServices;
 
+import GrupoA.StorageController.Crush.CrushMap;
+import GrupoA.StorageController.Crush.ObjectStorageDaemon;
 import org.jgroups.JChannel;
 import org.jgroups.protocols.raft.RAFT;
 import org.jgroups.protocols.raft.Role;
 import org.jgroups.protocols.raft.StateMachine;
 import org.jgroups.raft.RaftHandle;
-import org.jgroups.util.AsciiString;
-import org.jgroups.util.Bits;
-import org.jgroups.util.ByteArrayDataOutputStream;
 import org.jgroups.util.Util;
 
 import java.io.DataInput;
 import java.io.DataOutput;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CrushMapService implements StateMachine, RAFT.RoleChange {
@@ -21,11 +24,10 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
     protected RaftHandle raft;
     protected long replyTimeout = 20 * 1000; // 20 seconds
 
-    protected enum Command {leaderOSDofPG, }
+    private CrushMap latestMap;
+    private int latestVersion;
+    private final HashMap<Integer, CrushMap> mapOfMaps = new HashMap<>();
 
-    private ICrushMap latestMap;
-    private final HashMap<Integer, ICrushMap> mapOfCrushMaps = new HashMap<>();
-    private int nextVersion = 0;
     public synchronized static CrushMapService getInstance() {
         return service;
     }
@@ -50,24 +52,27 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
 
     @Override
     public byte[] apply(byte[] bytes, int offset, int length) throws Exception {
-        return new byte[0];
-    }
+        List<ObjectStorageDaemon> OSDs = Util.objectFromByteBuffer(bytes, offset, length);
 
-    public int getLeaderOsdOfPg(int pg) throws Exception {
-        return (int)invoke(pg);
-    }
+        latestVersion++;
+        latestMap = new CrushMap(latestVersion, OSDs);
+        mapOfMaps.put(latestVersion, latestMap);
 
-    protected Object invoke(int pg) throws Exception {
-        // Size: sizeof(int)(= 4) + 1
-        ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(5);
         try {
-            out.writeByte(pg);
-        } catch(Exception ex) {
-            throw new Exception("Serialization failure (PgID = " + pg + ")");
+            Files.write(latestMap.journal_path,
+                    Collections.singleton("Created new CRUSH map, version " + latestVersion
+                            + ", with " + OSDs.size() + " OSDs\n"));
+        } catch (IOException ignored) {
+            System.out.println("Created new CRUSH map, version " + latestVersion + "\n");
+            System.err.println("Couldn't write to log file\n");
         }
 
-        byte[] buf = out.buffer();
-        byte[] rsp = raft.set(buf, 0, out.position(), replyTimeout, TimeUnit.MILLISECONDS);
+        return Util.objectToByteBuffer(latestMap);
+    }
+
+    protected Object invoke(List<ObjectStorageDaemon> OSDs) throws Exception {
+        byte[] buf = Util.objectToByteBuffer(OSDs);
+        byte[] rsp = raft.set(buf, 0, buf.length, replyTimeout, TimeUnit.MILLISECONDS);
 
         return Util.objectFromByteBuffer(rsp);
     }
@@ -88,6 +93,10 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
 
     public ICrushMap getLatestMap() {
         return this.latestMap;
+    }
+
+    public ICrushMap createNewMap(List<ObjectStorageDaemon> OSDs) throws Exception {
+        return (ICrushMap)invoke(OSDs);
     }
 
     @Override

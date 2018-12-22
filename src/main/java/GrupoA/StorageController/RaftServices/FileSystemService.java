@@ -82,10 +82,10 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         // Journaling the state change
         try {
             Files.write(fsTree.journal_path, Collections.singleton("Applying " + command
-                    + "on path: \"" + path + "\""));
+                    + "on path: \"" + path + "\"\n"));
         } catch (IOException ignored) {
-            System.out.println("Applying " + command + "on path: \"" + path + "\"");
-            System.err.println("Couldn't write to log file");
+            System.out.println("Applying " + command + "on path: \"" + path + "\"\n");
+            System.err.println("Couldn't write to log file\n");
         }
 
         boolean bool_return_value;
@@ -99,8 +99,8 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
                         Files.write(fsTree.journal_path,
                                 Collections.singleton("Return value of command 'mkDir' was: " + bool_return_value));
                     } catch (IOException ignored) {
-                        System.out.println("Return value of command 'mkDir' was: " + bool_return_value);
-                        System.err.println("Couldn't write to log file");
+                        System.out.println("Return value of command 'mkDir' was: " + bool_return_value + "\n");
+                        System.err.println("Couldn't write to log file\n");
                     }
 
                     return Util.objectToByteBuffer(bool_return_value);
@@ -111,8 +111,8 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
                         Files.write(fsTree.journal_path,
                                 Collections.singleton("Return value of command 'rmDir' was: " + bool_return_value));
                     } catch (IOException ignored) {
-                        System.out.println("Return value of command 'rmDir' was: " + bool_return_value);
-                        System.err.println("Couldn't write to log file");
+                        System.out.println("Return value of command 'rmDir' was: " + bool_return_value + "\n");
+                        System.err.println("Couldn't write to log file\n");
                     }
 
                     return Util.objectToByteBuffer(bool_return_value);
@@ -127,8 +127,8 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
                         Files.write(fsTree.journal_path,
                                 Collections.singleton("Return value of command 'mkFile' was: " + bool_return_value));
                     } catch (IOException ignored) {
-                        System.out.println("Return value of command 'mkFile' was: " + bool_return_value);
-                        System.err.println("Couldn't write to log file");
+                        System.out.println("Return value of command 'mkFile' was: " + bool_return_value + "\n");
+                        System.err.println("Couldn't write to log file\n");
                     }
 
                     return Util.objectToByteBuffer(bool_return_value);
@@ -139,8 +139,8 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
                         Files.write(fsTree.journal_path,
                                 Collections.singleton("Return value of command 'rmFile' was: " + bool_return_value));
                     } catch (IOException ignored) {
-                        System.out.println("Return value of command 'rmFile' was: " + bool_return_value);
-                        System.err.println("Couldn't write to log file");
+                        System.out.println("Return value of command 'rmFile' was: " + bool_return_value + "\n");
+                        System.err.println("Couldn't write to log file\n");
                     }
 
                     return Util.objectToByteBuffer(bool_return_value);
@@ -151,8 +151,8 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
                         Files.write(fsTree.journal_path,
                                 Collections.singleton("Success of command 'ls' was: " + (return_value == null)));
                     } catch (IOException ignored) {
-                        System.out.println("Success of command 'ls' was: " + (return_value == null));
-                        System.err.println("Couldn't write to log file");
+                        System.out.println("Success of command 'ls' was: " + (return_value == null) + "\n");
+                        System.err.println("Couldn't write to log file\n");
                     }
 
                     // Hack, just to make sure it is able to be transformed into ByteBuffer
@@ -168,8 +168,8 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
                         Files.write(fsTree.journal_path,
                                 Collections.singleton("Command " + command + " is unknown"));
                     } catch (IOException ignored) {
-                        System.out.println("Command " + command + " is unknown");
-                        System.err.println("Couldn't write to log file");
+                        System.out.println("Command " + command + " is unknown\n");
+                        System.err.println("Couldn't write to log file\n");
                     }
 
                     throw new IllegalArgumentException("Command " + command + " is unknown");
@@ -178,10 +178,10 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
             try {
                 Files.write(fsTree.journal_path,
                         Collections.singleton("An error occurred while trying to apply the command:\n"
-                                + e.toString()));
+                                + e.toString() + "\n"));
             } catch (IOException ignored) {
                 System.out.println("An exception occurred while trying to apply the command:");
-                System.out.println(e.toString());
+                System.out.println(e.toString() + "\n");
                 System.err.println("Couldn't write to log file\n");
             }
 

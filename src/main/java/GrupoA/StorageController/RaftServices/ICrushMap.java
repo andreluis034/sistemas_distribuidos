@@ -22,6 +22,6 @@ public interface ICrushMap {
      * @param pg the pg number
      * @return the OSD
      */
-    int getLeaderOsdOfPg(int pg);
+    String getLeaderOsdOfPg(int pg);
 
 }
