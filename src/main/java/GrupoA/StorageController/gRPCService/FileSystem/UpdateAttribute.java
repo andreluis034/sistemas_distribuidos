@@ -97,13 +97,13 @@ private static final long serialVersionUID = 0L;
   public static final int TYPE_FIELD_NUMBER = 1;
   private int type_;
   /**
-   * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType UpdateType = 1;</code>
    */
   public int getTypeValue() {
     return type_;
   }
   /**
-   * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType UpdateType = 1;</code>
    */
   public GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType getType() {
     @SuppressWarnings("deprecation")
@@ -493,13 +493,13 @@ private static final long serialVersionUID = 0L;
 
     private int type_ = 0;
     /**
-     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType UpdateType = 1;</code>
      */
     public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType UpdateType = 1;</code>
      */
     public Builder setTypeValue(int value) {
       type_ = value;
@@ -507,7 +507,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType UpdateType = 1;</code>
      */
     public GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType getType() {
       @SuppressWarnings("deprecation")
@@ -515,7 +515,7 @@ private static final long serialVersionUID = 0L;
       return result == null ? GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType.UNRECOGNIZED : result;
     }
     /**
-     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType UpdateType = 1;</code>
      */
     public Builder setType(GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType value) {
       if (value == null) {
@@ -527,7 +527,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType UpdateType = 1;</code>
      */
     public Builder clearType() {
       

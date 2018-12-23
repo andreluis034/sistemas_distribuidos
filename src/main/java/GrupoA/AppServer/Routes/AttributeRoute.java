@@ -41,18 +41,23 @@ public class AttributeRoute {
             attr.GroupId = nattributes.getGroupId();
 
             return attr;
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return null;
-
-
+        catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @POST
     @Path("{strPath: .*}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Boolean UpdateAttribute(AttributeUpdateRequest updateRequest){
-        return false;
+    public Boolean UpdateAttribute(AttributeUpdateRequest updateRequest, @PathParam("strPath") String path){
+        path = "/" + path;
+        try {
+            return ApplicationServer.FileSystemClient.UpdateAttribute(path, updateRequest.Value, updateRequest.Type);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

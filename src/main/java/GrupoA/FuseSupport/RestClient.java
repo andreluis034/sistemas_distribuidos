@@ -1,7 +1,9 @@
 package GrupoA.FuseSupport;
 
+import GrupoA.AppServer.Models.AttributeUpdateRequest;
 import GrupoA.AppServer.Models.Directory;
 import GrupoA.AppServer.Models.NodeAttributes;
+import GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
@@ -50,6 +52,17 @@ public class RestClient {
         } catch (NotFoundException ex) {
             return null;
         }
+    }
+
+    public boolean updateAttribute(String path, AttributeUpdateRequest.UpdateType type, long value) {
+
+        AttributeUpdateRequest aur = new AttributeUpdateRequest();
+        aur.Value = value;
+        aur.Type = type;
+        Boolean bool = client.target(restBaseUri).path("attribute").path(path)
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(aur, MediaType.APPLICATION_JSON), Boolean.class);
+        return bool;
     }
 
     public Response createDirectory(Directory directory) {

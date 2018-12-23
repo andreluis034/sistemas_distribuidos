@@ -77,7 +77,7 @@ public final class FileSystemProto {
       "\030\001 \001(\003\022\022\n\nobjectData\030\002 \001(\014\" \n\016BooleanMes" +
       "sage\022\016\n\006result\030\001 \001(\010*\'\n\010FileType\022\007\n\003DIR\020" +
       "\000\022\010\n\004FILE\020\001\022\010\n\004LINK\020\002*,\n\037ProtoAttributeU" +
-      "pdateRequestType\022\t\n\005CHMOD\020\0002\320\005\n\nFileSyst" +
+      "pdateRequestType\022\t\n\005CHMOD\020\0002\321\005\n\nFileSyst" +
       "em\022\212\001\n\006rmFile\022=.GrupoA.StorageController" +
       ".gRPCService.FileSystem.pathOnlyArgs\032?.G" +
       "rupoA.StorageController.gRPCService.File" +
@@ -92,11 +92,11 @@ public final class FileSystemProto {
       "upoA.StorageController.gRPCService.FileS" +
       "ystem.pathOnlyArgs\032@.GrupoA.StorageContr" +
       "oller.gRPCService.FileSystem.iNodeAttrib" +
-      "utes\"\000\022\215\001\n\007setAttr\022@.GrupoA.StorageContr" +
+      "utes\"\000\022\216\001\n\007setAttr\022@.GrupoA.StorageContr" +
       "oller.gRPCService.FileSystem.UpdateAttri" +
-      "bute\032>.GrupoA.StorageController.gRPCServ" +
-      "ice.FileSystem.MessageStatus\"\000B\027B\017FileSy" +
-      "stemProtoP\001\242\002\001Ob\006proto3"
+      "bute\032?.GrupoA.StorageController.gRPCServ" +
+      "ice.FileSystem.BooleanMessage\"\000B\027B\017FileS" +
+      "ystemProtoP\001\242\002\001Ob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -133,7 +133,7 @@ public final class FileSystemProto {
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_UpdateAttribute_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_UpdateAttribute_descriptor,
-        new java.lang.String[] { "Type", "Value", "Path", });
+        new java.lang.String[] { "UpdateType", "Value", "Path", });
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_pathOnlyArgs_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_pathOnlyArgs_fieldAccessorTable = new

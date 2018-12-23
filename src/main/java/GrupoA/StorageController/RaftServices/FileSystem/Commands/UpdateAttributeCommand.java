@@ -21,16 +21,20 @@ public class UpdateAttributeCommand extends FileSystemCommand<Boolean> {
             return false;
         switch (update.getType()) {
             case CHMOD:
+                chmod(node);
                 break;
 
             default:
                 return false;
         }
-        return false;
+        return true;
     }
 
-    private Boolean chmod() {
-        return false;
+    private void chmod(FSTree.Node node) {
+        long perms = update.getValue() & 0x1FF;
+        node.UserPermissions = (byte)((perms & (0x7 << 6)) >> 6);
+        node.GroupPermissions = (byte)((perms & (0x7 <<3)) >> 3);
+        node.OthersPermissions = (byte)((perms & 0x007) >> 0);
     }
 
 }

@@ -1,9 +1,9 @@
 package GrupoA.AppServer.Models;
 
 public class AttributeUpdateRequest {
-    public enum AttributeUpdateRequestType {
+    public enum UpdateType {
         CHMOD,
     }
-    public AttributeUpdateRequestType Type;
+    public UpdateType Type;
     public Long Value;
 }

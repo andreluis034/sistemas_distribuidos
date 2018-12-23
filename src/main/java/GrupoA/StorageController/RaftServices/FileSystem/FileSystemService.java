@@ -1,10 +1,8 @@
 package GrupoA.StorageController.RaftServices.FileSystem;
 
 import GrupoA.StorageController.FileSystem.FSTree;
-import GrupoA.StorageController.RaftServices.FileSystem.Commands.FileSystemCommand;
-import GrupoA.StorageController.RaftServices.FileSystem.Commands.GetNodeCommand;
-import GrupoA.StorageController.RaftServices.FileSystem.Commands.LsCommand;
-import GrupoA.StorageController.RaftServices.FileSystem.Commands.MkDirCommand;
+import GrupoA.StorageController.RaftServices.FileSystem.Commands.*;
+import GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute;
 import org.jgroups.JChannel;
 import org.jgroups.protocols.raft.RAFT;
 import org.jgroups.protocols.raft.Role;
@@ -52,7 +50,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
     public boolean mkDir(String path) throws Exception {
         System.out.println("mkdir");
-        FileSystemCommand command = new MkDirCommand(path);
+        MkDirCommand command = new MkDirCommand(path);
         return (boolean)this.invoke(command);
     }
 
@@ -66,6 +64,10 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
     public boolean rmFile(String path) throws Exception {
         return (boolean)invoke(Command.rmFile, path);
+    }
+
+    public boolean updateAttribute(String path, UpdateAttribute update) throws Exception {
+        return (boolean)this.invoke(new UpdateAttributeCommand(path, update));
     }
 
     @SuppressWarnings("unchecked")
@@ -216,14 +218,14 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         return new byte[0];
     }
 
-    protected Object invoke(FileSystemCommand command) throws Exception {
+    protected <T> T invoke(FileSystemCommand<T> command) throws Exception {
 
         byte[] buffer = Util.objectToByteBuffer(command);
         ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(buffer.length);
         out.write(buffer);
         byte[] rsp = raft.set(out.buffer(), 0, out.position(), replyTimeout, TimeUnit.MILLISECONDS);
 
-        return Util.objectFromByteBuffer(rsp);
+        return (T)Util.objectFromByteBuffer(rsp);
     }
 
     @Deprecated

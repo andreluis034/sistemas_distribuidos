@@ -14,7 +14,7 @@ service FileSystem {
     rpc mkDir (pathOnlyArgs) returns (BooleanMessage) {}
 
     rpc getAttr (pathOnlyArgs) returns (iNodeAttributes) {}
-    rpc setAttr (UpdateAttribute) returns (MessageStatus) {}
+    rpc setAttr (UpdateAttribute) returns (BooleanMessage) {}
 }
 
 message LongArg {

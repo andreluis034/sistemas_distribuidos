@@ -47,22 +47,13 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
     }
 
     @Override
-    public void setAttr(UpdateAttribute request,  StreamObserver<MessageStatus> responseObserver){
-        MessageStatus.Builder status = MessageStatus.newBuilder();
-        status.setFoundNode(false);
+    public void setAttr(UpdateAttribute request,  StreamObserver<BooleanMessage> responseObserver){
+        BooleanMessage.Builder status = BooleanMessage.newBuilder();
+        status.setResult(false);
         try {
-            FSTree.Node node =  FileSystemService.getInstance().getNode(request.getPath());
-            if(node != null) {
-                status.setFoundNode(true);
-                
-                status.setRequestCompleted(true);
-            } else {
-                status.setRequestCompleted(false);
-
-            }
-
+            status.setResult(FileSystemService.getInstance().updateAttribute(request.getPath(), request));
         } catch (Exception e) {
-            status.setRequestCompleted(false);
+            e.printStackTrace();
         }
         responseObserver.onNext(status.build());
         responseObserver.onCompleted();

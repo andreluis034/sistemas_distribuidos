@@ -1,5 +1,6 @@
 package GrupoA.FuseSupport;
 
+import GrupoA.AppServer.Models.AttributeUpdateRequest;
 import GrupoA.AppServer.Models.NodeAttributes;
 import jnr.ffi.Pointer;
 import jnr.ffi.types.mode_t;
@@ -31,8 +32,8 @@ public class CephishFuse extends FuseStubFS {
 
     @Override
     public int chmod(String path, @mode_t long mode) {
-        System.out.println(path);
-        System.out.println(Long.toHexString(mode));
-        return 0;
+        if( restClient.updateAttribute(path, AttributeUpdateRequest.UpdateType.CHMOD, mode & 0x1FF))
+            return 0;
+        return -ErrorCodes.ENONET();
     }
 }
