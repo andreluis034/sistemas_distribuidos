@@ -20,6 +20,7 @@ public class FileRoute {
     public Boolean readDir(CreateFileRequest cfr) {
 
         try {
+            System.out.println("Creating file " + cfr.Path);
             return ApplicationServer.FileSystemClient.Create(cfr.Path, cfr.mode, cfr.uid, cfr.gid);
         }
         catch (Exception e) {

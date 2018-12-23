@@ -34,7 +34,8 @@ public class ApplicationServer {
                 "jersey.config.server.provider.classnames",
                 GrupoA.AppServer.Routes.INodeRoute.class.getCanonicalName() + ", " +
                         GrupoA.AppServer.Routes.AttributeRoute.class.getCanonicalName() + ", " +
-                        GrupoA.AppServer.Routes.DirRoute.class.getCanonicalName());
+                        GrupoA.AppServer.Routes.DirRoute.class.getCanonicalName() + ", " +
+                        GrupoA.AppServer.Routes.FileRoute.class.getCanonicalName());
         try {
             jettyServer.start();
             jettyServer.join();
