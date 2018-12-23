@@ -16,10 +16,10 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
     }
 
     @Override
-    public void getAttr(LongArg request, StreamObserver<iNodeAttributes> responseObserver) { //TODO don't dirty read from tree?
+    public void getAttr(pathOnlyArgs request, StreamObserver<iNodeAttributes> responseObserver) { //TODO don't dirty read from tree?
         iNodeAttributes.Builder reply = iNodeAttributes.newBuilder();
         try {
-            FSTree.Node node =  FileSystemService.getInstance().getINode(request.getINode());
+            FSTree.Node node =  FileSystemService.getInstance().getNode(request.getFilePath());//.getNode(request.getNode());
             if (node == null) {
                 reply.setINodeNumber(-1);
                 responseObserver.onNext(reply.build());
@@ -27,6 +27,7 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
                 return;
             }
             reply.setName(node.getNodeName());
+            reply.setFileType( node.getNodeType() == FSTree.NodeType.FileNode ? FileType.FILE : FileType.DIR);
             reply.setUserPermissions(node.UserPermissions);
             reply.setGroupPermissions(node.GroupPermissions);
             reply.setOtherPermissions(node.OthersPermissions);
@@ -45,6 +46,27 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
         //FileSystemService.getInstance()
     }
 
+    @Override
+    public void setAttr(UpdateAttribute request,  StreamObserver<MessageStatus> responseObserver){
+        MessageStatus.Builder status = MessageStatus.newBuilder();
+        status.setFoundNode(false);
+        try {
+            FSTree.Node node =  FileSystemService.getInstance().getNode(request.getPath());
+            if(node != null) {
+                status.setFoundNode(true);
+                
+                status.setRequestCompleted(true);
+            } else {
+                status.setRequestCompleted(false);
+
+            }
+
+        } catch (Exception e) {
+            status.setRequestCompleted(false);
+        }
+        responseObserver.onNext(status.build());
+        responseObserver.onCompleted();
+    }
 }
 
 public class FileSystemServer {

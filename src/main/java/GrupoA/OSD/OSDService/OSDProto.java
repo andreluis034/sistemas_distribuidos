@@ -41,12 +41,14 @@ public final class OSDProto {
       "\n\tOSD.proto\022\025GrupoA.OSD.OSDService\"\035\n\rGe" +
       "tObjectArgs\022\014\n\004hash\030\001 \001(\003\".\n\nObjectData\022" +
       "\014\n\004hash\030\001 \001(\003\022\022\n\nobjectData\030\002 \001(\014\"\016\n\014Emp" +
-      "tyMessage2\264\001\n\003OSD\022U\n\tputObject\022!.GrupoA." +
+      "tyMessage2\210\002\n\003OSD\022U\n\tputObject\022!.GrupoA." +
       "OSD.OSDService.ObjectData\032#.GrupoA.OSD.O" +
       "SDService.EmptyMessage\"\000\022V\n\tgetObject\022$." +
       "GrupoA.OSD.OSDService.GetObjectArgs\032!.Gr" +
-      "upoA.OSD.OSDService.ObjectData\"\000B\020B\010OSDP" +
-      "rotoP\001\242\002\001Ob\006proto3"
+      "upoA.OSD.OSDService.ObjectData\"\000\022R\n\004ping" +
+      "\022#.GrupoA.OSD.OSDService.EmptyMessage\032#." +
+      "GrupoA.OSD.OSDService.EmptyMessage\"\000B\020B\010" +
+      "OSDProtoP\001\242\002\001Ob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

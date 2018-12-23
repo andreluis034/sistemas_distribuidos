@@ -13,7 +13,8 @@ service FileSystem {
     rpc rmDir (pathOnlyArgs) returns (BooleanMessage) {}
     rpc mkDir (pathOnlyArgs) returns (BooleanMessage) {}
 
-    rpc getAttr (LongArg) returns (iNodeAttributes) {}
+    rpc getAttr (pathOnlyArgs) returns (iNodeAttributes) {}
+    rpc setAttr (UpdateAttribute) returns (MessageStatus) {}
 }
 
 message LongArg {
@@ -31,8 +32,21 @@ message LongArg {
         public Long INodeNumber;
         public Long Size;
         public Long ParentINodeNumber;*/
+
+enum FileType {
+    DIR = 0;
+    FILE = 1;
+    LINK = 2;
+}  
+
+message MessageStatus {
+    bool FoundNode = 1;
+    bool RequestCompleted = 2;
+}
+
 message iNodeAttributes {
     string name = 1;
+    FileType FileType = 10;
     int32 UserPermissions = 2;
     int32 GroupPermissions = 3;
     int32 OtherPermissions = 4;
@@ -43,16 +57,19 @@ message iNodeAttributes {
     int64 Size = 9;
 }
 
+enum ProtoAttributeUpdateRequestType {
+    CHMOD = 0;
+}
+message UpdateAttribute {
+    ProtoAttributeUpdateRequestType Type = 1;
+    int64 Value = 2;
+    string path = 3;
+}
+
 message pathOnlyArgs {
     string filePath = 1;
 }
 
-message Metada {
-    enum MetadaType {
-        DIR = 0;
-        FILE = 1;
-      }
-}
 
 message ObjectData{
     int64 hash = 1;

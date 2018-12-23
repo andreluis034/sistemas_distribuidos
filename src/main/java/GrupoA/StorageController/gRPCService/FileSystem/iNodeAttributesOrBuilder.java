@@ -18,6 +18,15 @@ public interface iNodeAttributesOrBuilder extends
       getNameBytes();
 
   /**
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.FileType FileType = 10;</code>
+   */
+  int getFileTypeValue();
+  /**
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.FileType FileType = 10;</code>
+   */
+  GrupoA.StorageController.gRPCService.FileSystem.FileType getFileType();
+
+  /**
    * <code>int32 UserPermissions = 2;</code>
    */
   int getUserPermissions();

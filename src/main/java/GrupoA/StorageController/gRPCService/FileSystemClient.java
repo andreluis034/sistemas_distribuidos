@@ -3,6 +3,7 @@ package GrupoA.StorageController.gRPCService;
 import GrupoA.StorageController.gRPCService.FileSystem.FileSystemGrpc;
 import GrupoA.StorageController.gRPCService.FileSystem.LongArg;
 import GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes;
+import GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -25,7 +26,7 @@ public class FileSystemClient {
         blockingStub = FileSystemGrpc.newBlockingStub(channel);
     }
 
-    public iNodeAttributes GetAttributes(long iNode) {
-        return this.blockingStub.getAttr(LongArg.newBuilder().setINode(iNode).build());
+    public iNodeAttributes GetAttributes(String path) {
+        return this.blockingStub.getAttr(pathOnlyArgs.newBuilder().setFilePath(path).build());
     }
 }

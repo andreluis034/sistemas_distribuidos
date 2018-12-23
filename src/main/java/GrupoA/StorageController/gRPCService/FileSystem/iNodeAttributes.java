@@ -4,19 +4,6 @@
 package GrupoA.StorageController.gRPCService.FileSystem;
 
 /**
- * <pre>
- **
- *public String Name;
- *public Byte UserPermissions;
- *public Byte GroupPermissions;
- *public Byte OthersPermissions;
- *public Long OwnerId;
- *public Long GroupId;
- *public Long INodeNumber;
- *public Long Size;
- *public Long ParentINodeNumber;
- * </pre>
- *
  * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes}
  */
 public  final class iNodeAttributes extends
@@ -30,6 +17,7 @@ private static final long serialVersionUID = 0L;
   }
   private iNodeAttributes() {
     name_ = "";
+    fileType_ = 0;
     userPermissions_ = 0;
     groupPermissions_ = 0;
     otherPermissions_ = 0;
@@ -110,6 +98,12 @@ private static final long serialVersionUID = 0L;
             size_ = input.readInt64();
             break;
           }
+          case 80: {
+            int rawValue = input.readEnum();
+
+            fileType_ = rawValue;
+            break;
+          }
           default: {
             if (!parseUnknownFieldProto3(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -174,6 +168,23 @@ private static final long serialVersionUID = 0L;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
+  }
+
+  public static final int FILETYPE_FIELD_NUMBER = 10;
+  private int fileType_;
+  /**
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.FileType FileType = 10;</code>
+   */
+  public int getFileTypeValue() {
+    return fileType_;
+  }
+  /**
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.FileType FileType = 10;</code>
+   */
+  public GrupoA.StorageController.gRPCService.FileSystem.FileType getFileType() {
+    @SuppressWarnings("deprecation")
+    GrupoA.StorageController.gRPCService.FileSystem.FileType result = GrupoA.StorageController.gRPCService.FileSystem.FileType.valueOf(fileType_);
+    return result == null ? GrupoA.StorageController.gRPCService.FileSystem.FileType.UNRECOGNIZED : result;
   }
 
   public static final int USERPERMISSIONS_FIELD_NUMBER = 2;
@@ -289,6 +300,9 @@ private static final long serialVersionUID = 0L;
     if (size_ != 0L) {
       output.writeInt64(9, size_);
     }
+    if (fileType_ != GrupoA.StorageController.gRPCService.FileSystem.FileType.DIR.getNumber()) {
+      output.writeEnum(10, fileType_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -333,6 +347,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(9, size_);
     }
+    if (fileType_ != GrupoA.StorageController.gRPCService.FileSystem.FileType.DIR.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(10, fileType_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -351,6 +369,7 @@ private static final long serialVersionUID = 0L;
     boolean result = true;
     result = result && getName()
         .equals(other.getName());
+    result = result && fileType_ == other.fileType_;
     result = result && (getUserPermissions()
         == other.getUserPermissions());
     result = result && (getGroupPermissions()
@@ -380,6 +399,8 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
+    hash = (37 * hash) + FILETYPE_FIELD_NUMBER;
+    hash = (53 * hash) + fileType_;
     hash = (37 * hash) + USERPERMISSIONS_FIELD_NUMBER;
     hash = (53 * hash) + getUserPermissions();
     hash = (37 * hash) + GROUPPERMISSIONS_FIELD_NUMBER;
@@ -497,19 +518,6 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   **
-   *public String Name;
-   *public Byte UserPermissions;
-   *public Byte GroupPermissions;
-   *public Byte OthersPermissions;
-   *public Long OwnerId;
-   *public Long GroupId;
-   *public Long INodeNumber;
-   *public Long Size;
-   *public Long ParentINodeNumber;
-   * </pre>
-   *
    * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes}
    */
   public static final class Builder extends
@@ -548,6 +556,8 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       name_ = "";
+
+      fileType_ = 0;
 
       userPermissions_ = 0;
 
@@ -592,6 +602,7 @@ private static final long serialVersionUID = 0L;
     public GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes buildPartial() {
       GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes result = new GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes(this);
       result.name_ = name_;
+      result.fileType_ = fileType_;
       result.userPermissions_ = userPermissions_;
       result.groupPermissions_ = groupPermissions_;
       result.otherPermissions_ = otherPermissions_;
@@ -651,6 +662,9 @@ private static final long serialVersionUID = 0L;
       if (!other.getName().isEmpty()) {
         name_ = other.name_;
         onChanged();
+      }
+      if (other.fileType_ != 0) {
+        setFileTypeValue(other.getFileTypeValue());
       }
       if (other.getUserPermissions() != 0) {
         setUserPermissions(other.getUserPermissions());
@@ -770,6 +784,51 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       name_ = value;
+      onChanged();
+      return this;
+    }
+
+    private int fileType_ = 0;
+    /**
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.FileType FileType = 10;</code>
+     */
+    public int getFileTypeValue() {
+      return fileType_;
+    }
+    /**
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.FileType FileType = 10;</code>
+     */
+    public Builder setFileTypeValue(int value) {
+      fileType_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.FileType FileType = 10;</code>
+     */
+    public GrupoA.StorageController.gRPCService.FileSystem.FileType getFileType() {
+      @SuppressWarnings("deprecation")
+      GrupoA.StorageController.gRPCService.FileSystem.FileType result = GrupoA.StorageController.gRPCService.FileSystem.FileType.valueOf(fileType_);
+      return result == null ? GrupoA.StorageController.gRPCService.FileSystem.FileType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.FileType FileType = 10;</code>
+     */
+    public Builder setFileType(GrupoA.StorageController.gRPCService.FileSystem.FileType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      fileType_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.FileType FileType = 10;</code>
+     */
+    public Builder clearFileType() {
+      
+      fileType_ = 0;
       onChanged();
       return this;
     }

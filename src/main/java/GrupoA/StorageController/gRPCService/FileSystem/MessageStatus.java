@@ -4,18 +4,20 @@
 package GrupoA.StorageController.gRPCService.FileSystem;
 
 /**
- * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.Metada}
+ * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.MessageStatus}
  */
-public  final class Metada extends
+public  final class MessageStatus extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:GrupoA.StorageController.gRPCService.FileSystem.Metada)
-    MetadaOrBuilder {
+    // @@protoc_insertion_point(message_implements:GrupoA.StorageController.gRPCService.FileSystem.MessageStatus)
+    MessageStatusOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use Metada.newBuilder() to construct.
-  private Metada(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use MessageStatus.newBuilder() to construct.
+  private MessageStatus(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private Metada() {
+  private MessageStatus() {
+    foundNode_ = false;
+    requestCompleted_ = false;
   }
 
   @java.lang.Override
@@ -23,7 +25,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private Metada(
+  private MessageStatus(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -31,6 +33,7 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
+    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -41,6 +44,16 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
+          case 8: {
+
+            foundNode_ = input.readBool();
+            break;
+          }
+          case 16: {
+
+            requestCompleted_ = input.readBool();
+            break;
+          }
           default: {
             if (!parseUnknownFieldProto3(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -62,113 +75,33 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_Metada_descriptor;
+    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_MessageStatus_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_Metada_fieldAccessorTable
+    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_MessageStatus_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            GrupoA.StorageController.gRPCService.FileSystem.Metada.class, GrupoA.StorageController.gRPCService.FileSystem.Metada.Builder.class);
+            GrupoA.StorageController.gRPCService.FileSystem.MessageStatus.class, GrupoA.StorageController.gRPCService.FileSystem.MessageStatus.Builder.class);
   }
 
+  public static final int FOUNDNODE_FIELD_NUMBER = 1;
+  private boolean foundNode_;
   /**
-   * Protobuf enum {@code GrupoA.StorageController.gRPCService.FileSystem.Metada.MetadaType}
+   * <code>bool FoundNode = 1;</code>
    */
-  public enum MetadaType
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>DIR = 0;</code>
-     */
-    DIR(0),
-    /**
-     * <code>FILE = 1;</code>
-     */
-    FILE(1),
-    UNRECOGNIZED(-1),
-    ;
+  public boolean getFoundNode() {
+    return foundNode_;
+  }
 
-    /**
-     * <code>DIR = 0;</code>
-     */
-    public static final int DIR_VALUE = 0;
-    /**
-     * <code>FILE = 1;</code>
-     */
-    public static final int FILE_VALUE = 1;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
-
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static MetadaType valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static MetadaType forNumber(int value) {
-      switch (value) {
-        case 0: return DIR;
-        case 1: return FILE;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<MetadaType>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        MetadaType> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<MetadaType>() {
-            public MetadaType findValueByNumber(int number) {
-              return MetadaType.forNumber(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return GrupoA.StorageController.gRPCService.FileSystem.Metada.getDescriptor().getEnumTypes().get(0);
-    }
-
-    private static final MetadaType[] VALUES = values();
-
-    public static MetadaType valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    private MetadaType(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:GrupoA.StorageController.gRPCService.FileSystem.Metada.MetadaType)
+  public static final int REQUESTCOMPLETED_FIELD_NUMBER = 2;
+  private boolean requestCompleted_;
+  /**
+   * <code>bool RequestCompleted = 2;</code>
+   */
+  public boolean getRequestCompleted() {
+    return requestCompleted_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -185,6 +118,12 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    if (foundNode_ != false) {
+      output.writeBool(1, foundNode_);
+    }
+    if (requestCompleted_ != false) {
+      output.writeBool(2, requestCompleted_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -194,6 +133,14 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
+    if (foundNode_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(1, foundNode_);
+    }
+    if (requestCompleted_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(2, requestCompleted_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -204,12 +151,16 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof GrupoA.StorageController.gRPCService.FileSystem.Metada)) {
+    if (!(obj instanceof GrupoA.StorageController.gRPCService.FileSystem.MessageStatus)) {
       return super.equals(obj);
     }
-    GrupoA.StorageController.gRPCService.FileSystem.Metada other = (GrupoA.StorageController.gRPCService.FileSystem.Metada) obj;
+    GrupoA.StorageController.gRPCService.FileSystem.MessageStatus other = (GrupoA.StorageController.gRPCService.FileSystem.MessageStatus) obj;
 
     boolean result = true;
+    result = result && (getFoundNode()
+        == other.getFoundNode());
+    result = result && (getRequestCompleted()
+        == other.getRequestCompleted());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -221,74 +172,80 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + FOUNDNODE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getFoundNode());
+    hash = (37 * hash) + REQUESTCOMPLETED_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getRequestCompleted());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada parseFrom(byte[] data)
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada parseFrom(java.io.InputStream input)
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada parseDelimitedFrom(java.io.InputStream input)
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada parseDelimitedFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -301,7 +258,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(GrupoA.StorageController.gRPCService.FileSystem.Metada prototype) {
+  public static Builder newBuilder(GrupoA.StorageController.gRPCService.FileSystem.MessageStatus prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -317,26 +274,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.Metada}
+   * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.MessageStatus}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:GrupoA.StorageController.gRPCService.FileSystem.Metada)
-      GrupoA.StorageController.gRPCService.FileSystem.MetadaOrBuilder {
+      // @@protoc_insertion_point(builder_implements:GrupoA.StorageController.gRPCService.FileSystem.MessageStatus)
+      GrupoA.StorageController.gRPCService.FileSystem.MessageStatusOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_Metada_descriptor;
+      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_MessageStatus_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_Metada_fieldAccessorTable
+      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_MessageStatus_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              GrupoA.StorageController.gRPCService.FileSystem.Metada.class, GrupoA.StorageController.gRPCService.FileSystem.Metada.Builder.class);
+              GrupoA.StorageController.gRPCService.FileSystem.MessageStatus.class, GrupoA.StorageController.gRPCService.FileSystem.MessageStatus.Builder.class);
     }
 
-    // Construct using GrupoA.StorageController.gRPCService.FileSystem.Metada.newBuilder()
+    // Construct using GrupoA.StorageController.gRPCService.FileSystem.MessageStatus.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -354,23 +311,27 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      foundNode_ = false;
+
+      requestCompleted_ = false;
+
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_Metada_descriptor;
+      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_MessageStatus_descriptor;
     }
 
     @java.lang.Override
-    public GrupoA.StorageController.gRPCService.FileSystem.Metada getDefaultInstanceForType() {
-      return GrupoA.StorageController.gRPCService.FileSystem.Metada.getDefaultInstance();
+    public GrupoA.StorageController.gRPCService.FileSystem.MessageStatus getDefaultInstanceForType() {
+      return GrupoA.StorageController.gRPCService.FileSystem.MessageStatus.getDefaultInstance();
     }
 
     @java.lang.Override
-    public GrupoA.StorageController.gRPCService.FileSystem.Metada build() {
-      GrupoA.StorageController.gRPCService.FileSystem.Metada result = buildPartial();
+    public GrupoA.StorageController.gRPCService.FileSystem.MessageStatus build() {
+      GrupoA.StorageController.gRPCService.FileSystem.MessageStatus result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -378,8 +339,10 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public GrupoA.StorageController.gRPCService.FileSystem.Metada buildPartial() {
-      GrupoA.StorageController.gRPCService.FileSystem.Metada result = new GrupoA.StorageController.gRPCService.FileSystem.Metada(this);
+    public GrupoA.StorageController.gRPCService.FileSystem.MessageStatus buildPartial() {
+      GrupoA.StorageController.gRPCService.FileSystem.MessageStatus result = new GrupoA.StorageController.gRPCService.FileSystem.MessageStatus(this);
+      result.foundNode_ = foundNode_;
+      result.requestCompleted_ = requestCompleted_;
       onBuilt();
       return result;
     }
@@ -418,16 +381,22 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof GrupoA.StorageController.gRPCService.FileSystem.Metada) {
-        return mergeFrom((GrupoA.StorageController.gRPCService.FileSystem.Metada)other);
+      if (other instanceof GrupoA.StorageController.gRPCService.FileSystem.MessageStatus) {
+        return mergeFrom((GrupoA.StorageController.gRPCService.FileSystem.MessageStatus)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(GrupoA.StorageController.gRPCService.FileSystem.Metada other) {
-      if (other == GrupoA.StorageController.gRPCService.FileSystem.Metada.getDefaultInstance()) return this;
+    public Builder mergeFrom(GrupoA.StorageController.gRPCService.FileSystem.MessageStatus other) {
+      if (other == GrupoA.StorageController.gRPCService.FileSystem.MessageStatus.getDefaultInstance()) return this;
+      if (other.getFoundNode() != false) {
+        setFoundNode(other.getFoundNode());
+      }
+      if (other.getRequestCompleted() != false) {
+        setRequestCompleted(other.getRequestCompleted());
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -443,17 +412,69 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      GrupoA.StorageController.gRPCService.FileSystem.Metada parsedMessage = null;
+      GrupoA.StorageController.gRPCService.FileSystem.MessageStatus parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (GrupoA.StorageController.gRPCService.FileSystem.Metada) e.getUnfinishedMessage();
+        parsedMessage = (GrupoA.StorageController.gRPCService.FileSystem.MessageStatus) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
           mergeFrom(parsedMessage);
         }
       }
+      return this;
+    }
+
+    private boolean foundNode_ ;
+    /**
+     * <code>bool FoundNode = 1;</code>
+     */
+    public boolean getFoundNode() {
+      return foundNode_;
+    }
+    /**
+     * <code>bool FoundNode = 1;</code>
+     */
+    public Builder setFoundNode(boolean value) {
+      
+      foundNode_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool FoundNode = 1;</code>
+     */
+    public Builder clearFoundNode() {
+      
+      foundNode_ = false;
+      onChanged();
+      return this;
+    }
+
+    private boolean requestCompleted_ ;
+    /**
+     * <code>bool RequestCompleted = 2;</code>
+     */
+    public boolean getRequestCompleted() {
+      return requestCompleted_;
+    }
+    /**
+     * <code>bool RequestCompleted = 2;</code>
+     */
+    public Builder setRequestCompleted(boolean value) {
+      
+      requestCompleted_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool RequestCompleted = 2;</code>
+     */
+    public Builder clearRequestCompleted() {
+      
+      requestCompleted_ = false;
+      onChanged();
       return this;
     }
     @java.lang.Override
@@ -469,41 +490,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:GrupoA.StorageController.gRPCService.FileSystem.Metada)
+    // @@protoc_insertion_point(builder_scope:GrupoA.StorageController.gRPCService.FileSystem.MessageStatus)
   }
 
-  // @@protoc_insertion_point(class_scope:GrupoA.StorageController.gRPCService.FileSystem.Metada)
-  private static final GrupoA.StorageController.gRPCService.FileSystem.Metada DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:GrupoA.StorageController.gRPCService.FileSystem.MessageStatus)
+  private static final GrupoA.StorageController.gRPCService.FileSystem.MessageStatus DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new GrupoA.StorageController.gRPCService.FileSystem.Metada();
+    DEFAULT_INSTANCE = new GrupoA.StorageController.gRPCService.FileSystem.MessageStatus();
   }
 
-  public static GrupoA.StorageController.gRPCService.FileSystem.Metada getDefaultInstance() {
+  public static GrupoA.StorageController.gRPCService.FileSystem.MessageStatus getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<Metada>
-      PARSER = new com.google.protobuf.AbstractParser<Metada>() {
+  private static final com.google.protobuf.Parser<MessageStatus>
+      PARSER = new com.google.protobuf.AbstractParser<MessageStatus>() {
     @java.lang.Override
-    public Metada parsePartialFrom(
+    public MessageStatus parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Metada(input, extensionRegistry);
+      return new MessageStatus(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<Metada> parser() {
+  public static com.google.protobuf.Parser<MessageStatus> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<Metada> getParserForType() {
+  public com.google.protobuf.Parser<MessageStatus> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public GrupoA.StorageController.gRPCService.FileSystem.Metada getDefaultInstanceForType() {
+  public GrupoA.StorageController.gRPCService.FileSystem.MessageStatus getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

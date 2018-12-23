@@ -2,8 +2,9 @@ package GrupoA.AppServer.Models;
 
 
 import GrupoA.AppServer.ApplicationServer;
-import fuse.StatConstants;
-import fuse.Timespec;
+import GrupoA.StorageController.gRPCService.FileSystem.FileType;
+import ru.serce.jnrfuse.struct.FileStat;
+import ru.serce.jnrfuse.struct.Timespec;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -11,10 +12,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class NodeAttributes {
     public String Name;
 
+    public FileType _FileType;
     public Integer UserPermissions = 0;
     public Integer GroupPermissions = 0;
     public Integer OthersPermissions = 0;
-    public Long OwnerId = 0L;
+    public Long UserId = 0L;
     public Long GroupId = 0L;
     public Long INodeNumber = 1L;
     public Long Size = 0L;
@@ -22,18 +24,24 @@ public class NodeAttributes {
     public Integer BlockSize = ApplicationServer.maxBlockSize;
 
 
-    public fuse.Stat toFuseStat() {
-        fuse.Stat stat = new fuse.Stat();
-        stat.setNlink(2);
-        stat.setMode((StatConstants.IFDIR | 511));
-        stat.setCtim(new Timespec());
-        stat.setGid(this.GroupId);
-        stat.setUid(this.OwnerId);
-        stat.setIno(this.INodeNumber);
-        stat.setSize(this.Size);
-        stat.setBlksize(this.BlockSize);
-        //stat.setMode((UserPermissions << 6) | (GroupPermissions << 3) | OthersPermissions);
-        stat.setAtim(new Timespec());
+    public FileStat toFuseStat(FileStat stat) {
+        System.out.println("toFuseStat");
+        long mode;
+        if(_FileType == FileType.FILE) {
+            stat.st_nlink.set(1);
+            mode = FileStat.S_IFREG;
+        } else {
+            mode = FileStat.S_IFDIR;
+            stat.st_nlink.set(2);
+        }
+        mode |= (UserPermissions << 6) | (GroupPermissions << 3) | OthersPermissions;
+        stat.st_mode.set(mode);
+        stat.st_uid.set(this.UserId);
+        stat.st_gid.set(this.GroupId);
+        stat.st_ino.set(this.INodeNumber);
+        stat.st_size.set(this.Size);
+        stat.st_blksize.set(this.BlockSize);
+
         return stat;
     }
 }

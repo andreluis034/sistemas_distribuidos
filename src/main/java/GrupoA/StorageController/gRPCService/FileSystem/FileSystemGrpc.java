@@ -123,28 +123,28 @@ public final class FileSystemGrpc {
      return getMkDirMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LongArg,
+  private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs,
       GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes> getGetAttrMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "getAttr",
-      requestType = GrupoA.StorageController.gRPCService.FileSystem.LongArg.class,
+      requestType = GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs.class,
       responseType = GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LongArg,
+  public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs,
       GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes> getGetAttrMethod() {
-    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LongArg, GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes> getGetAttrMethod;
+    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs, GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes> getGetAttrMethod;
     if ((getGetAttrMethod = FileSystemGrpc.getGetAttrMethod) == null) {
       synchronized (FileSystemGrpc.class) {
         if ((getGetAttrMethod = FileSystemGrpc.getGetAttrMethod) == null) {
           FileSystemGrpc.getGetAttrMethod = getGetAttrMethod = 
-              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.FileSystem.LongArg, GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes>newBuilder()
+              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs, GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "GrupoA.StorageController.gRPCService.FileSystem.FileSystem", "getAttr"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  GrupoA.StorageController.gRPCService.FileSystem.LongArg.getDefaultInstance()))
+                  GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes.getDefaultInstance()))
                   .setSchemaDescriptor(new FileSystemMethodDescriptorSupplier("getAttr"))
@@ -153,6 +153,38 @@ public final class FileSystemGrpc {
         }
      }
      return getGetAttrMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute,
+      GrupoA.StorageController.gRPCService.FileSystem.MessageStatus> getSetAttrMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "setAttr",
+      requestType = GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute.class,
+      responseType = GrupoA.StorageController.gRPCService.FileSystem.MessageStatus.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute,
+      GrupoA.StorageController.gRPCService.FileSystem.MessageStatus> getSetAttrMethod() {
+    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute, GrupoA.StorageController.gRPCService.FileSystem.MessageStatus> getSetAttrMethod;
+    if ((getSetAttrMethod = FileSystemGrpc.getSetAttrMethod) == null) {
+      synchronized (FileSystemGrpc.class) {
+        if ((getSetAttrMethod = FileSystemGrpc.getSetAttrMethod) == null) {
+          FileSystemGrpc.getSetAttrMethod = getSetAttrMethod = 
+              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute, GrupoA.StorageController.gRPCService.FileSystem.MessageStatus>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "GrupoA.StorageController.gRPCService.FileSystem.FileSystem", "setAttr"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.FileSystem.MessageStatus.getDefaultInstance()))
+                  .setSchemaDescriptor(new FileSystemMethodDescriptorSupplier("setAttr"))
+                  .build();
+          }
+        }
+     }
+     return getSetAttrMethod;
   }
 
   /**
@@ -208,9 +240,16 @@ public final class FileSystemGrpc {
 
     /**
      */
-    public void getAttr(GrupoA.StorageController.gRPCService.FileSystem.LongArg request,
+    public void getAttr(GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request,
         io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes> responseObserver) {
       asyncUnimplementedUnaryCall(getGetAttrMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void setAttr(GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.MessageStatus> responseObserver) {
+      asyncUnimplementedUnaryCall(getSetAttrMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -240,9 +279,16 @@ public final class FileSystemGrpc {
             getGetAttrMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                GrupoA.StorageController.gRPCService.FileSystem.LongArg,
+                GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs,
                 GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes>(
                   this, METHODID_GET_ATTR)))
+          .addMethod(
+            getSetAttrMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute,
+                GrupoA.StorageController.gRPCService.FileSystem.MessageStatus>(
+                  this, METHODID_SET_ATTR)))
           .build();
     }
   }
@@ -294,10 +340,18 @@ public final class FileSystemGrpc {
 
     /**
      */
-    public void getAttr(GrupoA.StorageController.gRPCService.FileSystem.LongArg request,
+    public void getAttr(GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request,
         io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getGetAttrMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void setAttr(GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.MessageStatus> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getSetAttrMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -345,9 +399,16 @@ public final class FileSystemGrpc {
 
     /**
      */
-    public GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes getAttr(GrupoA.StorageController.gRPCService.FileSystem.LongArg request) {
+    public GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes getAttr(GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request) {
       return blockingUnaryCall(
           getChannel(), getGetAttrMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GrupoA.StorageController.gRPCService.FileSystem.MessageStatus setAttr(GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute request) {
+      return blockingUnaryCall(
+          getChannel(), getSetAttrMethod(), getCallOptions(), request);
     }
   }
 
@@ -399,9 +460,17 @@ public final class FileSystemGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes> getAttr(
-        GrupoA.StorageController.gRPCService.FileSystem.LongArg request) {
+        GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request) {
       return futureUnaryCall(
           getChannel().newCall(getGetAttrMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.FileSystem.MessageStatus> setAttr(
+        GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute request) {
+      return futureUnaryCall(
+          getChannel().newCall(getSetAttrMethod(), getCallOptions()), request);
     }
   }
 
@@ -409,6 +478,7 @@ public final class FileSystemGrpc {
   private static final int METHODID_RM_DIR = 1;
   private static final int METHODID_MK_DIR = 2;
   private static final int METHODID_GET_ATTR = 3;
+  private static final int METHODID_SET_ATTR = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -440,8 +510,12 @@ public final class FileSystemGrpc {
               (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage>) responseObserver);
           break;
         case METHODID_GET_ATTR:
-          serviceImpl.getAttr((GrupoA.StorageController.gRPCService.FileSystem.LongArg) request,
+          serviceImpl.getAttr((GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs) request,
               (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes>) responseObserver);
+          break;
+        case METHODID_SET_ATTR:
+          serviceImpl.setAttr((GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute) request,
+              (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.MessageStatus>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -508,6 +582,7 @@ public final class FileSystemGrpc {
               .addMethod(getRmDirMethod())
               .addMethod(getMkDirMethod())
               .addMethod(getGetAttrMethod())
+              .addMethod(getSetAttrMethod())
               .build();
         }
       }

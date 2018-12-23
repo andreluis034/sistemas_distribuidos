@@ -1,23 +1,16 @@
 package GrupoA.FuseSupport;
 
 import GrupoA.AppServer.Models.Directory;
-import GrupoA.AppServer.Models.INode;
 import GrupoA.AppServer.Models.NodeAttributes;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.Produces;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
 
 public class RestClient {
 
@@ -32,6 +25,19 @@ public class RestClient {
 
 
 
+
+    public NodeAttributes getAttribute(String path) {
+        try {
+            System.out.println(restBaseUri + "attribute/" + path );
+            NodeAttributes attr  = client.target(restBaseUri).path("attribute").path(path)
+                    .request(MediaType.APPLICATION_JSON)
+                    .get(NodeAttributes.class);
+            return attr;
+
+        } catch (NotFoundException ex) {
+            return null;
+        }
+    }
 
     public NodeAttributes getAttribute(long iNode) {
         try {

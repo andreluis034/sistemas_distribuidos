@@ -1,9 +1,8 @@
 package GrupoA.StorageController.RaftServices.FileSystem;
 
-import GrupoA.StorageController.Crush.ObjectStorageDaemon;
 import GrupoA.StorageController.FileSystem.FSTree;
 import GrupoA.StorageController.RaftServices.FileSystem.Commands.FileSystemCommand;
-import GrupoA.StorageController.RaftServices.FileSystem.Commands.GetINodeCommand;
+import GrupoA.StorageController.RaftServices.FileSystem.Commands.GetNodeCommand;
 import GrupoA.StorageController.RaftServices.FileSystem.Commands.LsCommand;
 import GrupoA.StorageController.RaftServices.FileSystem.Commands.MkDirCommand;
 import org.jgroups.JChannel;
@@ -74,8 +73,15 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         return (List<String>)this.invoke(new LsCommand(path));
     }
 
-    public FSTree.Node getINode(long iNode) throws Exception {
-        GetINodeCommand command = new GetINodeCommand(iNode);
+    public FSTree.Node getNode(long iNode) throws Exception {
+        GetNodeCommand command = new GetNodeCommand(iNode);
+        FSTree.Node node = (FSTree.Node) this.invoke(command);
+        return node;
+    }
+
+    public FSTree.Node getNode(String path) throws Exception {
+        System.out.println("Getting: " + path);
+        GetNodeCommand command = new GetNodeCommand(path);
         FSTree.Node node = (FSTree.Node) this.invoke(command);
         return node;
     }

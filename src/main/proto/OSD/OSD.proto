@@ -11,6 +11,8 @@ service OSD {
     rpc putObject (ObjectData) returns (EmptyMessage) {}
 
     rpc getObject (GetObjectArgs) returns (ObjectData) {}
+
+    rpc ping (EmptyMessage) returns (EmptyMessage) {}
 }
 
 
