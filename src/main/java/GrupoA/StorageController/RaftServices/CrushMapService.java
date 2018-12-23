@@ -2,20 +2,18 @@ package GrupoA.StorageController.RaftServices;
 
 import GrupoA.StorageController.Crush.CrushMap;
 import GrupoA.StorageController.Crush.ObjectStorageDaemon;
+import GrupoA.StorageController.Crush.PlacementGroup;
 import org.jgroups.JChannel;
 import org.jgroups.protocols.raft.RAFT;
 import org.jgroups.protocols.raft.Role;
 import org.jgroups.protocols.raft.StateMachine;
 import org.jgroups.raft.RaftHandle;
+import org.jgroups.util.Bits;
 import org.jgroups.util.Util;
 
-import java.io.DataInput;
-import java.io.DataOutput;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class CrushMapService implements StateMachine, RAFT.RoleChange {
@@ -24,6 +22,7 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
     protected RaftHandle raft;
     protected long replyTimeout = 20 * 1000; // 20 seconds
 
+    private boolean isLeader = false;
     private CrushMap latestMap;
     private int latestVersion;
     private final HashMap<Integer, CrushMap> mapOfMaps = new HashMap<>();
@@ -79,28 +78,66 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
 
     @Override
     public void readContentFrom(DataInput dataInput) throws Exception {
+        int messageSize = dataInput.readInt();
+        for (int i = 0; i < messageSize; i++) {
+            int key = Bits.readInt(dataInput);
+            int objectSize = Bits.readInt(dataInput);
 
+            byte[] buf = new byte[objectSize];
+            dataInput.readFully(buf);
+            CrushMap value = Util.objectFromByteBuffer(buf);
+
+            mapOfMaps.put(key, value);
+        }
     }
 
     @Override
     public void writeContentTo(DataOutput dataOutput) throws Exception {
+        dataOutput.write(mapOfMaps.size());
+        for (Map.Entry<Integer, CrushMap> entry : mapOfMaps.entrySet()) {
+            CrushMap value = entry.getValue();
+            byte[] buf = Util.objectToByteBuffer(value);
 
+            Bits.writeInt(entry.getKey(), dataOutput);
+            Bits.writeInt(buf.length, dataOutput);
+            dataOutput.write(buf);
+        }
     }
 
-    public ICrushMap getMap(int version) {
+    public CrushMap getMap(int version) {
         return this.mapOfMaps.get(version);
     }
 
-    public ICrushMap getLatestMap() {
+    public CrushMap getLatestMap() {
         return this.latestMap;
     }
 
-    public ICrushMap createNewMap(List<ObjectStorageDaemon> OSDs) throws Exception {
-        return (ICrushMap)invoke(OSDs);
+    public CrushMap createNewMap(List<ObjectStorageDaemon> OSDs) throws Exception {
+        return (CrushMap)invoke(OSDs);
     }
 
     @Override
     public void roleChanged(Role role) {
         System.out.println("[CrushMapService]-> Changed role to " + role);
+
+        if (role == Role.Leader) {
+            isLeader = true;
+        }
+    }
+
+    private void monitor() {
+        if (isLeader) {
+            Timer timer = new Timer();
+
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    for (PlacementGroup pg : latestMap.getPGs()) {
+                        for (ObjectStorageDaemon osd : pg.getOSDs()) {
+
+                        }
+                    }
+                }
+            }, 0, replyTimeout);
+        }
     }
 }

@@ -11,7 +11,6 @@ import java.util.*;
 
 public class FSTree implements Serializable {
     private DirNode root;
-    private File journal;
     public Path journal_path;
 
     public long nextiNode = 1;
@@ -22,7 +21,7 @@ public class FSTree implements Serializable {
         root = new DirNode("/");
         root.iNode = getNextINode();
         inodeTable.put(root.iNode, root);
-        journal = new File("FSTree_journal.txt");
+        File journal = new File("FSTree_journal.txt");
 
         try {
             if (!journal.exists())
