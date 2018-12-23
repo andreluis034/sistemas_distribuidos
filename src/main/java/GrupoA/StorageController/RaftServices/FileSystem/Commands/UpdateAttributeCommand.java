@@ -1,6 +1,7 @@
 package GrupoA.StorageController.RaftServices.FileSystem.Commands;
 
 import GrupoA.StorageController.FileSystem.FSTree;
+import GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage;
 import GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute;
 
 public class UpdateAttributeCommand extends FileSystemCommand<Boolean> {
@@ -28,6 +29,8 @@ public class UpdateAttributeCommand extends FileSystemCommand<Boolean> {
         return false;
     }
 
-    private chmod
+    private Boolean chmod() {
+        return false;
+    }
 
 }

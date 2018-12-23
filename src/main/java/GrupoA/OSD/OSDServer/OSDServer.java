@@ -1,9 +1,6 @@
 package GrupoA.OSD.OSDServer;
 
-import GrupoA.OSD.OSDService.EmptyMessage;
-import GrupoA.OSD.OSDService.GetObjectArgs;
-import GrupoA.OSD.OSDService.ObjectData;
-import GrupoA.OSD.OSDService.OSDGrpc;
+import GrupoA.OSD.OSDService.*;
 
 import com.google.protobuf.ByteString;
 import io.grpc.Server;
@@ -52,6 +49,12 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
         }
         responseObserver.onNext(reply.build());
         responseObserver.onCompleted();
+    }
+
+    @Override
+    public void ping(EmptyMessage args, StreamObserver<BooleanMessage> response) {
+        response.onNext(BooleanMessage.newBuilder().setResult(true).build());
+        response.onCompleted();
     }
 }
 

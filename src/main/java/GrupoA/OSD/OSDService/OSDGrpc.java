@@ -92,21 +92,21 @@ public final class OSDGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.EmptyMessage,
-      GrupoA.OSD.OSDService.EmptyMessage> getPingMethod;
+      GrupoA.OSD.OSDService.BooleanMessage> getPingMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "ping",
       requestType = GrupoA.OSD.OSDService.EmptyMessage.class,
-      responseType = GrupoA.OSD.OSDService.EmptyMessage.class,
+      responseType = GrupoA.OSD.OSDService.BooleanMessage.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.EmptyMessage,
-      GrupoA.OSD.OSDService.EmptyMessage> getPingMethod() {
-    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.EmptyMessage, GrupoA.OSD.OSDService.EmptyMessage> getPingMethod;
+      GrupoA.OSD.OSDService.BooleanMessage> getPingMethod() {
+    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.EmptyMessage, GrupoA.OSD.OSDService.BooleanMessage> getPingMethod;
     if ((getPingMethod = OSDGrpc.getPingMethod) == null) {
       synchronized (OSDGrpc.class) {
         if ((getPingMethod = OSDGrpc.getPingMethod) == null) {
           OSDGrpc.getPingMethod = getPingMethod = 
-              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.EmptyMessage, GrupoA.OSD.OSDService.EmptyMessage>newBuilder()
+              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.EmptyMessage, GrupoA.OSD.OSDService.BooleanMessage>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "GrupoA.OSD.OSDService.OSD", "ping"))
@@ -114,7 +114,7 @@ public final class OSDGrpc {
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.OSD.OSDService.EmptyMessage.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  GrupoA.OSD.OSDService.EmptyMessage.getDefaultInstance()))
+                  GrupoA.OSD.OSDService.BooleanMessage.getDefaultInstance()))
                   .setSchemaDescriptor(new OSDMethodDescriptorSupplier("ping"))
                   .build();
           }
@@ -167,7 +167,7 @@ public final class OSDGrpc {
     /**
      */
     public void ping(GrupoA.OSD.OSDService.EmptyMessage request,
-        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.BooleanMessage> responseObserver) {
       asyncUnimplementedUnaryCall(getPingMethod(), responseObserver);
     }
 
@@ -192,7 +192,7 @@ public final class OSDGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 GrupoA.OSD.OSDService.EmptyMessage,
-                GrupoA.OSD.OSDService.EmptyMessage>(
+                GrupoA.OSD.OSDService.BooleanMessage>(
                   this, METHODID_PING)))
           .build();
     }
@@ -235,7 +235,7 @@ public final class OSDGrpc {
     /**
      */
     public void ping(GrupoA.OSD.OSDService.EmptyMessage request,
-        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.BooleanMessage> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getPingMethod(), getCallOptions()), request, responseObserver);
     }
@@ -275,7 +275,7 @@ public final class OSDGrpc {
 
     /**
      */
-    public GrupoA.OSD.OSDService.EmptyMessage ping(GrupoA.OSD.OSDService.EmptyMessage request) {
+    public GrupoA.OSD.OSDService.BooleanMessage ping(GrupoA.OSD.OSDService.EmptyMessage request) {
       return blockingUnaryCall(
           getChannel(), getPingMethod(), getCallOptions(), request);
     }
@@ -317,7 +317,7 @@ public final class OSDGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.EmptyMessage> ping(
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.BooleanMessage> ping(
         GrupoA.OSD.OSDService.EmptyMessage request) {
       return futureUnaryCall(
           getChannel().newCall(getPingMethod(), getCallOptions()), request);
@@ -355,7 +355,7 @@ public final class OSDGrpc {
           break;
         case METHODID_PING:
           serviceImpl.ping((GrupoA.OSD.OSDService.EmptyMessage) request,
-              (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage>) responseObserver);
+              (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.BooleanMessage>) responseObserver);
           break;
         default:
           throw new AssertionError();

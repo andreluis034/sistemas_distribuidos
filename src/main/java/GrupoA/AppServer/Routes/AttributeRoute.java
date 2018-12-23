@@ -53,6 +53,6 @@ public class AttributeRoute {
     @Path("{strPath: .*}")
     @Produces(MediaType.APPLICATION_JSON)
     public Boolean UpdateAttribute(AttributeUpdateRequest updateRequest){
-
+        return false;
     }
 }

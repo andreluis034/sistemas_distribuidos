@@ -1,5 +1,6 @@
 package GrupoA.OSD.OSDClient;
 
+import GrupoA.OSD.OSDService.EmptyMessage;
 import GrupoA.OSD.OSDService.GetObjectArgs;
 import GrupoA.OSD.OSDService.ObjectData;
 import GrupoA.OSD.OSDService.OSDGrpc;
@@ -65,6 +66,14 @@ public class OSDClient {
 
     public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
+    }
+
+    public boolean ping() {
+        try {
+            return this.blockingStub.ping(EmptyMessage.newBuilder().build()).getResult();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
 
