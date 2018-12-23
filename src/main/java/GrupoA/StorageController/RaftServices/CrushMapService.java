@@ -1,5 +1,6 @@
 package GrupoA.StorageController.RaftServices;
 
+import GrupoA.OSD.OSDClient.OSDClient;
 import GrupoA.StorageController.Crush.CrushMap;
 import GrupoA.StorageController.Crush.ObjectStorageDaemon;
 import GrupoA.StorageController.Crush.PlacementGroup;
@@ -131,9 +132,30 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
 
             timer.schedule(new TimerTask() {
                 public void run() {
-                    for (PlacementGroup pg : latestMap.getPGs()) {
-                        for (ObjectStorageDaemon osd : pg.getOSDs()) {
+                    List<ObjectStorageDaemon> offlineOSDs = new LinkedList<>();
 
+                    for (ObjectStorageDaemon osd : latestMap.getOSDs()) {
+                        String[] split = osd.getAddress().split(":");
+                        OSDClient client = new OSDClient(split[0], Integer.parseInt(split[1]));
+                        if (!client.ping()) {
+                            offlineOSDs.add(osd);
+                        }
+                    }
+
+                    if (!offlineOSDs.isEmpty()) {
+                        List<ObjectStorageDaemon> newOSDs = latestMap.getOSDs();
+                        newOSDs.removeAll(offlineOSDs);
+
+                        try {
+                            createNewMap(newOSDs);
+                        } catch (Exception e) {
+                            try {
+                                Files.write(latestMap.journal_path,
+                                        Collections.singletonList("Couldn't create new CRUSH map:\n" + e.toString()));
+                            } catch (IOException e1) {
+                                System.out.println("Couldn't create new CRUSH map:" + e.toString());
+                                System.err.println("Couldn't write to log file\n");
+                            }
                         }
                     }
                 }
