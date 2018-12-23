@@ -4,6 +4,7 @@ import GrupoA.StorageController.RaftServices.ICrushMap;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,19 +13,37 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CrushMap implements ICrushMap {
-    private int Version;
+public class CrushMap implements ICrushMap, Serializable {
+    // Default replication value
+    private static final int REPLICATION = 2;
 
-    private List<ObjectStorageDaemon> OSDHosts;
+    private int version;
     private List<PlacementGroup> PGs = new LinkedList<>();
-    private File journal;
     public Path journal_path;
 
     public CrushMap(int version, List<ObjectStorageDaemon> OSDs) {
-        this.Version = version;
-        this.OSDHosts = OSDs;
+        this.version = version;
 
-        journal = new File("CRUSH_journal.txt");
+        int numberOfOSDs = OSDs.size();
+        int leftover = numberOfOSDs % REPLICATION;
+        // Calculate PGs, based on the OSDs
+        for (int i = 1; i <= OSDs.size() / REPLICATION; i++) {
+            List<ObjectStorageDaemon> OSDsOfPG = OSDs.subList((i - 1) * REPLICATION, i * REPLICATION);
+
+            PlacementGroup pg = new PlacementGroup(i, OSDsOfPG);
+            PGs.add(pg);
+        }
+
+        // Insert the remaining OSDs into a PG, increasing the replication of that PG
+        PlacementGroup pgToRemove = PGs.remove(PGs.size() - 1);
+
+        List<ObjectStorageDaemon> newOSDList = pgToRemove.getOSDs();
+        newOSDList.addAll(OSDs.subList(numberOfOSDs - leftover, numberOfOSDs));
+
+        PlacementGroup pgToInsert = new PlacementGroup(pgToRemove.getPgID(), newOSDList);
+        PGs.add(pgToInsert);
+
+        File journal = new File("CRUSH_journal.txt");
 
         try {
             if (!journal.exists())
@@ -38,9 +57,13 @@ public class CrushMap implements ICrushMap {
         }
     }
 
+    public List<PlacementGroup> getPGs() {
+        return this.PGs;
+    }
+
     @Override
     public int getVersion() {
-        return this.Version;
+        return this.version;
     }
 
     @Override
@@ -61,14 +84,14 @@ public class CrushMap implements ICrushMap {
         for (PlacementGroup pg : PGs) {
             if (pg.getPgID() == pgID) {
                 for (ObjectStorageDaemon osd : pg.getOSDs()) {
-                    long osdHash = GrupoA.Utility.Jenkins.hash64(osd.Address.getBytes());
+                    long osdHash = GrupoA.Utility.Jenkins.hash64(osd.getAddress().getBytes());
                     if (leaderOSD_hash == -1) {
                         leaderOSD_hash = osdHash;
-                        leaderOSD_address = osd.Address;
+                        leaderOSD_address = osd.getAddress();
                     }
                     else if (osdHash > leaderOSD_hash) {
                         leaderOSD_hash = osdHash;
-                        leaderOSD_address = osd.Address;
+                        leaderOSD_address = osd.getAddress();
                     }
                 }
             }
