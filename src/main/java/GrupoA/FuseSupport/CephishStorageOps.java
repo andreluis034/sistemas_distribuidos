@@ -1,5 +1,8 @@
 package GrupoA.FuseSupport;
 
+import GrupoA.AppServer.Models.INode;
+import GrupoA.AppServer.Models.NodeAttributes;
+import fuse.Errno;
 import fuse.FileInfo;
 import fuse.Stat;
 import jlowfuse.FuseReq;
@@ -40,8 +43,15 @@ public class CephishStorageOps extends ClassicLowlevelOps implements LowlevelOps
     public void getattr(FuseReq fuseReq, long inode, FileInfo fileInfo) {
         System.out.println("getattr");
         System.out.println();
-        Reply.attr(fuseReq, );
-        super.getattr(fuseReq, inode, fileInfo);
+        NodeAttributes attr =  this.restClient.getAttribute(inode);
+        if (attr == null) {
+            Reply.err(fuseReq, Errno.ENOENT);
+            return;
+        }
+        Reply.attr(fuseReq, attr.toFuseStat(), 0.0);
+        //Reply.attr(fuseReq,)
+       // Reply.attr(fuseReq, );
+        //super.getattr(fuseReq, inode, fileInfo);
     }
 
     @Override
@@ -172,7 +182,8 @@ public class CephishStorageOps extends ClassicLowlevelOps implements LowlevelOps
 
     @Override
     public void getxattr(FuseReq fuseReq, long l, String s, int i) {
-        System.out.println("getxattr");
+        System.out.println(s);
+        System.out.printf("getxattr(%l, %s, %i)\n", l, s ,i);
         super.getxattr(fuseReq, l, s, i);
     }
 

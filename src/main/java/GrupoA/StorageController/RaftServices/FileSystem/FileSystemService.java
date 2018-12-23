@@ -1,7 +1,11 @@
-package GrupoA.StorageController.RaftServices;
+package GrupoA.StorageController.RaftServices.FileSystem;
 
 import GrupoA.StorageController.Crush.ObjectStorageDaemon;
 import GrupoA.StorageController.FileSystem.FSTree;
+import GrupoA.StorageController.RaftServices.FileSystem.Commands.FileSystemCommand;
+import GrupoA.StorageController.RaftServices.FileSystem.Commands.GetINodeCommand;
+import GrupoA.StorageController.RaftServices.FileSystem.Commands.LsCommand;
+import GrupoA.StorageController.RaftServices.FileSystem.Commands.MkDirCommand;
 import org.jgroups.JChannel;
 import org.jgroups.protocols.raft.RAFT;
 import org.jgroups.protocols.raft.Role;
@@ -11,7 +15,6 @@ import org.jgroups.util.*;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.rmi.ServerError;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -31,7 +34,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         if(service == null) {
             JChannel ch = new JChannel("./raft.xml").name(raftId);
             service = new FileSystemService(ch);
-            ch.connect("FSTreeCluster");
+            ch.connect("FSTreeCluster0");
         }
         return service;
     }
@@ -49,7 +52,9 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
     protected enum Command {mkDir, rmDir, mkFile, rmFile, ls, getINode}
 
     public boolean mkDir(String path) throws Exception {
-        return (boolean)invoke(Command.mkDir, path);
+        System.out.println("mkdir");
+        FileSystemCommand command = new MkDirCommand(path);
+        return (boolean)this.invoke(command);
     }
 
     public boolean rmDir(String path) throws Exception {
@@ -66,15 +71,17 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
     @SuppressWarnings("unchecked")
     public List<String> ls(String path) throws Exception {
-        return (List<String>)invoke(Command.ls, path);
+        return (List<String>)this.invoke(new LsCommand(path));
     }
 
-    public FSTree.Node getINode(long iNode) {
-
+    public FSTree.Node getINode(long iNode) throws Exception {
+        GetINodeCommand command = new GetINodeCommand(iNode);
+        FSTree.Node node = (FSTree.Node) this.invoke(command);
+        return node;
     }
 
-    @Override
-    public byte[] apply(byte[] bytes, int offset, int length) throws Exception {
+    @Deprecated
+    public byte[] apply_deprecated(byte[] bytes, int offset, int length) throws Exception {
         ByteArrayDataInputStream in = new ByteArrayDataInputStream(bytes, offset, length);
         Command command = Command.values()[in.readByte()];
         String path = Bits.readAsciiString(in).toString();
@@ -191,10 +198,29 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
     }
 
-    protected Object invoke(Command command, int iNode) {
-
+    @Override
+    public byte[] apply(byte[] bytes, int offset, int length) throws Exception {
+        try {
+            FileSystemCommand command = Util.objectFromByteBuffer(bytes, offset, length);
+            System.out.println(command.getClass());
+            return Util.objectToByteBuffer(command.execute(fsTree));
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return new byte[0];
     }
 
+    protected Object invoke(FileSystemCommand command) throws Exception {
+
+        byte[] buffer = Util.objectToByteBuffer(command);
+        ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(buffer.length);
+        out.write(buffer);
+        byte[] rsp = raft.set(out.buffer(), 0, out.position(), replyTimeout, TimeUnit.MILLISECONDS);
+
+        return Util.objectFromByteBuffer(rsp);
+    }
+
+    @Deprecated
     protected Object invoke(Command command, String path) throws Exception {
         //Size: length of string + null terminator
         ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(path.length() + 1);
@@ -214,6 +240,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         return Util.objectFromByteBuffer(rsp);
     }
 
+    @Deprecated
     protected Object invoke(Command command, String path, int fileSize, int blocks, long hash) throws Exception {
         //Size: length of string + null terminator, int size = 4, long size = 8
         ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(path.length() + 1 + 4 + 4 + 8);

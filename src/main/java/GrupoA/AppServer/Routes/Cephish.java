@@ -20,7 +20,7 @@ public class Cephish {
     @GET
     @Path("{path: [a-zA-Z0-9_/]+}")
     @Produces(MediaType.APPLICATION_JSON)
-/*    public INode getPath(@PathParam("path") String path) {
+    public INode getPath(@PathParam("path") String path) {
         File file = new File();
         file.Path = path;
         file.Data = new byte[] {2,2,2};

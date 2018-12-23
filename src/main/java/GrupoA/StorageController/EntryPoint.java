@@ -1,6 +1,7 @@
 package GrupoA.StorageController;
 
-import GrupoA.StorageController.RaftServices.FileSystemService;
+import GrupoA.StorageController.RaftServices.FileSystem.FileSystemService;
+import GrupoA.StorageController.gRPCService.FileSystemServer;
 import org.jgroups.util.Util;
 
 
@@ -135,6 +136,8 @@ public class EntryPoint {
 
     }*/
     public static void main(String[] args) throws Exception {
+        FileSystemServer fss = new FileSystemServer();
+        fss.start();
         startRaft(args[0]);
     }
 

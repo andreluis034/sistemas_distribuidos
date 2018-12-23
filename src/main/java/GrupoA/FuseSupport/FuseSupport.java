@@ -13,9 +13,15 @@ import java.util.Random;
 
 public class FuseSupport {
 
-    public static String Address = "";
+    public static String Address = "172.20.100.100:9595";
+
+    public static void test() {
+        RestClient restClient = new RestClient(FuseSupport.Address);
+        restClient.getAttribute(1);
+    }
     public static void main(String[] args) throws IOException, InterruptedException {
-        Address = "172.20.100.10:8080";
+        test();
+        Address = "172.20.100.100:9595";
         Random random = new Random();
         int randomNumber = random.nextInt((int)Math.pow(2, 31) );
         String[] fuseArgs = { "-o foo,subtype=cephfs" + randomNumber, "-d" };
@@ -32,15 +38,22 @@ public class FuseSupport {
         System.out.println("Chan add");
         Session.addChan(sess, chan);
         System.out.println("Loop single");
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                // Session.loopMulti(sess);
+                System.out.println("Remove chan");
+                Session.removeChan(chan);
+                System.out.println("Destroy");
+                Session.destroy(sess);
+                System.out.println("Exit");
+                Session.exit(sess);
+                System.out.println("unmount");
+                Fuse.unmount(mountpoint, chan);
+            }
+        });
         Session.loopSingle(sess);
-        // Session.loopMulti(sess);
-        System.out.println("Remove chan");
-        Session.removeChan(chan);
-        System.out.println("Destroy");
-        Session.destroy(sess);
-        System.out.println("Exit");
-        Session.exit(sess);
-        System.out.println("unmount");
-        Fuse.unmount(mountpoint, chan);
+
+
     }
 }

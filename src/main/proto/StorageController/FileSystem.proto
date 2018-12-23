@@ -13,11 +13,11 @@ service FileSystem {
     rpc rmDir (pathOnlyArgs) returns (BooleanMessage) {}
     rpc mkDir (pathOnlyArgs) returns (BooleanMessage) {}
 
-    rpc getAttr (IntArg) returns (iNodeAttributes) {}
+    rpc getAttr (LongArg) returns (iNodeAttributes) {}
 }
 
-message IntArg {
-    int32 iNode = 1;
+message LongArg {
+    int64 iNode = 1;
 }
 
 /**

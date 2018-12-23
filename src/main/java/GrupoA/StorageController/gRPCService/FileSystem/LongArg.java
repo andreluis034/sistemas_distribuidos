@@ -4,19 +4,19 @@
 package GrupoA.StorageController.gRPCService.FileSystem;
 
 /**
- * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.IntArg}
+ * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.LongArg}
  */
-public  final class IntArg extends
+public  final class LongArg extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:GrupoA.StorageController.gRPCService.FileSystem.IntArg)
-    IntArgOrBuilder {
+    // @@protoc_insertion_point(message_implements:GrupoA.StorageController.gRPCService.FileSystem.LongArg)
+    LongArgOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use IntArg.newBuilder() to construct.
-  private IntArg(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use LongArg.newBuilder() to construct.
+  private LongArg(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private IntArg() {
-    iNode_ = 0;
+  private LongArg() {
+    iNode_ = 0L;
   }
 
   @java.lang.Override
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private IntArg(
+  private LongArg(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -45,7 +45,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            iNode_ = input.readInt32();
+            iNode_ = input.readInt64();
             break;
           }
           default: {
@@ -69,23 +69,23 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_IntArg_descriptor;
+    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_LongArg_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_IntArg_fieldAccessorTable
+    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_LongArg_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            GrupoA.StorageController.gRPCService.FileSystem.IntArg.class, GrupoA.StorageController.gRPCService.FileSystem.IntArg.Builder.class);
+            GrupoA.StorageController.gRPCService.FileSystem.LongArg.class, GrupoA.StorageController.gRPCService.FileSystem.LongArg.Builder.class);
   }
 
   public static final int INODE_FIELD_NUMBER = 1;
-  private int iNode_;
+  private long iNode_;
   /**
-   * <code>int32 iNode = 1;</code>
+   * <code>int64 iNode = 1;</code>
    */
-  public int getINode() {
+  public long getINode() {
     return iNode_;
   }
 
@@ -103,8 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (iNode_ != 0) {
-      output.writeInt32(1, iNode_);
+    if (iNode_ != 0L) {
+      output.writeInt64(1, iNode_);
     }
     unknownFields.writeTo(output);
   }
@@ -115,9 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (iNode_ != 0) {
+    if (iNode_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, iNode_);
+        .computeInt64Size(1, iNode_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -129,10 +129,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof GrupoA.StorageController.gRPCService.FileSystem.IntArg)) {
+    if (!(obj instanceof GrupoA.StorageController.gRPCService.FileSystem.LongArg)) {
       return super.equals(obj);
     }
-    GrupoA.StorageController.gRPCService.FileSystem.IntArg other = (GrupoA.StorageController.gRPCService.FileSystem.IntArg) obj;
+    GrupoA.StorageController.gRPCService.FileSystem.LongArg other = (GrupoA.StorageController.gRPCService.FileSystem.LongArg) obj;
 
     boolean result = true;
     result = result && (getINode()
@@ -149,75 +149,76 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + INODE_FIELD_NUMBER;
-    hash = (53 * hash) + getINode();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getINode());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg parseFrom(byte[] data)
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg parseFrom(java.io.InputStream input)
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg parseDelimitedFrom(java.io.InputStream input)
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg parseDelimitedFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -230,7 +231,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(GrupoA.StorageController.gRPCService.FileSystem.IntArg prototype) {
+  public static Builder newBuilder(GrupoA.StorageController.gRPCService.FileSystem.LongArg prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -246,26 +247,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.IntArg}
+   * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.LongArg}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:GrupoA.StorageController.gRPCService.FileSystem.IntArg)
-      GrupoA.StorageController.gRPCService.FileSystem.IntArgOrBuilder {
+      // @@protoc_insertion_point(builder_implements:GrupoA.StorageController.gRPCService.FileSystem.LongArg)
+      GrupoA.StorageController.gRPCService.FileSystem.LongArgOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_IntArg_descriptor;
+      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_LongArg_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_IntArg_fieldAccessorTable
+      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_LongArg_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              GrupoA.StorageController.gRPCService.FileSystem.IntArg.class, GrupoA.StorageController.gRPCService.FileSystem.IntArg.Builder.class);
+              GrupoA.StorageController.gRPCService.FileSystem.LongArg.class, GrupoA.StorageController.gRPCService.FileSystem.LongArg.Builder.class);
     }
 
-    // Construct using GrupoA.StorageController.gRPCService.FileSystem.IntArg.newBuilder()
+    // Construct using GrupoA.StorageController.gRPCService.FileSystem.LongArg.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -283,7 +284,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      iNode_ = 0;
+      iNode_ = 0L;
 
       return this;
     }
@@ -291,17 +292,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_IntArg_descriptor;
+      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_LongArg_descriptor;
     }
 
     @java.lang.Override
-    public GrupoA.StorageController.gRPCService.FileSystem.IntArg getDefaultInstanceForType() {
-      return GrupoA.StorageController.gRPCService.FileSystem.IntArg.getDefaultInstance();
+    public GrupoA.StorageController.gRPCService.FileSystem.LongArg getDefaultInstanceForType() {
+      return GrupoA.StorageController.gRPCService.FileSystem.LongArg.getDefaultInstance();
     }
 
     @java.lang.Override
-    public GrupoA.StorageController.gRPCService.FileSystem.IntArg build() {
-      GrupoA.StorageController.gRPCService.FileSystem.IntArg result = buildPartial();
+    public GrupoA.StorageController.gRPCService.FileSystem.LongArg build() {
+      GrupoA.StorageController.gRPCService.FileSystem.LongArg result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -309,8 +310,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public GrupoA.StorageController.gRPCService.FileSystem.IntArg buildPartial() {
-      GrupoA.StorageController.gRPCService.FileSystem.IntArg result = new GrupoA.StorageController.gRPCService.FileSystem.IntArg(this);
+    public GrupoA.StorageController.gRPCService.FileSystem.LongArg buildPartial() {
+      GrupoA.StorageController.gRPCService.FileSystem.LongArg result = new GrupoA.StorageController.gRPCService.FileSystem.LongArg(this);
       result.iNode_ = iNode_;
       onBuilt();
       return result;
@@ -350,17 +351,17 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof GrupoA.StorageController.gRPCService.FileSystem.IntArg) {
-        return mergeFrom((GrupoA.StorageController.gRPCService.FileSystem.IntArg)other);
+      if (other instanceof GrupoA.StorageController.gRPCService.FileSystem.LongArg) {
+        return mergeFrom((GrupoA.StorageController.gRPCService.FileSystem.LongArg)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(GrupoA.StorageController.gRPCService.FileSystem.IntArg other) {
-      if (other == GrupoA.StorageController.gRPCService.FileSystem.IntArg.getDefaultInstance()) return this;
-      if (other.getINode() != 0) {
+    public Builder mergeFrom(GrupoA.StorageController.gRPCService.FileSystem.LongArg other) {
+      if (other == GrupoA.StorageController.gRPCService.FileSystem.LongArg.getDefaultInstance()) return this;
+      if (other.getINode() != 0L) {
         setINode(other.getINode());
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -378,11 +379,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      GrupoA.StorageController.gRPCService.FileSystem.IntArg parsedMessage = null;
+      GrupoA.StorageController.gRPCService.FileSystem.LongArg parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (GrupoA.StorageController.gRPCService.FileSystem.IntArg) e.getUnfinishedMessage();
+        parsedMessage = (GrupoA.StorageController.gRPCService.FileSystem.LongArg) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -392,28 +393,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int iNode_ ;
+    private long iNode_ ;
     /**
-     * <code>int32 iNode = 1;</code>
+     * <code>int64 iNode = 1;</code>
      */
-    public int getINode() {
+    public long getINode() {
       return iNode_;
     }
     /**
-     * <code>int32 iNode = 1;</code>
+     * <code>int64 iNode = 1;</code>
      */
-    public Builder setINode(int value) {
+    public Builder setINode(long value) {
       
       iNode_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 iNode = 1;</code>
+     * <code>int64 iNode = 1;</code>
      */
     public Builder clearINode() {
       
-      iNode_ = 0;
+      iNode_ = 0L;
       onChanged();
       return this;
     }
@@ -430,41 +431,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:GrupoA.StorageController.gRPCService.FileSystem.IntArg)
+    // @@protoc_insertion_point(builder_scope:GrupoA.StorageController.gRPCService.FileSystem.LongArg)
   }
 
-  // @@protoc_insertion_point(class_scope:GrupoA.StorageController.gRPCService.FileSystem.IntArg)
-  private static final GrupoA.StorageController.gRPCService.FileSystem.IntArg DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:GrupoA.StorageController.gRPCService.FileSystem.LongArg)
+  private static final GrupoA.StorageController.gRPCService.FileSystem.LongArg DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new GrupoA.StorageController.gRPCService.FileSystem.IntArg();
+    DEFAULT_INSTANCE = new GrupoA.StorageController.gRPCService.FileSystem.LongArg();
   }
 
-  public static GrupoA.StorageController.gRPCService.FileSystem.IntArg getDefaultInstance() {
+  public static GrupoA.StorageController.gRPCService.FileSystem.LongArg getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<IntArg>
-      PARSER = new com.google.protobuf.AbstractParser<IntArg>() {
+  private static final com.google.protobuf.Parser<LongArg>
+      PARSER = new com.google.protobuf.AbstractParser<LongArg>() {
     @java.lang.Override
-    public IntArg parsePartialFrom(
+    public LongArg parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new IntArg(input, extensionRegistry);
+      return new LongArg(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<IntArg> parser() {
+  public static com.google.protobuf.Parser<LongArg> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<IntArg> getParserForType() {
+  public com.google.protobuf.Parser<LongArg> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public GrupoA.StorageController.gRPCService.FileSystem.IntArg getDefaultInstanceForType() {
+  public GrupoA.StorageController.gRPCService.FileSystem.LongArg getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

@@ -3,12 +3,12 @@
 
 package GrupoA.StorageController.gRPCService.FileSystem;
 
-public interface IntArgOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:GrupoA.StorageController.gRPCService.FileSystem.IntArg)
+public interface LongArgOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:GrupoA.StorageController.gRPCService.FileSystem.LongArg)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 iNode = 1;</code>
+   * <code>int64 iNode = 1;</code>
    */
-  int getINode();
+  long getINode();
 }

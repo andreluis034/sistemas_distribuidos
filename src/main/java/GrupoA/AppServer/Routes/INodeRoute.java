@@ -1,30 +1,63 @@
 package GrupoA.AppServer.Routes;
 
+import GrupoA.AppServer.ApplicationServer;
 import GrupoA.AppServer.Models.INode;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+
+import GrupoA.AppServer.Models.NodeAttributes;
+import GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes;
 
 @Path("/inode")
 public class INodeRoute {
 
+    @GET
+    public String get() {
+        return "HelloWorld";
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("testes")
+    public NodeAttributes dsa() {
+        return new NodeAttributes();
+    }
+
     /**
-     * returns a given path be it a folder or a directory
-     * @param path the path to write this to
+     * returns the attributes of a node
+     * @param iNode the attributes of anode
      * @return
      */
     @GET
-    @Path("{inode: [0-9]+/attr}")
+    @Path("{inode: \\d+}/attr")
     @Produces(MediaType.APPLICATION_JSON)
-    public INode.Attributes getAttr(@PathParam("inode") long path) {
-        INode.Attributes attr = new INode.Attributes();
+    public NodeAttributes getAttr(@PathParam("inode") long iNode) {
+        try {
+            System.out.println("getAttr");
+            NodeAttributes attr = new NodeAttributes();
 
 
+            iNodeAttributes nattributes = ApplicationServer.FileSystemClient.GetAttributes(iNode);
+            if(nattributes.getINodeNumber() == -1)
+                throw new NotFoundException();
 
-        return attr;
+            attr.Name = nattributes.getName();
+            attr.OwnerId = nattributes.getOwnerId();
+            attr.INodeNumber = nattributes.getINodeNumber();
+            attr.UserPermissions = nattributes.getUserPermissions();
+            attr.GroupPermissions = nattributes.getGroupPermissions();
+            attr.OthersPermissions = nattributes.getOtherPermissions();
+            attr.Size = nattributes.getSize();
+            attr.ParentINodeNumber = nattributes.getParentINodeNumber();
+            attr.GroupId = nattributes.getGroupId();
+
+            return attr;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
 
     }
 }

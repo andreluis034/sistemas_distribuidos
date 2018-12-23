@@ -3,12 +3,13 @@ package GrupoA.StorageController.FileSystem;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class FSTree {
+public class FSTree implements Serializable {
     private DirNode root;
     private File journal;
     public Path journal_path;
@@ -19,6 +20,8 @@ public class FSTree {
 
     public FSTree() {
         root = new DirNode("/");
+        root.iNode = getNextINode();
+        inodeTable.put(root.iNode, root);
         journal = new File("FSTree_journal.txt");
 
         try {
@@ -64,6 +67,12 @@ public class FSTree {
         }
 
         return currentNode;
+    }
+
+    public synchronized Node getNode(long iNode) {
+        System.out.println("Getting iNode " + iNode);
+        System.out.println(this.inodeTable.get(iNode));
+        return this.inodeTable.get(iNode);
     }
 
     private static String joinPathExceptLastN(String[] parts, int N) {
@@ -244,13 +253,18 @@ public class FSTree {
         parent.removeChild(child);
     }
 
-    public static abstract class Node implements Comparable<Node> {
+    public static abstract class Node implements Comparable<Node>, Serializable {
 
         public long iNode = 0;
+        public Byte UserPermissions = 7;
+        public Byte GroupPermissions = 7;
+        public Byte OthersPermissions = 7;
+        public Long OwnerId = 1000L;
+        public Long GroupId = 1000L;
 
         public abstract NodeType getNodeType();
         String nodeName;
-        DirNode Parent;
+        public DirNode Parent;
 
         public int compareTo(@Nullable Node node) {
             if (node == null) {
@@ -277,7 +291,7 @@ public class FSTree {
 
     public static class FileNode extends Node {
         Long hash;
-        Integer fileSize, blocks;
+        public Integer fileSize, blocks;
 
         int CrushMapVersion = 0;
 
