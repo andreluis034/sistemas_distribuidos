@@ -18,11 +18,13 @@ public class CrushMap implements ICrushMap, Serializable {
     private static final int REPLICATION = 2;
 
     private int version;
+    private List<ObjectStorageDaemon> OSDs;
     private List<PlacementGroup> PGs = new LinkedList<>();
     public Path journal_path;
 
     public CrushMap(int version, List<ObjectStorageDaemon> OSDs) {
         this.version = version;
+        this.OSDs = OSDs;
 
         int numberOfOSDs = OSDs.size();
         int leftover = numberOfOSDs % REPLICATION;
@@ -43,7 +45,7 @@ public class CrushMap implements ICrushMap, Serializable {
         PlacementGroup pgToInsert = new PlacementGroup(pgToRemove.getPgID(), newOSDList);
         PGs.add(pgToInsert);
 
-        File journal = new File("CRUSH_journal.txt");
+        File journal = new File("CRUSH_journal_" + version + ".txt");
 
         try {
             if (!journal.exists())
@@ -59,6 +61,10 @@ public class CrushMap implements ICrushMap, Serializable {
 
     public List<PlacementGroup> getPGs() {
         return this.PGs;
+    }
+
+    public List<ObjectStorageDaemon> getOSDs() {
+        return this.OSDs;
     }
 
     @Override

@@ -50,7 +50,8 @@ public class OSDClient {
 
         this.putObject(data, finalHash);
     }
-    public void putObject(byte[] data, long hash){
+
+    public void putObject(byte[] data, long hash) {
         this.putObject(ObjectData.newBuilder().setHash(hash).setObjectData(ByteString.copyFrom(data)).build());
     }
 
