@@ -1,13 +1,18 @@
 package GrupoA.FuseSupport;
 
 import GrupoA.AppServer.Models.AttributeUpdateRequest;
+import GrupoA.AppServer.Models.DirectoryContents;
 import GrupoA.AppServer.Models.NodeAttributes;
 import jnr.ffi.Pointer;
 import jnr.ffi.types.mode_t;
+import jnr.ffi.types.off_t;
 import jnr.ffi.types.size_t;
 import ru.serce.jnrfuse.ErrorCodes;
+import ru.serce.jnrfuse.FuseFillDir;
 import ru.serce.jnrfuse.FuseStubFS;
+import ru.serce.jnrfuse.NotImplemented;
 import ru.serce.jnrfuse.struct.FileStat;
+import ru.serce.jnrfuse.struct.FuseFileInfo;
 
 //Functions not implemented: getxattr
 public class CephishFuse extends FuseStubFS {
@@ -19,11 +24,9 @@ public class CephishFuse extends FuseStubFS {
 
     @Override
     public int getattr(String path, FileStat stat){
-        System.out.println("Getting attribute");
         NodeAttributes attr = restClient.getAttribute(path);
-        System.out.println("Attribute: " + attr);
         if(attr == null) {
-            return -ErrorCodes.ENONET();
+            return -ErrorCodes.ENOENT();
         }
         attr.toFuseStat(stat);
 
@@ -34,6 +37,36 @@ public class CephishFuse extends FuseStubFS {
     public int chmod(String path, @mode_t long mode) {
         if( restClient.updateAttribute(path, AttributeUpdateRequest.UpdateType.CHMOD, mode & 0x1FF))
             return 0;
-        return -ErrorCodes.ENONET();
+        return -ErrorCodes.ENOENT();
     }
+
+    @Override
+    public int readdir(String path, Pointer buf, FuseFillDir filter, @off_t long offset, FuseFileInfo fi) {
+        DirectoryContents dc = restClient.readDir(path);
+        if(!dc.Valid) {
+            return -ErrorCodes.ENOTDIR();
+        }
+
+        filter.apply(buf, ".", null, 0);
+        filter.apply(buf, "..", null, 0);
+        for (int i = 1; i < dc.Contents.size(); ++i) { // First index is itself
+            filter.apply(buf, dc.Contents.get(i).Name, null, 0);
+            System.out.println(dc.Contents.get(i).Name);
+        }
+        return 0;
+    }
+
+    //TODO locks?
+    @Override
+    public int create(String path, @mode_t long mode, FuseFileInfo fi) {
+        NodeAttributes attr = restClient.getAttribute(path);
+        if (attr != null)
+            return -ErrorCodes.EEXIST();
+        boolean result = restClient.createFile(path, mode, 1000, 1000);
+        if (result)
+            return 0;
+
+        return -ErrorCodes.ENOTDIR();
+    }
+
 }

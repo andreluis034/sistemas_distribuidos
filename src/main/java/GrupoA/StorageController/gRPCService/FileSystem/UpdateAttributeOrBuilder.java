@@ -8,11 +8,11 @@ public interface UpdateAttributeOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType UpdateType = 1;</code>
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
    */
   int getTypeValue();
   /**
-   * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType UpdateType = 1;</code>
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
    */
   GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType getType();
 

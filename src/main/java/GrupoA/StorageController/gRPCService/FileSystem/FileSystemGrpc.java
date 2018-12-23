@@ -187,6 +187,70 @@ public final class FileSystemGrpc {
      return getSetAttrMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs,
+      GrupoA.StorageController.gRPCService.FileSystem.DirContents> getReadDirMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "readDir",
+      requestType = GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs.class,
+      responseType = GrupoA.StorageController.gRPCService.FileSystem.DirContents.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs,
+      GrupoA.StorageController.gRPCService.FileSystem.DirContents> getReadDirMethod() {
+    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs, GrupoA.StorageController.gRPCService.FileSystem.DirContents> getReadDirMethod;
+    if ((getReadDirMethod = FileSystemGrpc.getReadDirMethod) == null) {
+      synchronized (FileSystemGrpc.class) {
+        if ((getReadDirMethod = FileSystemGrpc.getReadDirMethod) == null) {
+          FileSystemGrpc.getReadDirMethod = getReadDirMethod = 
+              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs, GrupoA.StorageController.gRPCService.FileSystem.DirContents>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "GrupoA.StorageController.gRPCService.FileSystem.FileSystem", "readDir"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.FileSystem.DirContents.getDefaultInstance()))
+                  .setSchemaDescriptor(new FileSystemMethodDescriptorSupplier("readDir"))
+                  .build();
+          }
+        }
+     }
+     return getReadDirMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs,
+      GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage> getCreateFileMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "CreateFile",
+      requestType = GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs.class,
+      responseType = GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs,
+      GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage> getCreateFileMethod() {
+    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs, GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage> getCreateFileMethod;
+    if ((getCreateFileMethod = FileSystemGrpc.getCreateFileMethod) == null) {
+      synchronized (FileSystemGrpc.class) {
+        if ((getCreateFileMethod = FileSystemGrpc.getCreateFileMethod) == null) {
+          FileSystemGrpc.getCreateFileMethod = getCreateFileMethod = 
+              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs, GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "GrupoA.StorageController.gRPCService.FileSystem.FileSystem", "CreateFile"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage.getDefaultInstance()))
+                  .setSchemaDescriptor(new FileSystemMethodDescriptorSupplier("CreateFile"))
+                  .build();
+          }
+        }
+     }
+     return getCreateFileMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -252,6 +316,20 @@ public final class FileSystemGrpc {
       asyncUnimplementedUnaryCall(getSetAttrMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void readDir(GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.DirContents> responseObserver) {
+      asyncUnimplementedUnaryCall(getReadDirMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void createFile(GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage> responseObserver) {
+      asyncUnimplementedUnaryCall(getCreateFileMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -289,6 +367,20 @@ public final class FileSystemGrpc {
                 GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute,
                 GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage>(
                   this, METHODID_SET_ATTR)))
+          .addMethod(
+            getReadDirMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs,
+                GrupoA.StorageController.gRPCService.FileSystem.DirContents>(
+                  this, METHODID_READ_DIR)))
+          .addMethod(
+            getCreateFileMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs,
+                GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage>(
+                  this, METHODID_CREATE_FILE)))
           .build();
     }
   }
@@ -353,6 +445,22 @@ public final class FileSystemGrpc {
       asyncUnaryCall(
           getChannel().newCall(getSetAttrMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void readDir(GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.DirContents> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getReadDirMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void createFile(GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getCreateFileMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -409,6 +517,20 @@ public final class FileSystemGrpc {
     public GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage setAttr(GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute request) {
       return blockingUnaryCall(
           getChannel(), getSetAttrMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GrupoA.StorageController.gRPCService.FileSystem.DirContents readDir(GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request) {
+      return blockingUnaryCall(
+          getChannel(), getReadDirMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage createFile(GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs request) {
+      return blockingUnaryCall(
+          getChannel(), getCreateFileMethod(), getCallOptions(), request);
     }
   }
 
@@ -472,6 +594,22 @@ public final class FileSystemGrpc {
       return futureUnaryCall(
           getChannel().newCall(getSetAttrMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.FileSystem.DirContents> readDir(
+        GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request) {
+      return futureUnaryCall(
+          getChannel().newCall(getReadDirMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage> createFile(
+        GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs request) {
+      return futureUnaryCall(
+          getChannel().newCall(getCreateFileMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_RM_FILE = 0;
@@ -479,6 +617,8 @@ public final class FileSystemGrpc {
   private static final int METHODID_MK_DIR = 2;
   private static final int METHODID_GET_ATTR = 3;
   private static final int METHODID_SET_ATTR = 4;
+  private static final int METHODID_READ_DIR = 5;
+  private static final int METHODID_CREATE_FILE = 6;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -515,6 +655,14 @@ public final class FileSystemGrpc {
           break;
         case METHODID_SET_ATTR:
           serviceImpl.setAttr((GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute) request,
+              (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage>) responseObserver);
+          break;
+        case METHODID_READ_DIR:
+          serviceImpl.readDir((GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs) request,
+              (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.DirContents>) responseObserver);
+          break;
+        case METHODID_CREATE_FILE:
+          serviceImpl.createFile((GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs) request,
               (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage>) responseObserver);
           break;
         default:
@@ -583,6 +731,8 @@ public final class FileSystemGrpc {
               .addMethod(getMkDirMethod())
               .addMethod(getGetAttrMethod())
               .addMethod(getSetAttrMethod())
+              .addMethod(getReadDirMethod())
+              .addMethod(getCreateFileMethod())
               .build();
         }
       }

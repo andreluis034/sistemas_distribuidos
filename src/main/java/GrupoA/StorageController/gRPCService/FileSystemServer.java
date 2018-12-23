@@ -8,6 +8,7 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 import java.io.IOException;
+import java.util.List;
 
 class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
     @Override
@@ -31,7 +32,7 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
             reply.setUserPermissions(node.UserPermissions);
             reply.setGroupPermissions(node.GroupPermissions);
             reply.setOtherPermissions(node.OthersPermissions);
-            reply.setOwnerId(node.OwnerId);
+            reply.setOwnerId(node.UserId);
             reply.setGroupId(node.GroupId);
             reply.setINodeNumber(node.iNode);
             reply.setSize(node.getNodeType() == FSTree.NodeType.DirNode ? 0 : ((FSTree.FileNode)node).fileSize);
@@ -57,6 +58,50 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
         }
         responseObserver.onNext(status.build());
         responseObserver.onCompleted();
+    }
+
+    @Override
+    public void readDir(pathOnlyArgs args, StreamObserver<DirContents> response) {
+        DirContents.Builder status = DirContents.newBuilder();
+        status.setSuccess(false);
+        try {
+            List<FSTree.Node> nodes = FileSystemService.getInstance().readDir(args.getFilePath());
+            if(nodes.size() != 0) {
+                status.setINode(nodes.get(0).iNode);
+                status.setParentINode(nodes.get(0).getParentINode());
+                for (FSTree.Node node: nodes) {
+                    DirContents.Content.Builder contentBuilder = DirContents.Content.newBuilder();
+                    contentBuilder.setContentName(node.getNodeName());
+                    contentBuilder.setINode(node.iNode);
+                    contentBuilder.setContentFileType(node.getNodeType() == FSTree.NodeType.DirNode ? FileType.DIR : FileType.FILE);
+                    status.addContents(contentBuilder);
+                }
+                status.setSuccess(true);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        response.onNext(status.build());
+        response.onCompleted();
+    }
+
+    @Override
+    public void createFile(CreateFileArgs args, StreamObserver<BooleanMessage> rsp) {
+
+        BooleanMessage.Builder status = BooleanMessage.newBuilder();
+        status.setResult(false);
+        try {
+            status.setResult(FileSystemService.getInstance()
+                    .mkFile(
+                            args.getPath(), args.getMode(),
+                            args.getUid(), args.getGid()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        rsp.onNext(status.build());
+        rsp.onCompleted();
     }
 }
 

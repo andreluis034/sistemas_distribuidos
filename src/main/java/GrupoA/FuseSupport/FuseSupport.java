@@ -12,6 +12,10 @@ public class FuseSupport {
         RestClient restClient = new RestClient(FuseSupport.Address);
         NodeAttributes attr =  restClient.getAttribute("/");
         System.out.println("Got attribute: " + attr);
+
+        //restClient.readDir("/");
+
+        restClient.createFile("/a", 100, 1000, 1000);
     }
     public static void main(String[] args)  {
         test();

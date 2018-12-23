@@ -1,6 +1,7 @@
 package GrupoA.StorageController.gRPCService;
 
 import GrupoA.AppServer.Models.AttributeUpdateRequest;
+import GrupoA.AppServer.Models.DirectoryContents;
 import GrupoA.StorageController.gRPCService.FileSystem.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -42,4 +43,19 @@ public class FileSystemClient {
                 .setValue(value)
                 .setType(map.get(updateType)).build()).getResult();
     }
+
+    public DirectoryContents ReadDir(String path) {
+        DirContents cont =  this.blockingStub.readDir(pathOnlyArgs.newBuilder().setFilePath(path).build());
+        return DirectoryContents.fromDirContents(cont);
+    }
+
+    public Boolean Create(String path, long mode, long uid, long gid) {
+        return this.blockingStub.createFile(CreateFileArgs.newBuilder()
+                .setPath(path)
+                .setMode(mode)
+                .setUid(uid)
+                .setGid(gid)
+                .build()).getResult();
+    }
+
 }

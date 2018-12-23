@@ -3,6 +3,7 @@ package GrupoA.AppServer.Models;
 
 import GrupoA.AppServer.ApplicationServer;
 import GrupoA.StorageController.gRPCService.FileSystem.FileType;
+import jnr.ffi.Runtime;
 import ru.serce.jnrfuse.struct.FileStat;
 import ru.serce.jnrfuse.struct.Timespec;
 
@@ -25,7 +26,6 @@ public class NodeAttributes {
 
 
     public FileStat toFuseStat(FileStat stat) {
-        System.out.println("toFuseStat");
         long mode;
         if(_FileType == FileType.FILE) {
             stat.st_nlink.set(1);

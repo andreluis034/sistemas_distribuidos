@@ -1,5 +1,7 @@
 package GrupoA.StorageController.FileSystem;
 
+import GrupoA.Utility.Jenkins;
+
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
@@ -147,17 +149,15 @@ public class FSTree implements Serializable {
     /**
      * Creates a file
      * @param path the path where to create the file
-     * @param fileSize the fileSize of the file
-     * @param blocks the number of blocks that represent this file
-     * @param hash the hash of the path?
+     * @param uid the uid the file belongs to
+     * @param gid the gid the file belongs to
      * @return true if the file was created
      */
-    public synchronized Boolean mkFile(String path, int fileSize, int blocks, long hash) {
+    public synchronized Boolean mkFile(String path, long uid, long gid) {
         try {
-            Files.write(journal_path, Collections.singleton("FSTree.mkFile(\"" + path + "\", " + fileSize
-                    + ", " + blocks + ", " + hash + ")"));
+            Files.write(journal_path, Collections.singleton("FSTree.mkFile(\"" + path + "\"" + ")"));
         } catch (IOException ignored) {
-            System.out.println("FSTree.mkFile(\"" + path + "\", " + fileSize + ", " + blocks + ", " + hash + ")");
+            System.out.println("FSTree.mkFile(\"" + path + "\"" + ")");
             System.err.println("Couldn't write to log file");
         }
 
@@ -170,11 +170,12 @@ public class FSTree implements Serializable {
         Node parent = this.getNode(joinPathExceptLastN(parts, 1));
         if(parent == null || parent.getNodeType() != NodeType.DirNode)
             return false;
-        FileNode newFile = new FileNode(fileName, hash, fileSize, blocks);
+        FileNode newFile = new FileNode(fileName);
         if(((DirNode)parent).getChild(fileName) != null) // duplicate Entry
             return false;
 
-
+        newFile.UserId = uid;
+        newFile.GroupId = gid;
         this.addNode((DirNode)parent, newFile);
         return true;
     }
@@ -258,7 +259,7 @@ public class FSTree implements Serializable {
         public Byte UserPermissions = 7;
         public Byte GroupPermissions = 7;
         public Byte OthersPermissions = 7;
-        public Long OwnerId = 1000L;
+        public Long UserId = 1000L;
         public Long GroupId = 1000L;
 
         public abstract NodeType getNodeType();
@@ -286,27 +287,26 @@ public class FSTree implements Serializable {
                 return "/" + this.nodeName;
             return this.Parent.getPath() + "/" + this.nodeName;
         }
+
+        public long getParentINode () {
+            if (Parent == null)
+                return 0;
+            return Parent.iNode;
+        }
     }
 
     public static class FileNode extends Node {
         Long hash;
         public Integer fileSize, blocks;
 
-        int CrushMapVersion = 0;
+        int CrushMapVersion = 0; //TODO set this
 
-        public enum RedundancyType {
-            Erasue,
-            Duplicate
-        }
 
-        public RedundancyType redundancy;
-
-        public FileNode(String name, long hash, int fileSize, int blocks) {
+        public FileNode(String name) {
             this.nodeName = name;
-            this.hash = hash;
-            this.fileSize = fileSize;
-            this.blocks = blocks;
-            this.redundancy = RedundancyType.Duplicate;
+            this.hash = Jenkins.hash64(name.getBytes());
+            this.fileSize = 0;
+            this.blocks = 0;
         }
 
         @Override

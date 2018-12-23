@@ -1,8 +1,6 @@
 package GrupoA.FuseSupport;
 
-import GrupoA.AppServer.Models.AttributeUpdateRequest;
-import GrupoA.AppServer.Models.Directory;
-import GrupoA.AppServer.Models.NodeAttributes;
+import GrupoA.AppServer.Models.*;
 import GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
@@ -30,7 +28,6 @@ public class RestClient {
 
     public NodeAttributes getAttribute(String path) {
         try {
-            System.out.println(restBaseUri + "attribute/" + path );
             NodeAttributes attr  = client.target(restBaseUri).path("attribute").path(path)
                     .request(MediaType.APPLICATION_JSON)
                     .get(NodeAttributes.class);
@@ -65,9 +62,26 @@ public class RestClient {
         return bool;
     }
 
+    public DirectoryContents readDir(String path) {
+        return client.target(restBaseUri).path("directory").path(path)
+                .request(MediaType.APPLICATION_JSON)
+                .get(DirectoryContents.class);
+    }
+
     public Response createDirectory(Directory directory) {
         return client.target( restBaseUri + "/dir")
         .request(MediaType.APPLICATION_JSON)
         .post(Entity.entity(directory, MediaType.APPLICATION_JSON));
+    }
+
+    public Boolean createFile(String path, long mode, long uid, long gid){
+        CreateFileRequest cfr = new CreateFileRequest();
+        cfr.Path = path;
+        cfr.mode = mode;
+        cfr.uid = uid;
+        cfr.gid = gid;
+        return client.target(restBaseUri).path("file")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(cfr, MediaType.APPLICATION_JSON), Boolean.class);
     }
 }

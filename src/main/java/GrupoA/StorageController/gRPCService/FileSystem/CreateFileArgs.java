@@ -4,21 +4,22 @@
 package GrupoA.StorageController.gRPCService.FileSystem;
 
 /**
- * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute}
+ * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs}
  */
-public  final class UpdateAttribute extends
+public  final class CreateFileArgs extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute)
-    UpdateAttributeOrBuilder {
+    // @@protoc_insertion_point(message_implements:GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs)
+    CreateFileArgsOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use UpdateAttribute.newBuilder() to construct.
-  private UpdateAttribute(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use CreateFileArgs.newBuilder() to construct.
+  private CreateFileArgs(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private UpdateAttribute() {
-    type_ = 0;
-    value_ = 0L;
+  private CreateFileArgs() {
     path_ = "";
+    mode_ = 0L;
+    uid_ = 0L;
+    gid_ = 0L;
   }
 
   @java.lang.Override
@@ -26,7 +27,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private UpdateAttribute(
+  private CreateFileArgs(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -45,21 +46,25 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
-            int rawValue = input.readEnum();
+          case 10: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            type_ = rawValue;
+            path_ = s;
             break;
           }
           case 16: {
 
-            value_ = input.readInt64();
+            mode_ = input.readInt64();
             break;
           }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
+          case 24: {
 
-            path_ = s;
+            uid_ = input.readInt64();
+            break;
+          }
+          case 32: {
+
+            gid_ = input.readInt64();
             break;
           }
           default: {
@@ -83,47 +88,21 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_UpdateAttribute_descriptor;
+    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_CreateFileArgs_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_UpdateAttribute_fieldAccessorTable
+    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_CreateFileArgs_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute.class, GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute.Builder.class);
+            GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs.class, GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs.Builder.class);
   }
 
-  public static final int TYPE_FIELD_NUMBER = 1;
-  private int type_;
-  /**
-   * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
-   */
-  public int getTypeValue() {
-    return type_;
-  }
-  /**
-   * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
-   */
-  public GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType getType() {
-    @SuppressWarnings("deprecation")
-    GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType result = GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType.valueOf(type_);
-    return result == null ? GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType.UNRECOGNIZED : result;
-  }
-
-  public static final int VALUE_FIELD_NUMBER = 2;
-  private long value_;
-  /**
-   * <code>int64 Value = 2;</code>
-   */
-  public long getValue() {
-    return value_;
-  }
-
-  public static final int PATH_FIELD_NUMBER = 3;
+  public static final int PATH_FIELD_NUMBER = 1;
   private volatile java.lang.Object path_;
   /**
-   * <code>string path = 3;</code>
+   * <code>string path = 1;</code>
    */
   public java.lang.String getPath() {
     java.lang.Object ref = path_;
@@ -138,7 +117,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string path = 3;</code>
+   * <code>string path = 1;</code>
    */
   public com.google.protobuf.ByteString
       getPathBytes() {
@@ -152,6 +131,33 @@ private static final long serialVersionUID = 0L;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
+  }
+
+  public static final int MODE_FIELD_NUMBER = 2;
+  private long mode_;
+  /**
+   * <code>int64 mode = 2;</code>
+   */
+  public long getMode() {
+    return mode_;
+  }
+
+  public static final int UID_FIELD_NUMBER = 3;
+  private long uid_;
+  /**
+   * <code>int64 uid = 3;</code>
+   */
+  public long getUid() {
+    return uid_;
+  }
+
+  public static final int GID_FIELD_NUMBER = 4;
+  private long gid_;
+  /**
+   * <code>int64 gid = 4;</code>
+   */
+  public long getGid() {
+    return gid_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -168,14 +174,17 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (type_ != GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType.CHMOD.getNumber()) {
-      output.writeEnum(1, type_);
-    }
-    if (value_ != 0L) {
-      output.writeInt64(2, value_);
-    }
     if (!getPathBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, path_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, path_);
+    }
+    if (mode_ != 0L) {
+      output.writeInt64(2, mode_);
+    }
+    if (uid_ != 0L) {
+      output.writeInt64(3, uid_);
+    }
+    if (gid_ != 0L) {
+      output.writeInt64(4, gid_);
     }
     unknownFields.writeTo(output);
   }
@@ -186,16 +195,20 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (type_ != GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType.CHMOD.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(1, type_);
-    }
-    if (value_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(2, value_);
-    }
     if (!getPathBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, path_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, path_);
+    }
+    if (mode_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(2, mode_);
+    }
+    if (uid_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(3, uid_);
+    }
+    if (gid_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(4, gid_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -207,17 +220,20 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute)) {
+    if (!(obj instanceof GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs)) {
       return super.equals(obj);
     }
-    GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute other = (GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute) obj;
+    GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs other = (GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs) obj;
 
     boolean result = true;
-    result = result && type_ == other.type_;
-    result = result && (getValue()
-        == other.getValue());
     result = result && getPath()
         .equals(other.getPath());
+    result = result && (getMode()
+        == other.getMode());
+    result = result && (getUid()
+        == other.getUid());
+    result = result && (getGid()
+        == other.getGid());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -229,81 +245,85 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TYPE_FIELD_NUMBER;
-    hash = (53 * hash) + type_;
-    hash = (37 * hash) + VALUE_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getValue());
     hash = (37 * hash) + PATH_FIELD_NUMBER;
     hash = (53 * hash) + getPath().hashCode();
+    hash = (37 * hash) + MODE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getMode());
+    hash = (37 * hash) + UID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getUid());
+    hash = (37 * hash) + GID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getGid());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parseFrom(byte[] data)
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parseFrom(java.io.InputStream input)
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parseDelimitedFrom(java.io.InputStream input)
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parseDelimitedFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parseFrom(
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -316,7 +336,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute prototype) {
+  public static Builder newBuilder(GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -332,26 +352,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute}
+   * Protobuf type {@code GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute)
-      GrupoA.StorageController.gRPCService.FileSystem.UpdateAttributeOrBuilder {
+      // @@protoc_insertion_point(builder_implements:GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs)
+      GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgsOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_UpdateAttribute_descriptor;
+      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_CreateFileArgs_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_UpdateAttribute_fieldAccessorTable
+      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_CreateFileArgs_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute.class, GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute.Builder.class);
+              GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs.class, GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs.Builder.class);
     }
 
-    // Construct using GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute.newBuilder()
+    // Construct using GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -369,11 +389,13 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      type_ = 0;
-
-      value_ = 0L;
-
       path_ = "";
+
+      mode_ = 0L;
+
+      uid_ = 0L;
+
+      gid_ = 0L;
 
       return this;
     }
@@ -381,17 +403,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_UpdateAttribute_descriptor;
+      return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.internal_static_GrupoA_StorageController_gRPCService_FileSystem_CreateFileArgs_descriptor;
     }
 
     @java.lang.Override
-    public GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute getDefaultInstanceForType() {
-      return GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute.getDefaultInstance();
+    public GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs getDefaultInstanceForType() {
+      return GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs.getDefaultInstance();
     }
 
     @java.lang.Override
-    public GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute build() {
-      GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute result = buildPartial();
+    public GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs build() {
+      GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -399,11 +421,12 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute buildPartial() {
-      GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute result = new GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute(this);
-      result.type_ = type_;
-      result.value_ = value_;
+    public GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs buildPartial() {
+      GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs result = new GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs(this);
       result.path_ = path_;
+      result.mode_ = mode_;
+      result.uid_ = uid_;
+      result.gid_ = gid_;
       onBuilt();
       return result;
     }
@@ -442,25 +465,28 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute) {
-        return mergeFrom((GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute)other);
+      if (other instanceof GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs) {
+        return mergeFrom((GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute other) {
-      if (other == GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute.getDefaultInstance()) return this;
-      if (other.type_ != 0) {
-        setTypeValue(other.getTypeValue());
-      }
-      if (other.getValue() != 0L) {
-        setValue(other.getValue());
-      }
+    public Builder mergeFrom(GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs other) {
+      if (other == GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs.getDefaultInstance()) return this;
       if (!other.getPath().isEmpty()) {
         path_ = other.path_;
         onChanged();
+      }
+      if (other.getMode() != 0L) {
+        setMode(other.getMode());
+      }
+      if (other.getUid() != 0L) {
+        setUid(other.getUid());
+      }
+      if (other.getGid() != 0L) {
+        setGid(other.getGid());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -477,11 +503,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute parsedMessage = null;
+      GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute) e.getUnfinishedMessage();
+        parsedMessage = (GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -491,80 +517,9 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int type_ = 0;
-    /**
-     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
-     */
-    public int getTypeValue() {
-      return type_;
-    }
-    /**
-     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
-     */
-    public Builder setTypeValue(int value) {
-      type_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
-     */
-    public GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType getType() {
-      @SuppressWarnings("deprecation")
-      GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType result = GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType.valueOf(type_);
-      return result == null ? GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
-     */
-    public Builder setType(GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      type_ = value.getNumber();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType Type = 1;</code>
-     */
-    public Builder clearType() {
-      
-      type_ = 0;
-      onChanged();
-      return this;
-    }
-
-    private long value_ ;
-    /**
-     * <code>int64 Value = 2;</code>
-     */
-    public long getValue() {
-      return value_;
-    }
-    /**
-     * <code>int64 Value = 2;</code>
-     */
-    public Builder setValue(long value) {
-      
-      value_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int64 Value = 2;</code>
-     */
-    public Builder clearValue() {
-      
-      value_ = 0L;
-      onChanged();
-      return this;
-    }
-
     private java.lang.Object path_ = "";
     /**
-     * <code>string path = 3;</code>
+     * <code>string path = 1;</code>
      */
     public java.lang.String getPath() {
       java.lang.Object ref = path_;
@@ -579,7 +534,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string path = 3;</code>
+     * <code>string path = 1;</code>
      */
     public com.google.protobuf.ByteString
         getPathBytes() {
@@ -595,7 +550,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string path = 3;</code>
+     * <code>string path = 1;</code>
      */
     public Builder setPath(
         java.lang.String value) {
@@ -608,7 +563,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string path = 3;</code>
+     * <code>string path = 1;</code>
      */
     public Builder clearPath() {
       
@@ -617,7 +572,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string path = 3;</code>
+     * <code>string path = 1;</code>
      */
     public Builder setPathBytes(
         com.google.protobuf.ByteString value) {
@@ -627,6 +582,84 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       path_ = value;
+      onChanged();
+      return this;
+    }
+
+    private long mode_ ;
+    /**
+     * <code>int64 mode = 2;</code>
+     */
+    public long getMode() {
+      return mode_;
+    }
+    /**
+     * <code>int64 mode = 2;</code>
+     */
+    public Builder setMode(long value) {
+      
+      mode_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 mode = 2;</code>
+     */
+    public Builder clearMode() {
+      
+      mode_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long uid_ ;
+    /**
+     * <code>int64 uid = 3;</code>
+     */
+    public long getUid() {
+      return uid_;
+    }
+    /**
+     * <code>int64 uid = 3;</code>
+     */
+    public Builder setUid(long value) {
+      
+      uid_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 uid = 3;</code>
+     */
+    public Builder clearUid() {
+      
+      uid_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long gid_ ;
+    /**
+     * <code>int64 gid = 4;</code>
+     */
+    public long getGid() {
+      return gid_;
+    }
+    /**
+     * <code>int64 gid = 4;</code>
+     */
+    public Builder setGid(long value) {
+      
+      gid_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 gid = 4;</code>
+     */
+    public Builder clearGid() {
+      
+      gid_ = 0L;
       onChanged();
       return this;
     }
@@ -643,41 +676,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute)
+    // @@protoc_insertion_point(builder_scope:GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs)
   }
 
-  // @@protoc_insertion_point(class_scope:GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute)
-  private static final GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs)
+  private static final GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute();
+    DEFAULT_INSTANCE = new GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs();
   }
 
-  public static GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute getDefaultInstance() {
+  public static GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<UpdateAttribute>
-      PARSER = new com.google.protobuf.AbstractParser<UpdateAttribute>() {
+  private static final com.google.protobuf.Parser<CreateFileArgs>
+      PARSER = new com.google.protobuf.AbstractParser<CreateFileArgs>() {
     @java.lang.Override
-    public UpdateAttribute parsePartialFrom(
+    public CreateFileArgs parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new UpdateAttribute(input, extensionRegistry);
+      return new CreateFileArgs(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<UpdateAttribute> parser() {
+  public static com.google.protobuf.Parser<CreateFileArgs> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<UpdateAttribute> getParserForType() {
+  public com.google.protobuf.Parser<CreateFileArgs> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute getDefaultInstanceForType() {
+  public GrupoA.StorageController.gRPCService.FileSystem.CreateFileArgs getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

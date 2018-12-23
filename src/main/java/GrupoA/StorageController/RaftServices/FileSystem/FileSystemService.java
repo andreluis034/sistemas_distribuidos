@@ -58,8 +58,8 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         return (boolean)invoke(Command.rmDir, path);
     }
 
-    public boolean mkFile(String path, int fileSize, int blocks, long hash) throws Exception {
-        return (boolean)invoke(Command.mkFile, path, fileSize, blocks, hash);
+    public boolean mkFile(String path, long mode, long uid, long gid) throws Exception {//TODO modo, modo de abertura
+        return invoke(new MkFileCommand(path, mode, uid, gid));
     }
 
     public boolean rmFile(String path) throws Exception {
@@ -67,12 +67,16 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
     }
 
     public boolean updateAttribute(String path, UpdateAttribute update) throws Exception {
-        return (boolean)this.invoke(new UpdateAttributeCommand(path, update));
+        return this.invoke(new UpdateAttributeCommand(path, update));
     }
 
     @SuppressWarnings("unchecked")
     public List<String> ls(String path) throws Exception {
         return (List<String>)this.invoke(new LsCommand(path));
+    }
+
+    public List<FSTree.Node> readDir(String path) throws Exception  {
+        return this.invoke(new ReadDirCommand(path));
     }
 
     public FSTree.Node getNode(long iNode) throws Exception {
@@ -136,7 +140,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
                     int blocks = Bits.readInt(in);
                     long hash = Bits.readLong(in);
 
-                    bool_return_value = fsTree.mkFile(path, fileSize, blocks, hash);
+                    bool_return_value = false;// fsTree.mkFile(path, fileSize, blocks, hash);
 
                     try {
                         Files.write(fsTree.journal_path,
