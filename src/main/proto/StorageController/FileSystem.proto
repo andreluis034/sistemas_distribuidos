@@ -82,6 +82,9 @@ message iNodeAttributes {
     int64 INodeNumber = 7;
     int64 ParentINodeNumber = 8;
     int64 Size = 9;
+    int64 ctime = 11;
+    int64 atime = 12;
+    int64 mtime = 13;
 }
 
 enum ProtoAttributeUpdateRequestType {

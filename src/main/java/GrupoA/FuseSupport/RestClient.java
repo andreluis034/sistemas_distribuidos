@@ -74,7 +74,7 @@ public class RestClient {
         .post(Entity.entity(directory, MediaType.APPLICATION_JSON));
     }
 
-    public Boolean createFile(String path, long mode, long uid, long gid){
+    public Boolean createFile(String path, long mode, long uid, long gid){ //TODO set creation time
         CreateFileRequest cfr = new CreateFileRequest();
         cfr.Path = path;
         cfr.mode = mode;

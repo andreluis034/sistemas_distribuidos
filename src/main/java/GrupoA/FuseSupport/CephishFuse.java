@@ -13,6 +13,7 @@ import ru.serce.jnrfuse.FuseStubFS;
 import ru.serce.jnrfuse.NotImplemented;
 import ru.serce.jnrfuse.struct.FileStat;
 import ru.serce.jnrfuse.struct.FuseFileInfo;
+import ru.serce.jnrfuse.struct.Timespec;
 
 //Functions not implemented: getxattr
 public class CephishFuse extends FuseStubFS {
@@ -57,6 +58,7 @@ public class CephishFuse extends FuseStubFS {
     }
 
     //TODO locks?
+    //TODO file create and modified time
     @Override
     public int create(String path, @mode_t long mode, FuseFileInfo fi) {
         NodeAttributes attr = restClient.getAttribute(path);
@@ -67,6 +69,11 @@ public class CephishFuse extends FuseStubFS {
             return 0;
 
         return -ErrorCodes.ENOTDIR();
+    }
+
+    @Override
+    public int utimens(String path, Timespec[] timespec) { //TODO set access time
+        return 0;
     }
 
 }

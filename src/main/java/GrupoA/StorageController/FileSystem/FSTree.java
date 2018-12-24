@@ -256,11 +256,14 @@ public class FSTree implements Serializable {
     public static abstract class Node implements Comparable<Node>, Serializable {
 
         public long iNode = 0;
-        public Byte UserPermissions = 7;
-        public Byte GroupPermissions = 7;
-        public Byte OthersPermissions = 7;
-        public Long UserId = 1000L;
-        public Long GroupId = 1000L;
+        public byte UserPermissions = 7;
+        public byte GroupPermissions = 7;
+        public byte OthersPermissions = 7;
+        public long UserId = 1000L;
+        public long GroupId = 1000L;
+
+        public long creationTime = System.currentTimeMillis();
+        public long modifiedTime = System.currentTimeMillis();
 
         public abstract NodeType getNodeType();
         String nodeName;
