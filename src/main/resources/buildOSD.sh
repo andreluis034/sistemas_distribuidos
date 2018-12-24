@@ -11,3 +11,9 @@ protoc --plugin=protoc-gen-grpc-java=./protoc-gen-grpc-java   \
     --grpc-java_out="../java/"  \
     --proto_path="../proto/StorageController/"  \
     "../proto/StorageController/FileSystem.proto"
+
+protoc --plugin=protoc-gen-grpc-java=./protoc-gen-grpc-java   \
+    --java_out="../java/" \
+    --grpc-java_out="../java/"  \
+    --proto_path="../proto/StorageController/"  \
+    "../proto/StorageController/OSDListener.proto"
