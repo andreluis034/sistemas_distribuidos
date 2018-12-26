@@ -12,6 +12,10 @@ public enum ProtoAttributeUpdateRequestType
    * <code>CHMOD = 0;</code>
    */
   CHMOD(0),
+  /**
+   * <code>UPDATEACCESSTIME = 1;</code>
+   */
+  UPDATEACCESSTIME(1),
   UNRECOGNIZED(-1),
   ;
 
@@ -19,6 +23,10 @@ public enum ProtoAttributeUpdateRequestType
    * <code>CHMOD = 0;</code>
    */
   public static final int CHMOD_VALUE = 0;
+  /**
+   * <code>UPDATEACCESSTIME = 1;</code>
+   */
+  public static final int UPDATEACCESSTIME_VALUE = 1;
 
 
   public final int getNumber() {
@@ -40,6 +48,7 @@ public enum ProtoAttributeUpdateRequestType
   public static ProtoAttributeUpdateRequestType forNumber(int value) {
     switch (value) {
       case 0: return CHMOD;
+      case 1: return UPDATEACCESSTIME;
       default: return null;
     }
   }

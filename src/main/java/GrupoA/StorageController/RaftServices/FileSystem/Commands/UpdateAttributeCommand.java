@@ -23,7 +23,9 @@ public class UpdateAttributeCommand extends FileSystemCommand<Boolean> {
             case CHMOD:
                 chmod(node);
                 break;
-
+            case UPDATEACCESSTIME: {
+                node.accessTime = this.update.getValue() * 1000;
+            }
             default:
                 return false;
         }

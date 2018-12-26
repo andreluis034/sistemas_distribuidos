@@ -262,6 +262,7 @@ public class FSTree implements Serializable {
         public long UserId = 1000L;
         public long GroupId = 1000L;
 
+        public long accessTime = System.currentTimeMillis();
         public long creationTime = System.currentTimeMillis();
         public long modifiedTime = System.currentTimeMillis();
 

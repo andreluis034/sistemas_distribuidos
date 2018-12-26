@@ -22,6 +22,9 @@ public class NodeAttributes {
     public Long INodeNumber = 1L;
     public Long Size = 0L;
     public Long ParentINodeNumber = -1L;
+    public Long AccessTime = 0L; //TODO
+    public Long Modifiedtime = 0L; //TODO
+    public Long CreationTime = 0L; //TODO
     public Integer BlockSize = ApplicationServer.maxBlockSize;
 
 

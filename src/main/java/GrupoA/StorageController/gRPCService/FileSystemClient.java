@@ -17,6 +17,7 @@ public class FileSystemClient {
 
     static {
         map.put(AttributeUpdateRequest.UpdateType.CHMOD, ProtoAttributeUpdateRequestType.CHMOD);
+        map.put(AttributeUpdateRequest.UpdateType.UPDATEACCESSTIME, ProtoAttributeUpdateRequestType.UPDATEACCESSTIME);
     }
 
     public FileSystemClient(String host, int port) {

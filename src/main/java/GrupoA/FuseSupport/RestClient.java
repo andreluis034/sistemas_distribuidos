@@ -56,10 +56,9 @@ public class RestClient {
         AttributeUpdateRequest aur = new AttributeUpdateRequest();
         aur.Value = value;
         aur.Type = type;
-        Boolean bool = client.target(restBaseUri).path("attribute").path(path)
+        return client.target(restBaseUri).path("attribute").path(path)
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(aur, MediaType.APPLICATION_JSON), Boolean.class);
-        return bool;
     }
 
     public DirectoryContents readDir(String path) {

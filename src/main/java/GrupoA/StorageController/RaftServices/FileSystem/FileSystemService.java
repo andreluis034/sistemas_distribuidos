@@ -85,6 +85,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         return node;
     }
 
+    //TODO allow 'Dirty' Reads
     public FSTree.Node getNode(String path) throws Exception {
         System.out.println("Getting: " + path);
         GetNodeCommand command = new GetNodeCommand(path);

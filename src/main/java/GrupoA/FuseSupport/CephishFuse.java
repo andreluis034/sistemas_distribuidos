@@ -15,6 +15,8 @@ import ru.serce.jnrfuse.struct.FileStat;
 import ru.serce.jnrfuse.struct.FuseFileInfo;
 import ru.serce.jnrfuse.struct.Timespec;
 
+import static GrupoA.AppServer.Models.AttributeUpdateRequest.UpdateType.UPDATEACCESSTIME;
+
 //Functions not implemented: getxattr
 public class CephishFuse extends FuseStubFS {
     private RestClient restClient;
@@ -59,6 +61,7 @@ public class CephishFuse extends FuseStubFS {
 
     //TODO locks?
     //TODO file create and modified time
+    //TODO set creation time and modified time in here
     @Override
     public int create(String path, @mode_t long mode, FuseFileInfo fi) {
         NodeAttributes attr = restClient.getAttribute(path);
@@ -73,6 +76,7 @@ public class CephishFuse extends FuseStubFS {
 
     @Override
     public int utimens(String path, Timespec[] timespec) { //TODO set access time
+        restClient.updateAttribute(path, UPDATEACCESSTIME, timespec[0].tv_sec.longValue());
         return 0;
     }
 

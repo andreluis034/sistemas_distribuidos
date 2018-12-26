@@ -26,6 +26,9 @@ private static final long serialVersionUID = 0L;
     iNodeNumber_ = 0L;
     parentINodeNumber_ = 0L;
     size_ = 0L;
+    ctime_ = 0L;
+    atime_ = 0L;
+    mtime_ = 0L;
   }
 
   @java.lang.Override
@@ -102,6 +105,21 @@ private static final long serialVersionUID = 0L;
             int rawValue = input.readEnum();
 
             fileType_ = rawValue;
+            break;
+          }
+          case 88: {
+
+            ctime_ = input.readInt64();
+            break;
+          }
+          case 96: {
+
+            atime_ = input.readInt64();
+            break;
+          }
+          case 104: {
+
+            mtime_ = input.readInt64();
             break;
           }
           default: {
@@ -259,6 +277,33 @@ private static final long serialVersionUID = 0L;
     return size_;
   }
 
+  public static final int CTIME_FIELD_NUMBER = 11;
+  private long ctime_;
+  /**
+   * <code>int64 ctime = 11;</code>
+   */
+  public long getCtime() {
+    return ctime_;
+  }
+
+  public static final int ATIME_FIELD_NUMBER = 12;
+  private long atime_;
+  /**
+   * <code>int64 atime = 12;</code>
+   */
+  public long getAtime() {
+    return atime_;
+  }
+
+  public static final int MTIME_FIELD_NUMBER = 13;
+  private long mtime_;
+  /**
+   * <code>int64 mtime = 13;</code>
+   */
+  public long getMtime() {
+    return mtime_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -302,6 +347,15 @@ private static final long serialVersionUID = 0L;
     }
     if (fileType_ != GrupoA.StorageController.gRPCService.FileSystem.FileType.DIR.getNumber()) {
       output.writeEnum(10, fileType_);
+    }
+    if (ctime_ != 0L) {
+      output.writeInt64(11, ctime_);
+    }
+    if (atime_ != 0L) {
+      output.writeInt64(12, atime_);
+    }
+    if (mtime_ != 0L) {
+      output.writeInt64(13, mtime_);
     }
     unknownFields.writeTo(output);
   }
@@ -351,6 +405,18 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(10, fileType_);
     }
+    if (ctime_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(11, ctime_);
+    }
+    if (atime_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(12, atime_);
+    }
+    if (mtime_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(13, mtime_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -386,6 +452,12 @@ private static final long serialVersionUID = 0L;
         == other.getParentINodeNumber());
     result = result && (getSize()
         == other.getSize());
+    result = result && (getCtime()
+        == other.getCtime());
+    result = result && (getAtime()
+        == other.getAtime());
+    result = result && (getMtime()
+        == other.getMtime());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -422,6 +494,15 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + SIZE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getSize());
+    hash = (37 * hash) + CTIME_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getCtime());
+    hash = (37 * hash) + ATIME_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getAtime());
+    hash = (37 * hash) + MTIME_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getMtime());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -575,6 +656,12 @@ private static final long serialVersionUID = 0L;
 
       size_ = 0L;
 
+      ctime_ = 0L;
+
+      atime_ = 0L;
+
+      mtime_ = 0L;
+
       return this;
     }
 
@@ -611,6 +698,9 @@ private static final long serialVersionUID = 0L;
       result.iNodeNumber_ = iNodeNumber_;
       result.parentINodeNumber_ = parentINodeNumber_;
       result.size_ = size_;
+      result.ctime_ = ctime_;
+      result.atime_ = atime_;
+      result.mtime_ = mtime_;
       onBuilt();
       return result;
     }
@@ -689,6 +779,15 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getSize() != 0L) {
         setSize(other.getSize());
+      }
+      if (other.getCtime() != 0L) {
+        setCtime(other.getCtime());
+      }
+      if (other.getAtime() != 0L) {
+        setAtime(other.getAtime());
+      }
+      if (other.getMtime() != 0L) {
+        setMtime(other.getMtime());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1037,6 +1136,84 @@ private static final long serialVersionUID = 0L;
     public Builder clearSize() {
       
       size_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long ctime_ ;
+    /**
+     * <code>int64 ctime = 11;</code>
+     */
+    public long getCtime() {
+      return ctime_;
+    }
+    /**
+     * <code>int64 ctime = 11;</code>
+     */
+    public Builder setCtime(long value) {
+      
+      ctime_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 ctime = 11;</code>
+     */
+    public Builder clearCtime() {
+      
+      ctime_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long atime_ ;
+    /**
+     * <code>int64 atime = 12;</code>
+     */
+    public long getAtime() {
+      return atime_;
+    }
+    /**
+     * <code>int64 atime = 12;</code>
+     */
+    public Builder setAtime(long value) {
+      
+      atime_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 atime = 12;</code>
+     */
+    public Builder clearAtime() {
+      
+      atime_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long mtime_ ;
+    /**
+     * <code>int64 mtime = 13;</code>
+     */
+    public long getMtime() {
+      return mtime_;
+    }
+    /**
+     * <code>int64 mtime = 13;</code>
+     */
+    public Builder setMtime(long value) {
+      
+      mtime_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 mtime = 13;</code>
+     */
+    public Builder clearMtime() {
+      
+      mtime_ = 0L;
       onChanged();
       return this;
     }

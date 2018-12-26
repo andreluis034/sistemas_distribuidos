@@ -89,6 +89,7 @@ message iNodeAttributes {
 
 enum ProtoAttributeUpdateRequestType {
     CHMOD = 0;
+    UPDATEACCESSTIME = 1;
 }
 message UpdateAttribute {
     ProtoAttributeUpdateRequestType Type = 1;

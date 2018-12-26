@@ -65,4 +65,19 @@ public interface iNodeAttributesOrBuilder extends
    * <code>int64 Size = 9;</code>
    */
   long getSize();
+
+  /**
+   * <code>int64 ctime = 11;</code>
+   */
+  long getCtime();
+
+  /**
+   * <code>int64 atime = 12;</code>
+   */
+  long getAtime();
+
+  /**
+   * <code>int64 mtime = 13;</code>
+   */
+  long getMtime();
 }
