@@ -5,7 +5,7 @@ import io.grpc.ServerBuilder;
 
 import java.io.IOException;
 
-public class GRPCServer<T extends io.grpc.BindableService> {
+public class GRPCServer {
 
     io.grpc.Server server;
     public GRPCServer(io.grpc.Server server) {

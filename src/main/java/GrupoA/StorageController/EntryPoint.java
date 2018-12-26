@@ -2,6 +2,9 @@ package GrupoA.StorageController;
 
 import GrupoA.StorageController.RaftServices.FileSystem.FileSystemService;
 import GrupoA.StorageController.gRPCService.FileSystemServer;
+import GrupoA.StorageController.gRPCService.GRPCServer;
+import GrupoA.StorageController.gRPCService.OSDListener.OSDListenerGrpc;
+import GrupoA.StorageController.gRPCService.OSDListenerServiceImpl;
 import org.jgroups.util.Util;
 
 
@@ -68,74 +71,18 @@ public class EntryPoint {
         }
     }
 
+    private static void startOSDListener() throws Exception {
+        GRPCServer server = new GRPCServer(OSDListenerServiceImpl.getServer(OSDListenerServiceImpl.DEFAULT_PORT));
+        server.start();
+    }
+
     private static void startRaft(String raftId) throws Exception{
         FileSystemService service = FileSystemService.getInstance("./raft.xml", raftId);
         loop(service);
     }
 
-   /* public static void atomix_func(String[] args) throws  Exception {
-        String memberId = args.length == 0 ?
-                "member" + ThreadLocalRandom.current().nextInt(0, (int) Math.pow(2,16))
-                : args[0];
-
-        AtomixBuilder builder = Atomix.builder().withMemberId(memberId);
-        List<String> addresses = getLocalAddresses(); //Returns a list of all non-loopback addresses
-        for (String address : addresses) {
-            System.out.println(address);
-            builder = builder.withAddress(address + ":5679");
-        }
-
-        builder = builder.withClusterId("GroupA")
-                .withMulticastEnabled()
-                .withMembershipProvider(new MulticastDiscoveryProvider())
-                .withManagementGroup(RaftPartitionGroup.builder("system")
-                        .withNumPartitions(1)
-                        .withDataDirectory(new File(memberId))
-                        .withMembers("member1", "member2", "member3")
-                        .build())
-                .withPartitionGroups(
-                        PrimaryBackupPartitionGroup.builder("data")
-                                .withNumPartitions(32)
-                                .build());//
-
-        //Atomix at = new Atomix("atomix.conf");
-        // at
-        System.out.println("14:57");
-        System.out.println(memberId);
-
-
-        Atomix at = builder.build();//
-        at.start().join();
-        System.out.println("Created cluster");
-        DistributedFSTree fsTree = at.getPrimitive("FSTree", DistributedFSTreeType.instance());
-
-     /*   DistributedFSTree fsTree = at.primitiveBuilder("FSTree", DistributedFSTreeType.instance())
-                .withProtocol(MultiPrimaryProtocol.builder()
-                        .withReplication(Replication.ASYNCHRONOUS)
-                        .withBackups(2)
-                        .build())
-                .build();
-        //System.out.println("Calling LS");
-        //fsTree.ls("Hello");
-
-        //DistributedFSTree fsTree= at.getPrimitive("FSTree", DistributedFSTreeType.instance());
-        System.out.println("Got primitive tree");
-
-        if(memberId.equals("member1")) {
-            // DistributedFSTree fsTree = atomix.getPrimitive("FSTree", DistributedFSTreeType.instance());
-
-            Boolean result  = fsTree.mkDir("/etc");
-            System.out.println(result);
-
-            List<String> dirs = fsTree.ls("/");
-            for (String dir :
-                    dirs) {
-                System.out.println(dir);
-            }
-        }
-
-    }*/
     public static void main(String[] args) throws Exception {
+        startOSDListener();
         FileSystemServer fss = new FileSystemServer();
         fss.start();
         startRaft(args[0]);

@@ -18,6 +18,7 @@ private static final long serialVersionUID = 0L;
   private OSDDetails() {
     address_ = "";
     port_ = 0;
+    leader_ = false;
   }
 
   @java.lang.Override
@@ -53,6 +54,11 @@ private static final long serialVersionUID = 0L;
           case 16: {
 
             port_ = input.readInt32();
+            break;
+          }
+          case 24: {
+
+            leader_ = input.readBool();
             break;
           }
           default: {
@@ -130,6 +136,15 @@ private static final long serialVersionUID = 0L;
     return port_;
   }
 
+  public static final int LEADER_FIELD_NUMBER = 3;
+  private boolean leader_;
+  /**
+   * <code>bool leader = 3;</code>
+   */
+  public boolean getLeader() {
+    return leader_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -150,6 +165,9 @@ private static final long serialVersionUID = 0L;
     if (port_ != 0) {
       output.writeInt32(2, port_);
     }
+    if (leader_ != false) {
+      output.writeBool(3, leader_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -165,6 +183,10 @@ private static final long serialVersionUID = 0L;
     if (port_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(2, port_);
+    }
+    if (leader_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(3, leader_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -186,6 +208,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getAddress());
     result = result && (getPort()
         == other.getPort());
+    result = result && (getLeader()
+        == other.getLeader());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -201,6 +225,9 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getAddress().hashCode();
     hash = (37 * hash) + PORT_FIELD_NUMBER;
     hash = (53 * hash) + getPort();
+    hash = (37 * hash) + LEADER_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getLeader());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -338,6 +365,8 @@ private static final long serialVersionUID = 0L;
 
       port_ = 0;
 
+      leader_ = false;
+
       return this;
     }
 
@@ -366,6 +395,7 @@ private static final long serialVersionUID = 0L;
       GrupoA.StorageController.gRPCService.OSDListener.OSDDetails result = new GrupoA.StorageController.gRPCService.OSDListener.OSDDetails(this);
       result.address_ = address_;
       result.port_ = port_;
+      result.leader_ = leader_;
       onBuilt();
       return result;
     }
@@ -420,6 +450,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getPort() != 0) {
         setPort(other.getPort());
+      }
+      if (other.getLeader() != false) {
+        setLeader(other.getLeader());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -541,6 +574,32 @@ private static final long serialVersionUID = 0L;
     public Builder clearPort() {
       
       port_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private boolean leader_ ;
+    /**
+     * <code>bool leader = 3;</code>
+     */
+    public boolean getLeader() {
+      return leader_;
+    }
+    /**
+     * <code>bool leader = 3;</code>
+     */
+    public Builder setLeader(boolean value) {
+      
+      leader_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool leader = 3;</code>
+     */
+    public Builder clearLeader() {
+      
+      leader_ = false;
       onChanged();
       return this;
     }

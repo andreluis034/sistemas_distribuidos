@@ -10,12 +10,14 @@ package GrupoA.StorageController.gRPCService.OSDListener;
 service OSDListener {
     //rpc rmFile (pathOnlyArgs) returns (BooleanMessage) {}
 
-    rpc receiveAnnouncement(OSDDetails) returns (EmptyMessage) {}
+    rpc receiveAnnouncement(OSDDetails) returns (OSDInSamePaG) {}
 }
 
 message OSDDetails {
     string Address = 1;
     int32 Port = 2;
+    bool leader = 3;
 }
-message EmptyMessage {
+message OSDInSamePaG {
+    repeated OSDDetails OSDs = 1;
 }

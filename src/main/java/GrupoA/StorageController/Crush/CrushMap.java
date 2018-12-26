@@ -33,7 +33,7 @@ public class CrushMap implements ICrushMap, Serializable {
         // Calculate PGs, based on the OSDs
         for (int i = 1; i <= OSDs.size() / REPLICATION; i++) {
             List<ObjectStorageDaemon> OSDsOfPG = OSDs.subList((i - 1) * REPLICATION, i * REPLICATION);
-
+            OSDsOfPG.get(0).isLeader = true; //Set one to leader
             PlacementGroup pg = new PlacementGroup(i, OSDsOfPG);
             PGs.add(pg);
         }

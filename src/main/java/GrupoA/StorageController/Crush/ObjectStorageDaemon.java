@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ObjectStorageDaemon implements Serializable {
     PlacementGroup belongingPG; //TODO you need to set this when you create the PGs
+    public boolean isLeader = false;
     private String Address;
 
     public ObjectStorageDaemon(ObjectStorageDaemon osd) {
@@ -33,5 +34,13 @@ public class ObjectStorageDaemon implements Serializable {
         if (!(other instanceof ObjectStorageDaemon))return false;
 
         return ((ObjectStorageDaemon) other).getAddress().equals(this.Address);
+    }
+
+    public String getHost() {
+        return this.Address.split(":")[0];
+    }
+
+    public int getPort() {
+        return Integer.parseInt(this.Address.split(":")[1]);
     }
 }

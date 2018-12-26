@@ -2,6 +2,7 @@ package GrupoA.OSD.OSDServer;
 
 import GrupoA.OSD.OSDService.*;
 
+import GrupoA.StorageController.gRPCService.OSDListenerClient;
 import com.google.protobuf.ByteString;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -15,10 +16,22 @@ import java.nio.file.Paths;
 
 class OSDImpl extends OSDGrpc.OSDImplBase {
 
+    enum State {
+        Initializing,
+        Ready
+    }
+    State state = State.Initializing;
+
+
     @Override
     public void putObject(ObjectData request, StreamObserver<EmptyMessage> responseObserver) {
         EmptyMessage reply = EmptyMessage.newBuilder().build();
 
+        if(state == State.Initializing) {
+            responseObserver.onNext(reply);
+            responseObserver.onCompleted();
+            return;
+        }
         System.out.println(request.getObjectData().size());
         String hash = Long.toHexString(request.getHash());
         System.out.println(hash);
@@ -56,18 +69,24 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
         response.onNext(BooleanMessage.newBuilder().setResult(true).build());
         response.onCompleted();
     }
+
+
 }
 
 
 public class OSDServer {
 
     private Server server;
+    private OSDImpl impl = null;
 
+    public OSDServer() {
+        this.impl = new OSDImpl();
+    }
     private void start() throws IOException {
         /* The port on which the server should run */
         int port = 50051;
         server = ServerBuilder.forPort(port)
-                .addService(new OSDImpl())
+                .addService(impl)
                 .build()
                 .start();
         System.err.println("*** server start");
@@ -97,6 +116,8 @@ public class OSDServer {
     public static void main(String[] args) throws IOException, InterruptedException {
         final OSDServer server = new OSDServer();
         server.start();
+        OSDListenerClient client = new OSDListenerClient("192.168.10.70");
+        client.announce("192.168.10.13", 50051);
         server.blockUntilShutdown();
     }
 }

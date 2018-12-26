@@ -21,4 +21,9 @@ public interface OSDDetailsOrBuilder extends
    * <code>int32 Port = 2;</code>
    */
   int getPort();
+
+  /**
+   * <code>bool leader = 3;</code>
+   */
+  boolean getLeader();
 }
