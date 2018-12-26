@@ -1,6 +1,6 @@
 package GrupoA.StorageController.Crush;
 
-import GrupoA.StorageController.RaftServices.ICrushMap;
+import GrupoA.StorageController.RaftServices.CrushMap.ICrushMap;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,14 +8,11 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collections;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class CrushMap implements ICrushMap, Serializable {
     // Default replication value
-    private static final int REPLICATION = 2;
+    private static final int REPLICATION = 2; //TODO move this to config
 
     private int version;
     private List<ObjectStorageDaemon> OSDs;
@@ -26,6 +23,11 @@ public class CrushMap implements ICrushMap, Serializable {
         this.version = version;
         this.OSDs = OSDs;
 
+        ArrayList<ObjectStorageDaemon> copiedOSDs = new ArrayList<>(OSDs.size());
+        //make a copy of the OSD so that we don't change OSDs from previous maps
+        for (ObjectStorageDaemon osd : OSDs) {
+            copiedOSDs.add(new ObjectStorageDaemon(osd));
+        }
         int numberOfOSDs = OSDs.size();
         int leftover = numberOfOSDs % REPLICATION;
         // Calculate PGs, based on the OSDs
@@ -64,7 +66,8 @@ public class CrushMap implements ICrushMap, Serializable {
     }
 
     public List<ObjectStorageDaemon> getOSDs() {
-        return this.OSDs;
+        List<ObjectStorageDaemon> osds = new ArrayList<>(this.OSDs);
+        return osds; // Return a list that can be modified by anyone without affecting the crushmap
     }
 
     @Override

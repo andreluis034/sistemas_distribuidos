@@ -1,4 +1,4 @@
-package GrupoA.StorageController.RaftServices;
+package GrupoA.StorageController.RaftServices.CrushMap;
 
 public class CrushMapImpl implements ICrushMap {
     private final int version;

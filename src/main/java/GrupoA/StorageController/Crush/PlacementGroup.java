@@ -11,6 +11,9 @@ public class PlacementGroup implements Serializable {
     public PlacementGroup(int id, List<ObjectStorageDaemon> OSDs) {
         this.pgID = id;
         this.OSDs = OSDs;
+        for (ObjectStorageDaemon osd : OSDs) {
+            osd.belongingPG = this;
+        }
     }
 
     public int getPgID(){

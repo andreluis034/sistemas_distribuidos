@@ -5,10 +5,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ObjectStorageDaemon implements Serializable {
-    private PlacementGroup belongingPG;
+    PlacementGroup belongingPG; //TODO you need to set this when you create the PGs
     private String Address;
 
-    public ObjectStorageDaemon(PlacementGroup belongingPG, String Address) {
+    public ObjectStorageDaemon(ObjectStorageDaemon osd) {
+        this.belongingPG = osd.belongingPG;
+        this.Address = osd.Address;
+    }
+
+    public ObjectStorageDaemon(String Address) {
         this.belongingPG = belongingPG;
         this.Address = Address;
     }
@@ -19,5 +24,14 @@ public class ObjectStorageDaemon implements Serializable {
 
     public String getAddress() {
         return this.Address;
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if (other == null) return false;
+        if (other == this) return true;
+        if (!(other instanceof ObjectStorageDaemon))return false;
+
+        return ((ObjectStorageDaemon) other).getAddress().equals(this.Address);
     }
 }

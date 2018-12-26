@@ -1,4 +1,4 @@
-package GrupoA.StorageController.RaftServices;
+package GrupoA.StorageController.RaftServices.CrushMap;
 
 public interface ICrushMap {
 

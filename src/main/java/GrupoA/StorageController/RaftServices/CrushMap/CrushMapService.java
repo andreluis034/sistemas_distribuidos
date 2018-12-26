@@ -1,15 +1,18 @@
-package GrupoA.StorageController.RaftServices;
+package GrupoA.StorageController.RaftServices.CrushMap;
 
 import GrupoA.OSD.OSDClient.OSDClient;
 import GrupoA.StorageController.Crush.CrushMap;
 import GrupoA.StorageController.Crush.ObjectStorageDaemon;
-import GrupoA.StorageController.Crush.PlacementGroup;
+import GrupoA.StorageController.RaftServices.CrushMap.Commands.CreateNewCrushMapService;
+import GrupoA.StorageController.RaftServices.CrushMap.Commands.CrushMapCommand;
+import GrupoA.StorageController.RaftServices.FileSystem.Commands.FileSystemCommand;
 import org.jgroups.JChannel;
 import org.jgroups.protocols.raft.RAFT;
 import org.jgroups.protocols.raft.Role;
 import org.jgroups.protocols.raft.StateMachine;
 import org.jgroups.raft.RaftHandle;
 import org.jgroups.util.Bits;
+import org.jgroups.util.ByteArrayDataOutputStream;
 import org.jgroups.util.Util;
 
 import java.io.*;
@@ -24,9 +27,9 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
     protected long replyTimeout = 20 * 1000; // 20 seconds
 
     private boolean isLeader = false;
-    private CrushMap latestMap;
-    private int latestVersion;
-    private final HashMap<Integer, CrushMap> mapOfMaps = new HashMap<>();
+    public CrushMap latestMap;
+    public int latestVersion = 0;
+    public final HashMap<Integer, CrushMap> mapOfMaps = new HashMap<>();
 
     public synchronized static CrushMapService getInstance() {
         return service;
@@ -41,6 +44,7 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
     }
 
     private CrushMapService(JChannel ch){
+        latestMap = new CrushMap(latestVersion, new LinkedList<>());
         this.setChannel(ch);
     }
 
@@ -50,24 +54,27 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
         raft.addRoleListener(this);
     }
 
+    protected <T> T invoke(CrushMapCommand<T> command) throws Exception {
+
+        byte[] buffer = Util.objectToByteBuffer(command);
+        ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(buffer.length);
+        out.write(buffer);
+        byte[] rsp = raft.set(out.buffer(), 0, out.position(), replyTimeout, TimeUnit.MILLISECONDS);
+
+        return Util.objectFromByteBuffer(rsp);
+    }
+
     @Override
     public byte[] apply(byte[] bytes, int offset, int length) throws Exception {
-        List<ObjectStorageDaemon> OSDs = Util.objectFromByteBuffer(bytes, offset, length);
-
-        latestVersion++;
-        latestMap = new CrushMap(latestVersion, OSDs);
-        mapOfMaps.put(latestVersion, latestMap);
-
         try {
-            Files.write(latestMap.journal_path,
-                    Collections.singleton("Created new CRUSH map, version " + latestVersion
-                            + ", with " + OSDs.size() + " OSDs\n"));
-        } catch (IOException ignored) {
-            System.out.println("Created new CRUSH map, version " + latestVersion + "\n");
-            System.err.println("Couldn't write to log file\n");
+            CrushMapCommand command = Util.objectFromByteBuffer(bytes, offset, length);
+            System.out.println(command.getClass());
+            byte[] ret = Util.objectToByteBuffer(command.execute(this));
+            command.journal(this);
+        } catch(Exception e) {
+            e.printStackTrace(); //TODO throw it?
         }
-
-        return Util.objectToByteBuffer(latestMap);
+        return new byte[0];
     }
 
     protected Object invoke(List<ObjectStorageDaemon> OSDs) throws Exception {
@@ -113,8 +120,22 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
         return this.latestMap;
     }
 
+    public CrushMap addOSD(ObjectStorageDaemon OSD) {
+        List<ObjectStorageDaemon> OSDs =  latestMap.getOSDs();
+        if (OSDs.contains(OSD)) {
+            System.out.println("Attempted to add duplicate PG");
+            return latestMap;
+        }
+        try {
+            return this.createNewMap(OSDs);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return latestMap;
+    }
+
     public CrushMap createNewMap(List<ObjectStorageDaemon> OSDs) throws Exception {
-        return (CrushMap)invoke(OSDs);
+        return invoke(new CreateNewCrushMapService(OSDs));
     }
 
     @Override

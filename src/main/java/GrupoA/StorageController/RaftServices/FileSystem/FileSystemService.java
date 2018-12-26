@@ -54,16 +54,8 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         return (boolean)this.invoke(command);
     }
 
-    public boolean rmDir(String path) throws Exception {
-        return (boolean)invoke(Command.rmDir, path);
-    }
-
     public boolean mkFile(String path, long mode, long uid, long gid) throws Exception {//TODO modo, modo de abertura
         return invoke(new MkFileCommand(path, mode, uid, gid));
-    }
-
-    public boolean rmFile(String path) throws Exception {
-        return (boolean)invoke(Command.rmFile, path);
     }
 
     public boolean updateAttribute(String path, UpdateAttribute update) throws Exception {
@@ -231,47 +223,6 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         byte[] rsp = raft.set(out.buffer(), 0, out.position(), replyTimeout, TimeUnit.MILLISECONDS);
 
         return (T)Util.objectFromByteBuffer(rsp);
-    }
-
-    @Deprecated
-    protected Object invoke(Command command, String path) throws Exception {
-        //Size: length of string + null terminator
-        ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(path.length() + 1);
-
-        System.out.println(command);
-        System.out.println(path);
-        try {
-            out.writeByte(command.ordinal());
-            Bits.writeAsciiString(new AsciiString(path), out);
-        } catch(Exception ex) {
-            throw new Exception("Serialization failure (CMD = " + command + ", PATH = " + path + ")");
-        }
-
-        byte[] buf = out.buffer();
-        byte[] rsp = raft.set(buf, 0, out.position(), replyTimeout, TimeUnit.MILLISECONDS);
-
-        return Util.objectFromByteBuffer(rsp);
-    }
-
-    @Deprecated
-    protected Object invoke(Command command, String path, int fileSize, int blocks, long hash) throws Exception {
-        //Size: length of string + null terminator, int size = 4, long size = 8
-        ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(path.length() + 1 + 4 + 4 + 8);
-
-        try {
-            out.writeByte(command.ordinal());
-            Bits.writeAsciiString(new AsciiString(path), out);
-            Bits.writeInt(fileSize, out);
-            Bits.writeInt(blocks, out);
-            Bits.writeLong(hash, out);
-        } catch(Exception ex) {
-            throw new Exception("Serialization failure (CMD = " + command + ", PATH = " + path + ")");
-        }
-
-        byte[] buf = out.buffer();
-        byte[] rsp = raft.set(buf, 0, out.position(), replyTimeout, TimeUnit.MILLISECONDS);
-
-        return Util.objectFromByteBuffer(rsp);
     }
 
     @Override
