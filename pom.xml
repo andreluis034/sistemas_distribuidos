@@ -52,7 +52,6 @@
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
             <version>1.16.1</version>
-
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
@@ -119,6 +118,5 @@
             <artifactId>jgroups-raft</artifactId>
             <version>0.4.2.Final</version>
         </dependency>
-
     </dependencies>
 </project>

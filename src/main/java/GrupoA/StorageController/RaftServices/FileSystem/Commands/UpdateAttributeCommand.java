@@ -23,6 +23,12 @@ public class UpdateAttributeCommand extends FileSystemCommand<Boolean> {
             case CHMOD:
                 chmod(node);
                 break;
+            case CHUID:
+                chuid(node);
+                break;
+            case GHGID:
+                chgid(node);
+                break;
             case UPDATEACCESSTIME: {
                 node.accessTime = this.update.getValue() * 1000;
             }
@@ -37,6 +43,14 @@ public class UpdateAttributeCommand extends FileSystemCommand<Boolean> {
         node.UserPermissions = (byte)((perms & (0x7 << 6)) >> 6);
         node.GroupPermissions = (byte)((perms & (0x7 <<3)) >> 3);
         node.OthersPermissions = (byte)((perms & 0x007) >> 0);
+    }
+
+    private void chuid(FSTree.Node node) {
+        node.UserId = update.getValue();
+    }
+
+    private void chgid(FSTree.Node node) {
+        node.GroupId = update.getValue();
     }
 
 }

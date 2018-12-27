@@ -1,8 +1,7 @@
 package GrupoA.AppServer.Routes;
 
 import GrupoA.AppServer.ApplicationServer;
-import GrupoA.AppServer.Models.CreateFileRequest;
-import GrupoA.AppServer.Models.DirectoryContents;
+import GrupoA.AppServer.Models.CreateRequest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -17,7 +16,7 @@ public class FileRoute {
     @POST
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public Boolean readDir(CreateFileRequest cfr) {
+    public Boolean readDir(CreateRequest cfr) {
 
         try {
             System.out.println("Creating file " + cfr.Path);

@@ -15,7 +15,6 @@ service OSD {
     rpc ping (EmptyMessage) returns (BooleanMessage) {}
 }
 
-
 message GetObjectArgs {
     int64 hash = 1;
 }
