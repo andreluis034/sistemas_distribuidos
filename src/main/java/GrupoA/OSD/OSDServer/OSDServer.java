@@ -78,16 +78,19 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
 
 public class OSDServer {
 
+    private static String myHost = "";
+    private static int myPort = 50051;
     private Server server;
     private OSDImpl impl = null;
+    private OSDListenerClient client;
 
     public OSDServer() {
         this.impl = new OSDImpl();
+        client = new OSDListenerClient("192.168.10.70");
     }
     private void start() throws IOException {
         /* The port on which the server should run */
-        int port = 50051;
-        server = ServerBuilder.forPort(port)
+        server = ServerBuilder.forPort(myPort)
                 .addService(impl)
                 .build()
                 .start();
@@ -97,10 +100,17 @@ public class OSDServer {
             public void run() {
                 // Use stderr here since the logger may have been reset by its JVM shutdown hook.
                 System.err.println("*** shutting down gRPC server since JVM is shutting down");
+                client.leave(myHost, myPort);
                 OSDServer.this.stop();
                 System.err.println("*** server shut down");
             }
         });
+        System.out.println("Announcing "+ myHost + ":" + 50051 + " to " + "192.168.10.70");
+        List<OSDDetails> OSDs =  client.announce(myHost, myPort);
+        System.out.println(OSDs.size());
+        for (OSDDetails osd : OSDs) {
+            System.out.println(osd.getAddress() + ":" + osd.getPort() + " leader: " + osd.getLeader());
+        }
     }
 
     private void stop() {
@@ -116,16 +126,10 @@ public class OSDServer {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
+        myHost = args[0];
         final OSDServer server = new OSDServer();
         server.start();
-        System.out.println("Announcing "+ args[0] + ":" + 50051 + " to " + "192.168.10.70");
-        OSDListenerClient client = new OSDListenerClient("192.168.10.70");
-        List<OSDDetails> OSDs  = client.announce(args[0], 50051);
-        System.out.println("Got details");
-        System.out.println(OSDs.size());
-        for (OSDDetails osd : OSDs) {
-            System.out.println(osd.getAddress() + ":" + osd.getPort() + " leader: " + osd.getLeader());
-        }
+
         server.blockUntilShutdown();
     }
 }
