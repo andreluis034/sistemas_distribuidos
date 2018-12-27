@@ -11,6 +11,7 @@ service OSDListener {
     //rpc rmFile (pathOnlyArgs) returns (BooleanMessage) {}
 
     rpc receiveAnnouncement(OSDDetails) returns (OSDInSamePaG) {}
+    rpc leave(OSDDetails) returns (EmptyMessage) {}
 }
 
 message OSDDetails {
@@ -20,4 +21,8 @@ message OSDDetails {
 }
 message OSDInSamePaG {
     repeated OSDDetails OSDs = 1;
+}
+
+message EmptyMessage {
+
 }

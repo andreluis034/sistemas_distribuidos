@@ -24,6 +24,11 @@ public final class OSDListenerProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_GrupoA_StorageController_gRPCService_OSDListener_OSDInSamePaG_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GrupoA_StorageController_gRPCService_OSDListener_EmptyMessage_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GrupoA_StorageController_gRPCService_OSDListener_EmptyMessage_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -38,12 +43,16 @@ public final class OSDListenerProto {
       "ils\022\017\n\007Address\030\001 \001(\t\022\014\n\004Port\030\002 \001(\005\022\016\n\006le" +
       "ader\030\003 \001(\010\"Z\n\014OSDInSamePaG\022J\n\004OSDs\030\001 \003(\013" +
       "2<.GrupoA.StorageController.gRPCService." +
-      "OSDListener.OSDDetails2\245\001\n\013OSDListener\022\225" +
-      "\001\n\023receiveAnnouncement\022<.GrupoA.StorageC" +
-      "ontroller.gRPCService.OSDListener.OSDDet" +
-      "ails\032>.GrupoA.StorageController.gRPCServ" +
-      "ice.OSDListener.OSDInSamePaG\"\000B\030B\020OSDLis" +
-      "tenerProtoP\001\242\002\001Ob\006proto3"
+      "OSDListener.OSDDetails\"\016\n\014EmptyMessage2\257" +
+      "\002\n\013OSDListener\022\225\001\n\023receiveAnnouncement\022<" +
+      ".GrupoA.StorageController.gRPCService.OS" +
+      "DListener.OSDDetails\032>.GrupoA.StorageCon" +
+      "troller.gRPCService.OSDListener.OSDInSam" +
+      "ePaG\"\000\022\207\001\n\005leave\022<.GrupoA.StorageControl" +
+      "ler.gRPCService.OSDListener.OSDDetails\032>" +
+      ".GrupoA.StorageController.gRPCService.OS" +
+      "DListener.EmptyMessage\"\000B\030B\020OSDListenerP" +
+      "rotoP\001\242\002\001Ob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -69,6 +78,12 @@ public final class OSDListenerProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_OSDListener_OSDInSamePaG_descriptor,
         new java.lang.String[] { "OSDs", });
+    internal_static_GrupoA_StorageController_gRPCService_OSDListener_EmptyMessage_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_GrupoA_StorageController_gRPCService_OSDListener_EmptyMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GrupoA_StorageController_gRPCService_OSDListener_EmptyMessage_descriptor,
+        new java.lang.String[] { });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

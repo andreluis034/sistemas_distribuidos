@@ -6,16 +6,22 @@ import java.util.List;
 
 public class PlacementGroup implements Serializable {
     private int pgID = 0;
-    private List<ObjectStorageDaemon> OSDs;
+    private List<ObjectStorageDaemon> OSDs = new LinkedList<>();
 
     public PlacementGroup(int id, List<ObjectStorageDaemon> OSDs) {
+        System.out.println("new PG (): " + id + ", " + OSDs.size());
         this.pgID = id;
         this.OSDs = OSDs;
         for (ObjectStorageDaemon osd : OSDs) {
-            osd.belongingPG = this;
+            osd.setBelongingPG(this);
         }
     }
 
+    public void fixBelongingPGs() {
+        for (ObjectStorageDaemon osd : OSDs) {
+            osd.setBelongingPG(this);
+        }
+    }
     public int getPgID(){
         return this.pgID;
     }

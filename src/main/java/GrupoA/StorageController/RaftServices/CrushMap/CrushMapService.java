@@ -16,6 +16,7 @@ import org.jgroups.util.Util;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -70,8 +71,10 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
             System.out.println(command.getClass());
             byte[] ret = Util.objectToByteBuffer(command.execute(this));
             command.journal(this);
+            return ret;
         } catch(Exception e) {
             e.printStackTrace(); //TODO throw it?
+            System.out.println("Returning 0 byte array");
         }
         return new byte[0];
     }
@@ -120,12 +123,13 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
     }
 
     public CrushMap addOSD(ObjectStorageDaemon OSD) {
-        List<ObjectStorageDaemon> OSDs =  latestMap.getOSDs();
+        List<ObjectStorageDaemon> OSDs =  latestMap.getOSDsCopy();
         if (OSDs.contains(OSD)) {
             System.out.println("Attempted to add duplicate PG");
             return latestMap;
         }
         try {
+            OSDs.add(OSD);
             return this.createNewMap(OSDs);
         } catch(Exception e) {
             e.printStackTrace();
@@ -134,14 +138,15 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
     }
 
     public CrushMap createNewMap(List<ObjectStorageDaemon> OSDs) throws Exception {
-        return invoke(new CreateNewCrushMapService(OSDs));
+        return invoke(new CreateNewCrushMapService(OSDs)) ;
     }
 
     @Override
     public void roleChanged(Role role) {
         System.out.println("[CrushMapService]-> Changed role to " + role);
 
-        if (role == Role.Leader) {
+        if (role.equals(Role.Leader)) {
+            System.out.println("I'm the leader");
             isLeader = true;
             monitor();
         } else {
@@ -151,31 +156,36 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
 
     private void monitor() {
         Timer timer = new Timer();
-
+        System.out.println("Starting monitor");
         timer.schedule(new TimerTask() {
             public void run() {
                 if (!isLeader)
                     timer.cancel();
-
+                System.out.println("Checking up OSDs");
                 List<ObjectStorageDaemon> offlineOSDs = new LinkedList<>();
 
-                for (ObjectStorageDaemon osd : latestMap.getOSDs()) {
+                for (ObjectStorageDaemon osd : latestMap.getOSDsCopy()) {
                     String[] split = osd.getAddress().split(":");
                     OSDClient client = new OSDClient(split[0], Integer.parseInt(split[1]));
                     if (!client.ping()) {
                         offlineOSDs.add(osd);
                     }
+                    try {
+                        client.shutdown();
+                    } catch (InterruptedException e) {
+
+                    }
                 }
 
                 if (!offlineOSDs.isEmpty()) {
-                    List<ObjectStorageDaemon> newOSDs = latestMap.getOSDs();
+                    List<ObjectStorageDaemon> newOSDs = latestMap.getOSDsCopy();
                     newOSDs.removeAll(offlineOSDs);
 
                     try {
                         createNewMap(newOSDs);
                     } catch (Exception e) {
                         try {
-                            Files.write(latestMap.journal_path,
+                            Files.write(Paths.get(latestMap.journal_path),
                                     Collections.singletonList("Couldn't create new CRUSH map:\n" + e.toString()));
                         } catch (IOException e1) {
                             System.out.println("Couldn't create new CRUSH map:" + e.toString());

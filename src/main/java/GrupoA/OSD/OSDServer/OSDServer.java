@@ -2,6 +2,7 @@ package GrupoA.OSD.OSDServer;
 
 import GrupoA.OSD.OSDService.*;
 
+import GrupoA.StorageController.gRPCService.OSDListener.OSDDetails;
 import GrupoA.StorageController.gRPCService.OSDListenerClient;
 import com.google.protobuf.ByteString;
 import io.grpc.Server;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 class OSDImpl extends OSDGrpc.OSDImplBase {
 
@@ -116,8 +118,14 @@ public class OSDServer {
     public static void main(String[] args) throws IOException, InterruptedException {
         final OSDServer server = new OSDServer();
         server.start();
+        System.out.println("Announcing "+ args[0] + ":" + 50051 + " to " + "192.168.10.70");
         OSDListenerClient client = new OSDListenerClient("192.168.10.70");
-        client.announce(args[0], 50051);
+        List<OSDDetails> OSDs  = client.announce(args[0], 50051);
+        System.out.println("Got details");
+        System.out.println(OSDs.size());
+        for (OSDDetails osd : OSDs) {
+            System.out.println(osd.getAddress() + ":" + osd.getPort() + " leader: " + osd.getLeader());
+        }
         server.blockUntilShutdown();
     }
 }

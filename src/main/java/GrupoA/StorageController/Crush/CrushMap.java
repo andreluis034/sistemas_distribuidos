@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -14,14 +13,31 @@ public class CrushMap implements ICrushMap, Serializable {
     // Default replication value
     private static final int REPLICATION = 2; //TODO move this to config
 
-    private int version;
-    private List<ObjectStorageDaemon> OSDs;
+    private int version = 0;
+    private List<ObjectStorageDaemon> OSDs = new LinkedList<>();
     private List<PlacementGroup> PGs = new LinkedList<>();
-    public Path journal_path;
+    public String journal_path = "";
+
+    private void createJournal() {
+        File journal = new File("CRUSH_journal_" + version + ".txt");
+
+        try {
+            if (!journal.exists())
+                if (!journal.createNewFile())
+                    throw new IOException("Couldn't create log file");
+
+            journal_path = ("CRUSH_journal.txt");
+            Files.write(Paths.get(journal_path), Collections.singleton("Logs started @ " + new Date()));
+        } catch (IOException ignored) {
+            System.err.println("Couldn't create log file\n");
+        }
+    }
 
     public CrushMap(int version, List<ObjectStorageDaemon> OSDs) {
         this.version = version;
+        this.createJournal();
         this.OSDs = OSDs;
+        System.out.println(OSDs.size());
         if(OSDs.size() == 0)
             return;
 
@@ -30,44 +46,40 @@ public class CrushMap implements ICrushMap, Serializable {
         for (ObjectStorageDaemon osd : OSDs) {
             copiedOSDs.add(new ObjectStorageDaemon(osd));
         }
-        int numberOfOSDs = OSDs.size();
+        this.OSDs = copiedOSDs;
+        int numberOfOSDs = copiedOSDs.size();
         int leftover = numberOfOSDs % REPLICATION;
         // Calculate PGs, based on the OSDs
-        for (int i = 1; i <= OSDs.size() / REPLICATION; i++) {
-            List<ObjectStorageDaemon> OSDsOfPG = OSDs.subList((i - 1) * REPLICATION, i * REPLICATION);
+        int pgCount = (int)Math.ceil(((double) copiedOSDs.size())/ REPLICATION);
+        for (int i = 0; i < pgCount; i++) {
+            List<ObjectStorageDaemon> OSDsOfPG = new ArrayList(copiedOSDs.subList((i) * REPLICATION,
+                    Math.min((i+1) * REPLICATION, copiedOSDs.size())));
+            System.out.println(OSDsOfPG.size());
             OSDsOfPG.get(0).isLeader = true; //Set one to leader
             PlacementGroup pg = new PlacementGroup(i, OSDsOfPG);
             PGs.add(pg);
         }
+        if(leftover != 0 && PGs.size() > 1){
+            // Insert the re maining OSDs into a PG, increasing the replication of that PG
+            PlacementGroup pgToRemove = PGs.remove(PGs.size() - 1);
 
-        // Insert the remaining OSDs into a PG, increasing the replication of that PG
-        PlacementGroup pgToRemove = PGs.remove(PGs.size() - 1);
+            List<ObjectStorageDaemon> newOSDList = pgToRemove.getOSDs();
+            newOSDList.addAll(copiedOSDs.subList(numberOfOSDs - leftover, numberOfOSDs));
 
-        List<ObjectStorageDaemon> newOSDList = pgToRemove.getOSDs();
-        newOSDList.addAll(OSDs.subList(numberOfOSDs - leftover, numberOfOSDs));
-
-        PlacementGroup pgToInsert = new PlacementGroup(pgToRemove.getPgID(), newOSDList);
-        PGs.add(pgToInsert);
-
-        File journal = new File("CRUSH_journal_" + version + ".txt");
-
-        try {
-            if (!journal.exists())
-                if (!journal.createNewFile())
-                    throw new IOException("Couldn't create log file");
-
-            journal_path = Paths.get("CRUSH_journal.txt");
-            Files.write(journal_path, Collections.singleton("Logs started @ " + new Date()));
-        } catch (IOException ignored) {
-            System.err.println("Couldn't create log file\n");
+            PlacementGroup pgToInsert = new PlacementGroup(pgToRemove.getPgID(), newOSDList);
+            PGs.add(pgToInsert);
         }
+        for (PlacementGroup pg : PGs) {
+            pg.fixBelongingPGs();
+        }
+
     }
 
     public List<PlacementGroup> getPGs() {
         return this.PGs;
     }
 
-    public List<ObjectStorageDaemon> getOSDs() {
+    public List<ObjectStorageDaemon> getOSDsCopy() {
         List<ObjectStorageDaemon> osds = new ArrayList<>(this.OSDs);
         return osds; // Return a list that can be modified by anyone without affecting the crushmap
     }
@@ -110,5 +122,16 @@ public class CrushMap implements ICrushMap, Serializable {
 
         // Need to check if address is an empty string
         return leaderOSD_address;
+    }
+
+    public void printPGs() {
+        for(PlacementGroup pg : this.getPGs()) {
+            System.out.println("PG " + pg.getPgID()+": " + pg.getOSDs().size());
+        }
+    }
+    public void printOSDs() {
+        for (ObjectStorageDaemon osd : this.OSDs) {
+            System.out.println(osd.getAddress()+ ": " + osd.getBelongingPG().getPgID());
+        }
     }
 }

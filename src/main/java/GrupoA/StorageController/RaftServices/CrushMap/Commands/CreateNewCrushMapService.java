@@ -6,6 +6,7 @@ import GrupoA.StorageController.RaftServices.CrushMap.CrushMapService;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,16 +20,24 @@ public class CreateNewCrushMapService extends CrushMapCommand<CrushMap> {
 
     @Override
     public CrushMap execute(CrushMapService context) {
-        context.latestVersion++;
-        context.latestMap = new CrushMap(context.latestVersion, OSDs);
-        context.mapOfMaps.put(context.latestVersion, context.latestMap);
-        return null;
+        try {
+            context.latestVersion++;
+            context.latestMap = new CrushMap(context.latestVersion, OSDs);
+            context.mapOfMaps.put(context.latestVersion, context.latestMap);
+            context.latestMap.printPGs();
+            context.latestMap.printOSDs();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+        return context.latestMap;
     }
 
     @Override
     public void journal(CrushMapService context) {
         try {
-            Files.write(context.latestMap.journal_path,
+            Files.write(Paths.get(context.latestMap.journal_path),
                     Collections.singleton("Created new CRUSH map, version " + context.latestVersion
                             + ", with " + OSDs.size() + " OSDs\n"));
         } catch (IOException ignored) {

@@ -5,9 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ObjectStorageDaemon implements Serializable {
-    PlacementGroup belongingPG; //TODO you need to set this when you create the PGs
+    private PlacementGroup belongingPG; //TODO you need to set this when you create the PGs
     public boolean isLeader = false;
-    private String Address;
+    private String Address = "";
 
     public ObjectStorageDaemon(ObjectStorageDaemon osd) {
         this.belongingPG = osd.belongingPG;
@@ -15,12 +15,16 @@ public class ObjectStorageDaemon implements Serializable {
     }
 
     public ObjectStorageDaemon(String Address) {
-        this.belongingPG = belongingPG;
         this.Address = Address;
+        this.belongingPG = new PlacementGroup(-1, new LinkedList<>());
     }
 
     public PlacementGroup getBelongingPG() {
         return this.belongingPG;
+    }
+
+    void setBelongingPG(PlacementGroup pg) {
+        this.belongingPG = pg;
     }
 
     public String getAddress() {

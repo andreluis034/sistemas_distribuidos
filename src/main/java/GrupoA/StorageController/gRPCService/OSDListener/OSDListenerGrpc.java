@@ -62,6 +62,38 @@ public final class OSDListenerGrpc {
      return getReceiveAnnouncementMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails,
+      GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage> getLeaveMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "leave",
+      requestType = GrupoA.StorageController.gRPCService.OSDListener.OSDDetails.class,
+      responseType = GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails,
+      GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage> getLeaveMethod() {
+    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails, GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage> getLeaveMethod;
+    if ((getLeaveMethod = OSDListenerGrpc.getLeaveMethod) == null) {
+      synchronized (OSDListenerGrpc.class) {
+        if ((getLeaveMethod = OSDListenerGrpc.getLeaveMethod) == null) {
+          OSDListenerGrpc.getLeaveMethod = getLeaveMethod = 
+              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails, GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "GrupoA.StorageController.gRPCService.OSDListener.OSDListener", "leave"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.OSDListener.OSDDetails.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage.getDefaultInstance()))
+                  .setSchemaDescriptor(new OSDListenerMethodDescriptorSupplier("leave"))
+                  .build();
+          }
+        }
+     }
+     return getLeaveMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -99,6 +131,13 @@ public final class OSDListenerGrpc {
       asyncUnimplementedUnaryCall(getReceiveAnnouncementMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void leave(GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage> responseObserver) {
+      asyncUnimplementedUnaryCall(getLeaveMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -108,6 +147,13 @@ public final class OSDListenerGrpc {
                 GrupoA.StorageController.gRPCService.OSDListener.OSDDetails,
                 GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG>(
                   this, METHODID_RECEIVE_ANNOUNCEMENT)))
+          .addMethod(
+            getLeaveMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                GrupoA.StorageController.gRPCService.OSDListener.OSDDetails,
+                GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage>(
+                  this, METHODID_LEAVE)))
           .build();
     }
   }
@@ -140,6 +186,14 @@ public final class OSDListenerGrpc {
       asyncUnaryCall(
           getChannel().newCall(getReceiveAnnouncementMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void leave(GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getLeaveMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -168,6 +222,13 @@ public final class OSDListenerGrpc {
     public GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG receiveAnnouncement(GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request) {
       return blockingUnaryCall(
           getChannel(), getReceiveAnnouncementMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage leave(GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request) {
+      return blockingUnaryCall(
+          getChannel(), getLeaveMethod(), getCallOptions(), request);
     }
   }
 
@@ -199,9 +260,18 @@ public final class OSDListenerGrpc {
       return futureUnaryCall(
           getChannel().newCall(getReceiveAnnouncementMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage> leave(
+        GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request) {
+      return futureUnaryCall(
+          getChannel().newCall(getLeaveMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_RECEIVE_ANNOUNCEMENT = 0;
+  private static final int METHODID_LEAVE = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -223,6 +293,10 @@ public final class OSDListenerGrpc {
         case METHODID_RECEIVE_ANNOUNCEMENT:
           serviceImpl.receiveAnnouncement((GrupoA.StorageController.gRPCService.OSDListener.OSDDetails) request,
               (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG>) responseObserver);
+          break;
+        case METHODID_LEAVE:
+          serviceImpl.leave((GrupoA.StorageController.gRPCService.OSDListener.OSDDetails) request,
+              (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -286,6 +360,7 @@ public final class OSDListenerGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new OSDListenerFileDescriptorSupplier())
               .addMethod(getReceiveAnnouncementMethod())
+              .addMethod(getLeaveMethod())
               .build();
         }
       }

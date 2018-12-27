@@ -33,4 +33,8 @@ public class OSDListenerClient {
     public List<OSDDetails> announce(String address, int port) {
         return this.blockingStub.receiveAnnouncement(OSDDetails.newBuilder().setAddress(address).setPort(port).build()).getOSDsList();
     }
+
+    public void leave(String host, int port) {
+        this.blockingStub.leave(OSDDetails.newBuilder().setAddress(host).setPort(port).build());
+    }
 }

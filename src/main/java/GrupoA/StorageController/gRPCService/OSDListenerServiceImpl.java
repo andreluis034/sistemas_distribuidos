@@ -5,6 +5,7 @@ import GrupoA.StorageController.Crush.CrushMap;
 import GrupoA.StorageController.Crush.ObjectStorageDaemon;
 import GrupoA.StorageController.Crush.PlacementGroup;
 import GrupoA.StorageController.RaftServices.CrushMap.CrushMapService;
+import GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage;
 import GrupoA.StorageController.gRPCService.OSDListener.OSDDetails;
 import GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG;
 import GrupoA.StorageController.gRPCService.OSDListener.OSDListenerGrpc;
@@ -14,14 +15,17 @@ import io.grpc.stub.StreamObserver;
 
 import java.util.List;
 
-public class OSDListenerServiceImpl extends OSDListenerGrpc.OSDListenerImplBase {
+public class  OSDListenerServiceImpl extends OSDListenerGrpc.OSDListenerImplBase {
     @Override
     public void receiveAnnouncement(OSDDetails args, StreamObserver<OSDInSamePaG> resp) {
         OSDInSamePaG.Builder em = OSDInSamePaG.newBuilder();
         OSDClient client = new OSDClient(args.getAddress(), args.getPort());
         if(client.ping()) {
+
             CrushMap map = CrushMapService.getInstance().addOSD(new ObjectStorageDaemon(args.getAddress()+":"+args.getPort()));
-            List<ObjectStorageDaemon> OSDs = map.getOSDs();
+            map.printPGs();
+            map.printOSDs();
+            List<ObjectStorageDaemon> OSDs = map.getOSDsCopy();
             ObjectStorageDaemon addedOSD = null;
             for (ObjectStorageDaemon OSD : OSDs) {
                 if (OSD.getAddress().equals(args.getAddress() + ":" + args.getPort())) {
@@ -49,6 +53,11 @@ public class OSDListenerServiceImpl extends OSDListenerGrpc.OSDListenerImplBase 
         resp.onCompleted();
     }
 
+
+    @Override
+    public void leave(OSDDetails args, StreamObserver<EmptyMessage> resp) { //TODO
+
+    }
     public static final int DEFAULT_PORT = 50053;
 
     public static Server getServer(int port){
