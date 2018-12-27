@@ -91,7 +91,7 @@ public class FSTree implements Serializable {
      * @param path the full path of the directory to create
      * @return true if the directory was created
      */
-    public synchronized Boolean mkDir(String path) {
+    public synchronized Boolean mkDir(String path, long uid, long gid) {
         try {
             Files.write(journal_path, Collections.singleton("FSTree.mkDir(\"" + path + "\")"));
         } catch (IOException ignored) {
@@ -112,6 +112,8 @@ public class FSTree implements Serializable {
         if(((DirNode)parent).getChild(dirName) != null)
             return false;
 
+        newDir.UserId = uid;
+        newDir.GroupId = gid;
         this.addNode((DirNode)parent, newDir);
         return true;
 

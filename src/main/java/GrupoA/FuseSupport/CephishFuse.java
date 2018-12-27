@@ -4,9 +4,7 @@ import GrupoA.AppServer.Models.AttributeUpdateRequest;
 import GrupoA.AppServer.Models.DirectoryContents;
 import GrupoA.AppServer.Models.NodeAttributes;
 import jnr.ffi.Pointer;
-import jnr.ffi.types.mode_t;
-import jnr.ffi.types.off_t;
-import jnr.ffi.types.size_t;
+import jnr.ffi.types.*;
 import ru.serce.jnrfuse.ErrorCodes;
 import ru.serce.jnrfuse.FuseFillDir;
 import ru.serce.jnrfuse.FuseStubFS;
@@ -39,6 +37,23 @@ public class CephishFuse extends FuseStubFS {
     @Override
     public int chmod(String path, @mode_t long mode) {
         if( restClient.updateAttribute(path, AttributeUpdateRequest.UpdateType.CHMOD, mode & 0x1FF))
+            return 0;
+        return -ErrorCodes.ENOENT();
+    }
+
+    @Override
+    public int chown(String path, @uid_t long uid, @gid_t long gid) {
+        if ( restClient.updateAttribute(path, uid, gid))
+            return 0;
+        return -ErrorCodes.ENOENT();
+    }
+
+    @Override
+    public int mkdir(String path, @mode_t long mode) {
+        NodeAttributes attr = restClient.getAttribute(path);
+        if (attr != null)
+            return -ErrorCodes.EEXIST();
+        if( restClient.mkDir(path, mode, 1000, 1000))
             return 0;
         return -ErrorCodes.ENOENT();
     }

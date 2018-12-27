@@ -18,21 +18,20 @@ service FileSystem {
 
     rpc readDir (pathOnlyArgs) returns (DirContents) {}
 
-    rpc CreateFile (CreateFileArgs) returns (BooleanMessage) {}
+    rpc CreateNode (NodeArgs) returns (BooleanMessage) {}
 }
 
 message LongArg {
     int64 iNode = 1;
 }
 
-message CreateFileArgs {
+message NodeArgs {
+    FileType type = 5;
     string path = 1;
     int64 mode = 2;
     int64 uid = 3;
     int64 gid = 4;
 }
-
-
 
 message DirContents {
     message Content {
@@ -90,7 +89,10 @@ message iNodeAttributes {
 enum ProtoAttributeUpdateRequestType {
     CHMOD = 0;
     UPDATEACCESSTIME = 1;
+    CHUID = 2;
+    CHGID = 3;
 }
+
 message UpdateAttribute {
     ProtoAttributeUpdateRequestType Type = 1;
     int64 Value = 2;
@@ -102,7 +104,7 @@ message pathOnlyArgs {
 }
 
 
-message ObjectData{
+message ObjectData {
     int64 hash = 1;
     bytes objectData = 2;
 }

@@ -10,6 +10,8 @@ import io.grpc.stub.StreamObserver;
 import java.io.IOException;
 import java.util.List;
 
+import static GrupoA.AppServer.Models.CreateRequest.CreateRequestType.FILE;
+
 class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
     @Override
     public void mkDir(pathOnlyArgs request, StreamObserver<BooleanMessage> responseObserver) { //TODO
@@ -87,15 +89,22 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
     }
 
     @Override
-    public void createFile(CreateFileArgs args, StreamObserver<BooleanMessage> rsp) {
+    public void createNode(NodeArgs args, StreamObserver<BooleanMessage> rsp) {
 
         BooleanMessage.Builder status = BooleanMessage.newBuilder();
         status.setResult(false);
         try {
-            status.setResult(FileSystemService.getInstance()
-                    .mkFile(
-                            args.getPath(), args.getMode(),
-                            args.getUid(), args.getGid()));
+            if (args.getType() == FILE) {
+                status.setResult(FileSystemService.getInstance()
+                        .mkFile(
+                                args.getPath(), args.getMode(),
+                                args.getUid(), args.getGid()));
+            } else {
+                status.setResult(FileSystemService.getInstance()
+                        .mkDir(
+                                args.getPath(), args.getMode(),
+                                args.getUid(), args.getGid()));
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

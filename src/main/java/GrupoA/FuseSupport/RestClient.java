@@ -1,7 +1,6 @@
 package GrupoA.FuseSupport;
 
 import GrupoA.AppServer.Models.*;
-import GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
@@ -22,9 +21,6 @@ public class RestClient {
         client = ClientBuilder.newClient(config);
         this.restBaseUri = "http://" + address + "/";
     }
-
-
-
 
     public NodeAttributes getAttribute(String path) {
         try {
@@ -51,6 +47,28 @@ public class RestClient {
         }
     }
 
+    public boolean updateAttribute(String path, long uidValue, long gidValue) {
+
+        AttributeUpdateRequest aur = new AttributeUpdateRequest();
+        aur.Value = uidValue;
+        aur.Type = AttributeUpdateRequest.UpdateType.CHUID;
+        if (client.target(restBaseUri).path("attribute").path(path)
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(aur, MediaType.APPLICATION_JSON), Boolean.class)) {
+
+            aur = new AttributeUpdateRequest();
+            aur.Value = gidValue;
+            aur.Type = AttributeUpdateRequest.UpdateType.CHGID;
+
+            return client.target(restBaseUri).path("attribute").path(path)
+                    .request(MediaType.APPLICATION_JSON)
+                    .post(Entity.entity(aur, MediaType.APPLICATION_JSON), Boolean.class);
+
+        } else {
+            return false;
+        }
+    }
+
     public boolean updateAttribute(String path, AttributeUpdateRequest.UpdateType type, long value) {
 
         AttributeUpdateRequest aur = new AttributeUpdateRequest();
@@ -59,6 +77,20 @@ public class RestClient {
         return client.target(restBaseUri).path("attribute").path(path)
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(aur, MediaType.APPLICATION_JSON), Boolean.class);
+    }
+
+    public boolean mkDir(String path, long mode, long uid, long gid) {
+        CreateRequest cdr = new CreateRequest();
+
+        cdr.type = CreateRequest.CreateRequestType.DIR;
+        cdr.Path = path;
+        cdr.mode = mode;
+        cdr.uid = uid;
+        cdr.gid = gid;
+
+        return client.target(restBaseUri).path("file")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(cdr, MediaType.APPLICATION_JSON), Boolean.class);
     }
 
     public DirectoryContents readDir(String path) {
@@ -74,7 +106,9 @@ public class RestClient {
     }
 
     public Boolean createFile(String path, long mode, long uid, long gid){ //TODO set creation time
-        CreateFileRequest cfr = new CreateFileRequest();
+        CreateRequest cfr = new CreateRequest();
+
+        cfr.type = CreateRequest.CreateRequestType.FILE;
         cfr.Path = path;
         cfr.mode = mode;
         cfr.uid = uid;

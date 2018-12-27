@@ -53,11 +53,14 @@ public class ApplicationServer {
         Path currentRelativePath = Paths.get("");
         String s = currentRelativePath.toAbsolutePath().toString();
         System.out.println("Current relative path is: " + s);
+
         Path path = Paths.get(s, "cenas.dat");
         byte[] fileContents =  Files.readAllBytes(path);
+
         //long hash = GrupoA.Utility.Jenkins.hash32(fileContents);
         OSDClient client = new OSDClient("localhost", 50051);
- //TODO Send to client
+
+        //TODO Send to client
         try {
             List<byte[]> parts = FileObjectManager.SplitByteArray(fileContents);
             int i = 0;
@@ -65,13 +68,13 @@ public class ApplicationServer {
                 client.putObject(part, path.toString(), i);
                 i++;
             }
-            ObjectData od;
-            int fileSize = fileContents.length;//TODO guardar tamanho do ficheiro no controller
+
+            int fileSize = fileContents.length;
             parts.clear();
 
-            for(int j = 0; j < parts.size(); ++j) {
+            for(int j = 0; j < parts.size(); ++j)
                 parts.add(client.getObject(path.toString(), j).getObjectData().toByteArray());
-            }
+
             System.out.println(Arrays.equals(FileObjectManager.JoinByteArrays(parts, fileSize), fileContents));
         } catch (StatusRuntimeException e) {
             System.err.println("RPC failed: " + e.getStatus());
