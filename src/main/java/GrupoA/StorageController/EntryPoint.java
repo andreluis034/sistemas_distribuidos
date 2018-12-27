@@ -1,5 +1,6 @@
 package GrupoA.StorageController;
 
+import GrupoA.StorageController.RaftServices.CrushMap.CrushMapService;
 import GrupoA.StorageController.RaftServices.FileSystem.FileSystemService;
 import GrupoA.StorageController.gRPCService.FileSystemServer;
 import GrupoA.StorageController.gRPCService.GRPCServer;
@@ -77,7 +78,8 @@ public class EntryPoint {
     }
 
     private static void startRaft(String raftId) throws Exception{
-        FileSystemService service = FileSystemService.getInstance("./raft.xml", raftId);
+        FileSystemService service = FileSystemService.getInstance("./fileSystem.xml", raftId);
+        CrushMapService crushMapService = CrushMapService.getInstance("./crushmap.xml", raftId + "0");
         loop(service);
     }
 

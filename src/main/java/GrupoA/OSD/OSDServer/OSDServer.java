@@ -117,7 +117,7 @@ public class OSDServer {
         final OSDServer server = new OSDServer();
         server.start();
         OSDListenerClient client = new OSDListenerClient("192.168.10.70");
-        client.announce("192.168.10.13", 50051);
+        client.announce(args[0], 50051);
         server.blockUntilShutdown();
     }
 }

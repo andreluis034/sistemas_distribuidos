@@ -13,14 +13,14 @@ public class GRPCServer {
     }
     public void start() throws Exception {
         this.server.start();
-        System.err.println("[FileSystemServer] start");
+        System.err.println("[OSDListenerServer] start");
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
                 // Use stderr here since the logger may have been reset by its JVM shutdown hook.
-                System.err.println("[FileSystemServer] shutting down gRPC server since JVM is shutting down");
+                System.err.println("[OSDListenerServer] shutting down gRPC server since JVM is shutting down");
                 GRPCServer.this.stop();
-                System.err.println("[FileSystemServer] server shut down");
+                System.err.println("[OSDListenerServer] server shut down");
             }
         });
     }

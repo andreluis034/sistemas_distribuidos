@@ -22,6 +22,8 @@ public class CrushMap implements ICrushMap, Serializable {
     public CrushMap(int version, List<ObjectStorageDaemon> OSDs) {
         this.version = version;
         this.OSDs = OSDs;
+        if(OSDs.size() == 0)
+            return;
 
         ArrayList<ObjectStorageDaemon> copiedOSDs = new ArrayList<>(OSDs.size());
         //make a copy of the OSD so that we don't change OSDs from previous maps

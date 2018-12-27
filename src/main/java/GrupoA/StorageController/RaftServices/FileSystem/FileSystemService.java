@@ -29,7 +29,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
     public synchronized static FileSystemService getInstance(String config, String raftId) throws Exception {
 
         if(service == null) {
-            JChannel ch = new JChannel("./raft.xml").name(raftId);
+            JChannel ch = new JChannel(config).name(raftId);
             service = new FileSystemService(ch);
             ch.connect("FSTreeCluster0");
         }
@@ -62,7 +62,6 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         return this.invoke(new UpdateAttributeCommand(path, update));
     }
 
-    @SuppressWarnings("unchecked")
     public List<String> ls(String path) throws Exception {
         return (List<String>)this.invoke(new LsCommand(path));
     }
@@ -206,7 +205,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
     @Override
     public byte[] apply(byte[] bytes, int offset, int length) throws Exception {
         try {
-            FileSystemCommand command = Util.objectFromByteBuffer(bytes, offset, length);
+            FileSystemCommand<?> command = Util.objectFromByteBuffer(bytes, offset, length);
             System.out.println(command.getClass());
             return Util.objectToByteBuffer(command.execute(fsTree));
         } catch(Exception e) {
@@ -221,7 +220,6 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         ByteArrayDataOutputStream out = new ByteArrayDataOutputStream(buffer.length);
         out.write(buffer);
         byte[] rsp = raft.set(out.buffer(), 0, out.position(), replyTimeout, TimeUnit.MILLISECONDS);
-
         return (T)Util.objectFromByteBuffer(rsp);
     }
 
