@@ -2,57 +2,18 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="CephishFuse:jar" />
-      <artifact name="app_server:jar" />
-      <artifact name="osd_server:jar" />
-      <artifact name="storage_controller:jar" />
+      <artifact name="JErasure_test:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="455cb227-4467-4991-b677-1778cbe55071" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/CephishFuse_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/storage_controller_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/WriteRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/RemoveDirCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/JErasure_Package/JErasure_Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/JErasure_Package/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/CephishFuse_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/osd_server_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/osd_server_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/storage_controller_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/sistemas_distribuidos_jar/sistemas_distribuidos.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/CreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/CreateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/DirRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/DirRoute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/FileSystem/FSTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/FileSystem/FSTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/MkDirCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/MkDirCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/MkFileCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/MkFileCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/UpdateAttributeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/UpdateAttributeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/BooleanMessage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/BooleanMessageOrBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/CreateFileArgs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/CreateFileArgsOrBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/DirContents.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/DirContentsOrBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/FileSystemGrpc.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/FileSystemProto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/FileType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/LongArg.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/LongArgOrBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/MessageStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/MessageStatusOrBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/ObjectData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/ObjectDataOrBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/ProtoAttributeUpdateRequestType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/UpdateAttribute.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/UpdateAttributeOrBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/iNodeAttributes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/iNodeAttributesOrBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/pathOnlyArgs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/pathOnlyArgsOrBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/proto/StorageController/FileSystem.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/StorageController/FileSystem.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -85,99 +46,83 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FuseSupport.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java">
+      <file leaf-file-name="FileSystemService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="132">
+              <caret line="59" column="39" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#main#0;class#FuseSupport#0" />
+                <element signature="method#apply_deprecated#0;class#FileSystemService#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CephishFuse.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java">
+      <file leaf-file-name="FileSystemServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="150" column="104" selection-start-line="150" selection-start-column="104" selection-end-line="150" selection-end-column="104" />
+            <state relative-caret-position="210">
+              <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3421#3422#0" expanded="true" />
-                <element signature="e#3446#3447#0" expanded="true" />
-                <element signature="method#mergeRequests#0;class#CephishFuse#0" />
+                <element signature="method#rmDir#0;class#FileSystemServiceImpl#0" />
+                <element signature="method#getAttr#0;class#FileSystemServiceImpl#0" />
+                <element signature="method#setAttr#0;class#FileSystemServiceImpl#0" />
+                <element signature="method#readDir#0;class#FileSystemServiceImpl#0" />
+                <element signature="method#createNode#0;class#FileSystemServiceImpl#0" />
+                <element signature="method#start#0;class#FileSystemServer#0" />
+                <element signature="method#stop#0;class#FileSystemServer#0" />
+                <element signature="method#blockUntilShutdown#0;class#FileSystemServer#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RestClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java">
+      <file leaf-file-name="JErasure_Test.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/JErasure_Package/JErasure_Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="617">
-              <caret line="134" column="93" selection-start-line="134" selection-start-column="93" selection-end-line="134" selection-end-column="93" />
+            <state relative-caret-position="220">
+              <caret line="166" column="4" selection-start-line="166" selection-start-column="4" selection-end-line="166" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#getAttribute#0;class#RestClient#0" />
-                <element signature="method#getAttribute#1;class#RestClient#0" />
+                <element signature="docComment;method#printArray#0;class#JErasure_Test#0" />
+                <element signature="method#printArray#0;class#JErasure_Test#0" />
+                <element signature="docComment;method#printArray#1;class#JErasure_Test#0" />
+                <element signature="method#printArray#1;class#JErasure_Test#0" />
+                <element signature="docComment;method#pad#0;class#JErasure_Test#0" />
+                <element signature="method#pad#0;class#JErasure_Test#0" />
+                <element signature="docComment;method#jErasureOnString#0;class#JErasure_Test#0" />
+                <element signature="method#jErasureOnString#0;class#JErasure_Test#0" />
+                <element signature="docComment;field#BYTES#0;class#JErasure_Test#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileRoute.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="501">
+              <caret line="131" column="21" selection-start-line="131" selection-start-column="21" selection-end-line="131" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="String.class" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/jre/lib/rt.jar!/java/lang/String.class">
+      <file leaf-file-name="MANIFEST.MF" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/META-INF/MANIFEST.MF">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="306" column="18" selection-start-line="306" selection-start-column="18" selection-end-line="306" selection-end-column="18" />
-              <folding>
-                <element signature="e#9395#9396#0" expanded="true" />
-                <element signature="e#9471#9472#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="66">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WriteRequest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/WriteRequest.java">
+      <file leaf-file-name="MANIFEST.MF" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/JErasure_Package/META-INF/MANIFEST.MF">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApplicationServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileSystemClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="557">
-              <caret line="85" column="117" selection-start-line="85" selection-start-column="117" selection-end-line="85" selection-end-column="117" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="66">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -231,7 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystemService.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMapImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/ICrushMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/FileSystemCommand.java" />
@@ -258,7 +202,6 @@
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/NodeAttributes.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/DirectoryContents.java" />
         <option value="$PROJECT_DIR$/src/test/java/JErasureTest.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/FileObjectManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/AttributeUpdateRequest.java" />
@@ -282,6 +225,8 @@
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/test/java/JErasure_Package/JErasure_Test.java" />
       </list>
     </option>
   </component>
@@ -331,7 +276,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -382,18 +326,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="AppServer" type="462c0819:PsiDirectoryNode" />
-              <item name="Models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="AppServer" type="462c0819:PsiDirectoryNode" />
-              <item name="Routes" type="462c0819:PsiDirectoryNode" />
+              <item name="FuseSupport" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
@@ -403,27 +336,54 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
               <item name="FuseSupport" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
               <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="proto" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
+              <item name="OSD" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
               <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="proto" type="462c0819:PsiDirectoryNode" />
-              <item name="StorageController" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
+              <item name="OSD" type="462c0819:PsiDirectoryNode" />
+              <item name="OSDServer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="JErasure_Package" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -433,12 +393,12 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="sistemasdistribuidos" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/java/JErasure_Package" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.21621622" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
@@ -460,7 +420,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ApplicationServer">
+  <component name="RunManager" selected="Application.JErasure_Test">
     <configuration name="ApplicationServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -489,6 +449,17 @@
       <option name="MAIN_CLASS_NAME" value="JErasureTest" />
       <module name="SistemasDistribuidos" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="JErasure_Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="JErasure_Package.JErasure_Test" />
+      <module name="SistemasDistribuidos" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="JErasure_Package.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
     </configuration>
     <configuration name="OSDServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GrupoA.OSD.OSDServer.OSDServer" />
@@ -547,9 +518,11 @@
       <item itemvalue="Application.OSDServer" />
       <item itemvalue="Application.FuseSupport" />
       <item itemvalue="Application.JErasureTest" />
+      <item itemvalue="Application.JErasure_Test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.JErasure_Test" />
         <item itemvalue="Application.ApplicationServer" />
         <item itemvalue="Application.JErasureTest" />
         <item itemvalue="Application.FuseSupport" />
@@ -637,7 +610,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132508000" />
+    <option name="totallyTimeSpent" value="144229000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -649,50 +622,73 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="9" />
-      <window_info anchor="bottom" id="TODO" order="15" weight="0.32909605" />
-      <window_info anchor="bottom" id="Messages" order="16" weight="0.2821285" />
-      <window_info anchor="right" id="Palette&#9;" order="11" />
-      <window_info id="Image Layers" order="9" />
-      <window_info anchor="bottom" id="Java Enterprise" order="22" />
-      <window_info anchor="right" id="Capture Analysis" order="15" />
       <window_info anchor="bottom" id="Event Log" order="17" sideWeight="0.50067115" side_tool="true" weight="0.39804772" />
       <window_info anchor="right" id="Maven Projects" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="18" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="19" weight="0.3394794" />
-      <window_info anchor="bottom" id="Run" order="5" visible="true" weight="0.32931727" />
-      <window_info anchor="bottom" id="Terminal" order="20" weight="0.31779662" />
       <window_info id="Capture Tool" order="10" />
       <window_info id="Designer" order="12" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.4989154" visible="true" weight="0.23976023" />
-      <window_info anchor="right" id="Bean Validation" order="17" />
       <window_info anchor="right" id="Database" order="14" />
       <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info id="UI Designer" order="11" />
+      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49932885" weight="0.324295" />
+      <window_info anchor="bottom" id="TODO" order="15" weight="0.32909605" />
+      <window_info anchor="bottom" id="Messages" order="16" weight="0.28199565" />
+      <window_info anchor="right" id="Palette&#9;" order="11" />
+      <window_info id="Image Layers" order="9" />
+      <window_info anchor="bottom" id="Java Enterprise" order="22" />
+      <window_info anchor="right" id="Capture Analysis" order="15" />
+      <window_info anchor="bottom" id="Version Control" order="19" weight="0.3394794" />
+      <window_info anchor="bottom" id="Run" order="5" weight="0.9707158" />
+      <window_info anchor="bottom" id="Terminal" order="20" weight="0.3177874" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.4989154" visible="true" weight="0.2401771" />
+      <window_info anchor="right" id="Bean Validation" order="17" />
+      <window_info anchor="bottom" id="Find" order="3" weight="0.32831326" />
+      <window_info anchor="right" id="SciView" order="16" />
       <window_info anchor="right" id="Theme Preview" order="13" />
       <window_info id="Favorites" order="8" sideWeight="0.5010846" side_tool="true" weight="0.22966242" />
-      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49932885" weight="0.32485875" />
-      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="16" side_tool="true" weight="0.32982844" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" id="SciView" order="16" />
+      <window_info anchor="bottom" id="Event Log" order="17" sideWeight="0.50067115" side_tool="true" weight="0.39804772" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.4989154" visible="true" weight="0.23976023" />
+      <window_info id="Favorites" order="8" sideWeight="0.5010846" side_tool="true" weight="0.22966242" />
+      <window_info anchor="right" id="Coverage" order="16" side_tool="true" weight="0.32982844" />
+      <window_info anchor="bottom" id="Java Enterprise" order="22" />
+      <window_info anchor="right" id="Theme Preview" order="13" />
+      <window_info anchor="bottom" id="Terminal" order="20" weight="0.31779662" />
+      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="9" />
+      <window_info anchor="right" id="Palette&#9;" order="11" />
+      <window_info anchor="right" id="Maven Projects" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="18" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49932885" weight="0.32485875" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="3" weight="0.32831326" />
+      <window_info id="Image Layers" order="9" />
+      <window_info anchor="right" id="Bean Validation" order="17" />
+      <window_info anchor="right" id="Database" order="14" />
+      <window_info id="Capture Tool" order="10" />
+      <window_info anchor="bottom" id="Version Control" order="19" weight="0.3394794" />
+      <window_info anchor="right" id="Capture Analysis" order="15" />
+      <window_info anchor="bottom" id="TODO" order="15" weight="0.32909605" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info id="UI Designer" order="11" />
+      <window_info anchor="bottom" id="Run" order="5" visible="true" weight="0.32931727" />
+      <window_info anchor="right" id="SciView" order="16" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info id="Designer" order="12" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="Designer" order="6" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32931727" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32982844" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="2" sideWeight="0.5010846" side_tool="true" weight="0.22966242" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.31779662" />
@@ -706,7 +702,6 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3394794" />
       <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32831326" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.23976023" />
       <window_info anchor="right" id="SciView" order="10" />
       <window_info anchor="right" id="Database" order="7" />
@@ -716,8 +711,10 @@
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.32485875" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32982844" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32831326" />
       <window_info anchor="right" id="Bean Validation" order="11" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.32485875" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -771,37 +768,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/glassfish/jersey/core/jersey-server/2.27/jersey-server-2.27.jar!/org/glassfish/jersey/server/model/internal/ResourceMethodInvocationHandlerFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/glassfish/jersey/core/jersey-server/2.27/jersey-server-2.27.jar!/org/glassfish/jersey/server/model/internal/AbstractJavaResourceMethodDispatcher.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="56" column="39" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/src/main/resources/jlowfuse.jar!/fuse/Stat.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/ICrushMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/github/guoxuedong/java-erasure/1.0/java-erasure-1.0.jar!/com/xiaomi/infra/ec/ErasureCodec.class" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/JErasureTest.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/OSDListenerClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-154">
@@ -933,13 +899,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/CreateFileArgs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/CreateFileArgs.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/FileSystemGrpc.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -954,27 +914,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/proto/StorageController/FileSystem.proto">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/CreateRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/UpdateAttributeCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="35" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -985,65 +928,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/MkDirCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="43" column="65" selection-start-line="43" selection-start-column="65" selection-end-line="43" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
           <caret line="50" column="52" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/FileSystem/FSTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="153" lean-forward="true" selection-start-line="153" selection-end-line="153" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/RemoveDirCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#283#284#0" expanded="true" />
-            <element signature="e#347#348#0" expanded="true" />
-            <element signature="e#374#375#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="110" column="25" lean-forward="true" selection-start-line="110" selection-start-column="25" selection-end-line="110" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#mkDir#0;class#FileSystemService#0" />
-            <element signature="method#mkFile#0;class#FileSystemService#0" />
-            <element signature="method#ls#0;class#FileSystemService#0" />
-            <element signature="method#readDir#0;class#FileSystemService#0" />
-            <element signature="method#getNode#0;class#FileSystemService#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="76" selection-start-line="20" selection-start-column="76" selection-end-line="20" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#setAttr#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#readDir#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#createNode#0;class#FileSystemServiceImpl#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1058,11 +946,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="113" column="4" selection-start-line="113" selection-start-column="4" selection-end-line="115" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2820#2821#0" expanded="true" />
-            <element signature="e#2844#2845#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1137,17 +1020,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/jre/lib/rt.jar!/java/lang/String.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="306" column="18" selection-start-line="306" selection-start-column="18" selection-end-line="306" selection-end-column="18" />
-          <folding>
-            <element signature="e#9395#9396#0" expanded="true" />
-            <element signature="e#9471#9472#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/jre/lib/rt.jar!/java/lang/String.class" />
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="557">
@@ -1168,17 +1041,156 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/proto/StorageController/FileSystem.proto">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/MkDirCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="43" column="26" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/FileSystem/FSTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="132" column="32" selection-start-line="132" selection-start-column="32" selection-end-line="132" selection-end-column="32" />
+          <folding>
+            <element signature="method#rmFile#0;class#FSTree#0" />
+            <element signature="method#ls#0;class#FSTree#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/RemoveDirCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding>
+            <element signature="e#255#256#0" expanded="true" />
+            <element signature="e#287#288#0" expanded="true" />
+            <element signature="e#347#348#0" expanded="true" />
+            <element signature="e#389#390#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/UpdateAttributeCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="946">
+          <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#chmod#0;class#UpdateAttributeCommand#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/guoxuedong/java-erasure/1.0/java-erasure-1.0.jar!/com/xiaomi/infra/ec/JerasureLibrary.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/guoxuedong/java-erasure/1.0/java-erasure-1.0.jar!/com/xiaomi/infra/ec/CodecUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/JErasure_Package/Dummy/Dummy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="59" column="39" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#apply_deprecated#0;class#FileSystemService#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#rmDir#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#getAttr#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#setAttr#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#readDir#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#createNode#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#start#0;class#FileSystemServer#0" />
+            <element signature="method#stop#0;class#FileSystemServer#0" />
+            <element signature="method#blockUntilShutdown#0;class#FileSystemServer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/JErasure_Package/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="131" column="21" selection-start-line="131" selection-start-column="21" selection-end-line="131" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/JErasure_Package/JErasure_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="166" column="4" selection-start-line="166" selection-start-column="4" selection-end-line="166" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#printArray#0;class#JErasure_Test#0" />
+            <element signature="method#printArray#0;class#JErasure_Test#0" />
+            <element signature="docComment;method#printArray#1;class#JErasure_Test#0" />
+            <element signature="method#printArray#1;class#JErasure_Test#0" />
+            <element signature="docComment;method#pad#0;class#JErasure_Test#0" />
+            <element signature="method#pad#0;class#JErasure_Test#0" />
+            <element signature="docComment;method#jErasureOnString#0;class#JErasure_Test#0" />
+            <element signature="method#jErasureOnString#0;class#JErasure_Test#0" />
+            <element signature="docComment;field#BYTES#0;class#JErasure_Test#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>CephishFuse:jar</last-edited>
+          <last-edited>JErasure_test:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.21621622" />
                 <option value="0.5" />
               </list>
             </option>
@@ -1191,7 +1203,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.20421754" />
               </list>
             </option>
           </splitter-proportions>
@@ -1199,6 +1211,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
+          <last-edited>Python 3.6 interpreter library</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1222,7 +1235,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>sistemas_distribuidos</last-edited>
+          <last-edited>SistemasDistribuidos</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1235,11 +1248,11 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>jlowfuse</last-edited>
+          <last-edited>Maven: com.esotericsoftware:kryo:4.0.2</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.21621622" />
               </list>
             </option>
           </splitter-proportions>
