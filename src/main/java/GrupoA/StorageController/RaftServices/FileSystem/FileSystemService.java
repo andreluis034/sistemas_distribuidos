@@ -48,12 +48,13 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
     protected enum Command {mkDir, rmDir, mkFile, rmFile, ls, getINode}
 
-    public boolean mkDir(String path, long mode, long uid, long gid, long permission) throws Exception {
-        return invoke(new MkDirCommand(path, mode, uid, gid, permission));
+    public boolean mkDir(String path, long mode, long uid, long gid, long permission, long creation) throws Exception {
+        return invoke(new MkDirCommand(path, mode, uid, gid, permission, creation));
     }
 
-    public boolean mkFile(String path, long mode, long uid, long gid, long permission) throws Exception {
-        return invoke(new MkFileCommand(path, mode, uid, gid, permission));
+    public boolean mkFile(String path, long mode, long uid, long gid, long permission,
+                          long creation, FSTree.FileNode.Redundancy redundancy) throws Exception {
+        return invoke(new MkFileCommand(path, mode, uid, gid, permission, creation, redundancy));
     }
 
     public int removeDirectory(String path) throws Exception {

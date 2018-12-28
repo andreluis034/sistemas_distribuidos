@@ -18,6 +18,7 @@ private static final long serialVersionUID = 0L;
   private LockArgs() {
     path_ = "";
     id_ = 0L;
+    crushMapVersion_ = 0L;
   }
 
   @java.lang.Override
@@ -53,6 +54,11 @@ private static final long serialVersionUID = 0L;
           case 16: {
 
             id_ = input.readInt64();
+            break;
+          }
+          case 24: {
+
+            crushMapVersion_ = input.readInt64();
             break;
           }
           default: {
@@ -130,6 +136,15 @@ private static final long serialVersionUID = 0L;
     return id_;
   }
 
+  public static final int CRUSHMAPVERSION_FIELD_NUMBER = 3;
+  private long crushMapVersion_;
+  /**
+   * <code>int64 crushMapVersion = 3;</code>
+   */
+  public long getCrushMapVersion() {
+    return crushMapVersion_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -150,6 +165,9 @@ private static final long serialVersionUID = 0L;
     if (id_ != 0L) {
       output.writeInt64(2, id_);
     }
+    if (crushMapVersion_ != 0L) {
+      output.writeInt64(3, crushMapVersion_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -165,6 +183,10 @@ private static final long serialVersionUID = 0L;
     if (id_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(2, id_);
+    }
+    if (crushMapVersion_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(3, crushMapVersion_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -186,6 +208,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getPath());
     result = result && (getId()
         == other.getId());
+    result = result && (getCrushMapVersion()
+        == other.getCrushMapVersion());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -202,6 +226,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getId());
+    hash = (37 * hash) + CRUSHMAPVERSION_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getCrushMapVersion());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -339,6 +366,8 @@ private static final long serialVersionUID = 0L;
 
       id_ = 0L;
 
+      crushMapVersion_ = 0L;
+
       return this;
     }
 
@@ -367,6 +396,7 @@ private static final long serialVersionUID = 0L;
       GrupoA.StorageController.gRPCService.FileSystem.LockArgs result = new GrupoA.StorageController.gRPCService.FileSystem.LockArgs(this);
       result.path_ = path_;
       result.id_ = id_;
+      result.crushMapVersion_ = crushMapVersion_;
       onBuilt();
       return result;
     }
@@ -421,6 +451,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getId() != 0L) {
         setId(other.getId());
+      }
+      if (other.getCrushMapVersion() != 0L) {
+        setCrushMapVersion(other.getCrushMapVersion());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -542,6 +575,32 @@ private static final long serialVersionUID = 0L;
     public Builder clearId() {
       
       id_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long crushMapVersion_ ;
+    /**
+     * <code>int64 crushMapVersion = 3;</code>
+     */
+    public long getCrushMapVersion() {
+      return crushMapVersion_;
+    }
+    /**
+     * <code>int64 crushMapVersion = 3;</code>
+     */
+    public Builder setCrushMapVersion(long value) {
+      
+      crushMapVersion_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 crushMapVersion = 3;</code>
+     */
+    public Builder clearCrushMapVersion() {
+      
+      crushMapVersion_ = 0L;
       onChanged();
       return this;
     }

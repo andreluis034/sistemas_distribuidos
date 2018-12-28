@@ -18,6 +18,9 @@ import org.glassfish.jersey.servlet.ServletContainer;
 
 public class ApplicationServer {
     public final static int maxBlockSize = 3670016; //2^21 + 2^20 + 2^19 Bytes (to avoid GRPC overhead)
+    public final static int DivisionFactor = 4;
+    public final static int subBlockSize = maxBlockSize / DivisionFactor;
+
     public static FileSystemClient FileSystemClient = null;
 
     private static void startJetty(int port) throws Exception {
@@ -46,6 +49,7 @@ public class ApplicationServer {
             jettyServer.destroy();
         }
     }
+
     public static void main(String[] args) throws Exception {
 
         FileSystemClient = new FileSystemClient("172.20.100.1", FileSystemServer.DEFAULT_PORT);

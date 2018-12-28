@@ -45,4 +45,18 @@ public interface NodeArgsOrBuilder extends
    * <code>int64 permissions = 6;</code>
    */
   long getPermissions();
+
+  /**
+   * <code>int64 creationTime = 7;</code>
+   */
+  long getCreationTime();
+
+  /**
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto Redundancy = 8;</code>
+   */
+  int getRedundancyValue();
+  /**
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto Redundancy = 8;</code>
+   */
+  GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto getRedundancy();
 }

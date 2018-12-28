@@ -24,6 +24,10 @@ public enum ProtoAttributeUpdateRequestType
    * <code>CHGID = 3;</code>
    */
   CHGID(3),
+  /**
+   * <code>CHANGE_SIZE = 4;</code>
+   */
+  CHANGE_SIZE(4),
   UNRECOGNIZED(-1),
   ;
 
@@ -43,6 +47,10 @@ public enum ProtoAttributeUpdateRequestType
    * <code>CHGID = 3;</code>
    */
   public static final int CHGID_VALUE = 3;
+  /**
+   * <code>CHANGE_SIZE = 4;</code>
+   */
+  public static final int CHANGE_SIZE_VALUE = 4;
 
 
   public final int getNumber() {
@@ -67,6 +75,7 @@ public enum ProtoAttributeUpdateRequestType
       case 1: return UPDATEACCESSTIME;
       case 2: return CHUID;
       case 3: return CHGID;
+      case 4: return CHANGE_SIZE;
       default: return null;
     }
   }
@@ -93,7 +102,7 @@ public enum ProtoAttributeUpdateRequestType
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.getDescriptor().getEnumTypes().get(1);
+    return GrupoA.StorageController.gRPCService.FileSystem.FileSystemProto.getDescriptor().getEnumTypes().get(2);
   }
 
   private static final ProtoAttributeUpdateRequestType[] VALUES = values();

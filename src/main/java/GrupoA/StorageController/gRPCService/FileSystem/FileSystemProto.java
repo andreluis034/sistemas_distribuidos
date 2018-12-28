@@ -15,6 +15,11 @@ public final class FileSystemProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GrupoA_StorageController_gRPCService_FileSystem_LockResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GrupoA_StorageController_gRPCService_FileSystem_LockResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_LockArgs_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -84,70 +89,79 @@ public final class FileSystemProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\020FileSystem.proto\022/GrupoA.StorageContro" +
-      "ller.gRPCService.FileSystem\"$\n\010LockArgs\022" +
-      "\014\n\004path\030\001 \001(\t\022\n\n\002id\030\002 \001(\003\"\030\n\006IntArg\022\016\n\006r" +
-      "esult\030\001 \001(\005\"\030\n\007LongArg\022\r\n\005iNode\030\001 \001(\003\"\236\001" +
-      "\n\010NodeArgs\022G\n\004type\030\005 \001(\01629.GrupoA.Storag" +
-      "eController.gRPCService.FileSystem.FileT" +
-      "ype\022\014\n\004path\030\001 \001(\t\022\014\n\004mode\030\002 \001(\003\022\013\n\003uid\030\003" +
-      " \001(\003\022\013\n\003gid\030\004 \001(\003\022\023\n\013permissions\030\006 \001(\003\"\236" +
-      "\002\n\013DirContents\022\017\n\007success\030\001 \001(\010\022\023\n\013paren" +
-      "tINode\030\002 \001(\003\022\r\n\005INode\030\003 \001(\003\022V\n\010Contents\030" +
-      "\004 \003(\0132D.GrupoA.StorageController.gRPCSer" +
-      "vice.FileSystem.DirContents.Content\032\201\001\n\007" +
-      "Content\022R\n\017ContentFileType\030\001 \001(\01629.Grupo" +
-      "A.StorageController.gRPCService.FileSyst" +
-      "em.FileType\022\023\n\013ContentName\030\002 \001(\t\022\r\n\005iNod" +
-      "e\030\003 \001(\003\"<\n\rMessageStatus\022\021\n\tFoundNode\030\001 " +
-      "\001(\010\022\030\n\020RequestCompleted\030\002 \001(\010\"\306\002\n\017iNodeA" +
-      "ttributes\022\014\n\004name\030\001 \001(\t\022K\n\010FileType\030\n \001(" +
-      "\01629.GrupoA.StorageController.gRPCService" +
-      ".FileSystem.FileType\022\027\n\017UserPermissions\030" +
-      "\002 \001(\005\022\030\n\020GroupPermissions\030\003 \001(\005\022\030\n\020Other" +
-      "Permissions\030\004 \001(\005\022\017\n\007OwnerId\030\005 \001(\003\022\017\n\007Gr" +
-      "oupId\030\006 \001(\003\022\023\n\013INodeNumber\030\007 \001(\003\022\031\n\021Pare" +
-      "ntINodeNumber\030\010 \001(\003\022\014\n\004Size\030\t \001(\003\022\r\n\005cti" +
-      "me\030\013 \001(\003\022\r\n\005atime\030\014 \001(\003\022\r\n\005mtime\030\r \001(\003\"\216" +
-      "\001\n\017UpdateAttribute\022^\n\004Type\030\001 \001(\0162P.Grupo" +
-      "A.StorageController.gRPCService.FileSyst" +
-      "em.ProtoAttributeUpdateRequestType\022\r\n\005Va" +
-      "lue\030\002 \001(\003\022\014\n\004path\030\003 \001(\t\" \n\014pathOnlyArgs\022" +
-      "\020\n\010filePath\030\001 \001(\t\".\n\nObjectData\022\014\n\004hash\030" +
-      "\001 \001(\003\022\022\n\nobjectData\030\002 \001(\014\" \n\016BooleanMess" +
-      "age\022\016\n\006result\030\001 \001(\010*\'\n\010FileType\022\007\n\003DIR\020\000" +
-      "\022\010\n\004FILE\020\001\022\010\n\004LINK\020\002*X\n\037ProtoAttributeUp" +
-      "dateRequestType\022\t\n\005CHMOD\020\000\022\024\n\020UPDATEACCE" +
-      "SSTIME\020\001\022\t\n\005CHUID\020\002\022\t\n\005CHGID\020\0032\367\010\n\nFileS" +
-      "ystem\022\212\001\n\006rmFile\022=.GrupoA.StorageControl" +
-      "ler.gRPCService.FileSystem.pathOnlyArgs\032" +
-      "?.GrupoA.StorageController.gRPCService.F" +
-      "ileSystem.BooleanMessage\"\000\022\201\001\n\005rmDir\022=.G" +
-      "rupoA.StorageController.gRPCService.File" +
-      "System.pathOnlyArgs\0327.GrupoA.StorageCont" +
-      "roller.gRPCService.FileSystem.IntArg\"\000\022\214" +
-      "\001\n\007getAttr\022=.GrupoA.StorageController.gR" +
-      "PCService.FileSystem.pathOnlyArgs\032@.Grup" +
-      "oA.StorageController.gRPCService.FileSys" +
-      "tem.iNodeAttributes\"\000\022\216\001\n\007setAttr\022@.Grup" +
-      "oA.StorageController.gRPCService.FileSys" +
-      "tem.UpdateAttribute\032?.GrupoA.StorageCont" +
-      "roller.gRPCService.FileSystem.BooleanMes" +
-      "sage\"\000\022\210\001\n\007readDir\022=.GrupoA.StorageContr" +
-      "oller.gRPCService.FileSystem.pathOnlyArg" +
-      "s\032<.GrupoA.StorageController.gRPCService" +
-      ".FileSystem.DirContents\"\000\022\212\001\n\nCreateNode" +
-      "\0229.GrupoA.StorageController.gRPCService." +
-      "FileSystem.NodeArgs\032?.GrupoA.StorageCont" +
-      "roller.gRPCService.FileSystem.BooleanMes" +
-      "sage\"\000\022\214\001\n\014SetWriteLock\0229.GrupoA.Storage" +
-      "Controller.gRPCService.FileSystem.LockAr" +
+      "ller.gRPCService.FileSystem\"3\n\014LockRespo" +
+      "nse\022\016\n\006Result\030\001 \001(\010\022\023\n\013MapOutdated\030\002 \001(\010" +
+      "\"=\n\010LockArgs\022\014\n\004path\030\001 \001(\t\022\n\n\002id\030\002 \001(\003\022\027" +
+      "\n\017crushMapVersion\030\003 \001(\003\"\030\n\006IntArg\022\016\n\006res" +
+      "ult\030\001 \001(\005\"\030\n\007LongArg\022\r\n\005iNode\030\001 \001(\003\"\212\002\n\010" +
+      "NodeArgs\022G\n\004type\030\005 \001(\01629.GrupoA.StorageC" +
+      "ontroller.gRPCService.FileSystem.FileTyp" +
+      "e\022\014\n\004path\030\001 \001(\t\022\014\n\004mode\030\002 \001(\003\022\013\n\003uid\030\003 \001" +
+      "(\003\022\013\n\003gid\030\004 \001(\003\022\023\n\013permissions\030\006 \001(\003\022\024\n\014" +
+      "creationTime\030\007 \001(\003\022T\n\nRedundancy\030\010 \001(\0162@" +
+      ".GrupoA.StorageController.gRPCService.Fi" +
+      "leSystem.RedundancyProto\"\236\002\n\013DirContents" +
+      "\022\017\n\007success\030\001 \001(\010\022\023\n\013parentINode\030\002 \001(\003\022\r" +
+      "\n\005INode\030\003 \001(\003\022V\n\010Contents\030\004 \003(\0132D.GrupoA" +
+      ".StorageController.gRPCService.FileSyste" +
+      "m.DirContents.Content\032\201\001\n\007Content\022R\n\017Con" +
+      "tentFileType\030\001 \001(\01629.GrupoA.StorageContr" +
+      "oller.gRPCService.FileSystem.FileType\022\023\n" +
+      "\013ContentName\030\002 \001(\t\022\r\n\005iNode\030\003 \001(\003\"<\n\rMes" +
+      "sageStatus\022\021\n\tFoundNode\030\001 \001(\010\022\030\n\020Request" +
+      "Completed\030\002 \001(\010\"\234\003\n\017iNodeAttributes\022\014\n\004n" +
+      "ame\030\001 \001(\t\022K\n\010FileType\030\n \001(\01629.GrupoA.Sto" +
+      "rageController.gRPCService.FileSystem.Fi" +
+      "leType\022\027\n\017UserPermissions\030\002 \001(\005\022\030\n\020Group" +
+      "Permissions\030\003 \001(\005\022\030\n\020OtherPermissions\030\004 " +
+      "\001(\005\022\017\n\007OwnerId\030\005 \001(\003\022\017\n\007GroupId\030\006 \001(\003\022\023\n" +
+      "\013INodeNumber\030\007 \001(\003\022\031\n\021ParentINodeNumber\030" +
+      "\010 \001(\003\022\014\n\004Size\030\t \001(\003\022\r\n\005ctime\030\013 \001(\003\022\r\n\005at" +
+      "ime\030\014 \001(\003\022\r\n\005mtime\030\r \001(\003\022T\n\nRedundancy\030\016" +
+      " \001(\0162@.GrupoA.StorageController.gRPCServ" +
+      "ice.FileSystem.RedundancyProto\"\216\001\n\017Updat" +
+      "eAttribute\022^\n\004Type\030\001 \001(\0162P.GrupoA.Storag" +
+      "eController.gRPCService.FileSystem.Proto" +
+      "AttributeUpdateRequestType\022\r\n\005Value\030\002 \001(" +
+      "\003\022\014\n\004path\030\003 \001(\t\" \n\014pathOnlyArgs\022\020\n\010fileP" +
+      "ath\030\001 \001(\t\".\n\nObjectData\022\014\n\004hash\030\001 \001(\003\022\022\n" +
+      "\nobjectData\030\002 \001(\014\" \n\016BooleanMessage\022\016\n\006r" +
+      "esult\030\001 \001(\010*H\n\017RedundancyProto\022\032\n\026Forwar" +
+      "dErrorCorrection\020\000\022\017\n\013Replication\020\001\022\010\n\004N" +
+      "one\020\002*\'\n\010FileType\022\007\n\003DIR\020\000\022\010\n\004FILE\020\001\022\010\n\004" +
+      "LINK\020\002*i\n\037ProtoAttributeUpdateRequestTyp" +
+      "e\022\t\n\005CHMOD\020\000\022\024\n\020UPDATEACCESSTIME\020\001\022\t\n\005CH" +
+      "UID\020\002\022\t\n\005CHGID\020\003\022\017\n\013CHANGE_SIZE\020\0042\363\010\n\nFi" +
+      "leSystem\022\212\001\n\006rmFile\022=.GrupoA.StorageCont" +
+      "roller.gRPCService.FileSystem.pathOnlyAr" +
       "gs\032?.GrupoA.StorageController.gRPCServic" +
-      "e.FileSystem.BooleanMessage\"\000\022\220\001\n\020Releas" +
-      "eWriteLock\0229.GrupoA.StorageController.gR" +
-      "PCService.FileSystem.LockArgs\032?.GrupoA.S" +
-      "torageController.gRPCService.FileSystem." +
-      "BooleanMessage\"\000B\027B\017FileSystemProtoP\001\242\002\001" +
-      "Ob\006proto3"
+      "e.FileSystem.BooleanMessage\"\000\022\201\001\n\005rmDir\022" +
+      "=.GrupoA.StorageController.gRPCService.F" +
+      "ileSystem.pathOnlyArgs\0327.GrupoA.StorageC" +
+      "ontroller.gRPCService.FileSystem.IntArg\"" +
+      "\000\022\214\001\n\007getAttr\022=.GrupoA.StorageController" +
+      ".gRPCService.FileSystem.pathOnlyArgs\032@.G" +
+      "rupoA.StorageController.gRPCService.File" +
+      "System.iNodeAttributes\"\000\022\216\001\n\007setAttr\022@.G" +
+      "rupoA.StorageController.gRPCService.File" +
+      "System.UpdateAttribute\032?.GrupoA.StorageC" +
+      "ontroller.gRPCService.FileSystem.Boolean" +
+      "Message\"\000\022\210\001\n\007readDir\022=.GrupoA.StorageCo" +
+      "ntroller.gRPCService.FileSystem.pathOnly" +
+      "Args\032<.GrupoA.StorageController.gRPCServ" +
+      "ice.FileSystem.DirContents\"\000\022\212\001\n\nCreateN" +
+      "ode\0229.GrupoA.StorageController.gRPCServi" +
+      "ce.FileSystem.NodeArgs\032?.GrupoA.StorageC" +
+      "ontroller.gRPCService.FileSystem.Boolean" +
+      "Message\"\000\022\212\001\n\014SetWriteLock\0229.GrupoA.Stor" +
+      "ageController.gRPCService.FileSystem.Loc" +
+      "kArgs\032=.GrupoA.StorageController.gRPCSer" +
+      "vice.FileSystem.LockResponse\"\000\022\216\001\n\020Relea" +
+      "seWriteLock\0229.GrupoA.StorageController.g" +
+      "RPCService.FileSystem.LockArgs\032=.GrupoA." +
+      "StorageController.gRPCService.FileSystem" +
+      ".LockResponse\"\000B\027B\017FileSystemProtoP\001\242\002\001O" +
+      "b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -161,32 +175,38 @@ public final class FileSystemProto {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_GrupoA_StorageController_gRPCService_FileSystem_LockArgs_descriptor =
+    internal_static_GrupoA_StorageController_gRPCService_FileSystem_LockResponse_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_GrupoA_StorageController_gRPCService_FileSystem_LockResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GrupoA_StorageController_gRPCService_FileSystem_LockResponse_descriptor,
+        new java.lang.String[] { "Result", "MapOutdated", });
+    internal_static_GrupoA_StorageController_gRPCService_FileSystem_LockArgs_descriptor =
+      getDescriptor().getMessageTypes().get(1);
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_LockArgs_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_LockArgs_descriptor,
-        new java.lang.String[] { "Path", "Id", });
+        new java.lang.String[] { "Path", "Id", "CrushMapVersion", });
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_IntArg_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_IntArg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_IntArg_descriptor,
         new java.lang.String[] { "Result", });
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_LongArg_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_LongArg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_LongArg_descriptor,
         new java.lang.String[] { "INode", });
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_NodeArgs_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_NodeArgs_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_NodeArgs_descriptor,
-        new java.lang.String[] { "Type", "Path", "Mode", "Uid", "Gid", "Permissions", });
+        new java.lang.String[] { "Type", "Path", "Mode", "Uid", "Gid", "Permissions", "CreationTime", "Redundancy", });
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_DirContents_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_DirContents_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_DirContents_descriptor,
@@ -198,37 +218,37 @@ public final class FileSystemProto {
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_DirContents_Content_descriptor,
         new java.lang.String[] { "ContentFileType", "ContentName", "INode", });
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_MessageStatus_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_MessageStatus_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_MessageStatus_descriptor,
         new java.lang.String[] { "FoundNode", "RequestCompleted", });
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_iNodeAttributes_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_iNodeAttributes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_iNodeAttributes_descriptor,
-        new java.lang.String[] { "Name", "FileType", "UserPermissions", "GroupPermissions", "OtherPermissions", "OwnerId", "GroupId", "INodeNumber", "ParentINodeNumber", "Size", "Ctime", "Atime", "Mtime", });
+        new java.lang.String[] { "Name", "FileType", "UserPermissions", "GroupPermissions", "OtherPermissions", "OwnerId", "GroupId", "INodeNumber", "ParentINodeNumber", "Size", "Ctime", "Atime", "Mtime", "Redundancy", });
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_UpdateAttribute_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_UpdateAttribute_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_UpdateAttribute_descriptor,
         new java.lang.String[] { "Type", "Value", "Path", });
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_pathOnlyArgs_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_pathOnlyArgs_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_pathOnlyArgs_descriptor,
         new java.lang.String[] { "FilePath", });
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_ObjectData_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_ObjectData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_ObjectData_descriptor,
         new java.lang.String[] { "Hash", "ObjectData", });
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_BooleanMessage_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_GrupoA_StorageController_gRPCService_FileSystem_BooleanMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_StorageController_gRPCService_FileSystem_BooleanMessage_descriptor,

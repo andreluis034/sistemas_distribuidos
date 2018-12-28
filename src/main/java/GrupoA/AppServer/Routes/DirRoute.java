@@ -62,7 +62,8 @@ public class DirRoute {
 
         try {
             System.out.println("Creating directory " + cfr.Path);
-            return ApplicationServer.FileSystemClient.CreateDir(cfr.Path, cfr.mode, cfr.uid, cfr.gid,cfr.permission);
+            return ApplicationServer.FileSystemClient.CreateDir(cfr.Path, cfr.mode, cfr.uid, cfr.gid,cfr.permission,
+                    cfr.creationTime);
         }
         catch (Exception e) {
             e.printStackTrace();

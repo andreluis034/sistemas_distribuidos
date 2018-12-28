@@ -1,5 +1,6 @@
 package GrupoA.StorageController.FileSystem;
 
+import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
 import GrupoA.Utility.Jenkins;
 
 import javax.annotation.Nullable;
@@ -94,7 +95,7 @@ public class FSTree implements Serializable {
      * @param permission the permissions of the file
      * @return true if the directory was created
      */
-    public synchronized Boolean mkDir(String path, long uid, long gid, long permission) {
+    public synchronized Boolean mkDir(String path, long uid, long gid, long creationTime, long permission) {
         try {
             Files.write(journal_path, Collections.singleton("FSTree.mkDir(\"" + path + "\")"));
         } catch (IOException ignored) {
@@ -121,6 +122,8 @@ public class FSTree implements Serializable {
         newDir.UserPermissions = (byte)((permission & (0x7 << 6)) >> 6);
         newDir.GroupPermissions = (byte)((permission & (0x7 <<3)) >> 3);
         newDir.OthersPermissions = (byte)((permission & 0x007) >> 0);
+        newDir.creationTime = creationTime;
+        newDir.modifiedTime = creationTime;
         return true;
 
     }
@@ -164,7 +167,7 @@ public class FSTree implements Serializable {
      * @param permission the permissions of the file
      * @return true if the file was created
      */
-    public synchronized Boolean mkFile(String path, long uid, long gid, long permission) {
+    public synchronized Boolean mkFile(String path, long uid, long gid, long permission, long creationTime, FileNode.Redundancy red) {
         try {
             Files.write(journal_path, Collections.singleton("FSTree.mkFile(\"" + path + "\"" + ")"));
         } catch (IOException ignored) {
@@ -188,6 +191,9 @@ public class FSTree implements Serializable {
         newFile.UserId = uid;
         newFile.GroupId = gid;
         this.addNode((DirNode)parent, newFile);
+        ((FileNode)newFile).RedundancyType = red;
+        newFile.creationTime = creationTime;
+        newFile.modifiedTime = creationTime;
         newFile.UserPermissions = (byte)((permission & (0x7 << 6)) >> 6);
         newFile.GroupPermissions = (byte)((permission & (0x7 <<3)) >> 3);
         newFile.OthersPermissions = (byte)((permission & 0x007) >> 0);
@@ -315,7 +321,7 @@ public class FSTree implements Serializable {
 
     public static class FileNode extends Node {
         Long hash;
-        public Integer fileSize, blocks;
+        public Long fileSize, blocks;
 
         int CrushMapVersion = 0; //TODO set this
 
@@ -323,9 +329,45 @@ public class FSTree implements Serializable {
         public FileNode(String name) {
             this.nodeName = name;
             this.hash = Jenkins.hash64(name.getBytes());
-            this.fileSize = 0;
-            this.blocks = 0;
+            this.fileSize = 0L;
+            this.blocks = 0L;
         }
+
+        public static enum Redundancy {
+            ForwardErrorCorrection,
+            Replication,
+            None // Use at your own risk
+            ;
+            public static Redundancy fromProto(RedundancyProto proto) {
+                switch (proto){
+
+                    case ForwardErrorCorrection:
+                        return ForwardErrorCorrection;
+                    case Replication:
+                        return Replication;
+                    case None:
+                        return None;
+                    case UNRECOGNIZED:
+                       return null;
+                }
+                return null;
+            }
+
+            public RedundancyProto toProto() {
+                switch (this){
+
+                    case ForwardErrorCorrection:
+                        return RedundancyProto.ForwardErrorCorrection;
+                    case Replication:
+                        return RedundancyProto.Replication;
+                    case None:
+                        return RedundancyProto.None;
+                }
+                return RedundancyProto.UNRECOGNIZED;
+            }
+        }
+
+        public Redundancy RedundancyType = Redundancy.Replication;
 
         @Override
         public NodeType getNodeType() {

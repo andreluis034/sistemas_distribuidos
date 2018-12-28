@@ -6,6 +6,7 @@ public class AttributeUpdateRequest {
         CHUID,
         CHGID,
         UPDATEACCESSTIME,
+        CHANGE_SIZE
     }
     public UpdateType Type;
     public Long Value;

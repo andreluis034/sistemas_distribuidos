@@ -44,6 +44,12 @@ public class NodeAttributes {
         stat.st_ino.set(this.INodeNumber);
         stat.st_size.set(this.Size);
         stat.st_blksize.set(this.BlockSize);
+        stat.st_atim.tv_sec.set(this.AccessTime / 1000L);
+        stat.st_atim.tv_nsec.set(this.AccessTime);
+        stat.st_mtim.tv_sec.set(this.Modifiedtime / 1000L);
+        stat.st_mtim.tv_nsec.set(this.Modifiedtime);
+        stat.st_ctim.tv_sec.set(this.CreationTime / 1000L);
+        stat.st_ctim.tv_nsec.set(this.CreationTime);
 
         return stat;
     }

@@ -29,6 +29,7 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
     @Override
     public void getAttr(pathOnlyArgs request, StreamObserver<iNodeAttributes> responseObserver) { //TODO don't dirty read from tree?
         iNodeAttributes.Builder reply = iNodeAttributes.newBuilder();
+        reply.setRedundancy(RedundancyProto.None);
         try {
             FSTree.Node node =  FileSystemService.getInstance().getNode(request.getFilePath());//.getNode(request.getNode());
             if (node == null) {
@@ -45,6 +46,9 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
             reply.setOwnerId(node.UserId);
             reply.setGroupId(node.GroupId);
             reply.setINodeNumber(node.iNode);
+            if(node.getNodeType().equals(FSTree.NodeType.FileNode)){
+                reply.setRedundancy(((FSTree.FileNode)node).RedundancyType.toProto());
+            }
             reply.setSize(node.getNodeType() == FSTree.NodeType.DirNode ? 0 : ((FSTree.FileNode)node).fileSize);
             reply.setParentINodeNumber(node.Parent == null ? 0 : node.Parent.iNode);
 
@@ -106,12 +110,14 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
                 status.setResult(FileSystemService.getInstance()
                         .mkFile(
                                 args.getPath(), args.getMode(),
-                                args.getUid(), args.getGid(), args.getPermissions()));
+                                args.getUid(), args.getGid(), args.getPermissions(),
+                                args.getCreationTime(), FSTree.FileNode.Redundancy.fromProto(args.getRedundancy())));
             } else {
                 status.setResult(FileSystemService.getInstance()
                         .mkDir(
                                 args.getPath(), args.getMode(),
-                                args.getUid(), args.getGid(), args.getPermissions()));
+                                args.getUid(), args.getGid(), args.getPermissions(),
+                                args.getCreationTime()));
             }
 
         } catch (Exception e) {

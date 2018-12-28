@@ -1,6 +1,7 @@
 package GrupoA.FuseSupport;
 
 import GrupoA.AppServer.Models.*;
+import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
@@ -86,6 +87,7 @@ public class RestClient {
         cdr.mode = mode;
         cdr.uid = uid;
         cdr.gid = gid;
+        cdr.creationTime = System.currentTimeMillis();
         cdr.permission = permissions;
         try {
             return client.target(restBaseUri).path("directory")
@@ -124,6 +126,8 @@ public class RestClient {
         cfr.uid = uid;
         cfr.gid = gid;
         cfr.permission = permissions;
+        cfr.redundancyProto = RedundancyProto.Replication;
+        cfr.creationTime = System.currentTimeMillis();
         return client.target(restBaseUri).path("file")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(cfr, MediaType.APPLICATION_JSON), Boolean.class);

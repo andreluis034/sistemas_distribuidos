@@ -20,6 +20,7 @@ public class FileSystemClient {
         map.put(AttributeUpdateRequest.UpdateType.CHUID, ProtoAttributeUpdateRequestType.CHUID);
         map.put(AttributeUpdateRequest.UpdateType.CHGID, ProtoAttributeUpdateRequestType.CHGID);
         map.put(AttributeUpdateRequest.UpdateType.UPDATEACCESSTIME, ProtoAttributeUpdateRequestType.UPDATEACCESSTIME);
+        map.put(AttributeUpdateRequest.UpdateType.CHANGE_SIZE, ProtoAttributeUpdateRequestType.CHANGE_SIZE);
     }
 
     public FileSystemClient(String host, int port) {
@@ -52,7 +53,8 @@ public class FileSystemClient {
         return DirectoryContents.fromDirContents(cont);
     }
 
-    public Boolean CreateFile(String path, long mode, long uid, long gid, long permission) {
+    public Boolean CreateFile(String path, long mode, long uid, long gid, long permission,
+                              long creationTime, RedundancyProto redundancyProto) {
         return this.blockingStub.createNode(NodeArgs.newBuilder()
                 .setPath(path)
                 .setMode(mode)
@@ -60,10 +62,12 @@ public class FileSystemClient {
                 .setGid(gid)
                 .setType(FileType.FILE)
                 .setPermissions(permission)
+                .setCreationTime(creationTime)
+                .setRedundancy(redundancyProto)
                 .build()).getResult();
     }
 
-    public Boolean CreateDir(String path, long mode, long uid, long gid, long permission) {
+    public Boolean CreateDir(String path, long mode, long uid, long gid, long permission, long creationTime) {
         return this.blockingStub.createNode(NodeArgs.newBuilder()
                 .setPath(path)
                 .setMode(mode)
@@ -71,6 +75,7 @@ public class FileSystemClient {
                 .setGid(gid)
                 .setType(FileType.DIR)
                 .setPermissions(permission)
+                .setCreationTime(creationTime)
                 .build()).getResult();
     }
 
@@ -78,8 +83,9 @@ public class FileSystemClient {
         return this.blockingStub.rmDir(pathOnlyArgs.newBuilder().setFilePath(path).build()).getResult();
     }
 
-    public Boolean SetWriteLock(String path, long id) {
-        return this.blockingStub.setWriteLock(LockArgs.newBuilder().setPath(path).setId(id).build()).getResult();
+    public Boolean SetWriteLock(String path, long id, long version) {
+        return this.blockingStub.setWriteLock(LockArgs.newBuilder().setPath(path)
+                .setId(id).setCrushMapVersion(version).build()).getResult();
     }
 
     public Boolean ReleaseWriteLock(String path, long id) {

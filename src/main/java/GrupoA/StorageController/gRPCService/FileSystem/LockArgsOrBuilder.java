@@ -21,4 +21,9 @@ public interface LockArgsOrBuilder extends
    * <code>int64 id = 2;</code>
    */
   long getId();
+
+  /**
+   * <code>int64 crushMapVersion = 3;</code>
+   */
+  long getCrushMapVersion();
 }

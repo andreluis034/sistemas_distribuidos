@@ -22,6 +22,8 @@ private static final long serialVersionUID = 0L;
     uid_ = 0L;
     gid_ = 0L;
     permissions_ = 0L;
+    creationTime_ = 0L;
+    redundancy_ = 0;
   }
 
   @java.lang.Override
@@ -78,6 +80,17 @@ private static final long serialVersionUID = 0L;
           case 48: {
 
             permissions_ = input.readInt64();
+            break;
+          }
+          case 56: {
+
+            creationTime_ = input.readInt64();
+            break;
+          }
+          case 64: {
+            int rawValue = input.readEnum();
+
+            redundancy_ = rawValue;
             break;
           }
           default: {
@@ -199,6 +212,32 @@ private static final long serialVersionUID = 0L;
     return permissions_;
   }
 
+  public static final int CREATIONTIME_FIELD_NUMBER = 7;
+  private long creationTime_;
+  /**
+   * <code>int64 creationTime = 7;</code>
+   */
+  public long getCreationTime() {
+    return creationTime_;
+  }
+
+  public static final int REDUNDANCY_FIELD_NUMBER = 8;
+  private int redundancy_;
+  /**
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto Redundancy = 8;</code>
+   */
+  public int getRedundancyValue() {
+    return redundancy_;
+  }
+  /**
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto Redundancy = 8;</code>
+   */
+  public GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto getRedundancy() {
+    @SuppressWarnings("deprecation")
+    GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto result = GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto.valueOf(redundancy_);
+    return result == null ? GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto.UNRECOGNIZED : result;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -230,6 +269,12 @@ private static final long serialVersionUID = 0L;
     }
     if (permissions_ != 0L) {
       output.writeInt64(6, permissions_);
+    }
+    if (creationTime_ != 0L) {
+      output.writeInt64(7, creationTime_);
+    }
+    if (redundancy_ != GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto.ForwardErrorCorrection.getNumber()) {
+      output.writeEnum(8, redundancy_);
     }
     unknownFields.writeTo(output);
   }
@@ -263,6 +308,14 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(6, permissions_);
     }
+    if (creationTime_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(7, creationTime_);
+    }
+    if (redundancy_ != GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto.ForwardErrorCorrection.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(8, redundancy_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -290,6 +343,9 @@ private static final long serialVersionUID = 0L;
         == other.getGid());
     result = result && (getPermissions()
         == other.getPermissions());
+    result = result && (getCreationTime()
+        == other.getCreationTime());
+    result = result && redundancy_ == other.redundancy_;
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -317,6 +373,11 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + PERMISSIONS_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getPermissions());
+    hash = (37 * hash) + CREATIONTIME_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getCreationTime());
+    hash = (37 * hash) + REDUNDANCY_FIELD_NUMBER;
+    hash = (53 * hash) + redundancy_;
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -462,6 +523,10 @@ private static final long serialVersionUID = 0L;
 
       permissions_ = 0L;
 
+      creationTime_ = 0L;
+
+      redundancy_ = 0;
+
       return this;
     }
 
@@ -494,6 +559,8 @@ private static final long serialVersionUID = 0L;
       result.uid_ = uid_;
       result.gid_ = gid_;
       result.permissions_ = permissions_;
+      result.creationTime_ = creationTime_;
+      result.redundancy_ = redundancy_;
       onBuilt();
       return result;
     }
@@ -560,6 +627,12 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getPermissions() != 0L) {
         setPermissions(other.getPermissions());
+      }
+      if (other.getCreationTime() != 0L) {
+        setCreationTime(other.getCreationTime());
+      }
+      if (other.redundancy_ != 0) {
+        setRedundancyValue(other.getRedundancyValue());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -804,6 +877,77 @@ private static final long serialVersionUID = 0L;
     public Builder clearPermissions() {
       
       permissions_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long creationTime_ ;
+    /**
+     * <code>int64 creationTime = 7;</code>
+     */
+    public long getCreationTime() {
+      return creationTime_;
+    }
+    /**
+     * <code>int64 creationTime = 7;</code>
+     */
+    public Builder setCreationTime(long value) {
+      
+      creationTime_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 creationTime = 7;</code>
+     */
+    public Builder clearCreationTime() {
+      
+      creationTime_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private int redundancy_ = 0;
+    /**
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto Redundancy = 8;</code>
+     */
+    public int getRedundancyValue() {
+      return redundancy_;
+    }
+    /**
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto Redundancy = 8;</code>
+     */
+    public Builder setRedundancyValue(int value) {
+      redundancy_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto Redundancy = 8;</code>
+     */
+    public GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto getRedundancy() {
+      @SuppressWarnings("deprecation")
+      GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto result = GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto.valueOf(redundancy_);
+      return result == null ? GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto Redundancy = 8;</code>
+     */
+    public Builder setRedundancy(GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      redundancy_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto Redundancy = 8;</code>
+     */
+    public Builder clearRedundancy() {
+      
+      redundancy_ = 0;
       onChanged();
       return this;
     }

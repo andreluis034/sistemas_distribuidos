@@ -80,4 +80,13 @@ public interface iNodeAttributesOrBuilder extends
    * <code>int64 mtime = 13;</code>
    */
   long getMtime();
+
+  /**
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto Redundancy = 14;</code>
+   */
+  int getRedundancyValue();
+  /**
+   * <code>.GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto Redundancy = 14;</code>
+   */
+  GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto getRedundancy();
 }

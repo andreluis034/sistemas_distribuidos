@@ -33,6 +33,11 @@ public class UpdateAttributeCommand extends FileSystemCommand<Boolean> {
             case UPDATEACCESSTIME: {
                 node.accessTime = this.update.getValue() * 1000;
             }
+            case CHANGE_SIZE:
+                if(node.getNodeType() != FSTree.NodeType.FileNode)
+                    return false;
+                ((FSTree.FileNode)node).fileSize = this.update.getValue();
+                break;
             case UNRECOGNIZED:
                 return false;
             default:

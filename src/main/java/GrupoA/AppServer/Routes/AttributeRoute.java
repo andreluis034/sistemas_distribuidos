@@ -39,7 +39,9 @@ public class AttributeRoute {
             attr.Size = nattributes.getSize();
             attr.ParentINodeNumber = nattributes.getParentINodeNumber();
             attr.GroupId = nattributes.getGroupId();
-
+            attr.AccessTime = nattributes.getAtime();
+            attr.Modifiedtime = nattributes.getMtime();
+            attr.CreationTime = nattributes.getCtime();
             return attr;
         }
         catch (Exception e) {
