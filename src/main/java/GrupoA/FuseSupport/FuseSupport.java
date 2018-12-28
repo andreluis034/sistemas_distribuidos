@@ -15,7 +15,7 @@ public class FuseSupport {
 
         //restClient.readDir("/");
 
-        restClient.createFile("/a", 100, 1000, 1000);
+        restClient.createFile("/a", 100, 1000, 1000, 0x1b4);
     }
     public static void main(String[] args)  {
         test();

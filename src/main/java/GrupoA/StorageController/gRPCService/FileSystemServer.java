@@ -13,9 +13,17 @@ import java.util.List;
 import static GrupoA.AppServer.Models.CreateRequest.CreateRequestType.FILE;
 
 class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
-    @Override
-    public void mkDir(pathOnlyArgs request, StreamObserver<BooleanMessage> responseObserver) { //TODO
 
+    @Override
+    public void rmDir(pathOnlyArgs request, StreamObserver<IntArg> response) {
+        IntArg.Builder reply = IntArg.newBuilder().setResult(-1);
+        try {
+            reply.setResult(FileSystemService.getInstance().removeDirectory(request.getFilePath()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        response.onNext(reply.build());
+        response.onCompleted();
     }
 
     @Override
@@ -94,16 +102,16 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
         BooleanMessage.Builder status = BooleanMessage.newBuilder();
         status.setResult(false);
         try {
-            if (args.getType() == FILE) {
+            if (args.getType().equals(FileType.FILE)) {
                 status.setResult(FileSystemService.getInstance()
                         .mkFile(
                                 args.getPath(), args.getMode(),
-                                args.getUid(), args.getGid()));
+                                args.getUid(), args.getGid(), args.getPermissions()));
             } else {
                 status.setResult(FileSystemService.getInstance()
                         .mkDir(
                                 args.getPath(), args.getMode(),
-                                args.getUid(), args.getGid()));
+                                args.getUid(), args.getGid(), args.getPermissions()));
             }
 
         } catch (Exception e) {

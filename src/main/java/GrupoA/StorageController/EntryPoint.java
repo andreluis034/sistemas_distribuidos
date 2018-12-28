@@ -50,7 +50,8 @@ public class EntryPoint {
                     case '1':
                         System.out.println("mkDir");
                         boolean val = service.mkDir("/etc"
-                                + ThreadLocalRandom.current().nextInt(0, (int) Math.pow(2,16)));
+                                + ThreadLocalRandom.current().nextInt(0, (int) Math.pow(2,16)),
+                                0, 1000, 1000, 0x1FD);
                         System.out.printf("%s: %s\n", "ls", val);
                         break;
                     case '2':

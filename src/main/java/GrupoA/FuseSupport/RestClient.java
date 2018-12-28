@@ -9,7 +9,6 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 public class RestClient {
 
@@ -79,7 +78,7 @@ public class RestClient {
                 .post(Entity.entity(aur, MediaType.APPLICATION_JSON), Boolean.class);
     }
 
-    public boolean mkDir(String path, long mode, long uid, long gid) {
+    public boolean mkDir(String path, long mode, long uid, long gid, long permissions) {
         CreateRequest cdr = new CreateRequest();
 
         cdr.type = CreateRequest.CreateRequestType.DIR;
@@ -87,10 +86,15 @@ public class RestClient {
         cdr.mode = mode;
         cdr.uid = uid;
         cdr.gid = gid;
-
-        return client.target(restBaseUri).path("file")
-                .request(MediaType.APPLICATION_JSON)
-                .post(Entity.entity(cdr, MediaType.APPLICATION_JSON), Boolean.class);
+        cdr.permission = permissions;
+        try {
+            return client.target(restBaseUri).path("directory")
+                    .request(MediaType.APPLICATION_JSON)
+                    .post(Entity.entity(cdr, MediaType.APPLICATION_JSON), Boolean.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public DirectoryContents readDir(String path) {
@@ -99,13 +103,19 @@ public class RestClient {
                 .get(DirectoryContents.class);
     }
 
-    public Response createDirectory(Directory directory) {
-        return client.target( restBaseUri + "/dir")
-        .request(MediaType.APPLICATION_JSON)
-        .post(Entity.entity(directory, MediaType.APPLICATION_JSON));
+    public Integer removeDir(String path) {
+        try{
+            return client.target(restBaseUri).path("directory").path(path)
+                    .request(MediaType.APPLICATION_JSON)
+                    .delete(Integer.class);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return -2;
+
     }
 
-    public Boolean createFile(String path, long mode, long uid, long gid){ //TODO set creation time
+    public Boolean createFile(String path, long mode, long uid, long gid, long permissions){ //TODO set creation time
         CreateRequest cfr = new CreateRequest();
 
         cfr.type = CreateRequest.CreateRequestType.FILE;
@@ -113,8 +123,15 @@ public class RestClient {
         cfr.mode = mode;
         cfr.uid = uid;
         cfr.gid = gid;
+        cfr.permission = permissions;
         return client.target(restBaseUri).path("file")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(cfr, MediaType.APPLICATION_JSON), Boolean.class);
+    }
+
+    public int write(String path, WriteRequest writeRequest) {
+        return client.target(restBaseUri).path("file")
+                .request(MediaType.APPLICATION_JSON)
+                .put(Entity.entity(writeRequest, MediaType.APPLICATION_JSON), Integer.class);
     }
 }

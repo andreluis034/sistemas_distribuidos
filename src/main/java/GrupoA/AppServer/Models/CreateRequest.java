@@ -8,4 +8,5 @@ public class CreateRequest {
     public long mode;
     public long uid;
     public long gid;
+    public long permission;
 }

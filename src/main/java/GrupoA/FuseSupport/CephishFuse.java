@@ -3,15 +3,22 @@ package GrupoA.FuseSupport;
 import GrupoA.AppServer.Models.AttributeUpdateRequest;
 import GrupoA.AppServer.Models.DirectoryContents;
 import GrupoA.AppServer.Models.NodeAttributes;
+import GrupoA.AppServer.Models.WriteRequest;
+import GrupoA.StorageController.gRPCService.FileSystem.FileType;
 import jnr.ffi.Pointer;
 import jnr.ffi.types.*;
 import ru.serce.jnrfuse.ErrorCodes;
 import ru.serce.jnrfuse.FuseFillDir;
 import ru.serce.jnrfuse.FuseStubFS;
-import ru.serce.jnrfuse.NotImplemented;
 import ru.serce.jnrfuse.struct.FileStat;
 import ru.serce.jnrfuse.struct.FuseFileInfo;
 import ru.serce.jnrfuse.struct.Timespec;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import static GrupoA.AppServer.Models.AttributeUpdateRequest.UpdateType.UPDATEACCESSTIME;
 
@@ -51,9 +58,11 @@ public class CephishFuse extends FuseStubFS {
     @Override
     public int mkdir(String path, @mode_t long mode) {
         NodeAttributes attr = restClient.getAttribute(path);
+        long permissions = mode & 0x1FF;
         if (attr != null)
             return -ErrorCodes.EEXIST();
-        if( restClient.mkDir(path, mode, 1000, 1000))
+        System.out.println("creating dir");
+        if( restClient.mkDir(path, mode, 1000, 1000, permissions))
             return 0;
         return -ErrorCodes.ENOENT();
     }
@@ -80,9 +89,10 @@ public class CephishFuse extends FuseStubFS {
     @Override
     public int create(String path, @mode_t long mode, FuseFileInfo fi) {
         NodeAttributes attr = restClient.getAttribute(path);
+        long permissions = mode & 0x1FF;
         if (attr != null)
             return -ErrorCodes.EEXIST();
-        boolean result = restClient.createFile(path, mode, 1000, 1000);
+        boolean result = restClient.createFile(path, mode, 1000, 1000, permissions);
         if (result)
             return 0;
 
@@ -92,6 +102,69 @@ public class CephishFuse extends FuseStubFS {
     @Override
     public int utimens(String path, Timespec[] timespec) { //TODO set access time
         restClient.updateAttribute(path, UPDATEACCESSTIME, timespec[0].tv_sec.longValue());
+        return 0;
+    }
+
+    @Override
+    public int rmdir(String path) {
+        return restClient.removeDir(path);
+    }
+
+
+    private HashMap<String, List<WriteRequest>> pendingWrites = new HashMap<>();
+    private synchronized void addWriteRequest(String path, Pointer buf, @size_t long size, @off_t long offset) {
+        List<WriteRequest> pendingWritesList = pendingWrites.get(path);
+        if (pendingWritesList == null) {
+            pendingWritesList = new ArrayList<>();
+            pendingWrites.put(path, pendingWritesList);
+        }
+        WriteRequest wr = new WriteRequest();
+        wr.path = path;
+        wr.data = new byte[(int)size]; //todo/issue Alternative for 4GB+ size files?
+        wr.offset = offset;
+
+
+        buf.get(0, wr.data,0, wr.data.length);
+        pendingWritesList.add(wr);
+
+    }
+
+    private synchronized void mergeRequests(String path) { //TODO make sure the list is sorted
+        List<WriteRequest> pendingWritesList = pendingWrites.get(path);
+        for (int i = 0; i < pendingWritesList.size(); ++i) {
+            WriteRequest wri = pendingWritesList.get(i);
+            for(int j = i; j < pendingWritesList.size(); ++j) {
+                WriteRequest wrj = pendingWritesList.get(j);
+                if(wri.offset + wri.data.length < wrj.offset)
+                    continue;
+                int collision = (int) (wri.offset + wri.data.length - wrj.offset);
+                byte[] data = new byte[wri.data.length + wrj.data.length - collision];
+                System.arraycopy(wri.data, 0, data, 0, wri.data.length - collision);
+                System.arraycopy(wrj.data, 0, data, wri.data.length - collision, wrj.data.length);
+                wri.data = data;
+                pendingWrites.remove(wrj);
+            }
+        }
+    }
+
+    @Override
+    public int write(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
+        NodeAttributes attr = restClient.getAttribute(path);
+        if (attr == null)
+            return -ErrorCodes.ENOENT();
+        if(attr._FileType.equals(FileType.DIR))
+            return -ErrorCodes.EISDIR();
+        addWriteRequest(path, buf, size, offset);
+        return 0;
+    }
+
+    @Override
+    public int release(String path, FuseFileInfo fi) {
+        List<WriteRequest> pendingWritesList = pendingWrites.get(path);
+        for (WriteRequest wr : pendingWritesList) {
+
+            pendingWritesList.remove(wr);
+        }
         return 0;
     }
 

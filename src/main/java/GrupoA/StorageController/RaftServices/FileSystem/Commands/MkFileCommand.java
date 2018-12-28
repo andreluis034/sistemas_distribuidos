@@ -11,12 +11,14 @@ public class MkFileCommand extends FileSystemCommand<Boolean> {
     private long mode;
     private long uid;
     private long gid;
+    private long permission;
 
-    public MkFileCommand(String path, long mode, long uid, long gid) {
+    public MkFileCommand(String path, long mode, long uid, long gid, long permission) {
         this.path = path;
         this.mode = mode;
         this.uid = uid;
         this.gid = gid;
+        this.permission = permission;
     }
 
     @Override
@@ -28,6 +30,6 @@ public class MkFileCommand extends FileSystemCommand<Boolean> {
         if(node.getNodeType() != FSTree.NodeType.DirNode) {
             return false;
         }
-        return context.mkFile(this.path, uid, gid);
+        return context.mkFile(this.path, uid, gid, permission);
     }
 }

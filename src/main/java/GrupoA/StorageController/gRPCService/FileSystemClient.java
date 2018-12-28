@@ -17,6 +17,8 @@ public class FileSystemClient {
 
     static {
         map.put(AttributeUpdateRequest.UpdateType.CHMOD, ProtoAttributeUpdateRequestType.CHMOD);
+        map.put(AttributeUpdateRequest.UpdateType.CHUID, ProtoAttributeUpdateRequestType.CHUID);
+        map.put(AttributeUpdateRequest.UpdateType.CHGID, ProtoAttributeUpdateRequestType.CHGID);
         map.put(AttributeUpdateRequest.UpdateType.UPDATEACCESSTIME, ProtoAttributeUpdateRequestType.UPDATEACCESSTIME);
     }
 
@@ -50,13 +52,38 @@ public class FileSystemClient {
         return DirectoryContents.fromDirContents(cont);
     }
 
-    public Boolean Create(String path, long mode, long uid, long gid) {
-        return this.blockingStub.createFile(CreateFileArgs.newBuilder()
+    public Boolean CreateFile(String path, long mode, long uid, long gid, long permission) {
+        return this.blockingStub.createNode(NodeArgs.newBuilder()
                 .setPath(path)
                 .setMode(mode)
                 .setUid(uid)
                 .setGid(gid)
+                .setType(FileType.FILE)
+                .setPermissions(permission)
                 .build()).getResult();
+    }
+
+    public Boolean CreateDir(String path, long mode, long uid, long gid, long permission) {
+        return this.blockingStub.createNode(NodeArgs.newBuilder()
+                .setPath(path)
+                .setMode(mode)
+                .setUid(uid)
+                .setGid(gid)
+                .setType(FileType.DIR)
+                .setPermissions(permission)
+                .build()).getResult();
+    }
+
+    public int RemoveDir(String path) {
+        return this.blockingStub.rmDir(pathOnlyArgs.newBuilder().setFilePath(path).build()).getResult();
+    }
+
+    public Boolean SetWriteLock(String path, long id) {
+        return this.blockingStub.setWriteLock(LockArgs.newBuilder().setPath(path).setId(id).build()).getResult();
+    }
+
+    public Boolean ReleaseWriteLock(String path, long id) {
+        return this.blockingStub.releaseWriteLock(LockArgs.newBuilder().setPath(path).setId(id).build()).getResult();
     }
 
 }

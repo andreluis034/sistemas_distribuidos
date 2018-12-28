@@ -10,8 +10,7 @@ package GrupoA.StorageController.gRPCService.FileSystem;
 service FileSystem {
 //    rpc mkFile (pathOnlyArgs) returns (BooleanMessage) {}
     rpc rmFile (pathOnlyArgs) returns (BooleanMessage) {}
-    rpc rmDir (pathOnlyArgs) returns (BooleanMessage) {}
-    rpc mkDir (pathOnlyArgs) returns (BooleanMessage) {}
+    rpc rmDir (pathOnlyArgs) returns (IntArg) {}
 
     rpc getAttr (pathOnlyArgs) returns (iNodeAttributes) {}
     rpc setAttr (UpdateAttribute) returns (BooleanMessage) {}
@@ -19,6 +18,19 @@ service FileSystem {
     rpc readDir (pathOnlyArgs) returns (DirContents) {}
 
     rpc CreateNode (NodeArgs) returns (BooleanMessage) {}
+
+    rpc SetWriteLock (LockArgs) returns (BooleanMessage) {}
+    rpc ReleaseWriteLock (LockArgs) returns (BooleanMessage) {}
+}
+
+
+message LockArgs {
+    string path = 1;
+    int64 id = 2;
+}
+
+message IntArg {
+    int32 result = 1;
 }
 
 message LongArg {
@@ -31,6 +43,7 @@ message NodeArgs {
     int64 mode = 2;
     int64 uid = 3;
     int64 gid = 4;
+    int64 permissions = 6;
 }
 
 message DirContents {

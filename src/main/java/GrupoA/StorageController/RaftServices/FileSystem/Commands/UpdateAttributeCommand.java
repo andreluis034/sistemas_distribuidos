@@ -2,6 +2,7 @@ package GrupoA.StorageController.RaftServices.FileSystem.Commands;
 
 import GrupoA.StorageController.FileSystem.FSTree;
 import GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage;
+import GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType;
 import GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute;
 
 public class UpdateAttributeCommand extends FileSystemCommand<Boolean> {
@@ -26,12 +27,14 @@ public class UpdateAttributeCommand extends FileSystemCommand<Boolean> {
             case CHUID:
                 chuid(node);
                 break;
-            case GHGID:
+            case CHGID:
                 chgid(node);
                 break;
             case UPDATEACCESSTIME: {
                 node.accessTime = this.update.getValue() * 1000;
             }
+            case UNRECOGNIZED:
+                return false;
             default:
                 return false;
         }

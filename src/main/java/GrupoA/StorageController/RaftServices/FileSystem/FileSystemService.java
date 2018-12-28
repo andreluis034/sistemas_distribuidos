@@ -48,12 +48,16 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
     protected enum Command {mkDir, rmDir, mkFile, rmFile, ls, getINode}
 
-    public boolean mkDir(String path, long mode, long uid, long gid) throws Exception {
-        return invoke(new MkDirCommand(path, mode, uid, gid));
+    public boolean mkDir(String path, long mode, long uid, long gid, long permission) throws Exception {
+        return invoke(new MkDirCommand(path, mode, uid, gid, permission));
     }
 
-    public boolean mkFile(String path, long mode, long uid, long gid) throws Exception {//TODO modo, modo de abertura
-        return invoke(new MkFileCommand(path, mode, uid, gid));
+    public boolean mkFile(String path, long mode, long uid, long gid, long permission) throws Exception {
+        return invoke(new MkFileCommand(path, mode, uid, gid, permission));
+    }
+
+    public int removeDirectory(String path) throws Exception {
+        return this.invoke(new RemoveDirCommand(path));
     }
 
     public boolean updateAttribute(String path, UpdateAttribute update) throws Exception {
@@ -114,7 +118,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
                     return Util.objectToByteBuffer(bool_return_value);
                 case rmDir:
-                    bool_return_value = fsTree.rmDir(path);
+                    bool_return_value = false;
 
                     try {
                         Files.write(fsTree.journal_path,

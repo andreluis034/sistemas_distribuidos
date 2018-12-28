@@ -89,9 +89,12 @@ public class FSTree implements Serializable {
     /**
      * Creates the given directory
      * @param path the full path of the directory to create
+     * @param uid the uid of the file
+     * @param gid the group of the file
+     * @param permission the permissions of the file
      * @return true if the directory was created
      */
-    public synchronized Boolean mkDir(String path, long uid, long gid) {
+    public synchronized Boolean mkDir(String path, long uid, long gid, long permission) {
         try {
             Files.write(journal_path, Collections.singleton("FSTree.mkDir(\"" + path + "\")"));
         } catch (IOException ignored) {
@@ -115,6 +118,9 @@ public class FSTree implements Serializable {
         newDir.UserId = uid;
         newDir.GroupId = gid;
         this.addNode((DirNode)parent, newDir);
+        newDir.UserPermissions = (byte)((permission & (0x7 << 6)) >> 6);
+        newDir.GroupPermissions = (byte)((permission & (0x7 <<3)) >> 3);
+        newDir.OthersPermissions = (byte)((permission & 0x007) >> 0);
         return true;
 
     }
@@ -122,9 +128,9 @@ public class FSTree implements Serializable {
     /**
      * Removes an empty dir from the Tree
      * @param path the directory to remove
-     * @return True if the directory was removed
+     * @return Linux System Errors
      */
-    public synchronized Boolean rmDir(String path) {
+    public synchronized Integer rmDir(String path) {
         try {
             Files.write(journal_path, Collections.singleton("FSTree.rmDir(\"" + path + "\")"));
         } catch (IOException ignored) {
@@ -134,18 +140,20 @@ public class FSTree implements Serializable {
 
         // Can't remove the root
         if (path.equals("/"))
-            return false;
+            return -1; // Operation not permited
 
         Node node = this.getNode(path);
-        if(node == null || node.getNodeType() != NodeType.DirNode)
-            return false;
+        if(node == null)
+            return -2; //No such file or dir
+        if(node.getNodeType() != NodeType.DirNode)
+            return -20; //Not a directory
         DirNode dirNode = (DirNode)node;
         if(dirNode.children.size() != 0) //Cannot remove non-empty dir
-            return false;
+            return -39;
 
 
         this.removeNode(dirNode.Parent, dirNode);
-        return true;
+        return 0;
     }
 
     /**
@@ -153,9 +161,10 @@ public class FSTree implements Serializable {
      * @param path the path where to create the file
      * @param uid the uid the file belongs to
      * @param gid the gid the file belongs to
+     * @param permission the permissions of the file
      * @return true if the file was created
      */
-    public synchronized Boolean mkFile(String path, long uid, long gid) {
+    public synchronized Boolean mkFile(String path, long uid, long gid, long permission) {
         try {
             Files.write(journal_path, Collections.singleton("FSTree.mkFile(\"" + path + "\"" + ")"));
         } catch (IOException ignored) {
@@ -179,6 +188,9 @@ public class FSTree implements Serializable {
         newFile.UserId = uid;
         newFile.GroupId = gid;
         this.addNode((DirNode)parent, newFile);
+        newFile.UserPermissions = (byte)((permission & (0x7 << 6)) >> 6);
+        newFile.GroupPermissions = (byte)((permission & (0x7 <<3)) >> 3);
+        newFile.OthersPermissions = (byte)((permission & 0x007) >> 0);
         return true;
     }
 

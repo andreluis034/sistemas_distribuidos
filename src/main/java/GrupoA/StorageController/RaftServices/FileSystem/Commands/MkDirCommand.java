@@ -12,12 +12,14 @@ public class MkDirCommand extends FileSystemCommand<Boolean> {
     private String path = "";
     private Long iNode = 0L;
     private long mode, uid, gid;
+    private long permission = 0x124; //default read only
 
-    public MkDirCommand(String path, long mode, long uid, long gid) {
+    public MkDirCommand(String path, long mode, long uid, long gid, long permission) {
         this.path = path;
         this.mode = mode;
         this.uid = uid;
         this.gid = gid;
+        this.permission = permission;
     }
 
     public MkDirCommand(Long iNode) {
@@ -39,6 +41,6 @@ public class MkDirCommand extends FileSystemCommand<Boolean> {
         if(node.getNodeType() != FSTree.NodeType.DirNode)
             return false;
 
-        return context.mkDir(this.path, uid, gid);
+        return context.mkDir(this.path, this.uid, this.gid, this.permission);
     }
 }
