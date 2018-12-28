@@ -1,9 +1,8 @@
 package GrupoA.OSD.OSDClient;
 
-import GrupoA.OSD.OSDService.EmptyMessage;
-import GrupoA.OSD.OSDService.GetObjectArgs;
-import GrupoA.OSD.OSDService.ObjectData;
-import GrupoA.OSD.OSDService.OSDGrpc;
+import GrupoA.AppServer.Routes.FileRoute;
+import GrupoA.OSD.OSDService.*;
+import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -65,9 +64,25 @@ public class OSDClient {
         return this.getObject(finalHash);
     }
 
+    public void WriteMiniObject(Long hash, FileRoute.WriteBlockData wbd) {
+        this.WriteMiniObject(MiniObject.newBuilder()
+                .setHash(hash)
+                .setObjectData(ByteString.copyFrom(wbd.Data))
+                .setStartOffset(wbd.startRelativeOffset)
+                .setEndOffset(wbd.endRelativeOffset)
+                .setDuplicate(wbd.red.equals(RedundancyProto.Replication))
+                .build());
+    }
+
+    public void WriteMiniObject(MiniObject mo) {
+        this.blockingStub.writeMiniObject(mo);
+    }
+
     public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
+
+
 
     public boolean ping() {
         try {

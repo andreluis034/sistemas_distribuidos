@@ -1,5 +1,6 @@
 package GrupoA.OSD.OSDServer;
 
+import GrupoA.OSD.OSDClient.OSDClient;
 import GrupoA.OSD.OSDService.*;
 
 import GrupoA.StorageController.gRPCService.OSDListener.OSDDetails;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.LinkedList;
 import java.util.List;
 
 class OSDImpl extends OSDGrpc.OSDImplBase {
@@ -72,14 +74,40 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
         response.onCompleted();
     }
 
+    @Override
+    public void writeMiniObject(MiniObject args, StreamObserver<EmptyMessage> response) {
+        EmptyMessage reply = EmptyMessage.newBuilder().build();
+        if(OSDServer.IsLeader && args.getDuplicate()) {
+            for (OSDDetails osd : OSDServer.OSDs) {
+                if(osd.getLeader())
+                    continue;
+                OSDClient client = new OSDClient(osd.getAddress(), osd.getPort());
+                client.WriteMiniObject(args);
+            }
+        }
+        try {
+            FileOutputStream fos = new FileOutputStream(Long.toHexString(args.getHash()));
+            int size = args.getEndOffset() - args.getStartOffset();
+            fos.write(args.getObjectData().toByteArray(), args.getStartOffset(), size);
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();;
+        }
+
+    }
 
 }
 
 
 public class OSDServer {
 
+    public static List<OSDDetails> OSDs = new LinkedList<OSDDetails>();
+    public static boolean IsLeader = false;
+
     private static String myHost = "";
     private static int myPort = 50051;
+
+
     private Server server;
     private OSDImpl impl = null;
     private OSDListenerClient client;
@@ -106,9 +134,12 @@ public class OSDServer {
             }
         });
         System.out.println("Announcing "+ myHost + ":" + 50051 + " to " + "192.168.10.70");
-        List<OSDDetails> OSDs =  client.announce(myHost, myPort);
+        OSDs = client.announce(myHost, myPort);
         System.out.println(OSDs.size());
         for (OSDDetails osd : OSDs) {
+            if(osd.getAddress().equals(myHost) && osd.getPort() == myPort){
+                IsLeader = osd.getLeader();
+            }
             System.out.println(osd.getAddress() + ":" + osd.getPort() + " leader: " + osd.getLeader());
         }
     }

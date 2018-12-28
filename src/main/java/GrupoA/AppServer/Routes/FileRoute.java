@@ -4,6 +4,7 @@ import GrupoA.AppServer.ApplicationServer;
 import GrupoA.AppServer.Models.AttributeUpdateRequest;
 import GrupoA.AppServer.Models.CreateRequest;
 import GrupoA.AppServer.Models.WriteRequest;
+import GrupoA.OSD.OSDClient.OSDClient;
 import GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse;
 import GrupoA.StorageController.gRPCService.FileSystem.LockResponse;
 import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
@@ -69,15 +70,15 @@ public class FileRoute {
         return out;
     }
 
-    private class WriteBlockData {
+    public class WriteBlockData {
 
         String path;
         int superBlock;
         int subBlock;
-        RedundancyProto red;
-        int startRelativeOffset = 0;
-        int endRelativeOffset = ApplicationServer.subBlockSize;
-        byte[] Data = new byte[ApplicationServer.subBlockSize];
+        public RedundancyProto red;
+        public int startRelativeOffset = 0;
+        public int endRelativeOffset = ApplicationServer.subBlockSize;
+        public byte[] Data = new byte[ApplicationServer.subBlockSize];
 
         WriteBlockData(String path, int superblock, int subblock, RedundancyProto red){
             this.path = path;
@@ -94,12 +95,16 @@ public class FileRoute {
             return Jenkins.hash64(this.getPathForPG().getBytes());
         }
 
-        public long getGlobalOffset() {
+        long getGlobalOffset() {
             return ApplicationServer.maxBlockSize * superBlock + subBlock * ApplicationServer.subBlockSize;
         }
 
         int getActualSize() {
             return this.endRelativeOffset - this.startRelativeOffset;
+        }
+
+        boolean isComplete() {
+            return ApplicationServer.subBlockSize == this.getActualSize();
         }
     }
 
@@ -179,7 +184,28 @@ public class FileRoute {
             finalSizeUpdated = newSize != nattributes.getSize();
 
 
-            //TODO write
+            //TODO calculate jerasure
+
+            for (WriteBlockData wbd : blocksToWrite) {
+                CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto
+                        osd;
+                long hashToUse = wbd.getHashForPG();
+                CrushMapResponse.PlacementGroupProto
+                        PG = crushmap.getPGs((int) (wbd.getHashForPG() % crushmap.getPGsCount()));
+                if (nattributes.getRedundancy().equals(RedundancyProto.Replication)) {
+                    osd = PG.getOSDs(0); //TODO actually check this is the leader??
+                } else { //FOR JERASURE
+                    String hash_str = Long.toHexString(wbd.getHashForPG()) + "_" + PG.getPGNumber();
+                    hashToUse = Jenkins.hash64(hash_str.getBytes());
+                    osd = PG.getOSDs((int) (hashToUse % PG.getOSDsCount()));
+                }
+                String hostname = osd.getAddress().split(";")[0];
+                Integer port = Integer.parseInt(osd.getAddress().split(";")[1]);
+                OSDClient client = new OSDClient(hostname, port);
+                client.WriteMiniObject(hashToUse, wbd);
+                client.shutdown();
+
+            }
 
 
             if(finalSizeUpdated){

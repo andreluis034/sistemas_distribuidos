@@ -10,9 +10,20 @@ package GrupoA.OSD.OSDService;
 service OSD {
     rpc putObject (ObjectData) returns (EmptyMessage) {}
 
+    rpc writeMiniObject(MiniObject) returns (EmptyMessage) {}
+    rpc readMiniObject(GetObjectArgs) returns (EmptyMessage) {}
+
     rpc getObject (GetObjectArgs) returns (ObjectData) {}
 
     rpc ping (EmptyMessage) returns (BooleanMessage) {}
+}
+
+message MiniObject {
+    int64 hash = 1;
+    bytes objectData = 2;
+    int32 startOffset = 3;
+    int32 endOffset = 4;
+    bool duplicate = 5;
 }
 
 message GetObjectArgs {
