@@ -4,6 +4,8 @@ import GrupoA.AppServer.ApplicationServer;
 import GrupoA.AppServer.Models.AttributeUpdateRequest;
 import GrupoA.AppServer.Models.CreateRequest;
 import GrupoA.AppServer.Models.WriteRequest;
+import GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse;
+import GrupoA.StorageController.gRPCService.FileSystem.LockResponse;
 import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
 import GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes;
 import GrupoA.Utility.Jenkins;
@@ -101,7 +103,7 @@ public class FileRoute {
         }
     }
 
-    public long handleFillingPrevious(iNodeAttributes attr, WriteRequest wr, List<WriteBlockData> wbds) {
+    private long handleFillingPrevious(iNodeAttributes attr, WriteRequest wr, List<WriteBlockData> wbds) {
         if(attr.getSize() >= wr.offset)
             return attr.getSize();
         if(wr.data.length == 0)
@@ -123,7 +125,7 @@ public class FileRoute {
         return wr.offset;
     }
 
-    public long handleWritingAtOffset(iNodeAttributes attr, WriteRequest wr, List<WriteBlockData> wbds) {
+    private long handleWritingAtOffset(iNodeAttributes attr, WriteRequest wr, List<WriteBlockData> wbds) {
         List<Integer> superBlocks = getSuperBlocks(wr.offset, wr.data.length);
         long currentGlobalOffset = wr.offset;
         long relativeOffset = 0;
@@ -159,8 +161,14 @@ public class FileRoute {
         try {
             System.out.println("Writting file " + wr.path);
             long id = Jenkins.hash64(servletRequest.getRemoteHost().getBytes());
-            boolean gotLock = ApplicationServer.FileSystemClient.SetWriteLock(wr.path, id, 0); //TODO
-            if(!gotLock)
+            LockResponse gotLock = ApplicationServer.FileSystemClient
+                    .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion()); //TODO
+            while(gotLock.getMapOutdated()) {
+                crushmap = ApplicationServer.FileSystemClient.GetLatestCrushMap();
+                ApplicationServer.FileSystemClient
+                        .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion());
+            }
+            if(!gotLock.getResult())
                 return -16; /* Device or resource busy */
             Boolean finalSizeUpdated = false;
             List<WriteBlockData> blocksToWrite = new LinkedList<>();
@@ -169,9 +177,11 @@ public class FileRoute {
             long newSize = Math.max(handleFillingPrevious(nattributes, wr, blocksToWrite),
                     handleWritingAtOffset(nattributes, wr, blocksToWrite));
             finalSizeUpdated = newSize != nattributes.getSize();
+
+
             //TODO write
 
-            //TODO update data
+
             if(finalSizeUpdated){
                 ApplicationServer.FileSystemClient.UpdateAttribute(wr.path, newSize, AttributeUpdateRequest.UpdateType.CHANGE_SIZE );
             }
@@ -183,4 +193,6 @@ public class FileRoute {
         return -5; //IO error
     }
 
+
+    private static CrushMapResponse crushmap = null;
 }

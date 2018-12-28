@@ -283,6 +283,38 @@ public final class FileSystemGrpc {
      return getReleaseWriteLockMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage,
+      GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse> getGetLatestMapMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetLatestMap",
+      requestType = GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage.class,
+      responseType = GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage,
+      GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse> getGetLatestMapMethod() {
+    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage, GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse> getGetLatestMapMethod;
+    if ((getGetLatestMapMethod = FileSystemGrpc.getGetLatestMapMethod) == null) {
+      synchronized (FileSystemGrpc.class) {
+        if ((getGetLatestMapMethod = FileSystemGrpc.getGetLatestMapMethod) == null) {
+          FileSystemGrpc.getGetLatestMapMethod = getGetLatestMapMethod = 
+              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage, GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "GrupoA.StorageController.gRPCService.FileSystem.FileSystem", "GetLatestMap"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new FileSystemMethodDescriptorSupplier("GetLatestMap"))
+                  .build();
+          }
+        }
+     }
+     return getGetLatestMapMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -369,6 +401,13 @@ public final class FileSystemGrpc {
       asyncUnimplementedUnaryCall(getReleaseWriteLockMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void getLatestMap(GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetLatestMapMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -427,6 +466,13 @@ public final class FileSystemGrpc {
                 GrupoA.StorageController.gRPCService.FileSystem.LockArgs,
                 GrupoA.StorageController.gRPCService.FileSystem.LockResponse>(
                   this, METHODID_RELEASE_WRITE_LOCK)))
+          .addMethod(
+            getGetLatestMapMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage,
+                GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse>(
+                  this, METHODID_GET_LATEST_MAP)))
           .build();
     }
   }
@@ -515,6 +561,14 @@ public final class FileSystemGrpc {
       asyncUnaryCall(
           getChannel().newCall(getReleaseWriteLockMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void getLatestMap(GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetLatestMapMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -592,6 +646,13 @@ public final class FileSystemGrpc {
     public GrupoA.StorageController.gRPCService.FileSystem.LockResponse releaseWriteLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request) {
       return blockingUnaryCall(
           getChannel(), getReleaseWriteLockMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse getLatestMap(GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage request) {
+      return blockingUnaryCall(
+          getChannel(), getGetLatestMapMethod(), getCallOptions(), request);
     }
   }
 
@@ -679,6 +740,14 @@ public final class FileSystemGrpc {
       return futureUnaryCall(
           getChannel().newCall(getReleaseWriteLockMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse> getLatestMap(
+        GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetLatestMapMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_RM_FILE = 0;
@@ -689,6 +758,7 @@ public final class FileSystemGrpc {
   private static final int METHODID_CREATE_NODE = 5;
   private static final int METHODID_SET_WRITE_LOCK = 6;
   private static final int METHODID_RELEASE_WRITE_LOCK = 7;
+  private static final int METHODID_GET_LATEST_MAP = 8;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -738,6 +808,10 @@ public final class FileSystemGrpc {
         case METHODID_RELEASE_WRITE_LOCK:
           serviceImpl.releaseWriteLock((GrupoA.StorageController.gRPCService.FileSystem.LockArgs) request,
               (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.LockResponse>) responseObserver);
+          break;
+        case METHODID_GET_LATEST_MAP:
+          serviceImpl.getLatestMap((GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage) request,
+              (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -808,6 +882,7 @@ public final class FileSystemGrpc {
               .addMethod(getCreateNodeMethod())
               .addMethod(getSetWriteLockMethod())
               .addMethod(getReleaseWriteLockMethod())
+              .addMethod(getGetLatestMapMethod())
               .build();
         }
       }

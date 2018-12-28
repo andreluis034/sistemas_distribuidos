@@ -1,6 +1,10 @@
 package GrupoA.StorageController.gRPCService;
 
+import GrupoA.StorageController.Crush.CrushMap;
+import GrupoA.StorageController.Crush.ObjectStorageDaemon;
+import GrupoA.StorageController.Crush.PlacementGroup;
 import GrupoA.StorageController.FileSystem.FSTree;
+import GrupoA.StorageController.RaftServices.CrushMap.CrushMapService;
 import GrupoA.StorageController.RaftServices.FileSystem.FileSystemService;
 import GrupoA.StorageController.gRPCService.FileSystem.*;
 import io.grpc.Server;
@@ -102,7 +106,6 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
 
     @Override
     public void createNode(NodeArgs args, StreamObserver<BooleanMessage> rsp) {
-
         BooleanMessage.Builder status = BooleanMessage.newBuilder();
         status.setResult(false);
         try {
@@ -124,6 +127,47 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
             e.printStackTrace();
         }
         rsp.onNext(status.build());
+        rsp.onCompleted();
+    }
+
+    @Override
+    public void getLatestMap(EmptyMessage args, StreamObserver<CrushMapResponse> rsp ){
+        CrushMapResponse.Builder builder = CrushMapResponse.newBuilder().setVersion(-1);
+        try {
+            CrushMap cm = CrushMapService.getInstance().getLatestMap();
+            for (PlacementGroup pg : cm.getPGs()) {
+                CrushMapResponse.PlacementGroupProto.Builder pgBuilder = CrushMapResponse.PlacementGroupProto.newBuilder();
+                pgBuilder.setPGNumber(pg.getPgID());
+                for(ObjectStorageDaemon osd : pg.getOSDs()){
+                    CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto.Builder
+                            osdBuilder = CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto.newBuilder();
+                    osdBuilder.setAddress(osd.getAddress()).setIsLeader(osd.isLeader);
+                    pgBuilder.addOSDs(osdBuilder);
+                }
+
+                builder.addPGs(pgBuilder);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        rsp.onNext(builder.build());
+        rsp.onCompleted();
+
+    }
+
+    @Override
+    public void setWriteLock(LockArgs args, StreamObserver<LockResponse> rsp) {
+        LockResponse.Builder builder = LockResponse.newBuilder().setResult(false).setMapOutdated(true);
+        try {
+            CrushMap cm = CrushMapService.getInstance().getLatestMap();
+            if (cm.getVersion() == args.getCrushMapVersion()) { //TODO locks
+                builder.setResult(true).setMapOutdated(false);
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        rsp.onNext(builder.build());
         rsp.onCompleted();
     }
 }

@@ -21,8 +21,26 @@ service FileSystem {
 
     rpc SetWriteLock (LockArgs) returns (LockResponse) {}
     rpc ReleaseWriteLock (LockArgs) returns (LockResponse) {}
+
+    rpc GetLatestMap (EmptyMessage) returns (CrushMapResponse) {}
 }
 
+
+message CrushMapResponse {
+    message PlacementGroupProto {
+        message ObjectStorageDaemonProto {
+            string Address = 1;
+            bool IsLeader = 2;
+        }
+        
+        int64 PGNumber = 1;
+        repeated ObjectStorageDaemonProto OSDs = 2;
+        
+    }
+    int64 Version = 1;
+    repeated PlacementGroupProto PGs = 2;
+    
+}
 message LockResponse {
     bool Result = 1;
     bool MapOutdated = 2;
@@ -118,6 +136,9 @@ message pathOnlyArgs {
     string filePath = 1;
 }
 
+message EmptyMessage {
+
+}
 
 message ObjectData {
     int64 hash = 1;
