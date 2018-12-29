@@ -31,6 +31,19 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
     }
 
     @Override
+    public void rmFile(pathOnlyArgs request, StreamObserver<IntArg> response) {
+        IntArg.Builder reply = IntArg.newBuilder().setResult(-1);
+        try {
+            reply.setResult(FileSystemService.getInstance().removeFile(request.getFilePath()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        response.onNext(reply.build());
+        response.onCompleted();
+    }
+
+    @Override
     public void getAttr(pathOnlyArgs request, StreamObserver<iNodeAttributes> responseObserver) { //TODO don't dirty read from tree?
         iNodeAttributes.Builder reply = iNodeAttributes.newBuilder();
         reply.setRedundancy(RedundancyProto.None);

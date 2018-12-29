@@ -205,7 +205,7 @@ public class FSTree implements Serializable {
      * @param path the absolute path of the file to the delete
      * @return true if file has been deleted, false if otherwise
      */
-    public synchronized Boolean rmFile(String path) {
+    public synchronized Integer rmFile(String path) {
         try {
             Files.write(journal_path, Collections.singleton("FSTree.rmFile(\"" + path + "\")"));
         } catch (IOException ignored) {
@@ -214,14 +214,16 @@ public class FSTree implements Serializable {
         }
 
         if (path.equals("/"))
-            return false;
+            return -1;  // Operation not permited
 
         Node node = this.getNode(path);
-        if(node == null || node.getNodeType() != NodeType.FileNode)
-            return false;
+        if (node == null)
+            return -2;  //No such file or dir
+        else if (node.getNodeType() != NodeType.FileNode)
+            return -21; //Is a directory
 
         this.removeNode(node.Parent, node);
-        return true;
+        return 0;
     }
 
 

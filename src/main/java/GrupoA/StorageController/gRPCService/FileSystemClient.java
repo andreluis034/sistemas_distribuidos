@@ -83,6 +83,10 @@ public class FileSystemClient {
         return this.blockingStub.rmDir(pathOnlyArgs.newBuilder().setFilePath(path).build()).getResult();
     }
 
+    public int RemoveFile(String path) {
+        return this.blockingStub.rmFile(pathOnlyArgs.newBuilder().setFilePath(path).build()).getResult();
+    }
+
     public LockResponse SetWriteLock(String path, long id, long version) {
         return this.blockingStub.setWriteLock(LockArgs.newBuilder().setPath(path)
                 .setId(id).setCrushMapVersion(version).build());

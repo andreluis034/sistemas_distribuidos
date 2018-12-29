@@ -116,6 +116,18 @@ public class RestClient {
         return -2;
     }
 
+    public Integer removeFile(String path) {
+        try {
+            return client.target(restBaseUri).path("file").path(path)
+                    .request(MediaType.APPLICATION_JSON)
+                    .delete(Integer.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return -2;
+    }
+
     public Boolean createFile(String path, long mode, long uid, long gid, long permissions){ //TODO set creation time
         CreateRequest cfr = new CreateRequest();
 
