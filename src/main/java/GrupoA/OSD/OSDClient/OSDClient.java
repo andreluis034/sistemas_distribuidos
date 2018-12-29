@@ -66,6 +66,10 @@ public class OSDClient {
         return this.getObject(finalHash);
     }
 
+    public void deleteObject(Long hash) {
+        return this.blockingStub.deleteObject(GetObjectArgs.newBuilder().setHash(hash).build());
+    }
+
     public void WriteMiniObject(Long hash, FileRoute.WriteBlockData wbd) {
         this.WriteMiniObject(MiniObject.newBuilder()
                 .setHash(hash)

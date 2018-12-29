@@ -9,7 +9,7 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -53,7 +53,7 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
             file.write(args.getObjectData().toByteArray(), args.getStartOffset(), size);
             file.close();
         } catch (Exception e) {
-            e.printStackTrace();;
+            e.printStackTrace();
         }
         response.onNext(reply);
         response.onCompleted();
@@ -96,6 +96,17 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
         }
         data.onNext(reply.build());
         data.onCompleted();
+    }
+    
+    @Override
+    public void deleteObject(GetObjectArgs args, StreamObserver<EmptyMessage> response) {
+        EmptyMessage reply = EmptyMessage.newBuilder().build();
+
+        File file = new File(Long.toHexString(args.getHash()));
+        file.delete();
+
+        response.onNext(reply);
+        response.onCompleted();
     }
 }
 

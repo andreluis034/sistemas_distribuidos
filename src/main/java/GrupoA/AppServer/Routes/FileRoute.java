@@ -170,9 +170,7 @@ public class FileRoute {
                 written += wbd.getActualSize();
                 client.WriteMiniObject(hashToUse, wbd);
                 client.shutdown();
-
             }
-
 
             if(finalSizeUpdated){
                 ApplicationServer.FileSystemClient.UpdateAttribute(wr.path, newSize, AttributeUpdateRequest.UpdateType.CHANGE_SIZE );
@@ -186,31 +184,86 @@ public class FileRoute {
         return -5; //IO error
     }
 
-    /*
-    public Integer deleteDir(@PathParam("strPath") String path) {
-        path = "/" + path;
-
-        try {
-            return ApplicationServer.FileSystemClient.RemoveDir(path);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
-     */
-
     @DELETE
     @Path("{strPath: .*}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Integer deleteFile(@PathParam("strPath") String path) {
-        path = "/" + path;
-
+    public Integer deleteFile(@PathParam("strPath") String path) throws InterruptedException {
         try {
-            return ApplicationServer.FileSystemClient.RemoveFile(path);
+            int response = ApplicationServer.FileSystemClient.RemoveFile(path);
+            if (response != 0)
+                return response;
+            else /* REMOVE BLOCKS FROM OSDs */ {
+                iNodeAttributes iNodeAttr = ApplicationServer.FileSystemClient.GetAttributes(path);
+                long fileSize = iNodeAttr.getSize();
+
+                // Get the superBlocks and the smallerBlocks, to compute the blocks' hashes
+                List<Long> blockHashes = new LinkedList<>();
+                List<Integer> superBlocks = getSuperBlocks(0, fileSize);
+                for (Integer superBlock : superBlocks) {
+                    List<Integer> smallerBlocks = getSmallerBlocks(superBlock,0, fileSize);
+                    for (Integer miniBlock : smallerBlocks) {
+                        blockHashes.add(
+                                new DeleteBlockData(path, superBlock, miniBlock, iNodeAttr.getRedundancy())
+                                        .getHashForPG());
+                    }
+                }
+
+                // Delete the blocks from the OSDs
+                for (long hash : blockHashes) {
+                    // Get the OSD in which each smallerBlock is placed
+                    CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd;
+                    CrushMapResponse.PlacementGroupProto pg = crushmap
+                            .getPGs((int)(hash % crushmap.getPGsCount()));
+
+                    if (iNodeAttr.getRedundancy().equals(RedundancyProto.Replication)) {
+                        osd = pg.getOSDs(0);    //TODO: check if this is the leader
+                    } else {
+                        // For JErasure
+                        String hash_str = Long.toHexString(hash) + "_" + pg.getPGNumber();
+                        hash = Jenkins.hash64(hash_str.getBytes());
+
+                        osd = pg.getOSDs((int) (hash % pg.getOSDsCount()));
+                    }
+
+                    // Delete the smaller block
+                    String hostname = osd.getAddress().split(":")[0];
+                    Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
+
+                    OSDClient osdClient = new OSDClient(hostname, port);
+
+                    osdClient.deleteObject(hash);
+                    osdClient.shutdown();           // Maybe inefficient
+                }
+
+                return 0;
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            throw e;
+        }
+
+        return -5;  // I/O error
+    }
+
+    public class DeleteBlockData {
+        String path;
+        int superBlock;
+        int subBlock;
+        public RedundancyProto red;
+        public byte[] data = new byte[ApplicationServer.subBlockSize];
+
+        DeleteBlockData(String path, int superBlock, int subBlock, RedundancyProto red) {
+            this.path = path;
+            this.superBlock = superBlock;
+            this.subBlock = subBlock;
+            this.red = red;
+        }
+
+        String getPathForPG() {
+            return this.path + "_" + superBlock + "_" + subBlock + "_" + red.toString();
+        }
+
+        long getHashForPG() {
+            return Jenkins.hash64(this.getPathForPG().getBytes());
         }
     }
 
@@ -256,7 +309,7 @@ public class FileRoute {
         }
 
         String getPathForPG() {
-            return this.path + "_" + superBlock + "_" + subBlock + "_" +red.toString();
+            return this.path + "_" + superBlock + "_" + subBlock + "_" + red.toString();
         }
 
         long getHashForPG() {
@@ -332,10 +385,10 @@ public class FileRoute {
         if(wr.data.length == 0)
             return attr.getSize();
 
-        List<Integer> superBlocks = getSuperBlocks(0, (int)wr.offset);
+        List<Integer> superBlocks = getSuperBlocks(0, wr.offset);
         long relativeOffset = 0;
         for (Integer superblock : superBlocks) {
-            List<Integer> smallerBlocks = getSmallerBlocks(superblock,0, (int)wr.offset);
+            List<Integer> smallerBlocks = getSmallerBlocks(superblock,0, wr.offset);
             for (Integer miniBlock : smallerBlocks) {
                 WriteBlockData wbd = new WriteBlockData(wr.path, superblock, miniBlock, attr.getRedundancy());
                 int blockSize = Math.min(wbd.Data.length,  (int)(wr.offset - relativeOffset));
