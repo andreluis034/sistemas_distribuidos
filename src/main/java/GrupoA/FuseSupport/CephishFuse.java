@@ -109,6 +109,12 @@ public class CephishFuse extends FuseStubFS {
 
     @Override
     public int unlink(String path) {
+        NodeAttributes attr = restClient.getAttribute(path);
+        if (attr == null)
+            return -ErrorCodes.ENOENT();
+        if(attr._FileType.equals(FileType.DIR))
+            return -ErrorCodes.EISDIR();
+
         return restClient.removeFile(path);
     }
 
@@ -180,9 +186,15 @@ public class CephishFuse extends FuseStubFS {
 
 
     @Override
-    public int truncate(String path, long offset) {
+    public int truncate(String path, @off_t long size) {
         System.out.println("truncate(\""+path+"\", " +offset    +")");
-        return -38;
+        NodeAttributes attr = restClient.getAttribute(path);
+        if (attr == null)
+            return -ErrorCodes.ENOENT();
+        if (attr._FileType.equals(FileType.DIR))
+            return -ErrorCodes.EISDIR();
+
+        return restClient.truncate(path, size);
     }
 /*
     @Override

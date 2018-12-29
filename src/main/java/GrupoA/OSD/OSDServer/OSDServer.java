@@ -52,6 +52,7 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         response.onNext(reply);
         response.onCompleted();
     }

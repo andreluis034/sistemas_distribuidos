@@ -23,6 +23,7 @@ public class FileRoute {
 
     @Context
     private HttpServletRequest servletRequest;
+
     /**
      * Creates a file
      * @param cfr The request to create a file
@@ -139,6 +140,7 @@ public class FileRoute {
                 gotLock = ApplicationServer.FileSystemClient
                         .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion());
             }
+
             if(!gotLock.getResult())
                 return -16; /* Device or resource busy */
             Boolean finalSizeUpdated;
@@ -184,10 +186,47 @@ public class FileRoute {
         return -5; //IO error
     }
 
+    @PUT
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Integer truncate(TruncateRequest tr) {
+        long id = Jenkins.hash64(servletRequest.getRemoteHost().getBytes());
+        LockResponse gotLock = ApplicationServer.FileSystemClient
+                .SetWriteLock(tr.path, id, crushmap == null ? -1 : crushmap.getVersion()); //TODO
+        while(gotLock.getMapOutdated()) {
+            crushmap = ApplicationServer.FileSystemClient.GetLatestCrushMap();
+            gotLock = ApplicationServer.FileSystemClient
+                    .SetWriteLock(tr.path, id, crushmap == null ? -1 : crushmap.getVersion());
+        }
+
+        if(!gotLock.getResult())
+            return -16; /* Device or resource busy */
+
+        iNodeAttributes iNodeAttr = ApplicationServer.FileSystemClient.GetAttributes(tr.path);
+        long fileSize = iNodeAttr.getSize();
+
+        // Get the superBlocks and the smallerBlocks, to compute the blocks' hashes
+        List<BlockData> blocks = new LinkedList<>();
+        List<Integer> superBlocks = getSuperBlocks(0, fileSize);
+        long relativeOffset = tr.offset;
+        for (Integer superBlock : superBlocks) {
+            List<Integer> smallerBlocks = getSmallerBlocks(superBlock,0, fileSize);
+            for (Integer miniBlock : smallerBlocks) {
+                BlockData bd = new BlockData(tr.path, superBlock, miniBlock, iNodeAttr.getRedundancy());
+
+                int blockSize = Math.min(wbd.Data.length,  (int)(wr.offset - relativeOffset));
+                wbd.endRelativeOffset = blockSize;
+                relativeOffset +=blockSize;
+
+                blocks.add(new BlockData(tr.path, superBlock, miniBlock, iNodeAttr.getRedundancy()));
+            }
+        }
+    }
+
     @DELETE
     @Path("{strPath: .*}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Integer deleteFile(@PathParam("strPath") String path) throws InterruptedException {
+    public Integer deleteFile(@PathParam("strPath") String path) {
         try {
             int response = ApplicationServer.FileSystemClient.RemoveFile(path);
             if (response != 0)
@@ -203,7 +242,7 @@ public class FileRoute {
                     List<Integer> smallerBlocks = getSmallerBlocks(superBlock,0, fileSize);
                     for (Integer miniBlock : smallerBlocks) {
                         blockHashes.add(
-                                new DeleteBlockData(path, superBlock, miniBlock, iNodeAttr.getRedundancy())
+                                new BlockData(path, superBlock, miniBlock, iNodeAttr.getRedundancy())
                                         .getHashForPG());
                     }
                 }
@@ -244,14 +283,14 @@ public class FileRoute {
         return -5;  // I/O error
     }
 
-    public class DeleteBlockData {
+    public class BlockData {
         String path;
         int superBlock;
         int subBlock;
         public RedundancyProto red;
         public byte[] data = new byte[ApplicationServer.subBlockSize];
 
-        DeleteBlockData(String path, int superBlock, int subBlock, RedundancyProto red) {
+        BlockData(String path, int superBlock, int subBlock, RedundancyProto red) {
             this.path = path;
             this.superBlock = superBlock;
             this.subBlock = subBlock;
@@ -423,10 +462,6 @@ public class FileRoute {
         }
         return Math.max(wr.offset + wr.data.length, attr.getSize());
     }
-
-
-
-
 
     private static CrushMapResponse crushmap = null;
 }
