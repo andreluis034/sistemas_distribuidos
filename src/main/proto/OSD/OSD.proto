@@ -18,7 +18,10 @@ service OSD {
     rpc ping (EmptyMessage) returns (BooleanMessage) {}
 
     rpc pushMapUpdate (OSDInSamePaG) returns (EmptyMessage) {}
+
+    rpc deleteObject (GetObjectArgs) returns (EmptyMessage) {}
 }
+
 message OSDDetails {
     string Address = 1;
     int32 Port = 2;
