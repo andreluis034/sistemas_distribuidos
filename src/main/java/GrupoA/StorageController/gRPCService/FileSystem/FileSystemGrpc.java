@@ -28,21 +28,21 @@ public final class FileSystemGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs,
-      GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage> getRmFileMethod;
+      GrupoA.StorageController.gRPCService.FileSystem.IntArg> getRmFileMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "rmFile",
       requestType = GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs.class,
-      responseType = GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage.class,
+      responseType = GrupoA.StorageController.gRPCService.FileSystem.IntArg.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs,
-      GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage> getRmFileMethod() {
-    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs, GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage> getRmFileMethod;
+      GrupoA.StorageController.gRPCService.FileSystem.IntArg> getRmFileMethod() {
+    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs, GrupoA.StorageController.gRPCService.FileSystem.IntArg> getRmFileMethod;
     if ((getRmFileMethod = FileSystemGrpc.getRmFileMethod) == null) {
       synchronized (FileSystemGrpc.class) {
         if ((getRmFileMethod = FileSystemGrpc.getRmFileMethod) == null) {
           FileSystemGrpc.getRmFileMethod = getRmFileMethod = 
-              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs, GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage>newBuilder()
+              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs, GrupoA.StorageController.gRPCService.FileSystem.IntArg>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "GrupoA.StorageController.gRPCService.FileSystem.FileSystem", "rmFile"))
@@ -50,7 +50,7 @@ public final class FileSystemGrpc {
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage.getDefaultInstance()))
+                  GrupoA.StorageController.gRPCService.FileSystem.IntArg.getDefaultInstance()))
                   .setSchemaDescriptor(new FileSystemMethodDescriptorSupplier("rmFile"))
                   .build();
           }
@@ -348,7 +348,7 @@ public final class FileSystemGrpc {
      * </pre>
      */
     public void rmFile(GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request,
-        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage> responseObserver) {
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.IntArg> responseObserver) {
       asyncUnimplementedUnaryCall(getRmFileMethod(), responseObserver);
     }
 
@@ -415,7 +415,7 @@ public final class FileSystemGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs,
-                GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage>(
+                GrupoA.StorageController.gRPCService.FileSystem.IntArg>(
                   this, METHODID_RM_FILE)))
           .addMethod(
             getRmDirMethod(),
@@ -501,7 +501,7 @@ public final class FileSystemGrpc {
      * </pre>
      */
     public void rmFile(GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request,
-        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage> responseObserver) {
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.IntArg> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getRmFileMethod(), getCallOptions()), request, responseObserver);
     }
@@ -594,7 +594,7 @@ public final class FileSystemGrpc {
      *    rpc mkFile (pathOnlyArgs) returns (BooleanMessage) {}
      * </pre>
      */
-    public GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage rmFile(GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request) {
+    public GrupoA.StorageController.gRPCService.FileSystem.IntArg rmFile(GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request) {
       return blockingUnaryCall(
           getChannel(), getRmFileMethod(), getCallOptions(), request);
     }
@@ -679,7 +679,7 @@ public final class FileSystemGrpc {
      *    rpc mkFile (pathOnlyArgs) returns (BooleanMessage) {}
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage> rmFile(
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.FileSystem.IntArg> rmFile(
         GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs request) {
       return futureUnaryCall(
           getChannel().newCall(getRmFileMethod(), getCallOptions()), request);
@@ -779,7 +779,7 @@ public final class FileSystemGrpc {
       switch (methodId) {
         case METHODID_RM_FILE:
           serviceImpl.rmFile((GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs) request,
-              (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage>) responseObserver);
+              (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.IntArg>) responseObserver);
           break;
         case METHODID_RM_DIR:
           serviceImpl.rmDir((GrupoA.StorageController.gRPCService.FileSystem.pathOnlyArgs) request,

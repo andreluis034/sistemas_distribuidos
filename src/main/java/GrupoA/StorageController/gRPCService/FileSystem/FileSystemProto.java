@@ -161,40 +161,40 @@ public final class FileSystemProto {
       "pe\022\007\n\003DIR\020\000\022\010\n\004FILE\020\001\022\010\n\004LINK\020\002*i\n\037Proto" +
       "AttributeUpdateRequestType\022\t\n\005CHMOD\020\000\022\024\n" +
       "\020UPDATEACCESSTIME\020\001\022\t\n\005CHUID\020\002\022\t\n\005CHGID\020" +
-      "\003\022\017\n\013CHANGE_SIZE\020\0042\210\n\n\nFileSystem\022\212\001\n\006rm" +
+      "\003\022\017\n\013CHANGE_SIZE\020\0042\200\n\n\nFileSystem\022\202\001\n\006rm" +
       "File\022=.GrupoA.StorageController.gRPCServ" +
-      "ice.FileSystem.pathOnlyArgs\032?.GrupoA.Sto" +
-      "rageController.gRPCService.FileSystem.Bo" +
-      "oleanMessage\"\000\022\201\001\n\005rmDir\022=.GrupoA.Storag" +
-      "eController.gRPCService.FileSystem.pathO" +
-      "nlyArgs\0327.GrupoA.StorageController.gRPCS" +
-      "ervice.FileSystem.IntArg\"\000\022\214\001\n\007getAttr\022=" +
-      ".GrupoA.StorageController.gRPCService.Fi" +
-      "leSystem.pathOnlyArgs\032@.GrupoA.StorageCo" +
-      "ntroller.gRPCService.FileSystem.iNodeAtt" +
-      "ributes\"\000\022\216\001\n\007setAttr\022@.GrupoA.StorageCo" +
-      "ntroller.gRPCService.FileSystem.UpdateAt" +
-      "tribute\032?.GrupoA.StorageController.gRPCS" +
-      "ervice.FileSystem.BooleanMessage\"\000\022\210\001\n\007r" +
-      "eadDir\022=.GrupoA.StorageController.gRPCSe" +
-      "rvice.FileSystem.pathOnlyArgs\032<.GrupoA.S" +
-      "torageController.gRPCService.FileSystem." +
-      "DirContents\"\000\022\212\001\n\nCreateNode\0229.GrupoA.St" +
-      "orageController.gRPCService.FileSystem.N" +
-      "odeArgs\032?.GrupoA.StorageController.gRPCS" +
-      "ervice.FileSystem.BooleanMessage\"\000\022\212\001\n\014S" +
-      "etWriteLock\0229.GrupoA.StorageController.g" +
-      "RPCService.FileSystem.LockArgs\032=.GrupoA." +
+      "ice.FileSystem.pathOnlyArgs\0327.GrupoA.Sto" +
+      "rageController.gRPCService.FileSystem.In" +
+      "tArg\"\000\022\201\001\n\005rmDir\022=.GrupoA.StorageControl" +
+      "ler.gRPCService.FileSystem.pathOnlyArgs\032" +
+      "7.GrupoA.StorageController.gRPCService.F" +
+      "ileSystem.IntArg\"\000\022\214\001\n\007getAttr\022=.GrupoA." +
       "StorageController.gRPCService.FileSystem" +
-      ".LockResponse\"\000\022\216\001\n\020ReleaseWriteLock\0229.G" +
-      "rupoA.StorageController.gRPCService.File" +
-      "System.LockArgs\032=.GrupoA.StorageControll" +
-      "er.gRPCService.FileSystem.LockResponse\"\000" +
-      "\022\222\001\n\014GetLatestMap\022=.GrupoA.StorageContro" +
-      "ller.gRPCService.FileSystem.EmptyMessage" +
-      "\032A.GrupoA.StorageController.gRPCService." +
-      "FileSystem.CrushMapResponse\"\000B\027B\017FileSys" +
-      "temProtoP\001\242\002\001Ob\006proto3"
+      ".pathOnlyArgs\032@.GrupoA.StorageController" +
+      ".gRPCService.FileSystem.iNodeAttributes\"" +
+      "\000\022\216\001\n\007setAttr\022@.GrupoA.StorageController" +
+      ".gRPCService.FileSystem.UpdateAttribute\032" +
+      "?.GrupoA.StorageController.gRPCService.F" +
+      "ileSystem.BooleanMessage\"\000\022\210\001\n\007readDir\022=" +
+      ".GrupoA.StorageController.gRPCService.Fi" +
+      "leSystem.pathOnlyArgs\032<.GrupoA.StorageCo" +
+      "ntroller.gRPCService.FileSystem.DirConte" +
+      "nts\"\000\022\212\001\n\nCreateNode\0229.GrupoA.StorageCon" +
+      "troller.gRPCService.FileSystem.NodeArgs\032" +
+      "?.GrupoA.StorageController.gRPCService.F" +
+      "ileSystem.BooleanMessage\"\000\022\212\001\n\014SetWriteL" +
+      "ock\0229.GrupoA.StorageController.gRPCServi" +
+      "ce.FileSystem.LockArgs\032=.GrupoA.StorageC" +
+      "ontroller.gRPCService.FileSystem.LockRes" +
+      "ponse\"\000\022\216\001\n\020ReleaseWriteLock\0229.GrupoA.St" +
+      "orageController.gRPCService.FileSystem.L" +
+      "ockArgs\032=.GrupoA.StorageController.gRPCS" +
+      "ervice.FileSystem.LockResponse\"\000\022\222\001\n\014Get" +
+      "LatestMap\022=.GrupoA.StorageController.gRP" +
+      "CService.FileSystem.EmptyMessage\032A.Grupo" +
+      "A.StorageController.gRPCService.FileSyst" +
+      "em.CrushMapResponse\"\000B\027B\017FileSystemProto" +
+      "P\001\242\002\001Ob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
