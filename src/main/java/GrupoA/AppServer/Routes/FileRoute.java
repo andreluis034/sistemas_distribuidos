@@ -9,7 +9,6 @@ import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
 import GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes;
 import GrupoA.Utility.Jenkins;
 import com.google.protobuf.ByteString;
-import sun.applet.AppletListener;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -48,7 +47,7 @@ public class FileRoute {
 
     private List<WriteBlockData> getWriteBlockDatas(String path, long offset, long size, RedundancyProto red) {
         List<WriteBlockData> wbds = new LinkedList<>();
-        List<Integer> superBlocks = getSuperBlocks(0, offset);
+        List<Integer> superBlocks = getSuperBlocks(offset, size);
         long currentGlobalOffset = offset;
         long remainingSize = size;
         for (Integer superblock : superBlocks) {
@@ -61,6 +60,7 @@ public class FileRoute {
                 wbd.endRelativeOffset = (wbd.startRelativeOffset + toRead);
                 currentGlobalOffset += toRead;
                 remainingSize -= toRead;
+                wbds.add(wbd);
             }
         }
 
@@ -77,6 +77,7 @@ public class FileRoute {
     @Produces(MediaType.APPLICATION_JSON)
     public ReadFileResponse readFile(ReadRequest rr) {
         ReadFileResponse resp = new ReadFileResponse();
+
         resp.path = rr.path;
         try {
             iNodeAttributes nattributes = ApplicationServer.FileSystemClient.GetAttributes(rr.path);
@@ -111,7 +112,7 @@ public class FileRoute {
                 System.arraycopy(btr.Data, btr.startRelativeOffset,resp.Data,outputOffset,btr.getActualSize());
                 outputOffset += btr.getActualSize();
             }
-
+            resp.Status = outputOffset;
             return resp;
 
         }
@@ -230,7 +231,7 @@ public class FileRoute {
         }
 
         // Get block 'subBlockToEdit' and truncate until offset 'relativeOffset'
-        
+
 
 
         // Delete all blocks with "id" higher than subBlockToEdit
