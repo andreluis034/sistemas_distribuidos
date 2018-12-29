@@ -110,6 +110,34 @@ public class FileRoute {
         return -5; //IO error
     }
 
+    /*
+    public Integer deleteDir(@PathParam("strPath") String path) {
+        path = "/" + path;
+
+        try {
+            return ApplicationServer.FileSystemClient.RemoveDir(path);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+     */
+
+    @DELETE
+    @Path("{strPath: .*}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Integer deleteFile(@PathParam("strPath") String path) {
+        path = "/" + path;
+
+        try {
+            return ApplicationServer.FileSystemClient.RemoveFile(path);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
     private List<Integer> getSuperBlocks(long offset, int size) {
         List<Integer> out = new ArrayList<>();
         for (int i = 0; i * ApplicationServer.maxBlockSize < offset + size; ++i) {

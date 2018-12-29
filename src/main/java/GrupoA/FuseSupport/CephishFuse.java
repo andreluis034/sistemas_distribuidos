@@ -110,6 +110,10 @@ public class CephishFuse extends FuseStubFS {
         return restClient.removeDir(path);
     }
 
+    @Override
+    public int unlink(String path) {
+        return restClient.removeFile(path);
+    }
 
     private HashMap<String, List<WriteRequest>> pendingWrites = new HashMap<>();
     private synchronized void addWriteRequest(String path, Pointer buf, @size_t long size, @off_t long offset) {

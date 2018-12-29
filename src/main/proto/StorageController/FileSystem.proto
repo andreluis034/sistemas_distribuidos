@@ -9,7 +9,7 @@ package GrupoA.StorageController.gRPCService.FileSystem;
 
 service FileSystem {
 //    rpc mkFile (pathOnlyArgs) returns (BooleanMessage) {}
-    rpc rmFile (pathOnlyArgs) returns (BooleanMessage) {}
+    rpc rmFile (pathOnlyArgs) returns (IntArg) {}
     rpc rmDir (pathOnlyArgs) returns (IntArg) {}
 
     rpc getAttr (pathOnlyArgs) returns (iNodeAttributes) {}

@@ -61,6 +61,10 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         return this.invoke(new RemoveDirCommand(path));
     }
 
+    public int removeFile(String path) throws Exception {
+        return this.invoke(new RemoveFileCommand(path));
+    }
+
     public boolean updateAttribute(String path, UpdateAttribute update) throws Exception {
         return this.invoke(new UpdateAttributeCommand(path, update));
     }
@@ -147,7 +151,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
                     return Util.objectToByteBuffer(bool_return_value);
                 case rmFile:
-                    bool_return_value = fsTree.rmFile(path);
+                    bool_return_value = false;// fsTree.rmFile(path);
 
                     try {
                         Files.write(fsTree.journal_path,
