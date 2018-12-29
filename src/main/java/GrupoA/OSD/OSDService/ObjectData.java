@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ObjectData() {
-    hash_ = 0L;
+    success_ = false;
     objectData_ = com.google.protobuf.ByteString.EMPTY;
   }
 
@@ -46,7 +46,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            hash_ = input.readInt64();
+            success_ = input.readBool();
             break;
           }
           case 18: {
@@ -86,13 +86,13 @@ private static final long serialVersionUID = 0L;
             GrupoA.OSD.OSDService.ObjectData.class, GrupoA.OSD.OSDService.ObjectData.Builder.class);
   }
 
-  public static final int HASH_FIELD_NUMBER = 1;
-  private long hash_;
+  public static final int SUCCESS_FIELD_NUMBER = 1;
+  private boolean success_;
   /**
-   * <code>int64 hash = 1;</code>
+   * <code>bool success = 1;</code>
    */
-  public long getHash() {
-    return hash_;
+  public boolean getSuccess() {
+    return success_;
   }
 
   public static final int OBJECTDATA_FIELD_NUMBER = 2;
@@ -118,8 +118,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (hash_ != 0L) {
-      output.writeInt64(1, hash_);
+    if (success_ != false) {
+      output.writeBool(1, success_);
     }
     if (!objectData_.isEmpty()) {
       output.writeBytes(2, objectData_);
@@ -133,9 +133,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (hash_ != 0L) {
+    if (success_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(1, hash_);
+        .computeBoolSize(1, success_);
     }
     if (!objectData_.isEmpty()) {
       size += com.google.protobuf.CodedOutputStream
@@ -157,8 +157,8 @@ private static final long serialVersionUID = 0L;
     GrupoA.OSD.OSDService.ObjectData other = (GrupoA.OSD.OSDService.ObjectData) obj;
 
     boolean result = true;
-    result = result && (getHash()
-        == other.getHash());
+    result = result && (getSuccess()
+        == other.getSuccess());
     result = result && getObjectData()
         .equals(other.getObjectData());
     result = result && unknownFields.equals(other.unknownFields);
@@ -172,9 +172,9 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + HASH_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getHash());
+    hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getSuccess());
     hash = (37 * hash) + OBJECTDATA_FIELD_NUMBER;
     hash = (53 * hash) + getObjectData().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -310,7 +310,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      hash_ = 0L;
+      success_ = false;
 
       objectData_ = com.google.protobuf.ByteString.EMPTY;
 
@@ -340,7 +340,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public GrupoA.OSD.OSDService.ObjectData buildPartial() {
       GrupoA.OSD.OSDService.ObjectData result = new GrupoA.OSD.OSDService.ObjectData(this);
-      result.hash_ = hash_;
+      result.success_ = success_;
       result.objectData_ = objectData_;
       onBuilt();
       return result;
@@ -390,8 +390,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(GrupoA.OSD.OSDService.ObjectData other) {
       if (other == GrupoA.OSD.OSDService.ObjectData.getDefaultInstance()) return this;
-      if (other.getHash() != 0L) {
-        setHash(other.getHash());
+      if (other.getSuccess() != false) {
+        setSuccess(other.getSuccess());
       }
       if (other.getObjectData() != com.google.protobuf.ByteString.EMPTY) {
         setObjectData(other.getObjectData());
@@ -425,28 +425,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private long hash_ ;
+    private boolean success_ ;
     /**
-     * <code>int64 hash = 1;</code>
+     * <code>bool success = 1;</code>
      */
-    public long getHash() {
-      return hash_;
+    public boolean getSuccess() {
+      return success_;
     }
     /**
-     * <code>int64 hash = 1;</code>
+     * <code>bool success = 1;</code>
      */
-    public Builder setHash(long value) {
+    public Builder setSuccess(boolean value) {
       
-      hash_ = value;
+      success_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int64 hash = 1;</code>
+     * <code>bool success = 1;</code>
      */
-    public Builder clearHash() {
+    public Builder clearSuccess() {
       
-      hash_ = 0L;
+      success_ = false;
       onChanged();
       return this;
     }

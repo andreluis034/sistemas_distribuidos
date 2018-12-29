@@ -17,6 +17,8 @@ private static final long serialVersionUID = 0L;
   }
   private GetObjectArgs() {
     hash_ = 0L;
+    relativeOffset_ = 0L;
+    size_ = 0L;
   }
 
   @java.lang.Override
@@ -46,6 +48,16 @@ private static final long serialVersionUID = 0L;
           case 8: {
 
             hash_ = input.readInt64();
+            break;
+          }
+          case 16: {
+
+            relativeOffset_ = input.readInt64();
+            break;
+          }
+          case 24: {
+
+            size_ = input.readInt64();
             break;
           }
           default: {
@@ -89,6 +101,24 @@ private static final long serialVersionUID = 0L;
     return hash_;
   }
 
+  public static final int RELATIVEOFFSET_FIELD_NUMBER = 2;
+  private long relativeOffset_;
+  /**
+   * <code>int64 relativeOffset = 2;</code>
+   */
+  public long getRelativeOffset() {
+    return relativeOffset_;
+  }
+
+  public static final int SIZE_FIELD_NUMBER = 3;
+  private long size_;
+  /**
+   * <code>int64 size = 3;</code>
+   */
+  public long getSize() {
+    return size_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -106,6 +136,12 @@ private static final long serialVersionUID = 0L;
     if (hash_ != 0L) {
       output.writeInt64(1, hash_);
     }
+    if (relativeOffset_ != 0L) {
+      output.writeInt64(2, relativeOffset_);
+    }
+    if (size_ != 0L) {
+      output.writeInt64(3, size_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -118,6 +154,14 @@ private static final long serialVersionUID = 0L;
     if (hash_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(1, hash_);
+    }
+    if (relativeOffset_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(2, relativeOffset_);
+    }
+    if (size_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(3, size_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -137,6 +181,10 @@ private static final long serialVersionUID = 0L;
     boolean result = true;
     result = result && (getHash()
         == other.getHash());
+    result = result && (getRelativeOffset()
+        == other.getRelativeOffset());
+    result = result && (getSize()
+        == other.getSize());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -151,6 +199,12 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + HASH_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getHash());
+    hash = (37 * hash) + RELATIVEOFFSET_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getRelativeOffset());
+    hash = (37 * hash) + SIZE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getSize());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -286,6 +340,10 @@ private static final long serialVersionUID = 0L;
       super.clear();
       hash_ = 0L;
 
+      relativeOffset_ = 0L;
+
+      size_ = 0L;
+
       return this;
     }
 
@@ -313,6 +371,8 @@ private static final long serialVersionUID = 0L;
     public GrupoA.OSD.OSDService.GetObjectArgs buildPartial() {
       GrupoA.OSD.OSDService.GetObjectArgs result = new GrupoA.OSD.OSDService.GetObjectArgs(this);
       result.hash_ = hash_;
+      result.relativeOffset_ = relativeOffset_;
+      result.size_ = size_;
       onBuilt();
       return result;
     }
@@ -363,6 +423,12 @@ private static final long serialVersionUID = 0L;
       if (other == GrupoA.OSD.OSDService.GetObjectArgs.getDefaultInstance()) return this;
       if (other.getHash() != 0L) {
         setHash(other.getHash());
+      }
+      if (other.getRelativeOffset() != 0L) {
+        setRelativeOffset(other.getRelativeOffset());
+      }
+      if (other.getSize() != 0L) {
+        setSize(other.getSize());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -415,6 +481,58 @@ private static final long serialVersionUID = 0L;
     public Builder clearHash() {
       
       hash_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long relativeOffset_ ;
+    /**
+     * <code>int64 relativeOffset = 2;</code>
+     */
+    public long getRelativeOffset() {
+      return relativeOffset_;
+    }
+    /**
+     * <code>int64 relativeOffset = 2;</code>
+     */
+    public Builder setRelativeOffset(long value) {
+      
+      relativeOffset_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 relativeOffset = 2;</code>
+     */
+    public Builder clearRelativeOffset() {
+      
+      relativeOffset_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long size_ ;
+    /**
+     * <code>int64 size = 3;</code>
+     */
+    public long getSize() {
+      return size_;
+    }
+    /**
+     * <code>int64 size = 3;</code>
+     */
+    public Builder setSize(long value) {
+      
+      size_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 size = 3;</code>
+     */
+    public Builder clearSize() {
+      
+      size_ = 0L;
       onChanged();
       return this;
     }

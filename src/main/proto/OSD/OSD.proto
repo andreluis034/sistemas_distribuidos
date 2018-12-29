@@ -11,7 +11,7 @@ service OSD {
     rpc putObject (ObjectData) returns (EmptyMessage) {}
 
     rpc writeMiniObject(MiniObject) returns (EmptyMessage) {}
-    rpc readMiniObject(GetObjectArgs) returns (EmptyMessage) {}
+    rpc readMiniObject(GetObjectArgs) returns (ObjectData) {}
 
     rpc getObject (GetObjectArgs) returns (ObjectData) {}
 
@@ -38,10 +38,14 @@ message MiniObject {
 
 message GetObjectArgs {
     int64 hash = 1;
+    int64 relativeOffset = 2;
+    int64 size = 3;
 }
 
+
+
 message ObjectData{
-    int64 hash = 1;
+    bool success = 1;
     bytes objectData = 2;
 }
 

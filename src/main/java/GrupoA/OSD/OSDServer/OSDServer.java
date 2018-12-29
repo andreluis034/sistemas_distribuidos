@@ -9,6 +9,7 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -27,48 +28,6 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
     }
     State state = State.Initializing;
 
-
-    @Override
-    public void putObject(ObjectData request, StreamObserver<EmptyMessage> responseObserver) {
-        EmptyMessage reply = EmptyMessage.newBuilder().build();
-
-        if(state == State.Initializing) {
-            responseObserver.onNext(reply);
-            responseObserver.onCompleted();
-            return;
-        }
-        System.out.println(request.getObjectData().size());
-        String hash = Long.toHexString(request.getHash());
-        System.out.println(hash);
-
-        try {
-            FileOutputStream fos = new FileOutputStream(hash);
-            fos.write(request.getObjectData().toByteArray());
-            fos.close();
-        } catch (Exception e) {
-
-        }
-        responseObserver.onNext(reply);
-        responseObserver.onCompleted();
-    }
-
-    @Override
-    public void getObject(GetObjectArgs args, StreamObserver<ObjectData> responseObserver) {
-        ObjectData.Builder reply = ObjectData.newBuilder();
-
-        try {
-            Path path = Paths.get( Long.toHexString(args.getHash()));
-            byte[] fileContents =  Files.readAllBytes(path);
-            reply
-                    .setHash(args.getHash())
-                    .setObjectData(ByteString.copyFrom(fileContents));
-        } catch (Exception e) { //TODO FILE NOT FOUND
-
-        }
-        responseObserver.onNext(reply.build());
-        responseObserver.onCompleted();
-    }
-
     @Override
     public void ping(EmptyMessage args, StreamObserver<BooleanMessage> response) {
         response.onNext(BooleanMessage.newBuilder().setResult(true).build());
@@ -86,6 +45,7 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
                 client.WriteMiniObject(args);
             }
         }
+
         try {
             int size = args.getEndOffset() - args.getStartOffset();
             RandomAccessFile file = new RandomAccessFile(Long.toHexString(args.getHash()), "rw");
@@ -119,6 +79,24 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
         response.onCompleted();
     }
 
+
+    public void readMiniObject(GetObjectArgs args, StreamObserver<ObjectData> data) {
+        ObjectData.Builder reply = ObjectData.newBuilder().setSuccess(false);
+
+        try {
+            byte[] dataBuff = new byte[(int) args.getSize()];
+            RandomAccessFile file = new RandomAccessFile(Long.toHexString(args.getHash()), "rw");
+            file.seek(args.getRelativeOffset());
+            file.read(dataBuff);
+            reply.setObjectData(ByteString.copyFrom(dataBuff));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        data.onNext(reply.build());
+        data.onCompleted();
+    }
 }
 
 

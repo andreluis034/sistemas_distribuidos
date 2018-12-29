@@ -22,6 +22,9 @@ service FileSystem {
     rpc SetWriteLock (LockArgs) returns (LockResponse) {}
     rpc ReleaseWriteLock (LockArgs) returns (LockResponse) {}
 
+//    rpc SetReadLock (LockArgs) returns (LockResponse) {}
+//    rpc ReleaseReadLock (LockArgs) returns (LockResponse) {}
+
     rpc GetLatestMap (EmptyMessage) returns (CrushMapResponse) {}
 }
 

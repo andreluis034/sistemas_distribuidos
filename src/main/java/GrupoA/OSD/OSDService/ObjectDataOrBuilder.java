@@ -8,9 +8,9 @@ public interface ObjectDataOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int64 hash = 1;</code>
+   * <code>bool success = 1;</code>
    */
-  long getHash();
+  boolean getSuccess();
 
   /**
    * <code>bytes objectData = 2;</code>

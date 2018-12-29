@@ -53,7 +53,7 @@ public class OSDClient {
     }
 
     public void putObject(byte[] data, long hash) {
-        this.putObject(ObjectData.newBuilder().setHash(hash).setObjectData(ByteString.copyFrom(data)).build());
+      //  this.putObject(ObjectData.newBuilder().setHash(hash).setObjectData(ByteString.copyFrom(data)).build());
     }
 
     private ObjectData getObject(long hash) {
@@ -78,6 +78,15 @@ public class OSDClient {
 
     public void WriteMiniObject(MiniObject mo) {
         this.blockingStub.writeMiniObject(mo);
+    }
+
+    public ByteString ReadMiniObject(long hash, long relativeOffset, long size) {
+        return this.blockingStub.readMiniObject(GetObjectArgs.newBuilder()
+                .setHash(hash)
+                .setRelativeOffset(relativeOffset)
+                .setSize(size).
+                        build())
+                .getObjectData();
     }
 
     public void shutdown() throws InterruptedException {

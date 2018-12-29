@@ -1,15 +1,14 @@
 package GrupoA.AppServer.Routes;
 
 import GrupoA.AppServer.ApplicationServer;
-import GrupoA.AppServer.Models.AttributeUpdateRequest;
-import GrupoA.AppServer.Models.CreateRequest;
-import GrupoA.AppServer.Models.WriteRequest;
+import GrupoA.AppServer.Models.*;
 import GrupoA.OSD.OSDClient.OSDClient;
 import GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse;
 import GrupoA.StorageController.gRPCService.FileSystem.LockResponse;
 import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
 import GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes;
 import GrupoA.Utility.Jenkins;
+import com.google.protobuf.ByteString;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -45,6 +44,79 @@ public class FileRoute {
         }
     }
 
+    private List<WriteBlockData> getWriteBlockDatas(String path, long offset, long size, RedundancyProto red) {
+        List<WriteBlockData> wbds = new LinkedList<>();
+        List<Integer> superBlocks = getSuperBlocks(0, offset);
+        long currentGlobalOffset = offset;
+        long remainingSize = size;
+        for (Integer superblock : superBlocks) {
+            List<Integer> smallerBlocks = getSmallerBlocks(superblock,  offset, offset+size);
+            for (Integer miniBlock : smallerBlocks) {
+                WriteBlockData wbd = new WriteBlockData(path, superblock, miniBlock, red);
+                wbd.startRelativeOffset = (int)(currentGlobalOffset - wbd.getGlobalOffset());
+                long maxAllowedToWriteToBlock = wbd.getActualSize();
+                int toRead = (int) Math.min(maxAllowedToWriteToBlock, remainingSize);
+                wbd.endRelativeOffset = (wbd.startRelativeOffset + toRead);
+                currentGlobalOffset += toRead;
+                remainingSize -= toRead;
+            }
+        }
+
+        return wbds;
+    }
+    /**
+     * Returns the contents of a file
+     * @param rr the contents requested
+     * @return the contents of the file
+     */
+    @POST
+    @Path("/read")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ReadFileResponse readFile(ReadRequest rr) {
+        ReadFileResponse resp = new ReadFileResponse();
+        resp.path = rr.path;
+        try {
+            iNodeAttributes nattributes = ApplicationServer.FileSystemClient.GetAttributes(rr.path);
+            if(nattributes.getINodeNumber() == -1){
+                resp.Status = -2;/* No such file or directory */
+                return resp;
+            }
+            long id = Jenkins.hash64(servletRequest.getRemoteHost().getBytes());
+            LockResponse gotLock = ApplicationServer.FileSystemClient
+                    .SetWriteLock(rr.path, id, crushmap == null ? -1 : crushmap.getVersion()); //TODO
+            while(gotLock.getMapOutdated()) {
+                crushmap = ApplicationServer.FileSystemClient.GetLatestCrushMap();
+                gotLock = ApplicationServer.FileSystemClient
+                        .SetWriteLock(rr.path, id, crushmap == null ? -1 : crushmap.getVersion());
+            }
+            if(!gotLock.getResult()){
+                resp.Status = -16; /* Device or resource busy */
+                return resp;
+            }
+            int bytesToRead = (int) Math.min(rr.size, nattributes.getSize() - rr.offset);
+            List<WriteBlockData> blocksToRead = getWriteBlockDatas(rr.path, rr.offset, bytesToRead,nattributes.getRedundancy());
+
+            resp.Data = new byte[bytesToRead];
+            int outputOffset = 0;
+
+            for (WriteBlockData btr : blocksToRead) {
+                int status = btr.readFromOsd(crushmap);
+                if(status <0 ){
+                    resp.Status = status;
+                    return resp;
+                }
+                System.arraycopy(btr.Data, btr.startRelativeOffset,resp.Data,outputOffset,btr.getActualSize());
+                outputOffset += btr.getActualSize();
+            }
+
+            return resp;
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
     /**
      * writes to a file
      * @param wr The request to write the file
@@ -55,7 +127,10 @@ public class FileRoute {
     @Produces(MediaType.APPLICATION_JSON)
     public Integer writeFile(WriteRequest wr) { //TODO support jerasure
         try {
-            System.out.println("Writting file " + wr.path);
+            System.out.println("Writing file " + wr.path);
+            iNodeAttributes nAttributes = ApplicationServer.FileSystemClient.GetAttributes(wr.path);
+            if(nAttributes.getINodeNumber() == -1)
+                return -2;      /* No such file or directory */
             long id = Jenkins.hash64(servletRequest.getRemoteHost().getBytes());
             LockResponse gotLock = ApplicationServer.FileSystemClient
                     .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion()); //TODO
@@ -63,17 +138,15 @@ public class FileRoute {
                 crushmap = ApplicationServer.FileSystemClient.GetLatestCrushMap();
                 gotLock = ApplicationServer.FileSystemClient
                         .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion());
-
             }
             if(!gotLock.getResult())
                 return -16; /* Device or resource busy */
-            Boolean finalSizeUpdated = false;
+            Boolean finalSizeUpdated;
             List<WriteBlockData> blocksToWrite = new LinkedList<>();
 
-            iNodeAttributes nattributes = ApplicationServer.FileSystemClient.GetAttributes(wr.path);
-            long newSize = Math.max(handleFillingPrevious(nattributes, wr, blocksToWrite),
-                    handleWritingAtOffset(nattributes, wr, blocksToWrite));
-            finalSizeUpdated = newSize != nattributes.getSize();
+            long newSize = Math.max(handleFillingPrevious(nAttributes, wr, blocksToWrite),
+                    handleWritingAtOffset(nAttributes, wr, blocksToWrite));
+            finalSizeUpdated = newSize != nAttributes.getSize();
 
 
             //TODO calculate jerasure
@@ -84,7 +157,7 @@ public class FileRoute {
                 long hashToUse = wbd.getHashForPG();
                 CrushMapResponse.PlacementGroupProto
                         PG = crushmap.getPGs((int) (wbd.getHashForPG() % crushmap.getPGsCount()));
-                if (nattributes.getRedundancy().equals(RedundancyProto.Replication)) {
+                if (nAttributes.getRedundancy().equals(RedundancyProto.Replication)) {
                     osd = PG.getOSDs(0); //TODO actually check this is the leader??
                 } else { //FOR JERASURE
                     String hash_str = Long.toHexString(wbd.getHashForPG()) + "_" + PG.getPGNumber();
@@ -141,7 +214,7 @@ public class FileRoute {
         }
     }
 
-    private List<Integer> getSuperBlocks(long offset, int size) {
+    private List<Integer> getSuperBlocks(long offset, long size) {
         List<Integer> out = new ArrayList<>();
         for (int i = 0; i * ApplicationServer.maxBlockSize < offset + size; ++i) {
             if((i+1) * ApplicationServer.maxBlockSize < offset)
@@ -151,7 +224,7 @@ public class FileRoute {
         return out;
     }
 
-    private List<Integer> getSmallerBlocks(int superBlock, long offset, int size) {
+    private List<Integer> getSmallerBlocks(int superBlock, long offset, long size) {
         List<Integer> out = new ArrayList<>();
         int start = superBlock * ApplicationServer.maxBlockSize;
         for (int i = 0; i < ApplicationServer.DivisionFactor; ++i ){
@@ -200,6 +273,56 @@ public class FileRoute {
 
         boolean isComplete() {
             return ApplicationServer.subBlockSize == this.getActualSize();
+        }
+
+        private long getFinalHash(CrushMapResponse map) {
+            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd;
+            long hashToUse = this.getHashForPG();
+            CrushMapResponse.PlacementGroupProto
+                    PG = map.getPGs((int) (hashToUse % map.getPGsCount()));
+            if (red.equals(RedundancyProto.ForwardErrorCorrection)) {
+                String hash_str = Long.toHexString(hashToUse) + "_" + PG.getPGNumber();
+                hashToUse = Jenkins.hash64(hash_str.getBytes());
+            }
+
+            return  hashToUse;
+        }
+
+        private CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto getOSD(CrushMapResponse map) {
+            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd;
+            long hashToUse = this.getHashForPG();
+            CrushMapResponse.PlacementGroupProto
+                    PG = map.getPGs((int) (hashToUse % map.getPGsCount()));
+            if (red.equals(RedundancyProto.Replication)) {
+                osd = PG.getOSDs(0); //TODO actually check this is the leader??
+            } else { //FOR JERASURE
+                String hash_str = Long.toHexString(hashToUse) + "_" + PG.getPGNumber();
+                hashToUse = Jenkins.hash64(hash_str.getBytes());
+                osd = PG.getOSDs((int) (hashToUse % PG.getOSDsCount()));
+            }
+            return osd;
+        }
+
+        public int readFromOsd(CrushMapResponse map) { // TODO implement erasure
+            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd = this.getOSD(map);
+            String hostname = osd.getAddress().split(":")[0];
+            Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
+            OSDClient client = new OSDClient(hostname, port);
+            try{
+                ByteString readData = client.ReadMiniObject(
+                        this.getFinalHash(map), this.startRelativeOffset, this.getActualSize());
+
+                readData.copyTo(this.Data, this.startRelativeOffset);
+            } catch (Exception e) {
+                return -5;// IO Error
+            }
+            return this.getActualSize();
+        }
+
+        public byte[]getActualData() {
+            byte[] output = new byte[this.getActualSize()];
+            System.arraycopy(this.Data, (int)this.startRelativeOffset, System.out, 0, this.getActualSize());
+            return output;
         }
     }
 

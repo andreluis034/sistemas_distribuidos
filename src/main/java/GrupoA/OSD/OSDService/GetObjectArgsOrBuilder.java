@@ -11,4 +11,14 @@ public interface GetObjectArgsOrBuilder extends
    * <code>int64 hash = 1;</code>
    */
   long getHash();
+
+  /**
+   * <code>int64 relativeOffset = 2;</code>
+   */
+  long getRelativeOffset();
+
+  /**
+   * <code>int64 size = 3;</code>
+   */
+  long getSize();
 }

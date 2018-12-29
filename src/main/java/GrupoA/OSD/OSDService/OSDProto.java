@@ -64,25 +64,26 @@ public final class OSDProto {
       "\001 \003(\0132!.GrupoA.OSD.OSDService.OSDDetails" +
       "\"i\n\nMiniObject\022\014\n\004hash\030\001 \001(\003\022\022\n\nobjectDa" +
       "ta\030\002 \001(\014\022\023\n\013startOffset\030\003 \001(\005\022\021\n\tendOffs" +
-      "et\030\004 \001(\005\022\021\n\tduplicate\030\005 \001(\010\"\035\n\rGetObject" +
-      "Args\022\014\n\004hash\030\001 \001(\003\".\n\nObjectData\022\014\n\004hash" +
-      "\030\001 \001(\003\022\022\n\nobjectData\030\002 \001(\014\" \n\016BooleanMes" +
-      "sage\022\016\n\006result\030\001 \001(\010\"\016\n\014EmptyMessage2\243\004\n" +
-      "\003OSD\022U\n\tputObject\022!.GrupoA.OSD.OSDServic" +
-      "e.ObjectData\032#.GrupoA.OSD.OSDService.Emp" +
-      "tyMessage\"\000\022[\n\017writeMiniObject\022!.GrupoA." +
-      "OSD.OSDService.MiniObject\032#.GrupoA.OSD.O" +
-      "SDService.EmptyMessage\"\000\022]\n\016readMiniObje" +
-      "ct\022$.GrupoA.OSD.OSDService.GetObjectArgs" +
-      "\032#.GrupoA.OSD.OSDService.EmptyMessage\"\000\022" +
-      "V\n\tgetObject\022$.GrupoA.OSD.OSDService.Get" +
-      "ObjectArgs\032!.GrupoA.OSD.OSDService.Objec" +
-      "tData\"\000\022T\n\004ping\022#.GrupoA.OSD.OSDService." +
-      "EmptyMessage\032%.GrupoA.OSD.OSDService.Boo" +
-      "leanMessage\"\000\022[\n\rpushMapUpdate\022#.GrupoA." +
-      "OSD.OSDService.OSDInSamePaG\032#.GrupoA.OSD" +
-      ".OSDService.EmptyMessage\"\000B\020B\010OSDProtoP\001" +
-      "\242\002\001Ob\006proto3"
+      "et\030\004 \001(\005\022\021\n\tduplicate\030\005 \001(\010\"C\n\rGetObject" +
+      "Args\022\014\n\004hash\030\001 \001(\003\022\026\n\016relativeOffset\030\002 \001" +
+      "(\003\022\014\n\004size\030\003 \001(\003\"1\n\nObjectData\022\017\n\007succes" +
+      "s\030\001 \001(\010\022\022\n\nobjectData\030\002 \001(\014\" \n\016BooleanMe" +
+      "ssage\022\016\n\006result\030\001 \001(\010\"\016\n\014EmptyMessage2\241\004" +
+      "\n\003OSD\022U\n\tputObject\022!.GrupoA.OSD.OSDServi" +
+      "ce.ObjectData\032#.GrupoA.OSD.OSDService.Em" +
+      "ptyMessage\"\000\022[\n\017writeMiniObject\022!.GrupoA" +
+      ".OSD.OSDService.MiniObject\032#.GrupoA.OSD." +
+      "OSDService.EmptyMessage\"\000\022[\n\016readMiniObj" +
+      "ect\022$.GrupoA.OSD.OSDService.GetObjectArg" +
+      "s\032!.GrupoA.OSD.OSDService.ObjectData\"\000\022V" +
+      "\n\tgetObject\022$.GrupoA.OSD.OSDService.GetO" +
+      "bjectArgs\032!.GrupoA.OSD.OSDService.Object" +
+      "Data\"\000\022T\n\004ping\022#.GrupoA.OSD.OSDService.E" +
+      "mptyMessage\032%.GrupoA.OSD.OSDService.Bool" +
+      "eanMessage\"\000\022[\n\rpushMapUpdate\022#.GrupoA.O" +
+      "SD.OSDService.OSDInSamePaG\032#.GrupoA.OSD." +
+      "OSDService.EmptyMessage\"\000B\020B\010OSDProtoP\001\242" +
+      "\002\001Ob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -119,13 +120,13 @@ public final class OSDProto {
     internal_static_GrupoA_OSD_OSDService_GetObjectArgs_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_OSD_OSDService_GetObjectArgs_descriptor,
-        new java.lang.String[] { "Hash", });
+        new java.lang.String[] { "Hash", "RelativeOffset", "Size", });
     internal_static_GrupoA_OSD_OSDService_ObjectData_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_GrupoA_OSD_OSDService_ObjectData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_OSD_OSDService_ObjectData_descriptor,
-        new java.lang.String[] { "Hash", "ObjectData", });
+        new java.lang.String[] { "Success", "ObjectData", });
     internal_static_GrupoA_OSD_OSDService_BooleanMessage_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_GrupoA_OSD_OSDService_BooleanMessage_fieldAccessorTable = new

@@ -92,21 +92,21 @@ public final class OSDGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
-      GrupoA.OSD.OSDService.EmptyMessage> getReadMiniObjectMethod;
+      GrupoA.OSD.OSDService.ObjectData> getReadMiniObjectMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "readMiniObject",
       requestType = GrupoA.OSD.OSDService.GetObjectArgs.class,
-      responseType = GrupoA.OSD.OSDService.EmptyMessage.class,
+      responseType = GrupoA.OSD.OSDService.ObjectData.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
-      GrupoA.OSD.OSDService.EmptyMessage> getReadMiniObjectMethod() {
-    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.EmptyMessage> getReadMiniObjectMethod;
+      GrupoA.OSD.OSDService.ObjectData> getReadMiniObjectMethod() {
+    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.ObjectData> getReadMiniObjectMethod;
     if ((getReadMiniObjectMethod = OSDGrpc.getReadMiniObjectMethod) == null) {
       synchronized (OSDGrpc.class) {
         if ((getReadMiniObjectMethod = OSDGrpc.getReadMiniObjectMethod) == null) {
           OSDGrpc.getReadMiniObjectMethod = getReadMiniObjectMethod = 
-              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.EmptyMessage>newBuilder()
+              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.ObjectData>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "GrupoA.OSD.OSDService.OSD", "readMiniObject"))
@@ -114,7 +114,7 @@ public final class OSDGrpc {
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.OSD.OSDService.GetObjectArgs.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  GrupoA.OSD.OSDService.EmptyMessage.getDefaultInstance()))
+                  GrupoA.OSD.OSDService.ObjectData.getDefaultInstance()))
                   .setSchemaDescriptor(new OSDMethodDescriptorSupplier("readMiniObject"))
                   .build();
           }
@@ -263,7 +263,7 @@ public final class OSDGrpc {
     /**
      */
     public void readMiniObject(GrupoA.OSD.OSDService.GetObjectArgs request,
-        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.ObjectData> responseObserver) {
       asyncUnimplementedUnaryCall(getReadMiniObjectMethod(), responseObserver);
     }
 
@@ -309,7 +309,7 @@ public final class OSDGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 GrupoA.OSD.OSDService.GetObjectArgs,
-                GrupoA.OSD.OSDService.EmptyMessage>(
+                GrupoA.OSD.OSDService.ObjectData>(
                   this, METHODID_READ_MINI_OBJECT)))
           .addMethod(
             getGetObjectMethod(),
@@ -373,7 +373,7 @@ public final class OSDGrpc {
     /**
      */
     public void readMiniObject(GrupoA.OSD.OSDService.GetObjectArgs request,
-        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.ObjectData> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getReadMiniObjectMethod(), getCallOptions()), request, responseObserver);
     }
@@ -437,7 +437,7 @@ public final class OSDGrpc {
 
     /**
      */
-    public GrupoA.OSD.OSDService.EmptyMessage readMiniObject(GrupoA.OSD.OSDService.GetObjectArgs request) {
+    public GrupoA.OSD.OSDService.ObjectData readMiniObject(GrupoA.OSD.OSDService.GetObjectArgs request) {
       return blockingUnaryCall(
           getChannel(), getReadMiniObjectMethod(), getCallOptions(), request);
     }
@@ -500,7 +500,7 @@ public final class OSDGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.EmptyMessage> readMiniObject(
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.ObjectData> readMiniObject(
         GrupoA.OSD.OSDService.GetObjectArgs request) {
       return futureUnaryCall(
           getChannel().newCall(getReadMiniObjectMethod(), getCallOptions()), request);
@@ -565,7 +565,7 @@ public final class OSDGrpc {
           break;
         case METHODID_READ_MINI_OBJECT:
           serviceImpl.readMiniObject((GrupoA.OSD.OSDService.GetObjectArgs) request,
-              (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage>) responseObserver);
+              (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.ObjectData>) responseObserver);
           break;
         case METHODID_GET_OBJECT:
           serviceImpl.getObject((GrupoA.OSD.OSDService.GetObjectArgs) request,

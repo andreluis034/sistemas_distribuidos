@@ -1,9 +1,6 @@
 package GrupoA.FuseSupport;
 
-import GrupoA.AppServer.Models.AttributeUpdateRequest;
-import GrupoA.AppServer.Models.DirectoryContents;
-import GrupoA.AppServer.Models.NodeAttributes;
-import GrupoA.AppServer.Models.WriteRequest;
+import GrupoA.AppServer.Models.*;
 import GrupoA.StorageController.gRPCService.FileSystem.FileType;
 import jnr.ffi.Pointer;
 import jnr.ffi.types.*;
@@ -155,8 +152,6 @@ public class CephishFuse extends FuseStubFS {
 
     @Override
     public int write(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
-        System.out.println("----------------------------------------------------------");
-        System.out.println("Writting to: " + path);
         NodeAttributes attr = restClient.getAttribute(path);
         if (attr == null)
             return -ErrorCodes.ENOENT();
@@ -164,10 +159,30 @@ public class CephishFuse extends FuseStubFS {
             return -ErrorCodes.EISDIR();
         WriteRequest wr =  addWriteRequest(path, buf, size, offset);
         int writeResult = restClient.write(path, wr);
-        System.out.println("Write result: " + writeResult);
-        System.out.println("----------------------------------------------------------");
 
         return writeResult;
+    }
+
+
+    @Override
+    public int read(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
+        System.out.println("----------------------------------------------------------");
+        System.out.printf("read(\"%s\", size: %d, offset: %d)\n", path, size, offset);
+        ReadFileResponse rfr = restClient.readFile(path, size, offset);
+        if(rfr.Status < 0)
+            return rfr.Status;
+        synchronized (this) {
+            buf.put(0, rfr.Data, 0, rfr.Data.length);
+        }
+        System.out.println("----------------------------------------------------------");
+        return rfr.Data.length;
+    }
+
+
+    @Override
+    public int truncate(String path, long offset) {
+        System.out.println("truncate(\""+path+"\", " +offset    +")");
+        return -38;
     }
 /*
     @Override

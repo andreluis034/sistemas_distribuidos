@@ -144,9 +144,21 @@ public class RestClient {
                 .post(Entity.entity(cfr, MediaType.APPLICATION_JSON), Boolean.class);
     }
 
+
     public int write(String path, WriteRequest writeRequest) {
         return client.target(restBaseUri).path("file")
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity(writeRequest, MediaType.APPLICATION_JSON), Integer.class);
     }
+
+    public ReadFileResponse readFile(String path, long size, long offset) {
+        ReadRequest rr = new ReadRequest();
+        rr.offset = offset;
+        rr.path = path;
+        rr.size = size;
+        return client.target(restBaseUri).path("file").path("read")
+                .request(MediaType.APPLICATION_JSON)
+                .put(Entity.entity(rr, MediaType.APPLICATION_JSON), ReadFileResponse.class);
+    }
+
 }
