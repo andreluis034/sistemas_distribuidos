@@ -49,6 +49,7 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
         } catch (Exception e) {
 
         }
+
         responseObserver.onNext(reply);
         responseObserver.onCompleted();
     }
@@ -96,6 +97,7 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         response.onNext(reply);
         response.onCompleted();
     }
