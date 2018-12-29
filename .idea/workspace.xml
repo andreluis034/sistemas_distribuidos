@@ -7,15 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="455cb227-4467-4991-b677-1778cbe55071" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/TruncateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/CephishFuse_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/JErasure_test_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/osd_server_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/osd_server_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/storage_controller_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -51,7 +44,7 @@
       <file leaf-file-name="OSDClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
+            <state relative-caret-position="628">
               <caret line="69" column="45" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
               <folding>
                 <element signature="docComment;method#OSDClient#0;class#OSDClient#0" />
@@ -63,9 +56,6 @@
                 <element signature="method#HashToBytes#0;class#OSDClient#0" />
                 <element signature="method#putObject#1;class#OSDClient#0" />
                 <element signature="method#putObject#2;class#OSDClient#0" />
-                <element signature="method#getObject#1;class#OSDClient#0" />
-                <element signature="method#WriteMiniObject#0;class#OSDClient#0" />
-                <element signature="e#3036#3037#0" expanded="true" />
                 <element signature="e#3089#3090#0" expanded="true" />
                 <element signature="method#shutdown#0;class#OSDClient#0" />
                 <element signature="method#ForceUpdate#0;class#OSDClient#0" />
@@ -78,20 +68,8 @@
       <file leaf-file-name="CephishFuse.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="171" column="40" selection-start-line="171" selection-start-column="40" selection-end-line="171" selection-end-column="40" />
-              <folding>
-                <element signature="method#getattr#0;class#CephishFuse#0" />
-                <element signature="method#chmod#0;class#CephishFuse#0" />
-                <element signature="method#chown#0;class#CephishFuse#0" />
-                <element signature="method#mkdir#0;class#CephishFuse#0" />
-                <element signature="method#readdir#0;class#CephishFuse#0" />
-                <element signature="method#create#0;class#CephishFuse#0" />
-                <element signature="method#utimens#0;class#CephishFuse#0" />
-                <element signature="method#unlink#0;class#CephishFuse#0" />
-                <element signature="method#addWriteRequest#0;class#CephishFuse#0" />
-                <element signature="method#mergeRequests#0;class#CephishFuse#0" />
-              </folding>
+            <state relative-caret-position="2890">
+              <caret line="166" column="40" selection-start-line="166" selection-start-column="40" selection-end-line="166" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -121,15 +99,9 @@
       <file leaf-file-name="OSDServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="32" column="93" selection-start-line="32" selection-start-column="93" selection-end-line="32" selection-end-column="93" />
+            <state relative-caret-position="418">
+              <caret line="28" column="82" selection-start-line="28" selection-start-column="82" selection-end-line="28" selection-end-column="82" />
               <folding>
-                <element signature="class#State#0;class#OSDImpl#0" />
-                <element signature="method#putObject#0;class#OSDImpl#0" />
-                <element signature="method#getObject#0;class#OSDImpl#0" />
-                <element signature="method#ping#0;class#OSDImpl#0" />
-                <element signature="method#writeMiniObject#0;class#OSDImpl#0" />
-                <element signature="method#pushMapUpdate#0;class#OSDImpl#0" />
                 <element signature="method#deleteObject#0;class#OSDImpl#0" />
                 <element signature="class#OSDServer#0" />
                 <element signature="method#getInstance#0;class#OSDServer#0" />
@@ -174,31 +146,45 @@
       <file leaf-file-name="FileRoute.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-196">
-              <caret line="141" column="104" selection-start-line="141" selection-start-column="104" selection-end-line="141" selection-end-column="104" />
+            <state relative-caret-position="578">
+              <caret line="232" column="8" lean-forward="true" selection-start-line="232" selection-start-column="8" selection-end-line="232" selection-end-column="8" />
               <folding>
                 <element signature="docComment;method#createFile#0;class#FileRoute#0" />
-                <element signature="e#1031#1036#0" />
+                <element signature="e#959#964#0" />
                 <element signature="method#createFile#0;class#FileRoute#0" />
+                <element signature="docComment;method#readFile#0;class#FileRoute#0" />
+                <element signature="e#2639#2644#0" />
+                <element signature="method#readFile#0;class#FileRoute#0" />
                 <element signature="docComment;method#writeFile#0;class#FileRoute#0" />
-                <element signature="e#4951#4958#0" />
+                <element signature="e#4801#4805#0" />
+                <element signature="method#writeFile#0;class#FileRoute#0" />
+                <element signature="e#7915#7919#0" />
+                <element signature="e#9263#9270#0" />
+                <element signature="method#deleteFile#0;class#FileRoute#0" />
                 <element signature="class#BlockData#0;class#FileRoute#0" />
-                <element signature="e#7634#7635#0" expanded="true" />
-                <element signature="e#7733#7734#0" expanded="true" />
-                <element signature="e#7764#7765#0" expanded="true" />
-                <element signature="e#7841#7842#0" expanded="true" />
+                <element signature="method#BlockData#0;class#BlockData#0;class#FileRoute#0" />
+                <element signature="method#getSuperBlocks#0;class#FileRoute#0" />
                 <element signature="method#getSmallerBlocks#0;class#FileRoute#0" />
-                <element signature="class#WriteBlockData#0;class#FileRoute#0" />
-                <element signature="e#9318#9319#0" expanded="true" />
-                <element signature="e#9417#9418#0" expanded="true" />
-                <element signature="e#9448#9449#0" expanded="true" />
-                <element signature="e#9525#9526#0" expanded="true" />
+                <element signature="method#WriteBlockData#0;class#WriteBlockData#0;class#FileRoute#0" />
                 <element signature="method#getGlobalOffset#0;class#WriteBlockData#0;class#FileRoute#0" />
-                <element signature="e#9708#9709#0" expanded="true" />
-                <element signature="e#9788#9789#0" expanded="true" />
-                <element signature="e#9820#9821#0" expanded="true" />
-                <element signature="e#9905#9906#0" expanded="true" />
+                <element signature="method#getFinalHash#0;class#WriteBlockData#0;class#FileRoute#0" />
+                <element signature="method#getOSD#0;class#WriteBlockData#0;class#FileRoute#0" />
+                <element signature="method#readFromOsd#0;class#WriteBlockData#0;class#FileRoute#0" />
+                <element signature="method#getActualData#0;class#WriteBlockData#0;class#FileRoute#0" />
+                <element signature="method#handleFillingPrevious#0;class#FileRoute#0" />
                 <element signature="method#handleWritingAtOffset#0;class#FileRoute#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApplicationServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+              <folding>
+                <element signature="method#startJetty#0;class#ApplicationServer#0" />
               </folding>
             </state>
           </provider>
@@ -590,9 +576,19 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/artifacts/osd_server_jar.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/GetObjectArgs.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/GetObjectArgsOrBuilder.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDGrpc.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDProto.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/ObjectData.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/ObjectDataOrBuilder.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/proto/OSD/OSD.proto</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/proto/StorageController/FileSystem.proto</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -600,8 +596,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/artifacts/CephishFuse_jar.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/artifacts/storage_controller_jar.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/ReadFileResponse.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/ReadRequest.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -609,7 +605,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/artifacts/JErasure_test_jar.xml</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -835,7 +830,7 @@
       <workItem from="1546042470461" duration="28000" />
       <workItem from="1546091850752" duration="1530000" />
       <workItem from="1546093424732" duration="2204000" />
-      <workItem from="1546095660156" duration="7413000" />
+      <workItem from="1546095660156" duration="8745000" />
     </task>
     <task id="LOCAL-00001" summary="Added Atomix in pom file">
       <created>1544099776275</created>
@@ -914,11 +909,18 @@
       <option name="project" value="LOCAL" />
       <updated>1546100700144</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="doing truncate">
+      <created>1546103095579</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1546103095579</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155630000" />
+    <option name="totallyTimeSpent" value="156962000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -934,29 +936,30 @@
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="17" sideWeight="0.5008301" side_tool="true" weight="0.3177874" />
+      <window_info anchor="right" id="Maven Projects" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="18" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="10" />
+      <window_info id="Designer" order="12" />
+      <window_info anchor="right" id="Database" order="14" />
+      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info id="UI Designer" order="11" />
+      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49932885" weight="0.32485875" />
       <window_info anchor="bottom" id="TODO" order="15" weight="0.32909605" />
       <window_info anchor="right" id="Palette&#9;" order="11" />
       <window_info id="Image Layers" order="9" />
       <window_info anchor="bottom" id="Java Enterprise" order="22" />
       <window_info anchor="right" id="Capture Analysis" order="15" />
-      <window_info anchor="bottom" id="Event Log" order="17" sideWeight="0.5008301" side_tool="true" weight="0.3177874" />
-      <window_info anchor="right" id="Maven Projects" order="12" />
-      <window_info anchor="bottom" id="Database Changes" order="18" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="19" weight="0.3394794" />
       <window_info anchor="bottom" id="Run" order="5" weight="0.32931727" />
       <window_info anchor="bottom" id="Terminal" order="20" sideWeight="0.4991699" weight="0.3177874" />
-      <window_info id="Capture Tool" order="10" />
-      <window_info id="Designer" order="12" />
       <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.4989154" visible="true" weight="0.24405092" />
       <window_info anchor="right" id="Bean Validation" order="17" />
-      <window_info anchor="right" id="Database" order="14" />
+      <window_info anchor="bottom" id="Find" order="3" weight="0.32831326" />
       <window_info anchor="right" id="SciView" order="16" />
-      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info id="UI Designer" order="11" />
       <window_info anchor="right" id="Theme Preview" order="13" />
       <window_info id="Favorites" order="8" sideWeight="0.5010846" side_tool="true" weight="0.22966242" />
-      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49932885" weight="0.32485875" />
       <window_info anchor="bottom" id="Messages" order="16" visible="true" weight="0.28199565" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -964,7 +967,6 @@
       <window_info anchor="right" id="Coverage" order="16" side_tool="true" weight="0.32982844" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="3" weight="0.32831326" />
     </layout>
     <layout-to-restore>
       <window_info id="Designer" order="6" />
@@ -1019,7 +1021,8 @@
     <MESSAGE value="Made JErasure stuff" />
     <MESSAGE value="rmFile done" />
     <MESSAGE value="unlink done" />
-    <option name="LAST_COMMIT_MESSAGE" value="unlink done" />
+    <MESSAGE value="doing truncate" />
+    <option name="LAST_COMMIT_MESSAGE" value="doing truncate" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1036,7 +1039,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java</url>
-          <line>40</line>
+          <line>37</line>
           <properties />
           <option name="timeStamp" value="21" />
         </line-breakpoint>
@@ -1297,16 +1300,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-          <folding>
-            <element signature="method#startJetty#0;class#ApplicationServer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/FileSystem/FSTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1412,26 +1405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="33" column="78" selection-start-line="33" selection-start-column="78" selection-end-line="33" selection-end-column="78" />
-          <folding>
-            <element signature="method#rmDir#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#rmFile#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#getAttr#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#setAttr#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#readDir#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#createNode#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#getLatestMap#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#setWriteLock#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#start#0;class#FileSystemServer#0" />
-            <element signature="method#stop#0;class#FileSystemServer#0" />
-            <element signature="method#blockUntilShutdown#0;class#FileSystemServer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/WriteRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -1460,25 +1433,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="171" column="40" selection-start-line="171" selection-start-column="40" selection-end-line="171" selection-end-column="40" />
-          <folding>
-            <element signature="method#getattr#0;class#CephishFuse#0" />
-            <element signature="method#chmod#0;class#CephishFuse#0" />
-            <element signature="method#chown#0;class#CephishFuse#0" />
-            <element signature="method#mkdir#0;class#CephishFuse#0" />
-            <element signature="method#readdir#0;class#CephishFuse#0" />
-            <element signature="method#create#0;class#CephishFuse#0" />
-            <element signature="method#utimens#0;class#CephishFuse#0" />
-            <element signature="method#unlink#0;class#CephishFuse#0" />
-            <element signature="method#addWriteRequest#0;class#CephishFuse#0" />
-            <element signature="method#mergeRequests#0;class#CephishFuse#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/proto/OSD/OSD.proto">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1486,42 +1440,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="69" column="45" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
+        <state relative-caret-position="154">
+          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
           <folding>
-            <element signature="docComment;method#OSDClient#0;class#OSDClient#0" />
-            <element signature="method#OSDClient#0;class#OSDClient#0" />
-            <element signature="e#761#849#0" />
-            <element signature="docComment;method#OSDClient#1;class#OSDClient#0" />
-            <element signature="method#OSDClient#1;class#OSDClient#0" />
-            <element signature="method#putObject#0;class#OSDClient#0" />
-            <element signature="method#HashToBytes#0;class#OSDClient#0" />
-            <element signature="method#putObject#1;class#OSDClient#0" />
-            <element signature="method#putObject#2;class#OSDClient#0" />
-            <element signature="method#getObject#1;class#OSDClient#0" />
-            <element signature="method#WriteMiniObject#0;class#OSDClient#0" />
-            <element signature="e#3036#3037#0" expanded="true" />
-            <element signature="e#3089#3090#0" expanded="true" />
-            <element signature="method#shutdown#0;class#OSDClient#0" />
-            <element signature="method#ForceUpdate#0;class#OSDClient#0" />
-            <element signature="method#ping#0;class#OSDClient#0" />
+            <element signature="method#startJetty#0;class#ApplicationServer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2890">
+          <caret line="166" column="40" selection-start-line="166" selection-start-column="40" selection-end-line="166" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="33" column="78" selection-start-line="33" selection-start-column="78" selection-end-line="33" selection-end-column="78" />
+          <folding>
+            <element signature="method#rmDir#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#rmFile#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#getAttr#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#setAttr#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#readDir#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#createNode#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#getLatestMap#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#setWriteLock#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#start#0;class#FileSystemServer#0" />
+            <element signature="method#stop#0;class#FileSystemServer#0" />
+            <element signature="method#blockUntilShutdown#0;class#FileSystemServer#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="32" column="93" selection-start-line="32" selection-start-column="93" selection-end-line="32" selection-end-column="93" />
+        <state relative-caret-position="418">
+          <caret line="28" column="82" selection-start-line="28" selection-start-column="82" selection-end-line="28" selection-end-column="82" />
           <folding>
-            <element signature="class#State#0;class#OSDImpl#0" />
-            <element signature="method#putObject#0;class#OSDImpl#0" />
-            <element signature="method#getObject#0;class#OSDImpl#0" />
-            <element signature="method#ping#0;class#OSDImpl#0" />
-            <element signature="method#writeMiniObject#0;class#OSDImpl#0" />
-            <element signature="method#pushMapUpdate#0;class#OSDImpl#0" />
             <element signature="method#deleteObject#0;class#OSDImpl#0" />
             <element signature="class#OSDServer#0" />
             <element signature="method#getInstance#0;class#OSDServer#0" />
@@ -1535,32 +1495,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="628">
+          <caret line="69" column="45" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
+          <folding>
+            <element signature="docComment;method#OSDClient#0;class#OSDClient#0" />
+            <element signature="method#OSDClient#0;class#OSDClient#0" />
+            <element signature="e#761#849#0" />
+            <element signature="docComment;method#OSDClient#1;class#OSDClient#0" />
+            <element signature="method#OSDClient#1;class#OSDClient#0" />
+            <element signature="method#putObject#0;class#OSDClient#0" />
+            <element signature="method#HashToBytes#0;class#OSDClient#0" />
+            <element signature="method#putObject#1;class#OSDClient#0" />
+            <element signature="method#putObject#2;class#OSDClient#0" />
+            <element signature="e#3089#3090#0" expanded="true" />
+            <element signature="method#shutdown#0;class#OSDClient#0" />
+            <element signature="method#ForceUpdate#0;class#OSDClient#0" />
+            <element signature="method#ping#0;class#OSDClient#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-196">
-          <caret line="141" column="104" selection-start-line="141" selection-start-column="104" selection-end-line="141" selection-end-column="104" />
+        <state relative-caret-position="578">
+          <caret line="232" column="8" lean-forward="true" selection-start-line="232" selection-start-column="8" selection-end-line="232" selection-end-column="8" />
           <folding>
             <element signature="docComment;method#createFile#0;class#FileRoute#0" />
-            <element signature="e#1031#1036#0" />
+            <element signature="e#959#964#0" />
             <element signature="method#createFile#0;class#FileRoute#0" />
+            <element signature="docComment;method#readFile#0;class#FileRoute#0" />
+            <element signature="e#2639#2644#0" />
+            <element signature="method#readFile#0;class#FileRoute#0" />
             <element signature="docComment;method#writeFile#0;class#FileRoute#0" />
-            <element signature="e#4951#4958#0" />
+            <element signature="e#4801#4805#0" />
+            <element signature="method#writeFile#0;class#FileRoute#0" />
+            <element signature="e#7915#7919#0" />
+            <element signature="e#9263#9270#0" />
+            <element signature="method#deleteFile#0;class#FileRoute#0" />
             <element signature="class#BlockData#0;class#FileRoute#0" />
-            <element signature="e#7634#7635#0" expanded="true" />
-            <element signature="e#7733#7734#0" expanded="true" />
-            <element signature="e#7764#7765#0" expanded="true" />
-            <element signature="e#7841#7842#0" expanded="true" />
+            <element signature="method#BlockData#0;class#BlockData#0;class#FileRoute#0" />
+            <element signature="method#getSuperBlocks#0;class#FileRoute#0" />
             <element signature="method#getSmallerBlocks#0;class#FileRoute#0" />
-            <element signature="class#WriteBlockData#0;class#FileRoute#0" />
-            <element signature="e#9318#9319#0" expanded="true" />
-            <element signature="e#9417#9418#0" expanded="true" />
-            <element signature="e#9448#9449#0" expanded="true" />
-            <element signature="e#9525#9526#0" expanded="true" />
+            <element signature="method#WriteBlockData#0;class#WriteBlockData#0;class#FileRoute#0" />
             <element signature="method#getGlobalOffset#0;class#WriteBlockData#0;class#FileRoute#0" />
-            <element signature="e#9708#9709#0" expanded="true" />
-            <element signature="e#9788#9789#0" expanded="true" />
-            <element signature="e#9820#9821#0" expanded="true" />
-            <element signature="e#9905#9906#0" expanded="true" />
+            <element signature="method#getFinalHash#0;class#WriteBlockData#0;class#FileRoute#0" />
+            <element signature="method#getOSD#0;class#WriteBlockData#0;class#FileRoute#0" />
+            <element signature="method#readFromOsd#0;class#WriteBlockData#0;class#FileRoute#0" />
+            <element signature="method#getActualData#0;class#WriteBlockData#0;class#FileRoute#0" />
+            <element signature="method#handleFillingPrevious#0;class#FileRoute#0" />
             <element signature="method#handleWritingAtOffset#0;class#FileRoute#0" />
           </folding>
         </state>

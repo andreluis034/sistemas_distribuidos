@@ -9,6 +9,7 @@ import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
 import GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes;
 import GrupoA.Utility.Jenkins;
 import com.google.protobuf.ByteString;
+import sun.applet.AppletListener;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -65,6 +66,7 @@ public class FileRoute {
 
         return wbds;
     }
+
     /**
      * Returns the contents of a file
      * @param rr the contents requested
@@ -209,18 +211,29 @@ public class FileRoute {
         List<BlockData> blocks = new LinkedList<>();
         List<Integer> superBlocks = getSuperBlocks(0, fileSize);
         long relativeOffset = tr.offset;
+        int subBlockToEdit = 0, blockToEdit = 0;
         for (Integer superBlock : superBlocks) {
             List<Integer> smallerBlocks = getSmallerBlocks(superBlock,0, fileSize);
             for (Integer miniBlock : smallerBlocks) {
-                BlockData bd = new BlockData(tr.path, superBlock, miniBlock, iNodeAttr.getRedundancy());
-
-                int blockSize = Math.min(wbd.Data.length,  (int)(wr.offset - relativeOffset));
-                wbd.endRelativeOffset = blockSize;
-                relativeOffset +=blockSize;
-
-                blocks.add(new BlockData(tr.path, superBlock, miniBlock, iNodeAttr.getRedundancy()));
+                long temp = relativeOffset - ApplicationServer.subBlockSize;
+                if (temp < 0) {
+                    break;
+                } else {
+                    relativeOffset = temp;
+                    subBlockToEdit = miniBlock;
+                }
             }
+
+            if(relativeOffset - ApplicationServer.subBlockSize < 0)
+                break;
+            blockToEdit = superBlock;
         }
+
+        // Get block 'subBlockToEdit' and truncate until offset 'relativeOffset'
+        
+
+
+        // Delete all blocks with "id" higher than subBlockToEdit
     }
 
     @DELETE
