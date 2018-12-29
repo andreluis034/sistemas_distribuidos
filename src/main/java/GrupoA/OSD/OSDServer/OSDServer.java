@@ -3,7 +3,6 @@ package GrupoA.OSD.OSDServer;
 import GrupoA.OSD.OSDClient.OSDClient;
 import GrupoA.OSD.OSDService.*;
 
-import GrupoA.StorageController.gRPCService.OSDListener.OSDDetails;
 import GrupoA.StorageController.gRPCService.OSDListenerClient;
 import com.google.protobuf.ByteString;
 import io.grpc.Server;
@@ -77,8 +76,8 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
     @Override
     public void writeMiniObject(MiniObject args, StreamObserver<EmptyMessage> response) {
         EmptyMessage reply = EmptyMessage.newBuilder().build();
-        if(OSDServer.IsLeader && args.getDuplicate()) {
-            for (OSDDetails osd : OSDServer.OSDs) {
+        if(OSDServer.getInstance().IsLeader && args.getDuplicate()) {
+            for (OSDDetails osd : OSDServer.getInstance().OSDs) {
                 if(osd.getLeader())
                     continue;
                 OSDClient client = new OSDClient(osd.getAddress(), osd.getPort());
@@ -93,7 +92,28 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
         } catch (Exception e) {
             e.printStackTrace();;
         }
+        response.onNext(reply);
+        response.onCompleted();
+    }
 
+    @Override
+    public void pushMapUpdate(OSDInSamePaG args, StreamObserver<EmptyMessage> response) {
+        EmptyMessage reply = EmptyMessage.newBuilder().build();
+
+        OSDDetails osd = null;
+        for (OSDDetails _osd : args.getOSDsList()){
+            if (_osd.getPort() == OSDServer.myPort && _osd.getAddress().equals(OSDServer.myHost)) {
+                osd = _osd;
+                break;
+            }
+        }
+        if(osd != null) {
+            OSDServer.getInstance().OSDs = args.getOSDsList();
+            OSDServer.getInstance().IsLeader = osd.getLeader();
+            OSDServer.getInstance().printOSDs();
+        }
+        response.onNext(reply);
+        response.onCompleted();
     }
 
 }
@@ -101,16 +121,22 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
 
 public class OSDServer {
 
-    public static List<OSDDetails> OSDs = new LinkedList<OSDDetails>();
-    public static boolean IsLeader = false;
+    public List<OSDDetails> OSDs = new LinkedList<OSDDetails>();
+    public boolean IsLeader = false;
 
-    private static String myHost = "";
-    private static int myPort = 50051;
-
+    public static String myHost = "";
+    public static int myPort = 50051;
 
     private Server server;
     private OSDImpl impl = null;
     private OSDListenerClient client;
+
+    private static OSDServer instance = null;
+    public static synchronized OSDServer getInstance() {
+        if(instance == null)
+            instance = new OSDServer();
+        return instance;
+    }
 
     public OSDServer() {
         this.impl = new OSDImpl();
@@ -128,14 +154,24 @@ public class OSDServer {
             public void run() {
                 // Use stderr here since the logger may have been reset by its JVM shutdown hook.
                 System.err.println("*** shutting down gRPC server since JVM is shutting down");
-                client.leave(myHost, myPort);
+                try {
+                    System.out.println("Announcing departure");
+                    client.leave(myHost, myPort);
+                    client.shutdown();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 OSDServer.this.stop();
                 System.err.println("*** server shut down");
             }
         });
         System.out.println("Announcing "+ myHost + ":" + 50051 + " to " + "192.168.10.70");
-        OSDs = client.announce(myHost, myPort);
+        client.announce(myHost, myPort);
+
+    }
+    void printOSDs () {
         System.out.println(OSDs.size());
+
         for (OSDDetails osd : OSDs) {
             if(osd.getAddress().equals(myHost) && osd.getPort() == myPort){
                 IsLeader = osd.getLeader();
@@ -143,7 +179,6 @@ public class OSDServer {
             System.out.println(osd.getAddress() + ":" + osd.getPort() + " leader: " + osd.getLeader());
         }
     }
-
     private void stop() {
         if (server != null) {
             server.shutdown();
@@ -158,9 +193,8 @@ public class OSDServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         myHost = args[0];
-        final OSDServer server = new OSDServer();
-        server.start();
+        OSDServer.getInstance().start();
 
-        server.blockUntilShutdown();
+        OSDServer.getInstance().blockUntilShutdown();
     }
 }

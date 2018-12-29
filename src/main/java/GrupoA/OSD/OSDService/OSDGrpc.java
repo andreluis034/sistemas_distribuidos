@@ -187,6 +187,38 @@ public final class OSDGrpc {
      return getPingMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.OSDInSamePaG,
+      GrupoA.OSD.OSDService.EmptyMessage> getPushMapUpdateMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "pushMapUpdate",
+      requestType = GrupoA.OSD.OSDService.OSDInSamePaG.class,
+      responseType = GrupoA.OSD.OSDService.EmptyMessage.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.OSDInSamePaG,
+      GrupoA.OSD.OSDService.EmptyMessage> getPushMapUpdateMethod() {
+    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.OSDInSamePaG, GrupoA.OSD.OSDService.EmptyMessage> getPushMapUpdateMethod;
+    if ((getPushMapUpdateMethod = OSDGrpc.getPushMapUpdateMethod) == null) {
+      synchronized (OSDGrpc.class) {
+        if ((getPushMapUpdateMethod = OSDGrpc.getPushMapUpdateMethod) == null) {
+          OSDGrpc.getPushMapUpdateMethod = getPushMapUpdateMethod = 
+              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.OSDInSamePaG, GrupoA.OSD.OSDService.EmptyMessage>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "GrupoA.OSD.OSDService.OSD", "pushMapUpdate"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.OSD.OSDService.OSDInSamePaG.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.OSD.OSDService.EmptyMessage.getDefaultInstance()))
+                  .setSchemaDescriptor(new OSDMethodDescriptorSupplier("pushMapUpdate"))
+                  .build();
+          }
+        }
+     }
+     return getPushMapUpdateMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -249,6 +281,13 @@ public final class OSDGrpc {
       asyncUnimplementedUnaryCall(getPingMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void pushMapUpdate(GrupoA.OSD.OSDService.OSDInSamePaG request,
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
+      asyncUnimplementedUnaryCall(getPushMapUpdateMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -286,6 +325,13 @@ public final class OSDGrpc {
                 GrupoA.OSD.OSDService.EmptyMessage,
                 GrupoA.OSD.OSDService.BooleanMessage>(
                   this, METHODID_PING)))
+          .addMethod(
+            getPushMapUpdateMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                GrupoA.OSD.OSDService.OSDInSamePaG,
+                GrupoA.OSD.OSDService.EmptyMessage>(
+                  this, METHODID_PUSH_MAP_UPDATE)))
           .build();
     }
   }
@@ -347,6 +393,14 @@ public final class OSDGrpc {
       asyncUnaryCall(
           getChannel().newCall(getPingMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void pushMapUpdate(GrupoA.OSD.OSDService.OSDInSamePaG request,
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getPushMapUpdateMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -400,6 +454,13 @@ public final class OSDGrpc {
     public GrupoA.OSD.OSDService.BooleanMessage ping(GrupoA.OSD.OSDService.EmptyMessage request) {
       return blockingUnaryCall(
           getChannel(), getPingMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GrupoA.OSD.OSDService.EmptyMessage pushMapUpdate(GrupoA.OSD.OSDService.OSDInSamePaG request) {
+      return blockingUnaryCall(
+          getChannel(), getPushMapUpdateMethod(), getCallOptions(), request);
     }
   }
 
@@ -460,6 +521,14 @@ public final class OSDGrpc {
       return futureUnaryCall(
           getChannel().newCall(getPingMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.EmptyMessage> pushMapUpdate(
+        GrupoA.OSD.OSDService.OSDInSamePaG request) {
+      return futureUnaryCall(
+          getChannel().newCall(getPushMapUpdateMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_PUT_OBJECT = 0;
@@ -467,6 +536,7 @@ public final class OSDGrpc {
   private static final int METHODID_READ_MINI_OBJECT = 2;
   private static final int METHODID_GET_OBJECT = 3;
   private static final int METHODID_PING = 4;
+  private static final int METHODID_PUSH_MAP_UPDATE = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -504,6 +574,10 @@ public final class OSDGrpc {
         case METHODID_PING:
           serviceImpl.ping((GrupoA.OSD.OSDService.EmptyMessage) request,
               (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.BooleanMessage>) responseObserver);
+          break;
+        case METHODID_PUSH_MAP_UPDATE:
+          serviceImpl.pushMapUpdate((GrupoA.OSD.OSDService.OSDInSamePaG) request,
+              (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -571,6 +645,7 @@ public final class OSDGrpc {
               .addMethod(getReadMiniObjectMethod())
               .addMethod(getGetObjectMethod())
               .addMethod(getPingMethod())
+              .addMethod(getPushMapUpdateMethod())
               .build();
         }
       }

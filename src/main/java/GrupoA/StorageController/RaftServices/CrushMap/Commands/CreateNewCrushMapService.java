@@ -1,5 +1,6 @@
 package GrupoA.StorageController.RaftServices.CrushMap.Commands;
 
+import GrupoA.OSD.OSDClient.OSDClient;
 import GrupoA.StorageController.Crush.CrushMap;
 import GrupoA.StorageController.Crush.ObjectStorageDaemon;
 import GrupoA.StorageController.RaftServices.CrushMap.CrushMapService;
@@ -26,6 +27,14 @@ public class CreateNewCrushMapService extends CrushMapCommand<CrushMap> {
             context.mapOfMaps.put(context.latestVersion, context.latestMap);
             context.latestMap.printPGs();
             context.latestMap.printOSDs();
+            if(context.isLeader) {
+                for (ObjectStorageDaemon osd : context.latestMap.getOSDsCopy()) {
+                    OSDClient client = new OSDClient(osd.getHost(), osd.getPort());
+                    client.ForceUpdate(osd.getBelongingPG().getOSDs());
+                    client.shutdown();
+                }
+            }
+
         }catch (Exception e){
             e.printStackTrace();
             return null;

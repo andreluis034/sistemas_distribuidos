@@ -31,21 +31,21 @@ public final class OSDListenerGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails,
-      GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG> getReceiveAnnouncementMethod;
+      GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage> getReceiveAnnouncementMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "receiveAnnouncement",
       requestType = GrupoA.StorageController.gRPCService.OSDListener.OSDDetails.class,
-      responseType = GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG.class,
+      responseType = GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails,
-      GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG> getReceiveAnnouncementMethod() {
-    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails, GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG> getReceiveAnnouncementMethod;
+      GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage> getReceiveAnnouncementMethod() {
+    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails, GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage> getReceiveAnnouncementMethod;
     if ((getReceiveAnnouncementMethod = OSDListenerGrpc.getReceiveAnnouncementMethod) == null) {
       synchronized (OSDListenerGrpc.class) {
         if ((getReceiveAnnouncementMethod = OSDListenerGrpc.getReceiveAnnouncementMethod) == null) {
           OSDListenerGrpc.getReceiveAnnouncementMethod = getReceiveAnnouncementMethod = 
-              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails, GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG>newBuilder()
+              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails, GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "GrupoA.StorageController.gRPCService.OSDListener.OSDListener", "receiveAnnouncement"))
@@ -53,13 +53,45 @@ public final class OSDListenerGrpc {
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.StorageController.gRPCService.OSDListener.OSDDetails.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG.getDefaultInstance()))
+                  GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage.getDefaultInstance()))
                   .setSchemaDescriptor(new OSDListenerMethodDescriptorSupplier("receiveAnnouncement"))
                   .build();
           }
         }
      }
      return getReceiveAnnouncementMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails,
+      GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG> getGetUpdatedInfoMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getUpdatedInfo",
+      requestType = GrupoA.StorageController.gRPCService.OSDListener.OSDDetails.class,
+      responseType = GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails,
+      GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG> getGetUpdatedInfoMethod() {
+    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails, GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG> getGetUpdatedInfoMethod;
+    if ((getGetUpdatedInfoMethod = OSDListenerGrpc.getGetUpdatedInfoMethod) == null) {
+      synchronized (OSDListenerGrpc.class) {
+        if ((getGetUpdatedInfoMethod = OSDListenerGrpc.getGetUpdatedInfoMethod) == null) {
+          OSDListenerGrpc.getGetUpdatedInfoMethod = getGetUpdatedInfoMethod = 
+              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails, GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "GrupoA.StorageController.gRPCService.OSDListener.OSDListener", "getUpdatedInfo"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.OSDListener.OSDDetails.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG.getDefaultInstance()))
+                  .setSchemaDescriptor(new OSDListenerMethodDescriptorSupplier("getUpdatedInfo"))
+                  .build();
+          }
+        }
+     }
+     return getGetUpdatedInfoMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.OSDListener.OSDDetails,
@@ -127,8 +159,15 @@ public final class OSDListenerGrpc {
     /**
      */
     public void receiveAnnouncement(GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request,
-        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG> responseObserver) {
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage> responseObserver) {
       asyncUnimplementedUnaryCall(getReceiveAnnouncementMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void getUpdatedInfo(GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetUpdatedInfoMethod(), responseObserver);
     }
 
     /**
@@ -145,8 +184,15 @@ public final class OSDListenerGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 GrupoA.StorageController.gRPCService.OSDListener.OSDDetails,
-                GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG>(
+                GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage>(
                   this, METHODID_RECEIVE_ANNOUNCEMENT)))
+          .addMethod(
+            getGetUpdatedInfoMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                GrupoA.StorageController.gRPCService.OSDListener.OSDDetails,
+                GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG>(
+                  this, METHODID_GET_UPDATED_INFO)))
           .addMethod(
             getLeaveMethod(),
             asyncUnaryCall(
@@ -182,9 +228,17 @@ public final class OSDListenerGrpc {
     /**
      */
     public void receiveAnnouncement(GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request,
-        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG> responseObserver) {
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getReceiveAnnouncementMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void getUpdatedInfo(GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetUpdatedInfoMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -219,9 +273,16 @@ public final class OSDListenerGrpc {
 
     /**
      */
-    public GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG receiveAnnouncement(GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request) {
+    public GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage receiveAnnouncement(GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request) {
       return blockingUnaryCall(
           getChannel(), getReceiveAnnouncementMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG getUpdatedInfo(GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request) {
+      return blockingUnaryCall(
+          getChannel(), getGetUpdatedInfoMethod(), getCallOptions(), request);
     }
 
     /**
@@ -255,10 +316,18 @@ public final class OSDListenerGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG> receiveAnnouncement(
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage> receiveAnnouncement(
         GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request) {
       return futureUnaryCall(
           getChannel().newCall(getReceiveAnnouncementMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG> getUpdatedInfo(
+        GrupoA.StorageController.gRPCService.OSDListener.OSDDetails request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetUpdatedInfoMethod(), getCallOptions()), request);
     }
 
     /**
@@ -271,7 +340,8 @@ public final class OSDListenerGrpc {
   }
 
   private static final int METHODID_RECEIVE_ANNOUNCEMENT = 0;
-  private static final int METHODID_LEAVE = 1;
+  private static final int METHODID_GET_UPDATED_INFO = 1;
+  private static final int METHODID_LEAVE = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -292,6 +362,10 @@ public final class OSDListenerGrpc {
       switch (methodId) {
         case METHODID_RECEIVE_ANNOUNCEMENT:
           serviceImpl.receiveAnnouncement((GrupoA.StorageController.gRPCService.OSDListener.OSDDetails) request,
+              (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.OSDListener.EmptyMessage>) responseObserver);
+          break;
+        case METHODID_GET_UPDATED_INFO:
+          serviceImpl.getUpdatedInfo((GrupoA.StorageController.gRPCService.OSDListener.OSDDetails) request,
               (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.OSDListener.OSDInSamePaG>) responseObserver);
           break;
         case METHODID_LEAVE:
@@ -360,6 +434,7 @@ public final class OSDListenerGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new OSDListenerFileDescriptorSupplier())
               .addMethod(getReceiveAnnouncementMethod())
+              .addMethod(getGetUpdatedInfoMethod())
               .addMethod(getLeaveMethod())
               .build();
         }

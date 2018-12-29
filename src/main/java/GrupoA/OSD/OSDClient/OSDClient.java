@@ -2,12 +2,14 @@ package GrupoA.OSD.OSDClient;
 
 import GrupoA.AppServer.Routes.FileRoute;
 import GrupoA.OSD.OSDService.*;
+import GrupoA.StorageController.Crush.ObjectStorageDaemon;
 import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class OSDClient {
@@ -83,7 +85,15 @@ public class OSDClient {
     }
 
 
-
+    public void ForceUpdate(List<ObjectStorageDaemon> OSDs) {
+        OSDInSamePaG.Builder builder = OSDInSamePaG.newBuilder();
+        for (ObjectStorageDaemon osd : OSDs) {
+            OSDDetails.Builder osdBuilder = OSDDetails.newBuilder();
+            osdBuilder.setAddress(osd.getHost()).setPort(osd.getPort()).setLeader(osd.isLeader);
+            builder.addOSDs(osdBuilder);
+        }
+        this.blockingStub.pushMapUpdate(builder.build());
+    }
     public boolean ping() {
         try {
             return this.blockingStub.ping(EmptyMessage.newBuilder().build()).getResult();

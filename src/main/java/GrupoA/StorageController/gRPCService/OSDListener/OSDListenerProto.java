@@ -43,16 +43,20 @@ public final class OSDListenerProto {
       "ils\022\017\n\007Address\030\001 \001(\t\022\014\n\004Port\030\002 \001(\005\022\016\n\006le" +
       "ader\030\003 \001(\010\"Z\n\014OSDInSamePaG\022J\n\004OSDs\030\001 \003(\013" +
       "2<.GrupoA.StorageController.gRPCService." +
-      "OSDListener.OSDDetails\"\016\n\014EmptyMessage2\257" +
-      "\002\n\013OSDListener\022\225\001\n\023receiveAnnouncement\022<" +
+      "OSDListener.OSDDetails\"\016\n\014EmptyMessage2\302" +
+      "\003\n\013OSDListener\022\225\001\n\023receiveAnnouncement\022<" +
       ".GrupoA.StorageController.gRPCService.OS" +
       "DListener.OSDDetails\032>.GrupoA.StorageCon" +
-      "troller.gRPCService.OSDListener.OSDInSam" +
-      "ePaG\"\000\022\207\001\n\005leave\022<.GrupoA.StorageControl" +
-      "ler.gRPCService.OSDListener.OSDDetails\032>" +
-      ".GrupoA.StorageController.gRPCService.OS" +
-      "DListener.EmptyMessage\"\000B\030B\020OSDListenerP" +
-      "rotoP\001\242\002\001Ob\006proto3"
+      "troller.gRPCService.OSDListener.EmptyMes" +
+      "sage\"\000\022\220\001\n\016getUpdatedInfo\022<.GrupoA.Stora" +
+      "geController.gRPCService.OSDListener.OSD" +
+      "Details\032>.GrupoA.StorageController.gRPCS" +
+      "ervice.OSDListener.OSDInSamePaG\"\000\022\207\001\n\005le" +
+      "ave\022<.GrupoA.StorageController.gRPCServi" +
+      "ce.OSDListener.OSDDetails\032>.GrupoA.Stora" +
+      "geController.gRPCService.OSDListener.Emp" +
+      "tyMessage\"\000B\030B\020OSDListenerProtoP\001\242\002\001Ob\006p" +
+      "roto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

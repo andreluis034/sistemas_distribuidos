@@ -45,6 +45,70 @@ public class FileRoute {
         }
     }
 
+    /**
+     * writes to a file
+     * @param wr The request to write the file
+     * @return Linux System Error
+     */
+    @PUT
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Integer writeFile(WriteRequest wr) { //TODO support jerasure
+        try {
+            System.out.println("Writting file " + wr.path);
+            long id = Jenkins.hash64(servletRequest.getRemoteHost().getBytes());
+            LockResponse gotLock = ApplicationServer.FileSystemClient
+                    .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion()); //TODO
+            while(gotLock.getMapOutdated()) {
+                crushmap = ApplicationServer.FileSystemClient.GetLatestCrushMap();
+                ApplicationServer.FileSystemClient
+                        .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion());
+            }
+            if(!gotLock.getResult())
+                return -16; /* Device or resource busy */
+            Boolean finalSizeUpdated = false;
+            List<WriteBlockData> blocksToWrite = new LinkedList<>();
+
+            iNodeAttributes nattributes = ApplicationServer.FileSystemClient.GetAttributes(wr.path);
+            long newSize = Math.max(handleFillingPrevious(nattributes, wr, blocksToWrite),
+                    handleWritingAtOffset(nattributes, wr, blocksToWrite));
+            finalSizeUpdated = newSize != nattributes.getSize();
+
+
+            //TODO calculate jerasure
+
+            for (WriteBlockData wbd : blocksToWrite) {
+                CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto
+                        osd;
+                long hashToUse = wbd.getHashForPG();
+                CrushMapResponse.PlacementGroupProto
+                        PG = crushmap.getPGs((int) (wbd.getHashForPG() % crushmap.getPGsCount()));
+                if (nattributes.getRedundancy().equals(RedundancyProto.Replication)) {
+                    osd = PG.getOSDs(0); //TODO actually check this is the leader??
+                } else { //FOR JERASURE
+                    String hash_str = Long.toHexString(wbd.getHashForPG()) + "_" + PG.getPGNumber();
+                    hashToUse = Jenkins.hash64(hash_str.getBytes());
+                    osd = PG.getOSDs((int) (hashToUse % PG.getOSDsCount()));
+                }
+                String hostname = osd.getAddress().split(";")[0];
+                Integer port = Integer.parseInt(osd.getAddress().split(";")[1]);
+                OSDClient client = new OSDClient(hostname, port);
+                client.WriteMiniObject(hashToUse, wbd);
+                client.shutdown();
+
+            }
+
+
+            if(finalSizeUpdated){
+                ApplicationServer.FileSystemClient.UpdateAttribute(wr.path, newSize, AttributeUpdateRequest.UpdateType.CHANGE_SIZE );
+            }
+            ApplicationServer.FileSystemClient.ReleaseWriteLock(wr.path, id);//TODO
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -5; //IO error
+    }
 
     private List<Integer> getSuperBlocks(long offset, int size) {
         List<Integer> out = new ArrayList<>();
@@ -154,70 +218,7 @@ public class FileRoute {
     }
 
 
-    /**
-     * writes to a file
-     * @param wr The request to write the file
-     * @return Linux System Error
-     */
-    @PUT
-    @Path("/")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Integer writeFile(WriteRequest wr) { //TODO support jerasure
-        try {
-            System.out.println("Writting file " + wr.path);
-            long id = Jenkins.hash64(servletRequest.getRemoteHost().getBytes());
-            LockResponse gotLock = ApplicationServer.FileSystemClient
-                    .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion()); //TODO
-            while(gotLock.getMapOutdated()) {
-                crushmap = ApplicationServer.FileSystemClient.GetLatestCrushMap();
-                ApplicationServer.FileSystemClient
-                        .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion());
-            }
-            if(!gotLock.getResult())
-                return -16; /* Device or resource busy */
-            Boolean finalSizeUpdated = false;
-            List<WriteBlockData> blocksToWrite = new LinkedList<>();
 
-            iNodeAttributes nattributes = ApplicationServer.FileSystemClient.GetAttributes(wr.path);
-            long newSize = Math.max(handleFillingPrevious(nattributes, wr, blocksToWrite),
-                    handleWritingAtOffset(nattributes, wr, blocksToWrite));
-            finalSizeUpdated = newSize != nattributes.getSize();
-
-
-            //TODO calculate jerasure
-
-            for (WriteBlockData wbd : blocksToWrite) {
-                CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto
-                        osd;
-                long hashToUse = wbd.getHashForPG();
-                CrushMapResponse.PlacementGroupProto
-                        PG = crushmap.getPGs((int) (wbd.getHashForPG() % crushmap.getPGsCount()));
-                if (nattributes.getRedundancy().equals(RedundancyProto.Replication)) {
-                    osd = PG.getOSDs(0); //TODO actually check this is the leader??
-                } else { //FOR JERASURE
-                    String hash_str = Long.toHexString(wbd.getHashForPG()) + "_" + PG.getPGNumber();
-                    hashToUse = Jenkins.hash64(hash_str.getBytes());
-                    osd = PG.getOSDs((int) (hashToUse % PG.getOSDsCount()));
-                }
-                String hostname = osd.getAddress().split(";")[0];
-                Integer port = Integer.parseInt(osd.getAddress().split(";")[1]);
-                OSDClient client = new OSDClient(hostname, port);
-                client.WriteMiniObject(hashToUse, wbd);
-                client.shutdown();
-
-            }
-
-
-            if(finalSizeUpdated){
-                ApplicationServer.FileSystemClient.UpdateAttribute(wr.path, newSize, AttributeUpdateRequest.UpdateType.CHANGE_SIZE );
-            }
-            ApplicationServer.FileSystemClient.ReleaseWriteLock(wr.path, id);//TODO
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return -5; //IO error
-    }
 
 
     private static CrushMapResponse crushmap = null;

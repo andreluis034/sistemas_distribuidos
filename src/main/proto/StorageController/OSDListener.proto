@@ -10,7 +10,8 @@ package GrupoA.StorageController.gRPCService.OSDListener;
 service OSDListener {
     //rpc rmFile (pathOnlyArgs) returns (BooleanMessage) {}
 
-    rpc receiveAnnouncement(OSDDetails) returns (OSDInSamePaG) {}
+    rpc receiveAnnouncement(OSDDetails) returns (EmptyMessage) {}
+    rpc getUpdatedInfo(OSDDetails) returns (OSDInSamePaG) {}
     rpc leave(OSDDetails) returns (EmptyMessage) {}
 }
 

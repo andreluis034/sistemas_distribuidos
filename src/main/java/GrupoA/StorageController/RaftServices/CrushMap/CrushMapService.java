@@ -5,6 +5,7 @@ import GrupoA.StorageController.Crush.CrushMap;
 import GrupoA.StorageController.Crush.ObjectStorageDaemon;
 import GrupoA.StorageController.RaftServices.CrushMap.Commands.CreateNewCrushMapService;
 import GrupoA.StorageController.RaftServices.CrushMap.Commands.CrushMapCommand;
+import GrupoA.StorageController.gRPCService.OSDListener.OSDDetails;
 import org.jgroups.JChannel;
 import org.jgroups.protocols.raft.RAFT;
 import org.jgroups.protocols.raft.Role;
@@ -26,7 +27,7 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
     protected RaftHandle raft;
     protected long replyTimeout = 20 * 1000; // 20 seconds
 
-    private boolean isLeader = false;
+    public boolean isLeader = false;
     public CrushMap latestMap;
     public int latestVersion = 0;
     public final HashMap<Integer, CrushMap> mapOfMaps = new HashMap<>();
@@ -132,6 +133,23 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
             OSDs.add(OSD);
             return this.createNewMap(OSDs);
         } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return latestMap;
+    }
+
+    public CrushMap removeOSD(OSDDetails details) {
+
+        List<ObjectStorageDaemon> osds = this.latestMap.getOSDsCopy();
+        for (ObjectStorageDaemon osd : osds ) {
+            if(osd.getHost().equals(details.getAddress()) && osd.getPort() == details.getPort()) {
+                osds.remove(osd);
+                break;
+            }
+        }
+        try {
+            return this.createNewMap(osds);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return latestMap;

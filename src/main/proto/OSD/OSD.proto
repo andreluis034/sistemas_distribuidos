@@ -16,6 +16,16 @@ service OSD {
     rpc getObject (GetObjectArgs) returns (ObjectData) {}
 
     rpc ping (EmptyMessage) returns (BooleanMessage) {}
+
+    rpc pushMapUpdate (OSDInSamePaG) returns (EmptyMessage) {}
+}
+message OSDDetails {
+    string Address = 1;
+    int32 Port = 2;
+    bool leader = 3;
+}
+message OSDInSamePaG {
+    repeated OSDDetails OSDs = 1;
 }
 
 message MiniObject {
