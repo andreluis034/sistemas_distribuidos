@@ -30,9 +30,9 @@ public class UpdateAttributeCommand extends FileSystemCommand<Boolean> {
             case CHGID:
                 chgid(node);
                 break;
-            case UPDATEACCESSTIME: {
+            case UPDATEACCESSTIME:
                 node.accessTime = this.update.getValue() * 1000;
-            }
+                break;
             case CHANGE_SIZE:
                 if(node.getNodeType() != FSTree.NodeType.FileNode)
                     return false;

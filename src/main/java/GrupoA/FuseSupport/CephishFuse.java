@@ -149,6 +149,7 @@ public class CephishFuse extends FuseStubFS {
 
     @Override
     public int write(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
+        System.out.println("----------------------------------------------------------");
         NodeAttributes attr = restClient.getAttribute(path);
         if (attr == null)
             return -ErrorCodes.ENOENT();
@@ -162,7 +163,6 @@ public class CephishFuse extends FuseStubFS {
     public int release(String path, FuseFileInfo fi) {
         List<WriteRequest> pendingWritesList = pendingWrites.get(path);
         for (WriteRequest wr : pendingWritesList) {
-
             pendingWritesList.remove(wr);
         }
         return 0;

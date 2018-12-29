@@ -50,10 +50,15 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
             reply.setOwnerId(node.UserId);
             reply.setGroupId(node.GroupId);
             reply.setINodeNumber(node.iNode);
+            reply.setSize(0);
             if(node.getNodeType().equals(FSTree.NodeType.FileNode)){
                 reply.setRedundancy(((FSTree.FileNode)node).RedundancyType.toProto());
+                reply.setSize(((FSTree.FileNode) node).fileSize);
+                System.out.println(((FSTree.FileNode) node).fileSize);
             }
-            reply.setSize(node.getNodeType() == FSTree.NodeType.DirNode ? 0 : ((FSTree.FileNode)node).fileSize);
+            reply.setCtime(node.creationTime);
+            reply.setMtime(node.modifiedTime);
+            reply.setAtime(node.accessTime);
             reply.setParentINodeNumber(node.Parent == null ? 0 : node.Parent.iNode);
 
 
