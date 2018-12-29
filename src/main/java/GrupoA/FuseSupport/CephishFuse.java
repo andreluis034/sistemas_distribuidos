@@ -187,7 +187,7 @@ public class CephishFuse extends FuseStubFS {
 
     @Override
     public int truncate(String path, @off_t long size) {
-        System.out.println("truncate(\""+path+"\", " +offset    +")");
+        System.out.println("truncate(\""+path+"\", " +size    +")");
         NodeAttributes attr = restClient.getAttribute(path);
         if (attr == null)
             return -ErrorCodes.ENOENT();

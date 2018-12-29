@@ -159,7 +159,7 @@ public class RestClient {
         rr.size = size;
         return client.target(restBaseUri).path("file").path("read")
                 .request(MediaType.APPLICATION_JSON)
-                .put(Entity.entity(rr, MediaType.APPLICATION_JSON), ReadFileResponse.class);
+                .post(Entity.entity(rr, MediaType.APPLICATION_JSON), ReadFileResponse.class);
     }
 
     public int truncate(String path, long size) {
