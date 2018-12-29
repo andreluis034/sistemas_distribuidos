@@ -287,7 +287,7 @@ public class FileRoute {
             List<Integer> smallerBlocks = getSmallerBlocks(superblock, wr.offset, wr.data.length);
             for (Integer miniBlock : smallerBlocks) {
                 WriteBlockData wbd = new WriteBlockData(wr.path, superblock, miniBlock, attr.getRedundancy());
-                wbd.startRelativeOffset = (int)(wbd.getGlobalOffset() - currentGlobalOffset);
+                wbd.startRelativeOffset = (int)(currentGlobalOffset - wbd.getGlobalOffset());
                 long maxAllowedToWriteToBlock = wbd.getActualSize();
                 int toWrite = (int) Math.min(maxAllowedToWriteToBlock, remainingData);
                 wbd.endRelativeOffset = (int) (wbd.startRelativeOffset + toWrite);

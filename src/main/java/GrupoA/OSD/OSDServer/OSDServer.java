@@ -12,11 +12,13 @@ import io.grpc.stub.StreamObserver;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.RandomAccess;
 
 class OSDImpl extends OSDGrpc.OSDImplBase {
 
@@ -86,10 +88,11 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
             }
         }
         try {
-            FileOutputStream fos = new FileOutputStream(Long.toHexString(args.getHash()));
             int size = args.getEndOffset() - args.getStartOffset();
-            fos.write(args.getObjectData().toByteArray(), args.getStartOffset(), size);
-            fos.close();
+            RandomAccessFile file = new RandomAccessFile(Long.toHexString(args.getHash()), "rw");
+            file.seek(args.getStartOffset());
+            file.write(args.getObjectData().toByteArray(), args.getStartOffset(), size);
+            file.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
