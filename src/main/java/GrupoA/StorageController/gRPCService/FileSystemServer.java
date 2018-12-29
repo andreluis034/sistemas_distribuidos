@@ -140,6 +140,7 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
         CrushMapResponse.Builder builder = CrushMapResponse.newBuilder().setVersion(-1);
         try {
             CrushMap cm = CrushMapService.getInstance().getLatestMap();
+            builder.setVersion(cm.getVersion());
             for (PlacementGroup pg : cm.getPGs()) {
                 CrushMapResponse.PlacementGroupProto.Builder pgBuilder = CrushMapResponse.PlacementGroupProto.newBuilder();
                 pgBuilder.setPGNumber(pg.getPgID());

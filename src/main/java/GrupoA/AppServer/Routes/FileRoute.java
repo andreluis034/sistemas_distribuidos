@@ -61,8 +61,9 @@ public class FileRoute {
                     .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion()); //TODO
             while(gotLock.getMapOutdated()) {
                 crushmap = ApplicationServer.FileSystemClient.GetLatestCrushMap();
-                ApplicationServer.FileSystemClient
+                gotLock = ApplicationServer.FileSystemClient
                         .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion());
+
             }
             if(!gotLock.getResult())
                 return -16; /* Device or resource busy */
@@ -76,7 +77,7 @@ public class FileRoute {
 
 
             //TODO calculate jerasure
-
+            int written = 0;
             for (WriteBlockData wbd : blocksToWrite) {
                 CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto
                         osd;
@@ -90,9 +91,10 @@ public class FileRoute {
                     hashToUse = Jenkins.hash64(hash_str.getBytes());
                     osd = PG.getOSDs((int) (hashToUse % PG.getOSDsCount()));
                 }
-                String hostname = osd.getAddress().split(";")[0];
-                Integer port = Integer.parseInt(osd.getAddress().split(";")[1]);
+                String hostname = osd.getAddress().split(":")[0];
+                Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
                 OSDClient client = new OSDClient(hostname, port);
+                written += wbd.getActualSize();
                 client.WriteMiniObject(hashToUse, wbd);
                 client.shutdown();
 
@@ -102,13 +104,15 @@ public class FileRoute {
             if(finalSizeUpdated){
                 ApplicationServer.FileSystemClient.UpdateAttribute(wr.path, newSize, AttributeUpdateRequest.UpdateType.CHANGE_SIZE );
             }
-            ApplicationServer.FileSystemClient.ReleaseWriteLock(wr.path, id);//TODO
+            //ApplicationServer.FileSystemClient.ReleaseWriteLock(wr.path, id);//TODO
+            return written;
         }
         catch (Exception e) {
             e.printStackTrace();
         }
         return -5; //IO error
     }
+
 
     private List<Integer> getSuperBlocks(long offset, int size) {
         List<Integer> out = new ArrayList<>();

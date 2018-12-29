@@ -42,7 +42,6 @@ public class NodeAttributes {
         stat.st_uid.set(this.UserId);
         stat.st_gid.set(this.GroupId);
         stat.st_ino.set(this.INodeNumber);
-        System.out.println("--------Size----------------------");
         System.out.println(this.Size);
         stat.st_size.set(this.Size);
         stat.st_blksize.set(this.BlockSize);

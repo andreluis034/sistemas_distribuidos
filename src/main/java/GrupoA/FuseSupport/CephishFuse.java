@@ -112,7 +112,7 @@ public class CephishFuse extends FuseStubFS {
 
 
     private HashMap<String, List<WriteRequest>> pendingWrites = new HashMap<>();
-    private synchronized void addWriteRequest(String path, Pointer buf, @size_t long size, @off_t long offset) {
+    private synchronized WriteRequest addWriteRequest(String path, Pointer buf, @size_t long size, @off_t long offset) {
         List<WriteRequest> pendingWritesList = pendingWrites.get(path);
         if (pendingWritesList == null) {
             pendingWritesList = new ArrayList<>();
@@ -126,6 +126,8 @@ public class CephishFuse extends FuseStubFS {
 
         buf.get(0, wr.data,0, wr.data.length);
         pendingWritesList.add(wr);
+
+        return wr;
 
     }
 
@@ -150,15 +152,20 @@ public class CephishFuse extends FuseStubFS {
     @Override
     public int write(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
         System.out.println("----------------------------------------------------------");
+        System.out.println("Writting to: " + path);
         NodeAttributes attr = restClient.getAttribute(path);
         if (attr == null)
             return -ErrorCodes.ENOENT();
         if(attr._FileType.equals(FileType.DIR))
             return -ErrorCodes.EISDIR();
-        addWriteRequest(path, buf, size, offset);
-        return 0;
-    }
+        WriteRequest wr =  addWriteRequest(path, buf, size, offset);
+        int writeResult = restClient.write(path, wr);
+        System.out.println("Write result: " + writeResult);
+        System.out.println("----------------------------------------------------------");
 
+        return writeResult;
+    }
+/*
     @Override
     public int release(String path, FuseFileInfo fi) {
         List<WriteRequest> pendingWritesList = pendingWrites.get(path);
@@ -166,6 +173,6 @@ public class CephishFuse extends FuseStubFS {
             pendingWritesList.remove(wr);
         }
         return 0;
-    }
+    }*/
 
 }

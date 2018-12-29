@@ -114,7 +114,6 @@ public class RestClient {
             e.printStackTrace();
         }
         return -2;
-
     }
 
     public Boolean createFile(String path, long mode, long uid, long gid, long permissions){ //TODO set creation time
