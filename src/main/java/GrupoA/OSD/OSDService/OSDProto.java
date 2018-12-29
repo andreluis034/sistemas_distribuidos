@@ -68,7 +68,7 @@ public final class OSDProto {
       "Args\022\014\n\004hash\030\001 \001(\003\022\026\n\016relativeOffset\030\002 \001" +
       "(\003\022\014\n\004size\030\003 \001(\003\"1\n\nObjectData\022\017\n\007succes" +
       "s\030\001 \001(\010\022\022\n\nobjectData\030\002 \001(\014\" \n\016BooleanMe" +
-      "ssage\022\016\n\006result\030\001 \001(\010\"\016\n\014EmptyMessage2\241\004" +
+      "ssage\022\016\n\006result\030\001 \001(\010\"\016\n\014EmptyMessage2\376\004" +
       "\n\003OSD\022U\n\tputObject\022!.GrupoA.OSD.OSDServi" +
       "ce.ObjectData\032#.GrupoA.OSD.OSDService.Em" +
       "ptyMessage\"\000\022[\n\017writeMiniObject\022!.GrupoA" +
@@ -82,8 +82,10 @@ public final class OSDProto {
       "mptyMessage\032%.GrupoA.OSD.OSDService.Bool" +
       "eanMessage\"\000\022[\n\rpushMapUpdate\022#.GrupoA.O" +
       "SD.OSDService.OSDInSamePaG\032#.GrupoA.OSD." +
-      "OSDService.EmptyMessage\"\000B\020B\010OSDProtoP\001\242" +
-      "\002\001Ob\006proto3"
+      "OSDService.EmptyMessage\"\000\022[\n\014deleteObjec" +
+      "t\022$.GrupoA.OSD.OSDService.GetObjectArgs\032" +
+      "#.GrupoA.OSD.OSDService.EmptyMessage\"\000B\020" +
+      "B\010OSDProtoP\001\242\002\001Ob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
