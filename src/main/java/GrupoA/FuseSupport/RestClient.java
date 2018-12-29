@@ -165,7 +165,7 @@ public class RestClient {
     public int truncate(String path, long size) {
         TruncateRequest tr = new TruncateRequest(path, size);
 
-        return client.target(restBaseUri).path("file")
+        return client.target(restBaseUri).path("file").path("truncate")
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity(tr, MediaType.APPLICATION_JSON), Integer.class);
     }

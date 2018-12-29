@@ -51,7 +51,7 @@ public class FileRoute {
         long currentGlobalOffset = offset;
         long remainingSize = size;
         for (Integer superblock : superBlocks) {
-            List<Integer> smallerBlocks = getSmallerBlocks(superblock,  offset, offset+size);
+            List<Integer> smallerBlocks = getSmallerBlocks(superblock,  offset, size);
             for (Integer miniBlock : smallerBlocks) {
                 WriteBlockData wbd = new WriteBlockData(path, superblock, miniBlock, red);
                 wbd.startRelativeOffset = (int)(currentGlobalOffset - wbd.getGlobalOffset());
@@ -175,6 +175,7 @@ public class FileRoute {
                 written += wbd.getActualSize();
                 client.WriteMiniObject(hashToUse, wbd);
                 client.shutdown();
+                client.awaitTermination();
             }
 
             if(finalSizeUpdated){
@@ -190,7 +191,7 @@ public class FileRoute {
     }
 
     @PUT
-    @Path("/")
+    @Path("/truncate")
     @Produces(MediaType.APPLICATION_JSON)
     public Integer truncate(TruncateRequest tr) {
         long id = Jenkins.hash64(servletRequest.getRemoteHost().getBytes());
@@ -203,7 +204,7 @@ public class FileRoute {
         }
 
         if(!gotLock.getResult())
-            return -16; /* Device or resource busy */
+            return -16; // Device or resource busy
 
         iNodeAttributes iNodeAttr = ApplicationServer.FileSystemClient.GetAttributes(tr.path);
         long fileSize = iNodeAttr.getSize();
@@ -232,7 +233,7 @@ public class FileRoute {
 
         // Get block 'subBlockToEdit' and truncate until offset 'relativeOffset'
 
-
+        return null;
 
         // Delete all blocks with "id" higher than subBlockToEdit
     }
@@ -415,9 +416,11 @@ public class FileRoute {
             Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
             OSDClient client = new OSDClient(hostname, port);
             try{
+                System.out.printf("ReadMiniObject(%s, %d, %d)\n", Long.toHexString(this.getFinalHash(map)), this.startRelativeOffset, this.getActualSize());
                 ByteString readData = client.ReadMiniObject(
                         this.getFinalHash(map), this.startRelativeOffset, this.getActualSize());
-
+                client.shutdown();
+                client.awaitTermination();
                 readData.copyTo(this.Data, this.startRelativeOffset);
             } catch (Exception e) {
                 return -5;// IO Error

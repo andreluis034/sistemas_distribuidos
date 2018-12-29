@@ -40,6 +40,12 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
                     continue;
                 OSDClient client = new OSDClient(osd.getAddress(), osd.getPort());
                 client.WriteMiniObject(args);
+                try {
+                    client.shutdown();
+                    client.awaitTermination();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
 

@@ -97,6 +97,13 @@ public class OSDClient {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
 
+    public void shutdownNow() throws InterruptedException {
+        channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
+    }
+
+    public void awaitTermination() throws InterruptedException {
+        channel.awaitTermination(5, TimeUnit.SECONDS);
+    }
 
     public void ForceUpdate(List<ObjectStorageDaemon> OSDs) {
         OSDInSamePaG.Builder builder = OSDInSamePaG.newBuilder();

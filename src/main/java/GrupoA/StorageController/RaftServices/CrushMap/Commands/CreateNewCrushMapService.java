@@ -32,6 +32,7 @@ public class CreateNewCrushMapService extends CrushMapCommand<CrushMap> {
                     OSDClient client = new OSDClient(osd.getHost(), osd.getPort());
                     client.ForceUpdate(osd.getBelongingPG().getOSDs());
                     client.shutdown();
+                    client.awaitTermination();
                 }
             }
 

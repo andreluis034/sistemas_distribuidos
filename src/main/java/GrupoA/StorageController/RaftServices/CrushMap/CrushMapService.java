@@ -190,6 +190,7 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
                     }
                     try {
                         client.shutdown();
+                        client.awaitTermination();
                     } catch (InterruptedException e) {
 
                     }
