@@ -19,6 +19,7 @@ private static final long serialVersionUID = 0L;
     path_ = "";
     id_ = 0L;
     crushMapVersion_ = 0L;
+    currentTime_ = 0L;
   }
 
   @java.lang.Override
@@ -59,6 +60,11 @@ private static final long serialVersionUID = 0L;
           case 24: {
 
             crushMapVersion_ = input.readInt64();
+            break;
+          }
+          case 32: {
+
+            currentTime_ = input.readInt64();
             break;
           }
           default: {
@@ -145,6 +151,15 @@ private static final long serialVersionUID = 0L;
     return crushMapVersion_;
   }
 
+  public static final int CURRENTTIME_FIELD_NUMBER = 4;
+  private long currentTime_;
+  /**
+   * <code>int64 currentTime = 4;</code>
+   */
+  public long getCurrentTime() {
+    return currentTime_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -168,6 +183,9 @@ private static final long serialVersionUID = 0L;
     if (crushMapVersion_ != 0L) {
       output.writeInt64(3, crushMapVersion_);
     }
+    if (currentTime_ != 0L) {
+      output.writeInt64(4, currentTime_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -187,6 +205,10 @@ private static final long serialVersionUID = 0L;
     if (crushMapVersion_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(3, crushMapVersion_);
+    }
+    if (currentTime_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(4, currentTime_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -210,6 +232,8 @@ private static final long serialVersionUID = 0L;
         == other.getId());
     result = result && (getCrushMapVersion()
         == other.getCrushMapVersion());
+    result = result && (getCurrentTime()
+        == other.getCurrentTime());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -229,6 +253,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + CRUSHMAPVERSION_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getCrushMapVersion());
+    hash = (37 * hash) + CURRENTTIME_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getCurrentTime());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -368,6 +395,8 @@ private static final long serialVersionUID = 0L;
 
       crushMapVersion_ = 0L;
 
+      currentTime_ = 0L;
+
       return this;
     }
 
@@ -397,6 +426,7 @@ private static final long serialVersionUID = 0L;
       result.path_ = path_;
       result.id_ = id_;
       result.crushMapVersion_ = crushMapVersion_;
+      result.currentTime_ = currentTime_;
       onBuilt();
       return result;
     }
@@ -454,6 +484,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getCrushMapVersion() != 0L) {
         setCrushMapVersion(other.getCrushMapVersion());
+      }
+      if (other.getCurrentTime() != 0L) {
+        setCurrentTime(other.getCurrentTime());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -601,6 +634,32 @@ private static final long serialVersionUID = 0L;
     public Builder clearCrushMapVersion() {
       
       crushMapVersion_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long currentTime_ ;
+    /**
+     * <code>int64 currentTime = 4;</code>
+     */
+    public long getCurrentTime() {
+      return currentTime_;
+    }
+    /**
+     * <code>int64 currentTime = 4;</code>
+     */
+    public Builder setCurrentTime(long value) {
+      
+      currentTime_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 currentTime = 4;</code>
+     */
+    public Builder clearCurrentTime() {
+      
+      currentTime_ = 0L;
       onChanged();
       return this;
     }

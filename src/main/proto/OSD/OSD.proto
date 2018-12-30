@@ -21,11 +21,15 @@ service OSD {
 
     rpc deleteObject (GetObjectArgs) returns (EmptyMessage) {}
 
-    rpc truncate (GetObjectArgs) returns (EmptyMessage) {}
+    rpc truncate (GetObjectArgs) returns (LongMessage) {}
 }
 
 message IntMessage {
-    int64 int = 1;
+    int32 Value = 1;
+}
+
+message LongMessage {
+    int64 Value = 1;
 }
 
 message OSDDetails {

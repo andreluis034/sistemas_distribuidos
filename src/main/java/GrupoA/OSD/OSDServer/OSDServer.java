@@ -130,17 +130,37 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
     }
 
     @Override
-    public void truncate(GetObjectArgs args, StreamObserver<EmptyMessage> response) {
-        EmptyMessage reply = EmptyMessage.newBuilder().build();
-
-        File file = new File(Long.toHexString(args.getHash()));
-        try (FileChannel fc = new FileOutputStream(file, true).getChannel()) {
-            fc.truncate(args.getRelativeOffset());
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void truncate(GetObjectArgs args, StreamObserver<LongMessage> response) {
+        if(OSDServer.getInstance().IsLeader && args.getHasDuplicate()) {
+            for (OSDDetails osd : OSDServer.getInstance().OSDs) {
+                if(osd.getLeader())
+                    continue;
+                OSDClient client = new OSDClient(osd.getAddress(), osd.getPort());
+                client.truncate(args.getHash(), args.getRelativeOffset(), args.getHasDuplicate());
+                try {
+                    client.shutdown();
+                    client.awaitTermination();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
-        response.onNext(reply);
+        LongMessage.Builder reply = LongMessage.newBuilder();
+        File file = new File(Long.toHexString(args.getHash()));
+        long size = file.length();
+        if(args.getRelativeOffset() == 0) {
+            reply.setValue(-size);
+            file.delete();
+        } else {
+            try (FileChannel fc = new FileOutputStream(file, true).getChannel()) {
+                fc.truncate(args.getRelativeOffset());
+                reply.setValue(size - args.getRelativeOffset());
+            } catch (Exception e) {
+                e.printStackTrace();
+                reply.setValue(0);
+            }
+        }
+        response.onNext(reply.build());
         response.onCompleted();
     }
 }

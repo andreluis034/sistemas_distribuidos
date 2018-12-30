@@ -220,67 +220,99 @@ public final class FileSystemGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LockArgs,
-      GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getSetWriteLockMethod;
+      GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getSetLockMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "SetWriteLock",
+      fullMethodName = SERVICE_NAME + '/' + "SetLock",
       requestType = GrupoA.StorageController.gRPCService.FileSystem.LockArgs.class,
       responseType = GrupoA.StorageController.gRPCService.FileSystem.LockResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LockArgs,
-      GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getSetWriteLockMethod() {
-    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LockArgs, GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getSetWriteLockMethod;
-    if ((getSetWriteLockMethod = FileSystemGrpc.getSetWriteLockMethod) == null) {
+      GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getSetLockMethod() {
+    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LockArgs, GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getSetLockMethod;
+    if ((getSetLockMethod = FileSystemGrpc.getSetLockMethod) == null) {
       synchronized (FileSystemGrpc.class) {
-        if ((getSetWriteLockMethod = FileSystemGrpc.getSetWriteLockMethod) == null) {
-          FileSystemGrpc.getSetWriteLockMethod = getSetWriteLockMethod = 
+        if ((getSetLockMethod = FileSystemGrpc.getSetLockMethod) == null) {
+          FileSystemGrpc.getSetLockMethod = getSetLockMethod = 
               io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.FileSystem.LockArgs, GrupoA.StorageController.gRPCService.FileSystem.LockResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "GrupoA.StorageController.gRPCService.FileSystem.FileSystem", "SetWriteLock"))
+                  "GrupoA.StorageController.gRPCService.FileSystem.FileSystem", "SetLock"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.StorageController.gRPCService.FileSystem.LockArgs.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.StorageController.gRPCService.FileSystem.LockResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new FileSystemMethodDescriptorSupplier("SetWriteLock"))
+                  .setSchemaDescriptor(new FileSystemMethodDescriptorSupplier("SetLock"))
                   .build();
           }
         }
      }
-     return getSetWriteLockMethod;
+     return getSetLockMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LockArgs,
-      GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getReleaseWriteLockMethod;
+      GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getUpdateLockMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "ReleaseWriteLock",
+      fullMethodName = SERVICE_NAME + '/' + "UpdateLock",
       requestType = GrupoA.StorageController.gRPCService.FileSystem.LockArgs.class,
       responseType = GrupoA.StorageController.gRPCService.FileSystem.LockResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LockArgs,
-      GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getReleaseWriteLockMethod() {
-    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LockArgs, GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getReleaseWriteLockMethod;
-    if ((getReleaseWriteLockMethod = FileSystemGrpc.getReleaseWriteLockMethod) == null) {
+      GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getUpdateLockMethod() {
+    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LockArgs, GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getUpdateLockMethod;
+    if ((getUpdateLockMethod = FileSystemGrpc.getUpdateLockMethod) == null) {
       synchronized (FileSystemGrpc.class) {
-        if ((getReleaseWriteLockMethod = FileSystemGrpc.getReleaseWriteLockMethod) == null) {
-          FileSystemGrpc.getReleaseWriteLockMethod = getReleaseWriteLockMethod = 
+        if ((getUpdateLockMethod = FileSystemGrpc.getUpdateLockMethod) == null) {
+          FileSystemGrpc.getUpdateLockMethod = getUpdateLockMethod = 
               io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.FileSystem.LockArgs, GrupoA.StorageController.gRPCService.FileSystem.LockResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "GrupoA.StorageController.gRPCService.FileSystem.FileSystem", "ReleaseWriteLock"))
+                  "GrupoA.StorageController.gRPCService.FileSystem.FileSystem", "UpdateLock"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.StorageController.gRPCService.FileSystem.LockArgs.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.StorageController.gRPCService.FileSystem.LockResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new FileSystemMethodDescriptorSupplier("ReleaseWriteLock"))
+                  .setSchemaDescriptor(new FileSystemMethodDescriptorSupplier("UpdateLock"))
                   .build();
           }
         }
      }
-     return getReleaseWriteLockMethod;
+     return getUpdateLockMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LockArgs,
+      GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getReleaseLockMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ReleaseLock",
+      requestType = GrupoA.StorageController.gRPCService.FileSystem.LockArgs.class,
+      responseType = GrupoA.StorageController.gRPCService.FileSystem.LockResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LockArgs,
+      GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getReleaseLockMethod() {
+    io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.LockArgs, GrupoA.StorageController.gRPCService.FileSystem.LockResponse> getReleaseLockMethod;
+    if ((getReleaseLockMethod = FileSystemGrpc.getReleaseLockMethod) == null) {
+      synchronized (FileSystemGrpc.class) {
+        if ((getReleaseLockMethod = FileSystemGrpc.getReleaseLockMethod) == null) {
+          FileSystemGrpc.getReleaseLockMethod = getReleaseLockMethod = 
+              io.grpc.MethodDescriptor.<GrupoA.StorageController.gRPCService.FileSystem.LockArgs, GrupoA.StorageController.gRPCService.FileSystem.LockResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "GrupoA.StorageController.gRPCService.FileSystem.FileSystem", "ReleaseLock"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.FileSystem.LockArgs.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.StorageController.gRPCService.FileSystem.LockResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new FileSystemMethodDescriptorSupplier("ReleaseLock"))
+                  .build();
+          }
+        }
+     }
+     return getReleaseLockMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<GrupoA.StorageController.gRPCService.FileSystem.EmptyMessage,
@@ -389,16 +421,23 @@ public final class FileSystemGrpc {
 
     /**
      */
-    public void setWriteLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request,
+    public void setLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request,
         io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.LockResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getSetWriteLockMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getSetLockMethod(), responseObserver);
     }
 
     /**
      */
-    public void releaseWriteLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request,
+    public void updateLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request,
         io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.LockResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getReleaseWriteLockMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateLockMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void releaseLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.LockResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getReleaseLockMethod(), responseObserver);
     }
 
     /**
@@ -453,19 +492,26 @@ public final class FileSystemGrpc {
                 GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage>(
                   this, METHODID_CREATE_NODE)))
           .addMethod(
-            getSetWriteLockMethod(),
+            getSetLockMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 GrupoA.StorageController.gRPCService.FileSystem.LockArgs,
                 GrupoA.StorageController.gRPCService.FileSystem.LockResponse>(
-                  this, METHODID_SET_WRITE_LOCK)))
+                  this, METHODID_SET_LOCK)))
           .addMethod(
-            getReleaseWriteLockMethod(),
+            getUpdateLockMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 GrupoA.StorageController.gRPCService.FileSystem.LockArgs,
                 GrupoA.StorageController.gRPCService.FileSystem.LockResponse>(
-                  this, METHODID_RELEASE_WRITE_LOCK)))
+                  this, METHODID_UPDATE_LOCK)))
+          .addMethod(
+            getReleaseLockMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                GrupoA.StorageController.gRPCService.FileSystem.LockArgs,
+                GrupoA.StorageController.gRPCService.FileSystem.LockResponse>(
+                  this, METHODID_RELEASE_LOCK)))
           .addMethod(
             getGetLatestMapMethod(),
             asyncUnaryCall(
@@ -548,18 +594,26 @@ public final class FileSystemGrpc {
 
     /**
      */
-    public void setWriteLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request,
+    public void setLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request,
         io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.LockResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getSetWriteLockMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSetLockMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void releaseWriteLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request,
+    public void updateLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request,
         io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.LockResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getReleaseWriteLockMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateLockMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void releaseLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request,
+        io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.LockResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getReleaseLockMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -636,16 +690,23 @@ public final class FileSystemGrpc {
 
     /**
      */
-    public GrupoA.StorageController.gRPCService.FileSystem.LockResponse setWriteLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request) {
+    public GrupoA.StorageController.gRPCService.FileSystem.LockResponse setLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request) {
       return blockingUnaryCall(
-          getChannel(), getSetWriteLockMethod(), getCallOptions(), request);
+          getChannel(), getSetLockMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public GrupoA.StorageController.gRPCService.FileSystem.LockResponse releaseWriteLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request) {
+    public GrupoA.StorageController.gRPCService.FileSystem.LockResponse updateLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request) {
       return blockingUnaryCall(
-          getChannel(), getReleaseWriteLockMethod(), getCallOptions(), request);
+          getChannel(), getUpdateLockMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GrupoA.StorageController.gRPCService.FileSystem.LockResponse releaseLock(GrupoA.StorageController.gRPCService.FileSystem.LockArgs request) {
+      return blockingUnaryCall(
+          getChannel(), getReleaseLockMethod(), getCallOptions(), request);
     }
 
     /**
@@ -727,18 +788,26 @@ public final class FileSystemGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.FileSystem.LockResponse> setWriteLock(
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.FileSystem.LockResponse> setLock(
         GrupoA.StorageController.gRPCService.FileSystem.LockArgs request) {
       return futureUnaryCall(
-          getChannel().newCall(getSetWriteLockMethod(), getCallOptions()), request);
+          getChannel().newCall(getSetLockMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.FileSystem.LockResponse> releaseWriteLock(
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.FileSystem.LockResponse> updateLock(
         GrupoA.StorageController.gRPCService.FileSystem.LockArgs request) {
       return futureUnaryCall(
-          getChannel().newCall(getReleaseWriteLockMethod(), getCallOptions()), request);
+          getChannel().newCall(getUpdateLockMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.StorageController.gRPCService.FileSystem.LockResponse> releaseLock(
+        GrupoA.StorageController.gRPCService.FileSystem.LockArgs request) {
+      return futureUnaryCall(
+          getChannel().newCall(getReleaseLockMethod(), getCallOptions()), request);
     }
 
     /**
@@ -756,9 +825,10 @@ public final class FileSystemGrpc {
   private static final int METHODID_SET_ATTR = 3;
   private static final int METHODID_READ_DIR = 4;
   private static final int METHODID_CREATE_NODE = 5;
-  private static final int METHODID_SET_WRITE_LOCK = 6;
-  private static final int METHODID_RELEASE_WRITE_LOCK = 7;
-  private static final int METHODID_GET_LATEST_MAP = 8;
+  private static final int METHODID_SET_LOCK = 6;
+  private static final int METHODID_UPDATE_LOCK = 7;
+  private static final int METHODID_RELEASE_LOCK = 8;
+  private static final int METHODID_GET_LATEST_MAP = 9;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -801,12 +871,16 @@ public final class FileSystemGrpc {
           serviceImpl.createNode((GrupoA.StorageController.gRPCService.FileSystem.NodeArgs) request,
               (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage>) responseObserver);
           break;
-        case METHODID_SET_WRITE_LOCK:
-          serviceImpl.setWriteLock((GrupoA.StorageController.gRPCService.FileSystem.LockArgs) request,
+        case METHODID_SET_LOCK:
+          serviceImpl.setLock((GrupoA.StorageController.gRPCService.FileSystem.LockArgs) request,
               (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.LockResponse>) responseObserver);
           break;
-        case METHODID_RELEASE_WRITE_LOCK:
-          serviceImpl.releaseWriteLock((GrupoA.StorageController.gRPCService.FileSystem.LockArgs) request,
+        case METHODID_UPDATE_LOCK:
+          serviceImpl.updateLock((GrupoA.StorageController.gRPCService.FileSystem.LockArgs) request,
+              (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.LockResponse>) responseObserver);
+          break;
+        case METHODID_RELEASE_LOCK:
+          serviceImpl.releaseLock((GrupoA.StorageController.gRPCService.FileSystem.LockArgs) request,
               (io.grpc.stub.StreamObserver<GrupoA.StorageController.gRPCService.FileSystem.LockResponse>) responseObserver);
           break;
         case METHODID_GET_LATEST_MAP:
@@ -880,8 +954,9 @@ public final class FileSystemGrpc {
               .addMethod(getSetAttrMethod())
               .addMethod(getReadDirMethod())
               .addMethod(getCreateNodeMethod())
-              .addMethod(getSetWriteLockMethod())
-              .addMethod(getReleaseWriteLockMethod())
+              .addMethod(getSetLockMethod())
+              .addMethod(getUpdateLockMethod())
+              .addMethod(getReleaseLockMethod())
               .addMethod(getGetLatestMapMethod())
               .build();
         }

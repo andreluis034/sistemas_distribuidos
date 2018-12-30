@@ -252,21 +252,21 @@ public final class OSDGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
-      GrupoA.OSD.OSDService.EmptyMessage> getTruncateMethod;
+      GrupoA.OSD.OSDService.LongMessage> getTruncateMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "truncate",
       requestType = GrupoA.OSD.OSDService.GetObjectArgs.class,
-      responseType = GrupoA.OSD.OSDService.EmptyMessage.class,
+      responseType = GrupoA.OSD.OSDService.LongMessage.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
-      GrupoA.OSD.OSDService.EmptyMessage> getTruncateMethod() {
-    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.EmptyMessage> getTruncateMethod;
+      GrupoA.OSD.OSDService.LongMessage> getTruncateMethod() {
+    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.LongMessage> getTruncateMethod;
     if ((getTruncateMethod = OSDGrpc.getTruncateMethod) == null) {
       synchronized (OSDGrpc.class) {
         if ((getTruncateMethod = OSDGrpc.getTruncateMethod) == null) {
           OSDGrpc.getTruncateMethod = getTruncateMethod = 
-              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.EmptyMessage>newBuilder()
+              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.LongMessage>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "GrupoA.OSD.OSDService.OSD", "truncate"))
@@ -274,7 +274,7 @@ public final class OSDGrpc {
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GrupoA.OSD.OSDService.GetObjectArgs.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  GrupoA.OSD.OSDService.EmptyMessage.getDefaultInstance()))
+                  GrupoA.OSD.OSDService.LongMessage.getDefaultInstance()))
                   .setSchemaDescriptor(new OSDMethodDescriptorSupplier("truncate"))
                   .build();
           }
@@ -362,7 +362,7 @@ public final class OSDGrpc {
     /**
      */
     public void truncate(GrupoA.OSD.OSDService.GetObjectArgs request,
-        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.LongMessage> responseObserver) {
       asyncUnimplementedUnaryCall(getTruncateMethod(), responseObserver);
     }
 
@@ -422,7 +422,7 @@ public final class OSDGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 GrupoA.OSD.OSDService.GetObjectArgs,
-                GrupoA.OSD.OSDService.EmptyMessage>(
+                GrupoA.OSD.OSDService.LongMessage>(
                   this, METHODID_TRUNCATE)))
           .build();
     }
@@ -505,7 +505,7 @@ public final class OSDGrpc {
     /**
      */
     public void truncate(GrupoA.OSD.OSDService.GetObjectArgs request,
-        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.LongMessage> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getTruncateMethod(), getCallOptions()), request, responseObserver);
     }
@@ -580,7 +580,7 @@ public final class OSDGrpc {
 
     /**
      */
-    public GrupoA.OSD.OSDService.EmptyMessage truncate(GrupoA.OSD.OSDService.GetObjectArgs request) {
+    public GrupoA.OSD.OSDService.LongMessage truncate(GrupoA.OSD.OSDService.GetObjectArgs request) {
       return blockingUnaryCall(
           getChannel(), getTruncateMethod(), getCallOptions(), request);
     }
@@ -662,7 +662,7 @@ public final class OSDGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.EmptyMessage> truncate(
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.LongMessage> truncate(
         GrupoA.OSD.OSDService.GetObjectArgs request) {
       return futureUnaryCall(
           getChannel().newCall(getTruncateMethod(), getCallOptions()), request);
@@ -725,7 +725,7 @@ public final class OSDGrpc {
           break;
         case METHODID_TRUNCATE:
           serviceImpl.truncate((GrupoA.OSD.OSDService.GetObjectArgs) request,
-              (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage>) responseObserver);
+              (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.LongMessage>) responseObserver);
           break;
         default:
           throw new AssertionError();

@@ -70,11 +70,12 @@ public class OSDClient {
         this.blockingStub.deleteObject(GetObjectArgs.newBuilder().setHash(hash).setHasDuplicate(hasDuplicate).build());
     }
 
-    public void truncate(Long hash, long offset) {
-        this.blockingStub.truncate(GetObjectArgs.newBuilder()
+    public long truncate(Long hash, long offset, boolean hasDuplicate) {
+        return  this.blockingStub.truncate(GetObjectArgs.newBuilder()
                 .setHash(hash)
                 .setRelativeOffset(offset)
-                .build());
+                .setHasDuplicate(hasDuplicate)
+                .build()).getValue();
     }
 
     public void WriteMiniObject(Long hash, FileRoute.WriteBlockData wbd) {

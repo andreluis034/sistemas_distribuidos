@@ -288,6 +288,32 @@ public class FSTree implements Serializable {
         public long creationTime = System.currentTimeMillis();
         public long modifiedTime = System.currentTimeMillis();
 
+
+        public long LockedByID = 0L; //the id of the locker
+        public long LockedAt = 0L;
+        public final static long maxLockTime = 5 * 60 * 1000; //5 seconds in milliSeconds
+
+        public synchronized boolean isLocked() {
+            return System.currentTimeMillis() - LockedAt < maxLockTime;
+        }
+
+        public synchronized boolean updateLock(long id, long lockTime){
+            if(isLocked() && LockedByID != id)
+                return false;
+            this.LockedAt = lockTime;
+            this.LockedByID = id;
+            return true;
+        }
+
+        public synchronized boolean getLock(long id, long lockTime) {
+            if(isLocked())
+                return false;
+            this.LockedByID = id;
+            this.LockedAt = lockTime;
+            return true;
+        }
+
+
         public abstract NodeType getNodeType();
         String nodeName;
         public DirNode Parent;
@@ -319,6 +345,8 @@ public class FSTree implements Serializable {
                 return 0;
             return Parent.iNode;
         }
+
+
     }
 
     public static class FileNode extends Node {

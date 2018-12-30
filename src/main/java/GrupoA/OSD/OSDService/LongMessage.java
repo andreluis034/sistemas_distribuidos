@@ -4,19 +4,19 @@
 package GrupoA.OSD.OSDService;
 
 /**
- * Protobuf type {@code GrupoA.OSD.OSDService.IntMessage}
+ * Protobuf type {@code GrupoA.OSD.OSDService.LongMessage}
  */
-public  final class IntMessage extends
+public  final class LongMessage extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:GrupoA.OSD.OSDService.IntMessage)
-    IntMessageOrBuilder {
+    // @@protoc_insertion_point(message_implements:GrupoA.OSD.OSDService.LongMessage)
+    LongMessageOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use IntMessage.newBuilder() to construct.
-  private IntMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use LongMessage.newBuilder() to construct.
+  private LongMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private IntMessage() {
-    value_ = 0;
+  private LongMessage() {
+    value_ = 0L;
   }
 
   @java.lang.Override
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private IntMessage(
+  private LongMessage(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -45,7 +45,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            value_ = input.readInt32();
+            value_ = input.readInt64();
             break;
           }
           default: {
@@ -69,23 +69,23 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_IntMessage_descriptor;
+    return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_LongMessage_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_IntMessage_fieldAccessorTable
+    return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_LongMessage_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            GrupoA.OSD.OSDService.IntMessage.class, GrupoA.OSD.OSDService.IntMessage.Builder.class);
+            GrupoA.OSD.OSDService.LongMessage.class, GrupoA.OSD.OSDService.LongMessage.Builder.class);
   }
 
   public static final int VALUE_FIELD_NUMBER = 1;
-  private int value_;
+  private long value_;
   /**
-   * <code>int32 Value = 1;</code>
+   * <code>int64 Value = 1;</code>
    */
-  public int getValue() {
+  public long getValue() {
     return value_;
   }
 
@@ -103,8 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (value_ != 0) {
-      output.writeInt32(1, value_);
+    if (value_ != 0L) {
+      output.writeInt64(1, value_);
     }
     unknownFields.writeTo(output);
   }
@@ -115,9 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (value_ != 0) {
+    if (value_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, value_);
+        .computeInt64Size(1, value_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -129,10 +129,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof GrupoA.OSD.OSDService.IntMessage)) {
+    if (!(obj instanceof GrupoA.OSD.OSDService.LongMessage)) {
       return super.equals(obj);
     }
-    GrupoA.OSD.OSDService.IntMessage other = (GrupoA.OSD.OSDService.IntMessage) obj;
+    GrupoA.OSD.OSDService.LongMessage other = (GrupoA.OSD.OSDService.LongMessage) obj;
 
     boolean result = true;
     result = result && (getValue()
@@ -149,75 +149,76 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + VALUE_FIELD_NUMBER;
-    hash = (53 * hash) + getValue();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getValue());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static GrupoA.OSD.OSDService.IntMessage parseFrom(
+  public static GrupoA.OSD.OSDService.LongMessage parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.OSD.OSDService.IntMessage parseFrom(
+  public static GrupoA.OSD.OSDService.LongMessage parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.OSD.OSDService.IntMessage parseFrom(
+  public static GrupoA.OSD.OSDService.LongMessage parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.OSD.OSDService.IntMessage parseFrom(
+  public static GrupoA.OSD.OSDService.LongMessage parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.OSD.OSDService.IntMessage parseFrom(byte[] data)
+  public static GrupoA.OSD.OSDService.LongMessage parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static GrupoA.OSD.OSDService.IntMessage parseFrom(
+  public static GrupoA.OSD.OSDService.LongMessage parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static GrupoA.OSD.OSDService.IntMessage parseFrom(java.io.InputStream input)
+  public static GrupoA.OSD.OSDService.LongMessage parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static GrupoA.OSD.OSDService.IntMessage parseFrom(
+  public static GrupoA.OSD.OSDService.LongMessage parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static GrupoA.OSD.OSDService.IntMessage parseDelimitedFrom(java.io.InputStream input)
+  public static GrupoA.OSD.OSDService.LongMessage parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static GrupoA.OSD.OSDService.IntMessage parseDelimitedFrom(
+  public static GrupoA.OSD.OSDService.LongMessage parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static GrupoA.OSD.OSDService.IntMessage parseFrom(
+  public static GrupoA.OSD.OSDService.LongMessage parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static GrupoA.OSD.OSDService.IntMessage parseFrom(
+  public static GrupoA.OSD.OSDService.LongMessage parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -230,7 +231,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(GrupoA.OSD.OSDService.IntMessage prototype) {
+  public static Builder newBuilder(GrupoA.OSD.OSDService.LongMessage prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -246,26 +247,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code GrupoA.OSD.OSDService.IntMessage}
+   * Protobuf type {@code GrupoA.OSD.OSDService.LongMessage}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:GrupoA.OSD.OSDService.IntMessage)
-      GrupoA.OSD.OSDService.IntMessageOrBuilder {
+      // @@protoc_insertion_point(builder_implements:GrupoA.OSD.OSDService.LongMessage)
+      GrupoA.OSD.OSDService.LongMessageOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_IntMessage_descriptor;
+      return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_LongMessage_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_IntMessage_fieldAccessorTable
+      return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_LongMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              GrupoA.OSD.OSDService.IntMessage.class, GrupoA.OSD.OSDService.IntMessage.Builder.class);
+              GrupoA.OSD.OSDService.LongMessage.class, GrupoA.OSD.OSDService.LongMessage.Builder.class);
     }
 
-    // Construct using GrupoA.OSD.OSDService.IntMessage.newBuilder()
+    // Construct using GrupoA.OSD.OSDService.LongMessage.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -283,7 +284,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      value_ = 0;
+      value_ = 0L;
 
       return this;
     }
@@ -291,17 +292,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_IntMessage_descriptor;
+      return GrupoA.OSD.OSDService.OSDProto.internal_static_GrupoA_OSD_OSDService_LongMessage_descriptor;
     }
 
     @java.lang.Override
-    public GrupoA.OSD.OSDService.IntMessage getDefaultInstanceForType() {
-      return GrupoA.OSD.OSDService.IntMessage.getDefaultInstance();
+    public GrupoA.OSD.OSDService.LongMessage getDefaultInstanceForType() {
+      return GrupoA.OSD.OSDService.LongMessage.getDefaultInstance();
     }
 
     @java.lang.Override
-    public GrupoA.OSD.OSDService.IntMessage build() {
-      GrupoA.OSD.OSDService.IntMessage result = buildPartial();
+    public GrupoA.OSD.OSDService.LongMessage build() {
+      GrupoA.OSD.OSDService.LongMessage result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -309,8 +310,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public GrupoA.OSD.OSDService.IntMessage buildPartial() {
-      GrupoA.OSD.OSDService.IntMessage result = new GrupoA.OSD.OSDService.IntMessage(this);
+    public GrupoA.OSD.OSDService.LongMessage buildPartial() {
+      GrupoA.OSD.OSDService.LongMessage result = new GrupoA.OSD.OSDService.LongMessage(this);
       result.value_ = value_;
       onBuilt();
       return result;
@@ -350,17 +351,17 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof GrupoA.OSD.OSDService.IntMessage) {
-        return mergeFrom((GrupoA.OSD.OSDService.IntMessage)other);
+      if (other instanceof GrupoA.OSD.OSDService.LongMessage) {
+        return mergeFrom((GrupoA.OSD.OSDService.LongMessage)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(GrupoA.OSD.OSDService.IntMessage other) {
-      if (other == GrupoA.OSD.OSDService.IntMessage.getDefaultInstance()) return this;
-      if (other.getValue() != 0) {
+    public Builder mergeFrom(GrupoA.OSD.OSDService.LongMessage other) {
+      if (other == GrupoA.OSD.OSDService.LongMessage.getDefaultInstance()) return this;
+      if (other.getValue() != 0L) {
         setValue(other.getValue());
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -378,11 +379,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      GrupoA.OSD.OSDService.IntMessage parsedMessage = null;
+      GrupoA.OSD.OSDService.LongMessage parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (GrupoA.OSD.OSDService.IntMessage) e.getUnfinishedMessage();
+        parsedMessage = (GrupoA.OSD.OSDService.LongMessage) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -392,28 +393,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int value_ ;
+    private long value_ ;
     /**
-     * <code>int32 Value = 1;</code>
+     * <code>int64 Value = 1;</code>
      */
-    public int getValue() {
+    public long getValue() {
       return value_;
     }
     /**
-     * <code>int32 Value = 1;</code>
+     * <code>int64 Value = 1;</code>
      */
-    public Builder setValue(int value) {
+    public Builder setValue(long value) {
       
       value_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 Value = 1;</code>
+     * <code>int64 Value = 1;</code>
      */
     public Builder clearValue() {
       
-      value_ = 0;
+      value_ = 0L;
       onChanged();
       return this;
     }
@@ -430,41 +431,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:GrupoA.OSD.OSDService.IntMessage)
+    // @@protoc_insertion_point(builder_scope:GrupoA.OSD.OSDService.LongMessage)
   }
 
-  // @@protoc_insertion_point(class_scope:GrupoA.OSD.OSDService.IntMessage)
-  private static final GrupoA.OSD.OSDService.IntMessage DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:GrupoA.OSD.OSDService.LongMessage)
+  private static final GrupoA.OSD.OSDService.LongMessage DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new GrupoA.OSD.OSDService.IntMessage();
+    DEFAULT_INSTANCE = new GrupoA.OSD.OSDService.LongMessage();
   }
 
-  public static GrupoA.OSD.OSDService.IntMessage getDefaultInstance() {
+  public static GrupoA.OSD.OSDService.LongMessage getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<IntMessage>
-      PARSER = new com.google.protobuf.AbstractParser<IntMessage>() {
+  private static final com.google.protobuf.Parser<LongMessage>
+      PARSER = new com.google.protobuf.AbstractParser<LongMessage>() {
     @java.lang.Override
-    public IntMessage parsePartialFrom(
+    public LongMessage parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new IntMessage(input, extensionRegistry);
+      return new LongMessage(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<IntMessage> parser() {
+  public static com.google.protobuf.Parser<LongMessage> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<IntMessage> getParserForType() {
+  public com.google.protobuf.Parser<LongMessage> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public GrupoA.OSD.OSDService.IntMessage getDefaultInstanceForType() {
+  public GrupoA.OSD.OSDService.LongMessage getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

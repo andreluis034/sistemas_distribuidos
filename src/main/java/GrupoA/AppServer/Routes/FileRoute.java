@@ -3,6 +3,7 @@ package GrupoA.AppServer.Routes;
 import GrupoA.AppServer.ApplicationServer;
 import GrupoA.AppServer.Models.*;
 import GrupoA.OSD.OSDClient.OSDClient;
+import GrupoA.StorageController.Crush.CrushMap;
 import GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse;
 import GrupoA.StorageController.gRPCService.FileSystem.LockResponse;
 import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
@@ -15,6 +16,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -67,6 +69,23 @@ public class FileRoute {
         return wbds;
     }
 
+    private HashMap<Long, CrushMapResponse> maps = new HashMap<>();
+
+    private LockResponse getLock(String path, long id, long version) {
+        LockResponse gotLock = ApplicationServer.FileSystemClient
+                .SetLock(path, id, maps.containsKey(version) ? -1
+                        : maps.get(version).getVersion());
+
+        while (!maps.containsKey(gotLock.getNecessaryVersion())) {
+            CrushMapResponse cm = ApplicationServer.FileSystemClient.GetLatestCrushMap();
+            maps.put(cm.getVersion(), cm);
+            gotLock = ApplicationServer.FileSystemClient
+                    .SetLock(path, id, maps.containsKey(version) ? -1
+                            : maps.get(version).getVersion());
+        }
+        return gotLock;
+    }
+
     /**
      * Returns the contents of a file
      *
@@ -76,9 +95,9 @@ public class FileRoute {
     @POST
     @Path("/read")
     @Produces(MediaType.APPLICATION_JSON)
-    public ReadFileResponse readFile(ReadRequest rr) {
+    public ReadFileResponse readFile(ReadRequest rr) {//TODO lock this?
         ReadFileResponse resp = new ReadFileResponse();
-
+        long id = Jenkins.hash64(servletRequest.getRemoteHost().getBytes());
         resp.path = rr.path;
         try {
             iNodeAttributes nattributes = ApplicationServer.FileSystemClient.GetAttributes(rr.path);
@@ -86,14 +105,8 @@ public class FileRoute {
                 resp.Status = -2;/* No such file or directory */
                 return resp;
             }
-            long id = Jenkins.hash64(servletRequest.getRemoteHost().getBytes());
-            LockResponse gotLock = ApplicationServer.FileSystemClient
-                    .SetWriteLock(rr.path, id, crushmap == null ? -1 : crushmap.getVersion()); //TODO
-            while (gotLock.getMapOutdated()) {
-                crushmap = ApplicationServer.FileSystemClient.GetLatestCrushMap();
-                gotLock = ApplicationServer.FileSystemClient
-                        .SetWriteLock(rr.path, id, crushmap == null ? -1 : crushmap.getVersion());
-            }
+            LockResponse gotLock = getLock(rr.path, id, nattributes.getCrushMapVersion());
+
             if (!gotLock.getResult()) {
                 resp.Status = -16; /* Device or resource busy */
                 return resp;
@@ -114,6 +127,7 @@ public class FileRoute {
                 outputOffset += btr.getActualSize();
             }
             resp.Status = outputOffset;
+            ApplicationServer.FileSystemClient.ReleaseLock(rr.path, id);
             return resp;
 
         } catch (Exception e) {
@@ -138,13 +152,8 @@ public class FileRoute {
             if (nAttributes.getINodeNumber() == -1)
                 return -2;      /* No such file or directory */
             long id = Jenkins.hash64(servletRequest.getRemoteHost().getBytes());
-            LockResponse gotLock = ApplicationServer.FileSystemClient
-                    .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion()); //TODO
-            while (gotLock.getMapOutdated()) {
-                crushmap = ApplicationServer.FileSystemClient.GetLatestCrushMap();
-                gotLock = ApplicationServer.FileSystemClient
-                        .SetWriteLock(wr.path, id, crushmap == null ? -1 : crushmap.getVersion());
-            }
+            LockResponse gotLock = getLock(wr.path, id, nAttributes.getCrushMapVersion());
+
 
             if (!gotLock.getResult())
                 return -16; /* Device or resource busy */
@@ -184,7 +193,7 @@ public class FileRoute {
             if (finalSizeUpdated) {
                 ApplicationServer.FileSystemClient.UpdateAttribute(wr.path, newSize, AttributeUpdateRequest.UpdateType.CHANGE_SIZE);
             }
-            //ApplicationServer.FileSystemClient.ReleaseWriteLock(wr.path, id);//TODO
+            ApplicationServer.FileSystemClient.ReleaseLock(wr.path, id);
             return written;
         } catch (Exception e) {
             e.printStackTrace();
@@ -197,95 +206,32 @@ public class FileRoute {
     @Produces(MediaType.APPLICATION_JSON)
     public Integer truncate(TruncateRequest tr) {
         long id = Jenkins.hash64(servletRequest.getRemoteHost().getBytes());
-        LockResponse gotLock = ApplicationServer.FileSystemClient
-                .SetWriteLock(tr.path, id, crushmap == null ? -1 : crushmap.getVersion()); //TODO
-        while (gotLock.getMapOutdated()) {
-            crushmap = ApplicationServer.FileSystemClient.GetLatestCrushMap();
-            gotLock = ApplicationServer.FileSystemClient
-                    .SetWriteLock(tr.path, id, crushmap == null ? -1 : crushmap.getVersion());
-        }
+        iNodeAttributes iNodeAttr = ApplicationServer.FileSystemClient.GetAttributes(tr.path);
+
+        if(iNodeAttr.getINodeNumber() == -1)
+            return -2; /* No such file or directory */
+
+        if(tr.offset == iNodeAttr.getSize())
+            return 0;
+
+        LockResponse gotLock = ApplicationServer.FileSystemClient.ReleaseLock(tr.path, id);
+
 
         if (!gotLock.getResult())
             return -16; // Device or resource busy
 
-        iNodeAttributes iNodeAttr = ApplicationServer.FileSystemClient.GetAttributes(tr.path);
         long fileSize = iNodeAttr.getSize();
 
-        // Get the superBlocks and the smallerBlocks, to compute the blocks' hashes
-        List<BlockData> blocksToDelete = new LinkedList<>();
-        List<BlockData> subBlocksToDelete = new LinkedList<>();
-        List<Integer> superBlocks = getSuperBlocks(0, fileSize);
-        long relativeOffset = tr.offset;
-        int subBlockToEdit = 0, blockToEdit = 0;
-        for (Integer superBlock : superBlocks) {
-            List<Integer> smallerBlocks = getSmallerBlocks(superBlock, 0, fileSize);
-            for (Integer miniBlock : smallerBlocks) {
-                long temp = relativeOffset - ApplicationServer.subBlockSize;
-                if (temp < 0) {
-                    break;
-                } else {
-                    relativeOffset = temp;
-                    subBlockToEdit = miniBlock;
-                }
-            }
-
-            if (relativeOffset - ApplicationServer.subBlockSize < 0)
-                break;
-            blockToEdit = superBlock;
+        List<WriteBlockData> BlocksToTruncate = getWriteBlockDatas(tr.path, tr.offset, fileSize, iNodeAttr.getRedundancy());
+        for (WriteBlockData wbd : BlocksToTruncate) {
+            fileSize += wbd.truncateOnOSD(crushmap);
         }
-
-        BlockData toEdit = new BlockData(tr.path, blockToEdit, subBlockToEdit, iNodeAttr.getRedundancy());
-
-        List<Integer> bcks = getSmallerBlocks(blockToEdit, 0, fileSize);
-        for (int i = subBlockToEdit + 1; i < bcks.size(); i++) {
-            subBlocksToDelete.add(new BlockData(tr.path, blockToEdit, i, iNodeAttr.getRedundancy()));
+        if(fileSize != iNodeAttr.getSize()) {
+            ApplicationServer.FileSystemClient.UpdateAttribute(tr.path, fileSize, AttributeUpdateRequest.UpdateType.CHANGE_SIZE);
         }
+        ApplicationServer.FileSystemClient.ReleaseLock(tr.path, id);
 
-        for (int i = blockToEdit + 1; i < superBlocks.size(); i++) {
-            List<Integer> smallerBlocks = getSmallerBlocks(i,0, fileSize);
-            for (Integer j : smallerBlocks)
-                blocksToDelete.add(new BlockData(tr.path, i, j, iNodeAttr.getRedundancy()));
-        }
-
-        try {
-            // Get subBlock 'subBlockToEdit' of block 'blockToEdit' and truncate until offset 'relativeOffset'
-            long toEditHash = toEdit.getHashForPG();
-
-            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd;
-            CrushMapResponse.PlacementGroupProto pg = crushmap
-                    .getPGs((int) (toEditHash % crushmap.getPGsCount()));
-
-            if (iNodeAttr.getRedundancy().equals(RedundancyProto.Replication)) {
-                osd = pg.getOSDs(0);    //TODO: check if this is the leader
-            } else {
-                // For JErasure
-                String hash_str = Long.toHexString(toEditHash) + "_" + pg.getPGNumber();
-                toEditHash = Jenkins.hash64(hash_str.getBytes());
-
-                osd = pg.getOSDs((int) (toEditHash % pg.getOSDsCount()));
-            }
-
-            // Truncate the smaller block
-            String hostname = osd.getAddress().split(":")[0];
-            Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
-
-            OSDClient osdClient = new OSDClient(hostname, port);
-
-            osdClient.truncate(toEditHash, relativeOffset);
-            osdClient.shutdown();           // Maybe inefficient
-
-            // Delete all subBlocks with "id" higher than subBlockToEdit
-            deleteBlock(iNodeAttr, subBlocksToDelete);
-
-            //Delete all blocks with "id" higher than blockToEdit
-            deleteBlock(iNodeAttr, blocksToDelete);
-
-            return 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return -5;
+        return 0;
     }
 
     private void deleteBlock(iNodeAttributes iNodeAttr, List<BlockData> blocksToDelete) throws InterruptedException {
@@ -493,7 +439,7 @@ public class FileRoute {
             } else { //FOR JERASURE
                 String hash_str = Long.toHexString(hashToUse) + "_" + PG.getPGNumber();
                 hashToUse = Jenkins.hash64(hash_str.getBytes());
-                osd = PG.getOSDs((int) (hashToUse % PG.getOSDsCount()));
+                osd = PG.getOSDs((int) Math.abs(hashToUse % PG.getOSDsCount()));
             }
             return osd;
         }
@@ -516,13 +462,19 @@ public class FileRoute {
             return this.getActualSize();
         }
 
-        public int truncateOnOSD(CrushMapResponse map) {
+        public long truncateOnOSD(CrushMapResponse map) {
             CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd = this.getOSD(map);
             String hostname = osd.getAddress().split(":")[0];
             Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
             OSDClient client = new OSDClient(hostname, port);
-            client.truncate(this.getFinalHash(map), endRelativeOffset);
-            return 0;
+            long result = client.truncate(this.getFinalHash(map), startRelativeOffset, this.red.equals(RedundancyProto.Replication));
+            try {
+                client.shutdown();
+                client.awaitTermination();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return result;
         }
 
         public byte[] getActualData() {

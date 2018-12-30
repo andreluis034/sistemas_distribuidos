@@ -17,7 +17,7 @@ private static final long serialVersionUID = 0L;
   }
   private LockResponse() {
     result_ = false;
-    mapOutdated_ = false;
+    necessaryVersion_ = 0L;
   }
 
   @java.lang.Override
@@ -49,9 +49,9 @@ private static final long serialVersionUID = 0L;
             result_ = input.readBool();
             break;
           }
-          case 16: {
+          case 24: {
 
-            mapOutdated_ = input.readBool();
+            necessaryVersion_ = input.readInt64();
             break;
           }
           default: {
@@ -95,13 +95,13 @@ private static final long serialVersionUID = 0L;
     return result_;
   }
 
-  public static final int MAPOUTDATED_FIELD_NUMBER = 2;
-  private boolean mapOutdated_;
+  public static final int NECESSARYVERSION_FIELD_NUMBER = 3;
+  private long necessaryVersion_;
   /**
-   * <code>bool MapOutdated = 2;</code>
+   * <code>int64 necessaryVersion = 3;</code>
    */
-  public boolean getMapOutdated() {
-    return mapOutdated_;
+  public long getNecessaryVersion() {
+    return necessaryVersion_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -121,8 +121,8 @@ private static final long serialVersionUID = 0L;
     if (result_ != false) {
       output.writeBool(1, result_);
     }
-    if (mapOutdated_ != false) {
-      output.writeBool(2, mapOutdated_);
+    if (necessaryVersion_ != 0L) {
+      output.writeInt64(3, necessaryVersion_);
     }
     unknownFields.writeTo(output);
   }
@@ -137,9 +137,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(1, result_);
     }
-    if (mapOutdated_ != false) {
+    if (necessaryVersion_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(2, mapOutdated_);
+        .computeInt64Size(3, necessaryVersion_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -159,8 +159,8 @@ private static final long serialVersionUID = 0L;
     boolean result = true;
     result = result && (getResult()
         == other.getResult());
-    result = result && (getMapOutdated()
-        == other.getMapOutdated());
+    result = result && (getNecessaryVersion()
+        == other.getNecessaryVersion());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -175,9 +175,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + RESULT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getResult());
-    hash = (37 * hash) + MAPOUTDATED_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getMapOutdated());
+    hash = (37 * hash) + NECESSARYVERSION_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getNecessaryVersion());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -313,7 +313,7 @@ private static final long serialVersionUID = 0L;
       super.clear();
       result_ = false;
 
-      mapOutdated_ = false;
+      necessaryVersion_ = 0L;
 
       return this;
     }
@@ -342,7 +342,7 @@ private static final long serialVersionUID = 0L;
     public GrupoA.StorageController.gRPCService.FileSystem.LockResponse buildPartial() {
       GrupoA.StorageController.gRPCService.FileSystem.LockResponse result = new GrupoA.StorageController.gRPCService.FileSystem.LockResponse(this);
       result.result_ = result_;
-      result.mapOutdated_ = mapOutdated_;
+      result.necessaryVersion_ = necessaryVersion_;
       onBuilt();
       return result;
     }
@@ -394,8 +394,8 @@ private static final long serialVersionUID = 0L;
       if (other.getResult() != false) {
         setResult(other.getResult());
       }
-      if (other.getMapOutdated() != false) {
-        setMapOutdated(other.getMapOutdated());
+      if (other.getNecessaryVersion() != 0L) {
+        setNecessaryVersion(other.getNecessaryVersion());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -452,28 +452,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private boolean mapOutdated_ ;
+    private long necessaryVersion_ ;
     /**
-     * <code>bool MapOutdated = 2;</code>
+     * <code>int64 necessaryVersion = 3;</code>
      */
-    public boolean getMapOutdated() {
-      return mapOutdated_;
+    public long getNecessaryVersion() {
+      return necessaryVersion_;
     }
     /**
-     * <code>bool MapOutdated = 2;</code>
+     * <code>int64 necessaryVersion = 3;</code>
      */
-    public Builder setMapOutdated(boolean value) {
+    public Builder setNecessaryVersion(long value) {
       
-      mapOutdated_ = value;
+      necessaryVersion_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>bool MapOutdated = 2;</code>
+     * <code>int64 necessaryVersion = 3;</code>
      */
-    public Builder clearMapOutdated() {
+    public Builder clearNecessaryVersion() {
       
-      mapOutdated_ = false;
+      necessaryVersion_ = 0L;
       onChanged();
       return this;
     }

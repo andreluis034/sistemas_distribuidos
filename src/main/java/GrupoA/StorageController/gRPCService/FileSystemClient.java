@@ -87,13 +87,30 @@ public class FileSystemClient {
         return this.blockingStub.rmFile(pathOnlyArgs.newBuilder().setFilePath(path).build()).getResult();
     }
 
-    public LockResponse SetWriteLock(String path, long id, long version) {
-        return this.blockingStub.setWriteLock(LockArgs.newBuilder().setPath(path)
-                .setId(id).setCrushMapVersion(version).build());
+    public LockResponse SetLock(String path, long id, long version) {
+        return this.blockingStub.setLock(LockArgs.newBuilder()
+                .setPath(path)
+                .setId(id)
+                .setCrushMapVersion(version)
+                .setCurrentTime(System.currentTimeMillis())
+                .build());
     }
 
-    public Boolean ReleaseWriteLock(String path, long id) {
-        return this.blockingStub.releaseWriteLock(LockArgs.newBuilder().setPath(path).setId(id).build()).getResult();
+    public LockResponse UpdateLock(String path, long id, long version) {
+        return this.blockingStub.updateLock(LockArgs.newBuilder()
+                .setPath(path)
+                .setId(id)
+                .setCrushMapVersion(version)
+                .setCurrentTime(System.currentTimeMillis())
+                .build());
+    }
+
+    public LockResponse ReleaseLock(String path, long id) {
+        return this.blockingStub.releaseLock(LockArgs.newBuilder()
+                .setPath(path)
+                .setId(id)
+                .setCurrentTime(System.currentTimeMillis())
+                .build());
     }
 
     public CrushMapResponse GetLatestCrushMap() {

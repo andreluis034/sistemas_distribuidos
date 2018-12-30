@@ -26,4 +26,9 @@ public interface LockArgsOrBuilder extends
    * <code>int64 crushMapVersion = 3;</code>
    */
   long getCrushMapVersion();
+
+  /**
+   * <code>int64 currentTime = 4;</code>
+   */
+  long getCurrentTime();
 }

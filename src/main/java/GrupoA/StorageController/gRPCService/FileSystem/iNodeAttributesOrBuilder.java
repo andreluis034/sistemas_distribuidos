@@ -89,4 +89,9 @@ public interface iNodeAttributesOrBuilder extends
    * <code>.GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto Redundancy = 14;</code>
    */
   GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto getRedundancy();
+
+  /**
+   * <code>int64 crushMapVersion = 15;</code>
+   */
+  long getCrushMapVersion();
 }

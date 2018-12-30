@@ -30,6 +30,7 @@ private static final long serialVersionUID = 0L;
     atime_ = 0L;
     mtime_ = 0L;
     redundancy_ = 0;
+    crushMapVersion_ = 0L;
   }
 
   @java.lang.Override
@@ -127,6 +128,11 @@ private static final long serialVersionUID = 0L;
             int rawValue = input.readEnum();
 
             redundancy_ = rawValue;
+            break;
+          }
+          case 120: {
+
+            crushMapVersion_ = input.readInt64();
             break;
           }
           default: {
@@ -328,6 +334,15 @@ private static final long serialVersionUID = 0L;
     return result == null ? GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto.UNRECOGNIZED : result;
   }
 
+  public static final int CRUSHMAPVERSION_FIELD_NUMBER = 15;
+  private long crushMapVersion_;
+  /**
+   * <code>int64 crushMapVersion = 15;</code>
+   */
+  public long getCrushMapVersion() {
+    return crushMapVersion_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -383,6 +398,9 @@ private static final long serialVersionUID = 0L;
     }
     if (redundancy_ != GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto.ForwardErrorCorrection.getNumber()) {
       output.writeEnum(14, redundancy_);
+    }
+    if (crushMapVersion_ != 0L) {
+      output.writeInt64(15, crushMapVersion_);
     }
     unknownFields.writeTo(output);
   }
@@ -448,6 +466,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(14, redundancy_);
     }
+    if (crushMapVersion_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(15, crushMapVersion_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -490,6 +512,8 @@ private static final long serialVersionUID = 0L;
     result = result && (getMtime()
         == other.getMtime());
     result = result && redundancy_ == other.redundancy_;
+    result = result && (getCrushMapVersion()
+        == other.getCrushMapVersion());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -537,6 +561,9 @@ private static final long serialVersionUID = 0L;
         getMtime());
     hash = (37 * hash) + REDUNDANCY_FIELD_NUMBER;
     hash = (53 * hash) + redundancy_;
+    hash = (37 * hash) + CRUSHMAPVERSION_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getCrushMapVersion());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -698,6 +725,8 @@ private static final long serialVersionUID = 0L;
 
       redundancy_ = 0;
 
+      crushMapVersion_ = 0L;
+
       return this;
     }
 
@@ -738,6 +767,7 @@ private static final long serialVersionUID = 0L;
       result.atime_ = atime_;
       result.mtime_ = mtime_;
       result.redundancy_ = redundancy_;
+      result.crushMapVersion_ = crushMapVersion_;
       onBuilt();
       return result;
     }
@@ -828,6 +858,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.redundancy_ != 0) {
         setRedundancyValue(other.getRedundancyValue());
+      }
+      if (other.getCrushMapVersion() != 0L) {
+        setCrushMapVersion(other.getCrushMapVersion());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1299,6 +1332,32 @@ private static final long serialVersionUID = 0L;
     public Builder clearRedundancy() {
       
       redundancy_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private long crushMapVersion_ ;
+    /**
+     * <code>int64 crushMapVersion = 15;</code>
+     */
+    public long getCrushMapVersion() {
+      return crushMapVersion_;
+    }
+    /**
+     * <code>int64 crushMapVersion = 15;</code>
+     */
+    public Builder setCrushMapVersion(long value) {
+      
+      crushMapVersion_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 crushMapVersion = 15;</code>
+     */
+    public Builder clearCrushMapVersion() {
+      
+      crushMapVersion_ = 0L;
       onChanged();
       return this;
     }

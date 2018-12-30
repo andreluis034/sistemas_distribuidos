@@ -8,7 +8,7 @@ public interface IntMessageOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int64 int = 1;</code>
+   * <code>int32 Value = 1;</code>
    */
-  long getInt();
+  int getValue();
 }

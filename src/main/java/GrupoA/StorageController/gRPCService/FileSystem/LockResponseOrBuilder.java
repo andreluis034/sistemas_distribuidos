@@ -13,7 +13,7 @@ public interface LockResponseOrBuilder extends
   boolean getResult();
 
   /**
-   * <code>bool MapOutdated = 2;</code>
+   * <code>int64 necessaryVersion = 3;</code>
    */
-  boolean getMapOutdated();
+  long getNecessaryVersion();
 }

@@ -5,6 +5,7 @@ import GrupoA.StorageController.Crush.ObjectStorageDaemon;
 import GrupoA.StorageController.Crush.PlacementGroup;
 import GrupoA.StorageController.FileSystem.FSTree;
 import GrupoA.StorageController.RaftServices.CrushMap.CrushMapService;
+import GrupoA.StorageController.RaftServices.FileSystem.Commands.FileSystemCommand;
 import GrupoA.StorageController.RaftServices.FileSystem.FileSystemService;
 import GrupoA.StorageController.gRPCService.FileSystem.*;
 import io.grpc.Server;
@@ -68,6 +69,7 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
                 reply.setRedundancy(((FSTree.FileNode)node).RedundancyType.toProto());
                 reply.setSize(((FSTree.FileNode) node).fileSize);
                 System.out.println(((FSTree.FileNode) node).fileSize);
+                reply.setCrushMapVersion(((FSTree.FileNode) node).getCrushMapVersion());
             }
             reply.setCtime(node.creationTime);
             reply.setMtime(node.modifiedTime);
@@ -175,12 +177,39 @@ class FileSystemServiceImpl extends FileSystemGrpc.FileSystemImplBase {
     }
 
     @Override
-    public void setWriteLock(LockArgs args, StreamObserver<LockResponse> rsp) {
-        LockResponse.Builder builder = LockResponse.newBuilder().setResult(false).setMapOutdated(true);
+    public void setLock(LockArgs args, StreamObserver<LockResponse> rsp) {
+        LockResponse.Builder builder = LockResponse.newBuilder()
+                .setResult(false)
+                .setNecessaryVersion(-1);
         try {
-            CrushMap cm = CrushMapService.getInstance().getLatestMap();
-            if (cm.getVersion() == args.getCrushMapVersion()) { //TODO locks
-                builder.setResult(true).setMapOutdated(false);
+            FSTree.Node node  = FileSystemService.getInstance().getNode(args.getPath());
+            if (node.getNodeType() == FSTree.NodeType.FileNode) {
+                builder.setNecessaryVersion(((FSTree.FileNode)node).getCrushMapVersion());
+                if(args.getCrushMapVersion() == ((FSTree.FileNode)node).getCrushMapVersion()) {
+                    boolean gotLock = FileSystemService.getInstance()
+                            .TryGetLock(args.getPath(), args.getId(), args.getCurrentTime());
+                    builder.setResult(true);
+
+                }
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        rsp.onNext(builder.build());
+        rsp.onCompleted();
+    }
+    @Override
+    public void releaseLock(LockArgs args, StreamObserver<LockResponse> rsp) {
+        LockResponse.Builder builder = LockResponse.newBuilder()
+                .setResult(false)
+                .setNecessaryVersion(-1);
+        try {
+            FSTree.Node node  = FileSystemService.getInstance().getNode(args.getPath());
+            if (node.getNodeType() == FSTree.NodeType.FileNode) {
+                boolean result = FileSystemService.getInstance()
+                        .TryReleaseLock(args.getPath(), args.getId(), false);
+                builder.setResult(result);
             }
 
         } catch (Exception e){

@@ -25,4 +25,5 @@ public class GetNodeCommand extends FileSystemCommand<FSTree.Node> {
             return context.getNode(this.path);
         return context.getNode(this.iNode);
     }
+
 }

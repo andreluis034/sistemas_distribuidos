@@ -19,8 +19,9 @@ service FileSystem {
 
     rpc CreateNode (NodeArgs) returns (BooleanMessage) {}
 
-    rpc SetWriteLock (LockArgs) returns (LockResponse) {}
-    rpc ReleaseWriteLock (LockArgs) returns (LockResponse) {}
+    rpc SetLock (LockArgs) returns (LockResponse) {}
+    rpc UpdateLock (LockArgs) returns (LockResponse) {}
+    rpc ReleaseLock (LockArgs) returns (LockResponse) {}
 
 //    rpc SetReadLock (LockArgs) returns (LockResponse) {}
 //    rpc ReleaseReadLock (LockArgs) returns (LockResponse) {}
@@ -46,12 +47,13 @@ message CrushMapResponse {
 }
 message LockResponse {
     bool Result = 1;
-    bool MapOutdated = 2;
+    int64 necessaryVersion = 3;
 }
 message LockArgs {
     string path = 1;
     int64 id = 2;
     int64 crushMapVersion = 3;
+    int64 currentTime = 4;
 }
 
 message IntArg {
@@ -119,6 +121,7 @@ message iNodeAttributes {
     int64 atime = 12;
     int64 mtime = 13;
     RedundancyProto Redundancy = 14;
+    int64 crushMapVersion = 15;
 }
 
 enum ProtoAttributeUpdateRequestType {
