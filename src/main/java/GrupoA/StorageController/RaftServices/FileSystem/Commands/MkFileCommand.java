@@ -1,6 +1,7 @@
 package GrupoA.StorageController.RaftServices.FileSystem.Commands;
 
 import GrupoA.StorageController.FileSystem.FSTree;
+import GrupoA.StorageController.RaftServices.CrushMap.CrushMapService;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -35,6 +36,8 @@ public class MkFileCommand extends FileSystemCommand<Boolean> {
         if(node.getNodeType() != FSTree.NodeType.DirNode) {
             return false;
         }
-        return context.mkFile(this.path, uid, gid, permission, creationTime, redundancy);
+
+        return context.mkFile(this.path, uid, gid, permission,
+                creationTime, redundancy, CrushMapService.getInstance().getLatestMap().getVersion());
     }
 }

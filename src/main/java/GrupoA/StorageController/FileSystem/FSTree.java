@@ -167,7 +167,8 @@ public class FSTree implements Serializable {
      * @param permission the permissions of the file
      * @return true if the file was created
      */
-    public synchronized Boolean mkFile(String path, long uid, long gid, long permission, long creationTime, FileNode.Redundancy red) {
+    public synchronized Boolean mkFile(String path, long uid, long gid, long permission, long creationTime,
+                                       FileNode.Redundancy red, long version) {
         try {
             Files.write(journal_path, Collections.singleton("FSTree.mkFile(\"" + path + "\"" + ")"));
         } catch (IOException ignored) {
@@ -197,6 +198,7 @@ public class FSTree implements Serializable {
         newFile.UserPermissions = (byte)((permission & (0x7 << 6)) >> 6);
         newFile.GroupPermissions = (byte)((permission & (0x7 <<3)) >> 3);
         newFile.OthersPermissions = (byte)((permission & 0x007) >> 0);
+        newFile.CrushMapVersion = version;
         return true;
     }
 
@@ -353,7 +355,7 @@ public class FSTree implements Serializable {
         Long hash;
         public Long fileSize, blocks;
 
-        int CrushMapVersion = 0; //TODO set this
+        long CrushMapVersion = 0; //TODO set this
 
 
         public FileNode(String name) {
@@ -404,12 +406,12 @@ public class FSTree implements Serializable {
             return NodeType.FileNode;
         }
 
-        public int getCrushMapVersion() {
+        public long getCrushMapVersion() {
             return this.CrushMapVersion;
         }
 
-        public int setCrushMapVersion(int version) {
-            return this.CrushMapVersion = version;
+        public void setCrushMapVersion(long version) {
+            this.CrushMapVersion = version;
         }
     }
 

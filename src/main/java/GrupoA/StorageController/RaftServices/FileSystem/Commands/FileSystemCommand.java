@@ -14,7 +14,7 @@ public abstract class FileSystemCommand<T> implements Serializable {
     public abstract T execute(FSTree context);
 
     public void journal(FSTree context, Object result) {
-        String str = "Return value of command '"+this.getClass().getName()+"' was: " + result.toString() + "\n";
+        String str = "Return value of command '"+this.getClass().getName()+"' was: " + (result == null ? "None" : result).toString() + "\n";
         try {
             Files.write(context.journal_path,
                     Collections.singleton(str));

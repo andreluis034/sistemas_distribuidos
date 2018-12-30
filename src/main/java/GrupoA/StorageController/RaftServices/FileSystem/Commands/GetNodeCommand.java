@@ -1,6 +1,7 @@
 package GrupoA.StorageController.RaftServices.FileSystem.Commands;
 
 import GrupoA.StorageController.FileSystem.FSTree;
+import GrupoA.StorageController.RaftServices.CrushMap.CrushMapService;
 
 import java.io.Serializable;
 
@@ -21,9 +22,16 @@ public class GetNodeCommand extends FileSystemCommand<FSTree.Node> {
     }
     @Override
     public FSTree.Node execute(FSTree context) {
+        FSTree.Node node;
         if(byPath)
-            return context.getNode(this.path);
-        return context.getNode(this.iNode);
+            node = context.getNode(this.path);
+        else
+            node = context.getNode(this.iNode);
+
+        if ( node != null && node.getNodeType().equals(FSTree.NodeType.FileNode) && ((FSTree.FileNode)node).fileSize == 0) {
+            ((FSTree.FileNode)node).setCrushMapVersion(CrushMapService.getInstance().getLatestMap().getVersion());
+        }
+        return node;
     }
 
 }

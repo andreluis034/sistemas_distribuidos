@@ -1,6 +1,7 @@
 package GrupoA.StorageController.RaftServices.FileSystem.Commands;
 
 import GrupoA.StorageController.FileSystem.FSTree;
+import GrupoA.StorageController.RaftServices.CrushMap.CrushMapService;
 import GrupoA.StorageController.gRPCService.FileSystem.BooleanMessage;
 import GrupoA.StorageController.gRPCService.FileSystem.ProtoAttributeUpdateRequestType;
 import GrupoA.StorageController.gRPCService.FileSystem.UpdateAttribute;
@@ -37,6 +38,9 @@ public class UpdateAttributeCommand extends FileSystemCommand<Boolean> {
                 if(node.getNodeType() != FSTree.NodeType.FileNode)
                     return false;
                 ((FSTree.FileNode)node).fileSize = this.update.getValue();
+                if(this.update.getValue() == 0) {
+                    ((FSTree.FileNode)node).setCrushMapVersion(CrushMapService.getInstance().getLatestMap().getVersion());
+                }
                 break;
             case UNRECOGNIZED:
                 return false;
