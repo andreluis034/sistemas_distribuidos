@@ -249,6 +249,8 @@ public class FileRoute {
 
 
             iNodeAttributes iNodeAttr = ApplicationServer.FileSystemClient.GetAttributes(path);
+            if(iNodeAttr.getINodeNumber() == -1)
+                return -2; /* No such file or directory */
             long fileSize = iNodeAttr.getSize();
 
             int response = ApplicationServer.FileSystemClient.RemoveFile(path);
