@@ -504,7 +504,7 @@ public class FileRoute {
             Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
             OSDClient client = new OSDClient(hostname, port);
             try {
-                System.out.printf("ReadMiniObject(%s, %d, %d)\n", Long.toHexString(this.getFinalHash(map)), this.startRelativeOffset, this.getActualSize());
+                //System.out.printf("ReadMiniObject(%s, %d, %d)\n", Long.toHexString(this.getFinalHash(map)), this.startRelativeOffset, this.getActualSize());
                 ByteString readData = client.ReadMiniObject(
                         this.getFinalHash(map), this.startRelativeOffset, this.getActualSize());
                 client.shutdown();
@@ -516,8 +516,13 @@ public class FileRoute {
             return this.getActualSize();
         }
 
-        public void truncateOnOSD(CrushMapResponse map) {
-            
+        public int truncateOnOSD(CrushMapResponse map) {
+            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd = this.getOSD(map);
+            String hostname = osd.getAddress().split(":")[0];
+            Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
+            OSDClient client = new OSDClient(hostname, port);
+            client.truncate(this.getFinalHash(map), endRelativeOffset);
+            return 0;
         }
 
         public byte[] getActualData() {
