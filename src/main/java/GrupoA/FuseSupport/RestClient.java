@@ -4,6 +4,7 @@ import GrupoA.AppServer.Models.*;
 import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
+import ru.serce.jnrfuse.ErrorCodes;
 
 import javax.print.attribute.standard.Media;
 import javax.ws.rs.NotFoundException;
@@ -164,9 +165,14 @@ public class RestClient {
 
     public int truncate(String path, long size) {
         TruncateRequest tr = new TruncateRequest(path, size);
+        try {
+            return client.target(restBaseUri).path("file").path("truncate")
+                    .request(MediaType.APPLICATION_JSON)
+                    .put(Entity.entity(tr, MediaType.APPLICATION_JSON), Integer.class);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return -ErrorCodes.ENONET();
 
-        return client.target(restBaseUri).path("file").path("truncate")
-                .request(MediaType.APPLICATION_JSON)
-                .put(Entity.entity(tr, MediaType.APPLICATION_JSON), Integer.class);
     }
 }

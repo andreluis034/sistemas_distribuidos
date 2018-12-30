@@ -516,6 +516,10 @@ public class FileRoute {
             return this.getActualSize();
         }
 
+        public void truncateOnOSD(CrushMapResponse map) {
+            
+        }
+
         public byte[] getActualData() {
             byte[] output = new byte[this.getActualSize()];
             System.arraycopy(this.Data, (int) this.startRelativeOffset, System.out, 0, this.getActualSize());

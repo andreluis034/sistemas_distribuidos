@@ -69,7 +69,7 @@ public final class OSDProto {
       "(\003\022\014\n\004size\030\003 \001(\003\022\024\n\014hasDuplicate\030\004 \001(\010\"1" +
       "\n\nObjectData\022\017\n\007success\030\001 \001(\010\022\022\n\nobjectD" +
       "ata\030\002 \001(\014\" \n\016BooleanMessage\022\016\n\006result\030\001 " +
-      "\001(\010\"\016\n\014EmptyMessage2\376\004\n\003OSD\022U\n\tputObject" +
+      "\001(\010\"\016\n\014EmptyMessage2\327\005\n\003OSD\022U\n\tputObject" +
       "\022!.GrupoA.OSD.OSDService.ObjectData\032#.Gr" +
       "upoA.OSD.OSDService.EmptyMessage\"\000\022[\n\017wr" +
       "iteMiniObject\022!.GrupoA.OSD.OSDService.Mi" +
@@ -85,8 +85,10 @@ public final class OSDProto {
       "nSamePaG\032#.GrupoA.OSD.OSDService.EmptyMe" +
       "ssage\"\000\022[\n\014deleteObject\022$.GrupoA.OSD.OSD" +
       "Service.GetObjectArgs\032#.GrupoA.OSD.OSDSe" +
-      "rvice.EmptyMessage\"\000B\020B\010OSDProtoP\001\242\002\001Ob\006" +
-      "proto3"
+      "rvice.EmptyMessage\"\000\022W\n\010truncate\022$.Grupo" +
+      "A.OSD.OSDService.GetObjectArgs\032#.GrupoA." +
+      "OSD.OSDService.EmptyMessage\"\000B\020B\010OSDProt" +
+      "oP\001\242\002\001Ob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
