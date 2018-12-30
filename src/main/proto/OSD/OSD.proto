@@ -43,6 +43,7 @@ message GetObjectArgs {
     int64 hash = 1;
     int64 relativeOffset = 2;
     int64 size = 3;
+    bool hasDuplicate = 4;
 }
 
 

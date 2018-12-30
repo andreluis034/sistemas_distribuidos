@@ -21,4 +21,9 @@ public interface GetObjectArgsOrBuilder extends
    * <code>int64 size = 3;</code>
    */
   long getSize();
+
+  /**
+   * <code>bool hasDuplicate = 4;</code>
+   */
+  boolean getHasDuplicate();
 }

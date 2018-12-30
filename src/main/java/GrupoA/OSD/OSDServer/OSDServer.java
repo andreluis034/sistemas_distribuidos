@@ -104,6 +104,21 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
     
     @Override
     public void deleteObject(GetObjectArgs args, StreamObserver<EmptyMessage> response) {
+        if(OSDServer.getInstance().IsLeader && args.getHasDuplicate()) {
+            for (OSDDetails osd : OSDServer.getInstance().OSDs) {
+                if(osd.getLeader())
+                    continue;
+                OSDClient client = new OSDClient(osd.getAddress(), osd.getPort());
+                client.deleteObject(args.getHash(), args.getHasDuplicate());
+                try {
+                    client.shutdown();
+                    client.awaitTermination();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        System.out.println("Deleting object " + Long.toHexString(args.getHash()));
         EmptyMessage reply = EmptyMessage.newBuilder().build();
 
         File file = new File(Long.toHexString(args.getHash()));

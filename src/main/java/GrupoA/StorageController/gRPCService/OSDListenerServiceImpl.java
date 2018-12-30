@@ -43,6 +43,12 @@ public class  OSDListenerServiceImpl extends OSDListenerGrpc.OSDListenerImplBase
         OSDClient client = new OSDClient(args.getAddress(), args.getPort());
         if(client.ping()) {
             CrushMap map = CrushMapService.getInstance().addOSD(new ObjectStorageDaemon(args.getAddress()+":"+args.getPort()));
+            try {
+                client.shutdown();
+                client.awaitTermination();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } else {
             System.out.println("Received request from OSD " + args.getAddress() + ":"+args.getPort()
                     + "to join but can't verify its availability reach it");

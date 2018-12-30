@@ -1,5 +1,6 @@
 package GrupoA.FuseSupport;
 
+import GrupoA.AppServer.ApplicationServer;
 import GrupoA.AppServer.Models.*;
 import GrupoA.StorageController.gRPCService.FileSystem.FileType;
 import jnr.ffi.Pointer;
@@ -12,10 +13,7 @@ import ru.serce.jnrfuse.struct.FuseFileInfo;
 import ru.serce.jnrfuse.struct.Timespec;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static GrupoA.AppServer.Models.AttributeUpdateRequest.UpdateType.UPDATEACCESSTIME;
 
@@ -118,11 +116,13 @@ public class CephishFuse extends FuseStubFS {
         return restClient.removeFile(path);
     }
 
-    private HashMap<String, List<WriteRequest>> pendingWrites = new HashMap<>();
-    private synchronized WriteRequest addWriteRequest(String path, Pointer buf, @size_t long size, @off_t long offset) {
-        List<WriteRequest> pendingWritesList = pendingWrites.get(path);
+    private HashMap<String, SortedSet<WriteRequest>> pendingWrites = new HashMap<>();
+    private HashMap<String, Long> pendingSize = new HashMap<>();
+    private synchronized Long addWriteRequest(String path, Pointer buf, @size_t long size, @off_t long offset) {
+        SortedSet<WriteRequest> pendingWritesList = pendingWrites.get(path);
         if (pendingWritesList == null) {
-            pendingWritesList = new ArrayList<>();
+            pendingSize.put(path, 0L);
+            pendingWritesList = new TreeSet<>();
             pendingWrites.put(path, pendingWritesList);
         }
         WriteRequest wr = new WriteRequest();
@@ -133,54 +133,79 @@ public class CephishFuse extends FuseStubFS {
 
         buf.get(0, wr.data,0, wr.data.length);
         pendingWritesList.add(wr);
+        pendingSize.replace(path, pendingSize.get(path) + size);
 
-        return wr;
+        return pendingSize.get(path) + size;
 
     }
 
-    private synchronized void mergeRequests(String path) { //TODO make sure the list is sorted
-        List<WriteRequest> pendingWritesList = pendingWrites.get(path);
-        for (int i = 0; i < pendingWritesList.size(); ++i) {
-            WriteRequest wri = pendingWritesList.get(i);
-            for(int j = i; j < pendingWritesList.size(); ++j) {
-                WriteRequest wrj = pendingWritesList.get(j);
-                if(wri.offset + wri.data.length < wrj.offset)
-                    continue;
-                int collision = (int) (wri.offset + wri.data.length - wrj.offset);
-                byte[] data = new byte[wri.data.length + wrj.data.length - collision];
-                System.arraycopy(wri.data, 0, data, 0, wri.data.length - collision);
-                System.arraycopy(wrj.data, 0, data, wri.data.length - collision, wrj.data.length);
-                wri.data = data;
-                pendingWrites.remove(wrj);
-            }
+    @Override
+    public int flush(String path, FuseFileInfo fi) {
+        System.out.println("flushing");
+        List<WriteRequest> wrs = this.mergeRequests(path);
+        for (WriteRequest wr : wrs) {
+            restClient.write(path, wr);
         }
+        return 0;
+    }
+
+    private synchronized List<WriteRequest> mergeRequests(String path) {
+        SortedSet<WriteRequest> pendingWritesList = pendingWrites.get(path);
+        if(pendingWritesList.size() == 0) {
+            pendingSize.replace(path, 0L);
+            return new LinkedList<>();
+        }
+        WriteRequest merged = pendingWritesList.first();
+        pendingWritesList.remove(merged);
+
+        WriteRequest[] requests = new WriteRequest[pendingWritesList.size()];
+        pendingWritesList.toArray(requests);
+        for (WriteRequest request : requests) {
+            if (merged.offset + merged.data.length != request.offset)
+                continue;
+            byte[] backup = merged.data;
+            merged.data = new byte[backup.length + request.data.length];
+            System.arraycopy(backup, 0, merged.data, 0, backup.length);
+            System.arraycopy(request.data, 0, merged.data, backup.length, request.data.length);
+            pendingWritesList.remove(request);
+        }
+        List<WriteRequest> reqs = this.mergeRequests(path);
+        reqs.add(merged);
+        return reqs;
     }
 
     @Override
     public int write(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
-        NodeAttributes attr = restClient.getAttribute(path);
-        if (attr == null)
-            return -ErrorCodes.ENOENT();
-        if(attr._FileType.equals(FileType.DIR))
-            return -ErrorCodes.EISDIR();
-        WriteRequest wr =  addWriteRequest(path, buf, size, offset);
-        int writeResult = restClient.write(path, wr);
-
-        return writeResult;
+        if(!pendingSize.containsKey(path) || pendingSize.get(path) == 0 ) {
+            NodeAttributes attr = restClient.getAttribute(path);
+            if (attr == null)
+                return -ErrorCodes.ENOENT();
+            if(attr._FileType.equals(FileType.DIR))
+                return -ErrorCodes.EISDIR();
+        }
+        Long pendingSize = addWriteRequest(path, buf, size, offset);
+        if(pendingSize >= ApplicationServer.subBlockSize) {
+            try {
+                int status = this.flush(path, fi);
+                if (status < 0)
+                    return status;
+            } catch (Exception e){
+                e.printStackTrace();
+                return -ErrorCodes.EIO();
+            }
+        }
+        return (int) size;
     }
 
 
     @Override
     public int read(String path, Pointer buf, @size_t long size, @off_t long offset, FuseFileInfo fi) {
-        System.out.println("----------------------------------------------------------");
-        System.out.printf("read(\"%s\", size: %d, offset: %d)\n", path, size, offset);
         ReadFileResponse rfr = restClient.readFile(path, size, offset);
         if(rfr.Status < 0)
             return rfr.Status;
         synchronized (this) {
             buf.put(0, rfr.Data, 0, rfr.Data.length);
         }
-        System.out.println("----------------------------------------------------------");
         return rfr.Data.length;
     }
 
@@ -199,7 +224,7 @@ public class CephishFuse extends FuseStubFS {
 /*
     @Override
     public int release(String path, FuseFileInfo fi) {
-        List<WriteRequest> pendingWritesList = pendingWrites.get(path);
+        List<WriteRequest> pendingWritesList = this.mergeRequests(path);
         for (WriteRequest wr : pendingWritesList) {
             pendingWritesList.remove(wr);
         }

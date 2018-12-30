@@ -19,6 +19,7 @@ private static final long serialVersionUID = 0L;
     hash_ = 0L;
     relativeOffset_ = 0L;
     size_ = 0L;
+    hasDuplicate_ = false;
   }
 
   @java.lang.Override
@@ -58,6 +59,11 @@ private static final long serialVersionUID = 0L;
           case 24: {
 
             size_ = input.readInt64();
+            break;
+          }
+          case 32: {
+
+            hasDuplicate_ = input.readBool();
             break;
           }
           default: {
@@ -119,6 +125,15 @@ private static final long serialVersionUID = 0L;
     return size_;
   }
 
+  public static final int HASDUPLICATE_FIELD_NUMBER = 4;
+  private boolean hasDuplicate_;
+  /**
+   * <code>bool hasDuplicate = 4;</code>
+   */
+  public boolean getHasDuplicate() {
+    return hasDuplicate_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -142,6 +157,9 @@ private static final long serialVersionUID = 0L;
     if (size_ != 0L) {
       output.writeInt64(3, size_);
     }
+    if (hasDuplicate_ != false) {
+      output.writeBool(4, hasDuplicate_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -162,6 +180,10 @@ private static final long serialVersionUID = 0L;
     if (size_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(3, size_);
+    }
+    if (hasDuplicate_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(4, hasDuplicate_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -185,6 +207,8 @@ private static final long serialVersionUID = 0L;
         == other.getRelativeOffset());
     result = result && (getSize()
         == other.getSize());
+    result = result && (getHasDuplicate()
+        == other.getHasDuplicate());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -205,6 +229,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + SIZE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getSize());
+    hash = (37 * hash) + HASDUPLICATE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getHasDuplicate());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -344,6 +371,8 @@ private static final long serialVersionUID = 0L;
 
       size_ = 0L;
 
+      hasDuplicate_ = false;
+
       return this;
     }
 
@@ -373,6 +402,7 @@ private static final long serialVersionUID = 0L;
       result.hash_ = hash_;
       result.relativeOffset_ = relativeOffset_;
       result.size_ = size_;
+      result.hasDuplicate_ = hasDuplicate_;
       onBuilt();
       return result;
     }
@@ -429,6 +459,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getSize() != 0L) {
         setSize(other.getSize());
+      }
+      if (other.getHasDuplicate() != false) {
+        setHasDuplicate(other.getHasDuplicate());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -533,6 +566,32 @@ private static final long serialVersionUID = 0L;
     public Builder clearSize() {
       
       size_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private boolean hasDuplicate_ ;
+    /**
+     * <code>bool hasDuplicate = 4;</code>
+     */
+    public boolean getHasDuplicate() {
+      return hasDuplicate_;
+    }
+    /**
+     * <code>bool hasDuplicate = 4;</code>
+     */
+    public Builder setHasDuplicate(boolean value) {
+      
+      hasDuplicate_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool hasDuplicate = 4;</code>
+     */
+    public Builder clearHasDuplicate() {
+      
+      hasDuplicate_ = false;
       onChanged();
       return this;
     }
