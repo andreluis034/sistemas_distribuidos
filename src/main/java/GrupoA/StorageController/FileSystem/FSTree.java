@@ -53,7 +53,7 @@ public class FSTree implements Serializable {
             if (node.getNodeType() == FSTree.NodeType.FileNode)
                 listOfNodes.add((FileNode)node);
             else {
-                List<FSTree.Node> children = (List<FSTree.Node>) ((DirNode)node).getChildren();
+                List<FSTree.Node> children = new ArrayList<>(((DirNode)node).getChildren());
                 if (children != null)
                     for (FSTree.Node child : children)
                         addAllNodes(child, listOfNodes);

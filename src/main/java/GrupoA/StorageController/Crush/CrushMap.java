@@ -15,7 +15,7 @@ public class CrushMap implements ICrushMap, Serializable {
     // Default replication value
     private static final int REPLICATION = 2; //TODO move this to config
 
-    private int version = 0;
+    private long version = 0;
     private List<ObjectStorageDaemon> OSDs = new LinkedList<>();
     private List<PlacementGroup> PGs = new LinkedList<>();
     public String journal_path = "";
@@ -35,7 +35,7 @@ public class CrushMap implements ICrushMap, Serializable {
         }
     }
 
-    public CrushMap(int version, List<ObjectStorageDaemon> OSDs) {
+    public CrushMap(long version, List<ObjectStorageDaemon> OSDs) {
         this.version = version;
         this.createJournal();
         this.OSDs = OSDs;
@@ -62,7 +62,7 @@ public class CrushMap implements ICrushMap, Serializable {
             PGs.add(pg);
         }
         if(leftover != 0 && PGs.size() > 1){
-            // Insert the re maining OSDs into a PG, increasing the replication of that PG
+            // Insert the remaining OSDs into a PG, increasing the replication of that PG
             PlacementGroup pgToRemove = PGs.remove(PGs.size() - 1);
 
             List<ObjectStorageDaemon> newOSDList = pgToRemove.getOSDs();
@@ -87,7 +87,7 @@ public class CrushMap implements ICrushMap, Serializable {
     }
 
     @Override
-    public int getVersion() {
+    public long getVersion() {
         return this.version;
     }
 
@@ -158,5 +158,13 @@ public class CrushMap implements ICrushMap, Serializable {
         for (ObjectStorageDaemon osd : this.OSDs) {
             System.out.println(osd.getAddress()+ ": " + osd.getBelongingPG().getPgID());
         }
+    }
+
+    public int getOSDCount () {
+        return this.OSDs.size();
+    }
+
+    public int getPGCount () {
+        return this.PGs.size();
     }
 }

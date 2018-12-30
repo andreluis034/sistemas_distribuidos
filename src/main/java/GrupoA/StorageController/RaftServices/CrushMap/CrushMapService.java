@@ -1,7 +1,5 @@
 package GrupoA.StorageController.RaftServices.CrushMap;
 
-import GrupoA.AppServer.ApplicationServer;
-import GrupoA.AppServer.Models.ReadRequest;
 import GrupoA.AppServer.Routes.FileRoute;
 import GrupoA.OSD.OSDClient.OSDClient;
 import GrupoA.StorageController.Crush.CrushMap;
@@ -11,10 +9,7 @@ import GrupoA.StorageController.RaftServices.CrushMap.Commands.CreateNewCrushMap
 import GrupoA.StorageController.RaftServices.CrushMap.Commands.CrushMapCommand;
 import GrupoA.StorageController.RaftServices.FileSystem.FileSystemService;
 import GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse;
-import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
-import GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes;
 import GrupoA.StorageController.gRPCService.OSDListener.OSDDetails;
-import GrupoA.Utility.Jenkins;
 import org.jgroups.JChannel;
 import org.jgroups.protocols.raft.RAFT;
 import org.jgroups.protocols.raft.Role;
@@ -30,6 +25,8 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import static GrupoA.AppServer.Routes.FileRoute.getWriteBlockDatas;
+
 public class CrushMapService implements StateMachine, RAFT.RoleChange {
     private static CrushMapService service = null;
     protected JChannel ch;
@@ -38,8 +35,8 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
 
     public boolean isLeader = false;
     public CrushMap latestMap;
-    public int latestVersion = 0;
-    public final HashMap<Integer, CrushMap> mapOfMaps = new HashMap<>();
+    public long latestVersion = 0;
+    public final HashMap<Long, CrushMap> mapOfMaps = new HashMap<>();
 
     public synchronized static CrushMapService getInstance() {
         return service;
@@ -100,7 +97,7 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
     public void readContentFrom(DataInput dataInput) throws Exception {
         int messageSize = dataInput.readInt();
         for (int i = 0; i < messageSize; i++) {
-            int key = Bits.readInt(dataInput);
+            long key = Bits.readLong(dataInput);
             int objectSize = Bits.readInt(dataInput);
 
             byte[] buf = new byte[objectSize];
@@ -114,11 +111,11 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
     @Override
     public void writeContentTo(DataOutput dataOutput) throws Exception {
         dataOutput.write(mapOfMaps.size());
-        for (Map.Entry<Integer, CrushMap> entry : mapOfMaps.entrySet()) {
+        for (Map.Entry<Long, CrushMap> entry : mapOfMaps.entrySet()) {
             CrushMap value = entry.getValue();
             byte[] buf = Util.objectToByteBuffer(value);
 
-            Bits.writeInt(entry.getKey(), dataOutput);
+            Bits.writeLong(entry.getKey(), dataOutput);
             Bits.writeInt(buf.length, dataOutput);
             dataOutput.write(buf);
         }
@@ -141,7 +138,6 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
         try {
             OSDs.add(OSD);
             CrushMap cm = this.createNewMap(OSDs);
-            updateFilesLocations(cm);
             return cm;
         } catch(Exception e) {
             e.printStackTrace();
@@ -160,7 +156,6 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
         }
         try {
             CrushMap cm = this.createNewMap(osds);
-            updateFilesLocations(cm);
             return cm;
         } catch (Exception e) {
             e.printStackTrace();
@@ -172,81 +167,49 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
         return invoke(new CreateNewCrushMapService(OSDs)) ;
     }
 
-    private List<Integer> getSuperBlocks(long offset, long size) {
-        List<Integer> out = new ArrayList<>();
-        for (int i = 0; i * ApplicationServer.maxBlockSize < offset + size; ++i) {
-            if ((i + 1) * ApplicationServer.maxBlockSize < offset)
-                continue;
-            out.add(i);
+
+    public synchronized ObjectStorageDaemon getNewOSD(List<ObjectStorageDaemon> oldOSDs, List<ObjectStorageDaemon> newOSDs) {
+        for (ObjectStorageDaemon newOSD : newOSDs) {
+            if(oldOSDs.contains(newOSD))
+                return newOSD;
         }
-        return out;
+        return null;
     }
 
-    private List<Integer> getSmallerBlocks(int superBlock, long offset, long size) {
-        List<Integer> out = new ArrayList<>();
-        int start = superBlock * ApplicationServer.maxBlockSize;
-        for (int i = 0; i < ApplicationServer.DivisionFactor; ++i) {
-            if ((start + (i + 1) * ApplicationServer.subBlockSize) < offset)
-                continue;
-            if (((start + i * ApplicationServer.subBlockSize) >= offset + size))
-                continue;
-            out.add(i);
-        }
-
-        return out;
-    }
-
-    // TODO: Update each fileNode's CrushMap version
-    public void updateFilesLocations(CrushMap newCrushMap) {
+    public synchronized void updateFilesLocations(CrushMap newCrushMap) throws Exception {
         CrushMapResponse new_cmr = newCrushMap.toCrushMapResponse();
         List<FSTree.FileNode> files = FileSystemService.getInstance().getFsTree().getAllFileNodes();
 
         // Recreate file blocks and check their hashes
-        for (FSTree.FileNode fn : files) {
-            CrushMapResponse cmr = mapOfMaps.get((int)fn.getCrushMapVersion()).toCrushMapResponse();
-            List<Integer> superBlocks = getSuperBlocks(0, fn.fileSize);
-            for (Integer superBlock : superBlocks) {
-                List<Integer> subBlocks = getSmallerBlocks(superBlock, 0, fn.fileSize);
-                for (Integer subBlock : subBlocks) {
-                    FileRoute.WriteBlockData bd =
-                            new FileRoute.WriteBlockData(fn.getPath(), superBlock, subBlock, fn.getRedundancy());
-
-                    CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto
-                            latestOSD = bd.getOSD(cmr);
-
-                    CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto
-                            newOSD = bd.getOSD(new_cmr);
-
-                    if (!latestOSD.getAddress().equals(newOSD.getAddress())) {
-                        // Then, we need to move it
-                        // First read the subBlock, then copy to the newOSD
-                        // After the copies, delete the subBlock on the oldOSD
-                        bd.readFromOsd(cmr);
-                        bd.writeToOsd(new_cmr);
-
-                        try {
-                            iNodeAttributes iNodeAttr = ApplicationServer.FileSystemClient.GetAttributes(fn.getPath());
-
-                            // Delete the smaller block from the old osd
-                            String hostname = latestOSD.getAddress().split(":")[0];
-                            Integer port = Integer.parseInt(latestOSD.getAddress().split(":")[1]);
-
-                            OSDClient osdClient = new OSDClient(hostname, port);
-
-                            osdClient.deleteObject(bd.getHashForPG(), iNodeAttr.getRedundancy().equals(RedundancyProto.Replication));
-                            osdClient.shutdown();           // Maybe inefficient
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
+        for (FSTree.FileNode file : files) { //TODO lock files
+            System.out.println("Processing " + file.getPath());
+            if(file.fileSize == 0)
+                continue;
+            if(!mapOfMaps.containsKey(file.getCrushMapVersion()) && file.fileSize != 0){
+                System.out.println("[Couldn't migrate]Missing crushmap with version " + file.getCrushMapVersion());
+                continue;
             }
+            CrushMapResponse old_cmr = mapOfMaps.get(file.getCrushMapVersion()).toCrushMapResponse();
+            //TODO handle jerasure
+            List<FileRoute.WriteBlockData> datas = getWriteBlockDatas(file.getPath(), 0, file.fileSize,
+                    file.getRedundancy());
 
-            try {
-                FileSystemService.getInstance().setCrushMapVersion(fn.getPath(), new_cmr.getVersion());
-            } catch (Exception e) {
-                e.printStackTrace();
+            for (FileRoute.WriteBlockData wbd : datas){
+                wbd.read(old_cmr);
+                wbd.delete(old_cmr);
+                wbd.write(new_cmr);
+                //Easier to delete all and write them again... to replicate files to new OSD and etc
+                /*
+                CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto
+                        old = wbd.getOSD(old_cmr);
+                CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto
+                        newOSD = wbd.getOSD(new_cmr);
+
+                if(!old.getAddress().equals(newOSD.getAddress())) { //TODO if a PG got more OSDs replicate stuff
+
+                }*/
             }
+            FileSystemService.getInstance().setCrushMapVersion(file.getPath(), new_cmr.getVersion());
         }
     }
 

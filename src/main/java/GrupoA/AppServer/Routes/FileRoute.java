@@ -47,7 +47,7 @@ public class FileRoute {
         }
     }
 
-    private List<WriteBlockData> getWriteBlockDatas(String path, long offset, long size, RedundancyProto red) {
+    public static List<WriteBlockData> getWriteBlockDatas(String path, long offset, long size, RedundancyProto red) {
         List<WriteBlockData> wbds = new LinkedList<>();
         List<Integer> superBlocks = getSuperBlocks(offset, size);
         long currentGlobalOffset = offset;
@@ -120,7 +120,7 @@ public class FileRoute {
             int outputOffset = 0;
 
             for (WriteBlockData btr : blocksToRead) {
-                int status = btr.readFromOsd(crushmap);
+                int status = btr.read(crushmap);
                 if (status < 0) {
                     resp.Status = status;
                     return resp;
@@ -226,7 +226,7 @@ public class FileRoute {
 
         List<WriteBlockData> BlocksToTruncate = getWriteBlockDatas(tr.path, tr.offset, fileSize, iNodeAttr.getRedundancy());
         for (WriteBlockData wbd : BlocksToTruncate) {
-            fileSize += wbd.truncateOnOSD(crushmap);
+            fileSize += wbd.truncate(crushmap);
         }
         if(fileSize != iNodeAttr.getSize()) {
             ApplicationServer.FileSystemClient.UpdateAttribute(tr.path, fileSize, AttributeUpdateRequest.UpdateType.CHANGE_SIZE);
@@ -300,7 +300,7 @@ public class FileRoute {
             List<WriteBlockData> wbds = getWriteBlockDatas(path,0, fileSize, iNodeAttr.getRedundancy());
 
             for (WriteBlockData wbd : wbds) {
-                wbd.deleteFromOsd(crushmap);
+                wbd.delete(crushmap);
             }
 
             //ApplicationServer.FileSystemClient.ReleaseLock(path, id); //Removing the file already releases the lock
@@ -353,7 +353,7 @@ public class FileRoute {
         }
     }
 
-    private List<Integer> getSuperBlocks(long offset, long size) {
+    private static List<Integer> getSuperBlocks(long offset, long size) {
         List<Integer> out = new ArrayList<>();
         for (int i = 0; i * ApplicationServer.maxBlockSize < offset + size; ++i) {
             if ((i + 1) * ApplicationServer.maxBlockSize < offset)
@@ -363,7 +363,7 @@ public class FileRoute {
         return out;
     }
 
-    private List<Integer> getSmallerBlocks(int superBlock, long offset, long size) {
+    private static List<Integer> getSmallerBlocks(int superBlock, long offset, long size) {
         List<Integer> out = new ArrayList<>();
         int start = superBlock * ApplicationServer.maxBlockSize;
         for (int i = 0; i < ApplicationServer.DivisionFactor; ++i) {
@@ -428,11 +428,19 @@ public class FileRoute {
             return hashToUse;
         }
 
+
+        private List<CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto> getOSDReplication(CrushMapResponse map) {
+            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd;
+            long hashToUse = this.getHashForPG();
+            CrushMapResponse.PlacementGroupProto
+                    PG = map.getPGs((int) Math.abs(hashToUse % map.getPGsCount()));
+
+            return PG.getOSDsList();
+        }
+
         public CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto getOSD(CrushMapResponse map) {
             CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd;
             long hashToUse = this.getHashForPG();
-            System.out.println(map.getPGsCount());
-            System.out.println((int) Math.abs(hashToUse % map.getPGsCount()));
             CrushMapResponse.PlacementGroupProto
                     PG = map.getPGs((int) Math.abs(hashToUse % map.getPGsCount()));
             if (red.equals(RedundancyProto.Replication)) {
@@ -445,8 +453,7 @@ public class FileRoute {
             return osd;
         }
 
-        public int writeToOsd(CrushMapResponse map) {
-            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd = this.getOSD(map);
+        public int writeToOSD(CrushMapResponse map, CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd) {
             String hostname = osd.getAddress().split(":")[0];
             Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
             OSDClient client = new OSDClient(hostname, port);
@@ -461,27 +468,39 @@ public class FileRoute {
             return this.getActualSize();
         }
 
-        public void deleteFromOsd(CrushMapResponse map) {}
-
-        public int readFromOsd(CrushMapResponse map) { // TODO implement erasure
-            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd = this.getOSD(map);
-            String hostname = osd.getAddress().split(":")[0];
-            Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
-            OSDClient client = new OSDClient(hostname, port);
-            try {
-                //System.out.printf("ReadMiniObject(%s, %d, %d)\n", Long.toHexString(this.getFinalHash(map)), this.startRelativeOffset, this.getActualSize());
-                ByteString readData = client.ReadMiniObject(
-                        this.getFinalHash(map), this.startRelativeOffset, this.getActualSize());
-                client.shutdown();
-                client.awaitTermination();
-                readData.copyTo(this.Data, this.startRelativeOffset);
-            } catch (Exception e) {
-                return -5;// IO Error
-            }
-            return this.getActualSize();
+        public int write(CrushMapResponse map) {
+            return writeToOSD(map, this.getOSD(map));
         }
 
-        public long truncateOnOSD(CrushMapResponse map) {
+        private int readWithReplication(CrushMapResponse map) {
+            List<CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto> osds = this.getOSDReplication(map); //
+            for(CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd : osds) {
+                String hostname = osd.getAddress().split(":")[0];
+                Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
+                OSDClient client = new OSDClient(hostname, port);
+                try {
+                    //System.out.printf("ReadMiniObject(%s, %d, %d)\n", Long.toHexString(this.getFinalHash(map)), this.startRelativeOffset, this.getActualSize());
+                    ByteString readData = client.ReadMiniObject(
+                            this.getFinalHash(map), this.startRelativeOffset, this.getActualSize());
+                    client.shutdown();
+                    client.awaitTermination();
+                    readData.copyTo(this.Data, this.startRelativeOffset);
+                } catch (Exception e) {
+                    continue;
+                }
+                return this.getActualSize();
+            }
+            return -5;//IO Error
+        }
+
+        public int read(CrushMapResponse map) {
+            if(this.red.equals(RedundancyProto.Replication)) {
+                return this.readWithReplication(map);
+            }
+            return -5; //TODO JErause
+        }
+
+        public long truncate(CrushMapResponse map) {
             CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd = this.getOSD(map);
             String hostname = osd.getAddress().split(":")[0];
             Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
@@ -496,7 +515,7 @@ public class FileRoute {
             return result;
         }
 
-        public void deleteFromOsd(CrushMapResponse map) {
+        public void delete(CrushMapResponse map) {
             CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd = this.getOSD(map);
             String hostname = osd.getAddress().split(":")[0];
             Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
@@ -512,7 +531,7 @@ public class FileRoute {
 
         public byte[] getActualData() {
             byte[] output = new byte[this.getActualSize()];
-            System.arraycopy(this.Data, (int) this.startRelativeOffset, System.out, 0, this.getActualSize());
+            System.arraycopy(this.Data, (int) this.startRelativeOffset, output, 0, this.getActualSize());
             return output;
         }
     }

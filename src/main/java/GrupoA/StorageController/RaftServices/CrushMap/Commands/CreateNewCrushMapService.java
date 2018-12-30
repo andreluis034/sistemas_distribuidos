@@ -11,6 +11,29 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 
+class MoveFiles implements Runnable {
+
+    private CrushMapService service;
+    private CrushMap target;
+
+    public MoveFiles(CrushMapService service, CrushMap target){
+        this.service = service;
+        this.target = target;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Starting thread to move files");
+        try {
+            service.updateFilesLocations(target);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Finished moving files");
+
+    }
+}
+
 public class CreateNewCrushMapService extends CrushMapCommand<CrushMap> {
 
     private List<ObjectStorageDaemon> OSDs;
@@ -23,11 +46,14 @@ public class CreateNewCrushMapService extends CrushMapCommand<CrushMap> {
     public CrushMap execute(CrushMapService context) {
         try {
             context.latestVersion++;
+            System.out.println("Creating map with with version " + context.latestVersion);
             context.latestMap = new CrushMap(context.latestVersion, OSDs);
             context.mapOfMaps.put(context.latestVersion, context.latestMap);
             context.latestMap.printPGs();
             context.latestMap.printOSDs();
             if(context.isLeader) {
+                Thread thread = new Thread(new MoveFiles(context, context.latestMap));
+                thread.start();
                 for (ObjectStorageDaemon osd : context.latestMap.getOSDsCopy()) {
                     OSDClient client = new OSDClient(osd.getHost(), osd.getPort());
                     client.ForceUpdate(osd.getBelongingPG().getOSDs());

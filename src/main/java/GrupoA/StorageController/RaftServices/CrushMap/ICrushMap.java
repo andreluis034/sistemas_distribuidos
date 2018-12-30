@@ -8,7 +8,7 @@ public interface ICrushMap {
      * This helps keep track of the files which still haven't been moved.
      * @return the version of this crushmap
      */
-    int getVersion();
+    long getVersion();
 
     /**
      * Returns the PG where an hash should be stored

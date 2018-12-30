@@ -1,5 +1,7 @@
 package GrupoA.StorageController.Crush;
 
+import GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -46,5 +48,13 @@ public class ObjectStorageDaemon implements Serializable {
 
     public int getPort() {
         return Integer.parseInt(this.Address.split(":")[1]);
+    }
+
+    public CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto toProto() {
+        CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto.Builder
+                builder = CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto.newBuilder();
+        builder.setIsLeader(this.isLeader);
+        builder.setAddress(this.getAddress());
+        return builder.build();
     }
 }
