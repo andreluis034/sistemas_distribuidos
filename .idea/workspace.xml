@@ -10,16 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="455cb227-4467-4991-b677-1778cbe55071" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/CephishFuse_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/storage_controller_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/CephishFuse_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/JErasure_test_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/osd_server_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/osd_server_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/storage_controller_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/Commands/CreateNewCrushMapService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/Commands/CreateNewCrushMapService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/CrushMapService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/CrushMapService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -52,11 +50,62 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="OSDClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="68" column="16" selection-start-line="68" selection-start-column="16" selection-end-line="68" selection-end-column="16" />
+              <folding>
+                <element signature="docComment;method#OSDClient#0;class#OSDClient#0" />
+                <element signature="method#OSDClient#0;class#OSDClient#0" />
+                <element signature="e#761#849#0" />
+                <element signature="docComment;method#OSDClient#1;class#OSDClient#0" />
+                <element signature="method#OSDClient#1;class#OSDClient#0" />
+                <element signature="method#putObject#0;class#OSDClient#0" />
+                <element signature="method#HashToBytes#0;class#OSDClient#0" />
+                <element signature="method#putObject#1;class#OSDClient#0" />
+                <element signature="method#putObject#2;class#OSDClient#0" />
+                <element signature="method#shutdown#0;class#OSDClient#0" />
+                <element signature="method#ForceUpdate#0;class#OSDClient#0" />
+                <element signature="method#ping#0;class#OSDClient#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CephishFuse.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="880">
+              <caret line="184" column="9" selection-start-line="184" selection-start-column="9" selection-end-line="184" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OSDServer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="131" column="4" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="4" />
+              <folding>
+                <element signature="class#OSDServer#0" />
+                <element signature="method#getInstance#0;class#OSDServer#0" />
+                <element signature="method#OSDServer#0;class#OSDServer#0" />
+                <element signature="method#start#0;class#OSDServer#0" />
+                <element signature="method#printOSDs#0;class#OSDServer#0" />
+                <element signature="method#stop#0;class#OSDServer#0" />
+                <element signature="method#blockUntilShutdown#0;class#OSDServer#0" />
+                <element signature="method#main#0;class#OSDServer#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="FileSystemService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="235" selection-start-line="235" selection-end-line="235" />
+            <state relative-caret-position="449">
+              <caret line="64" column="38" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
               <folding>
                 <element signature="method#getInstance#1;class#FileSystemService#0" />
                 <element signature="method#setChannel#0;class#FileSystemService#0" />
@@ -72,135 +121,77 @@
                 <element signature="e#7377#7448#0" />
                 <element signature="method#apply#0;class#FileSystemService#0" />
                 <element signature="method#invoke#0;class#FileSystemService#0" />
+                <element signature="method#readContentFrom#0;class#FileSystemService#0" />
                 <element signature="method#writeContentTo#0;class#FileSystemService#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OSDGrpc.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDGrpc.java">
+      <file leaf-file-name="RemoveFileCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/RemoveFileCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="487" selection-start-line="487" selection-end-line="487" />
+            <state relative-caret-position="286">
+              <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+              <folding>
+                <element signature="e#257#258#0" expanded="true" />
+                <element signature="e#289#290#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileRoute.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FileRoute.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="53" column="80" lean-forward="true" selection-start-line="53" selection-start-column="80" selection-end-line="53" selection-end-column="80" />
+            <state relative-caret-position="1566">
+              <caret line="315" column="43" selection-start-line="315" selection-start-column="43" selection-end-line="315" selection-end-column="43" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#handleFillingPrevious#0;class#FileRoute#0" />
+                <element signature="e#16678#16679#0" expanded="true" />
+                <element signature="e#16777#16778#0" expanded="true" />
+                <element signature="e#16808#16809#0" expanded="true" />
+                <element signature="e#16885#16886#0" expanded="true" />
+                <element signature="e#18376#18377#0" expanded="true" />
+                <element signature="e#18475#18476#0" expanded="true" />
+                <element signature="e#18506#18507#0" expanded="true" />
+                <element signature="e#18583#18584#0" expanded="true" />
+                <element signature="e#18766#18767#0" expanded="true" />
+                <element signature="e#18846#18847#0" expanded="true" />
+                <element signature="e#18878#18879#0" expanded="true" />
+                <element signature="e#18963#18964#0" expanded="true" />
                 <element signature="method#handleWritingAtOffset#0;class#FileRoute#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApplicationServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
+      <file leaf-file-name="FileSystemClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+            <state relative-caret-position="452">
+              <caret line="86" column="37" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="37" />
               <folding>
-                <element signature="method#startJetty#0;class#ApplicationServer#0" />
+                <element signature="initializer##0;class#FileSystemClient#0" />
+                <element signature="method#FileSystemClient#0;class#FileSystemClient#0" />
+                <element signature="e#1244#1332#0" />
+                <element signature="method#FileSystemClient#1;class#FileSystemClient#0" />
+                <element signature="method#UpdateAttribute#0;class#FileSystemClient#0" />
+                <element signature="method#ReadDir#0;class#FileSystemClient#0" />
+                <element signature="method#CreateFile#0;class#FileSystemClient#0" />
+                <element signature="method#CreateDir#0;class#FileSystemClient#0" />
+                <element signature="method#RemoveDir#0;class#FileSystemClient#0" />
+                <element signature="method#ReleaseWriteLock#0;class#FileSystemClient#0" />
+                <element signature="method#GetLatestCrushMap#0;class#FileSystemClient#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="iNodeAttributes.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/iNodeAttributes.java">
+      <file leaf-file-name="OSD.proto" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/proto/OSD/OSD.proto">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="327" selection-start-line="327" selection-end-line="327" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RestClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="161" column="74" selection-start-line="161" selection-start-column="74" selection-end-line="161" selection-end-column="74" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CrushMapService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/CrushMapService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="192" column="50" lean-forward="true" selection-start-line="192" selection-start-column="50" selection-end-line="192" selection-end-column="50" />
-              <folding>
-                <element signature="method#getInstance#1;class#CrushMapService#0" />
-                <element signature="method#CrushMapService#0;class#CrushMapService#0" />
-                <element signature="method#setChannel#0;class#CrushMapService#0" />
-                <element signature="method#invoke#0;class#CrushMapService#0" />
-                <element signature="method#apply#0;class#CrushMapService#0" />
-                <element signature="method#invoke#1;class#CrushMapService#0" />
-                <element signature="method#readContentFrom#0;class#CrushMapService#0" />
-                <element signature="method#writeContentTo#0;class#CrushMapService#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateNewCrushMapService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/Commands/CreateNewCrushMapService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="50" column="47" selection-start-line="50" selection-start-column="47" selection-end-line="50" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OSDClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="86" column="81" lean-forward="true" selection-start-line="86" selection-start-column="81" selection-end-line="86" selection-end-column="81" />
-              <folding>
-                <element signature="docComment;method#OSDClient#0;class#OSDClient#0" />
-                <element signature="method#OSDClient#0;class#OSDClient#0" />
-                <element signature="e#761#849#0" />
-                <element signature="docComment;method#OSDClient#1;class#OSDClient#0" />
-                <element signature="method#OSDClient#1;class#OSDClient#0" />
-                <element signature="method#putObject#0;class#OSDClient#0" />
-                <element signature="method#HashToBytes#0;class#OSDClient#0" />
-                <element signature="method#putObject#1;class#OSDClient#0" />
-                <element signature="method#putObject#2;class#OSDClient#0" />
-                <element signature="method#getObject#1;class#OSDClient#0" />
-                <element signature="method#deleteObject#0;class#OSDClient#0" />
-                <element signature="e#3184#3185#0" expanded="true" />
-                <element signature="e#3237#3238#0" expanded="true" />
-                <element signature="method#ping#0;class#OSDClient#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OSDServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="42" selection-start-line="42" selection-end-line="42" />
-              <folding>
-                <element signature="class#State#0;class#OSDImpl#0" />
-                <element signature="method#ping#0;class#OSDImpl#0" />
-                <element signature="method#pushMapUpdate#0;class#OSDImpl#0" />
-                <element signature="method#getInstance#0;class#OSDServer#0" />
-                <element signature="method#OSDServer#0;class#OSDServer#0" />
-                <element signature="method#start#0;class#OSDServer#0" />
-                <element signature="method#printOSDs#0;class#OSDServer#0" />
-                <element signature="method#stop#0;class#OSDServer#0" />
-                <element signature="method#blockUntilShutdown#0;class#OSDServer#0" />
-                <element signature="method#main#0;class#OSDServer#0" />
-              </folding>
+            <state relative-caret-position="1137">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
             </state>
           </provider>
         </entry>
@@ -296,14 +287,14 @@
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/RemoveDirCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/DeleteRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemClient.java" />
-        <option value="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/TruncateRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/CrushMapService.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/Commands/CreateNewCrushMapService.java" />
+        <option value="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" />
       </list>
     </option>
@@ -354,7 +345,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -463,48 +453,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="OSD" type="462c0819:PsiDirectoryNode" />
-              <item name="OSDServer" type="462c0819:PsiDirectoryNode" />
-              <item name="OSDServer.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
               <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-              <item name="Crush" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-              <item name="FileSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-              <item name="gRPCService" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
@@ -515,52 +464,6 @@
               <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
               <item name="StorageController" type="462c0819:PsiDirectoryNode" />
               <item name="RaftServices" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-              <item name="RaftServices" type="462c0819:PsiDirectoryNode" />
-              <item name="CrushMap" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-              <item name="RaftServices" type="462c0819:PsiDirectoryNode" />
-              <item name="CrushMap" type="462c0819:PsiDirectoryNode" />
-              <item name="Commands" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-              <item name="RaftServices" type="462c0819:PsiDirectoryNode" />
-              <item name="FileSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-              <item name="RaftServices" type="462c0819:PsiDirectoryNode" />
-              <item name="FileSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="Commands" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
@@ -568,6 +471,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="proto" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="proto" type="462c0819:PsiDirectoryNode" />
+              <item name="OSD" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
@@ -598,11 +509,21 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="JErasure_Package" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="JErasure_Package" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -641,285 +562,16 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/WriteRequest.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/GetObjectArgs.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/GetObjectArgsOrBuilder.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDGrpc.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDProto.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/ObjectData.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/ObjectDataOrBuilder.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/OSDListenerServiceImpl.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/proto/OSD/OSD.proto</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/proto/StorageController/FileSystem.proto</PATH>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -927,57 +579,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/ReadFileResponse.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/ReadRequest.java</PATH>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -985,41 +586,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -1027,41 +593,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="RESTORED" />
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
         </FILE-GROUP>
       </FILE-GROUP>
       <FILE-GROUP>
@@ -1070,41 +601,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="MODIFIED" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Skipped" />
@@ -1112,41 +608,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1154,41 +615,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="MERGED_WITH_CONFLICTS" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with tree conflicts" />
@@ -1196,41 +622,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with property conflicts" />
@@ -1238,41 +629,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged" />
@@ -1280,41 +636,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="MERGED" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Not in repository" />
@@ -1322,41 +643,6 @@
         <option name="mySupportsDeletion" value="true" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="UNKNOWN" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Locally added" />
@@ -1364,41 +650,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="LOCALLY_ADDED" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Locally removed" />
@@ -1406,41 +657,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="LOCALLY_REMOVED" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Switched" />
@@ -1448,41 +664,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SWITCHED" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
       </FILE-GROUP>
     </UpdatedFiles>
   </component>
@@ -1720,7 +901,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161737000" />
+    <option name="totallyTimeSpent" value="162408000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1732,34 +913,33 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="17" sideWeight="0.50067115" side_tool="true" weight="0.39804772" />
-      <window_info anchor="right" id="Maven Projects" order="12" />
-      <window_info anchor="bottom" id="Database Changes" order="18" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="10" />
-      <window_info id="Designer" order="12" />
-      <window_info anchor="right" id="Database" order="14" />
-      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info id="UI Designer" order="11" />
-      <window_info active="true" anchor="bottom" id="Debug" order="8" sideWeight="0.49932885" visible="true" weight="0.3242972" />
       <window_info anchor="bottom" id="TODO" order="15" weight="0.32909605" />
-      <window_info anchor="bottom" id="Messages" order="16" weight="0.2821285" />
       <window_info anchor="right" id="Palette&#9;" order="11" />
       <window_info id="Image Layers" order="9" />
       <window_info anchor="bottom" id="Java Enterprise" order="22" />
       <window_info anchor="right" id="Capture Analysis" order="15" />
+      <window_info anchor="bottom" id="Event Log" order="17" sideWeight="0.5008301" side_tool="true" weight="0.3177874" />
+      <window_info anchor="right" id="Maven Projects" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="18" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="19" weight="0.3394794" />
       <window_info anchor="bottom" id="Run" order="5" weight="0.32931727" />
-      <window_info anchor="bottom" id="Terminal" order="20" weight="0.3172691" />
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.4989154" visible="true" weight="0.23976023" />
+      <window_info anchor="bottom" id="Terminal" order="20" sideWeight="0.4991699" weight="0.3177874" />
+      <window_info id="Capture Tool" order="10" />
+      <window_info id="Designer" order="12" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.4989154" visible="true" weight="0.24681793" />
       <window_info anchor="right" id="Bean Validation" order="17" />
-      <window_info anchor="bottom" id="Find" order="3" weight="0.32831326" />
+      <window_info anchor="right" id="Database" order="14" />
+      <window_info anchor="right" id="SciView" order="16" />
+      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info id="UI Designer" order="11" />
       <window_info anchor="right" id="Theme Preview" order="13" />
       <window_info id="Favorites" order="8" sideWeight="0.5010846" side_tool="true" weight="0.22966242" />
+      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49932885" weight="0.32485875" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" id="Palette&#9;" order="11" />
       <window_info anchor="bottom" id="Run" order="5" weight="0.32931727" />
@@ -1769,7 +949,7 @@
       <window_info anchor="right" id="Coverage" order="16" side_tool="true" weight="0.32982844" />
       <window_info anchor="bottom" id="Java Enterprise" order="22" />
       <window_info anchor="right" id="Theme Preview" order="13" />
-      <window_info anchor="right" id="SciView" order="16" />
+      <window_info anchor="bottom" id="Terminal" order="20" sideWeight="0.4991699" weight="0.3177874" />
       <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Palette" order="9" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -1783,24 +963,23 @@
       <window_info anchor="bottom" id="Version Control" order="19" weight="0.3394794" />
       <window_info anchor="right" id="Capture Analysis" order="15" />
       <window_info anchor="bottom" id="TODO" order="15" weight="0.32909605" />
-      <window_info anchor="bottom" id="Find" order="3" weight="0.32831326" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info id="UI Designer" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="20" sideWeight="0.4991699" weight="0.3177874" />
+      <window_info anchor="bottom" id="Find" order="3" weight="0.32831326" />
       <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49932885" weight="0.32485875" />
+      <window_info anchor="right" id="SciView" order="16" />
       <window_info anchor="bottom" id="Messages" order="16" visible="true" weight="0.28199565" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info id="Designer" order="12" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="Designer" order="6" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32931727" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32982844" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="2" sideWeight="0.5010846" side_tool="true" weight="0.22966242" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.31779662" />
@@ -1823,6 +1002,7 @@
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32982844" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32831326" />
       <window_info anchor="right" id="Bean Validation" order="11" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.32485875" />
@@ -1871,7 +1051,7 @@
         <line-breakpoint enabled="true" type="java-line">
           <condition expression="this.startRelativeOffset &lt; 0" language="JAVA" />
           <url>file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java</url>
-          <line>418</line>
+          <line>426</line>
           <properties />
           <option name="timeStamp" value="27" />
         </line-breakpoint>
@@ -1927,13 +1107,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/MkFileCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
@@ -2048,13 +1221,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/FileSystemGrpc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="342" column="31" selection-start-line="342" selection-start-column="31" selection-end-line="342" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/javax/ws/rs/javax.ws.rs-api/2.1/javax.ws.rs-api-2.1.jar!/javax/ws/rs/client/WebTarget.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -2080,14 +1246,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
           <caret line="29" column="33" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="33" />
-          <folding>
-            <element signature="method#CrushMap#0;class#CrushMap#0" />
-            <element signature="method#getOSDsCopy#0;class#CrushMap#0" />
-            <element signature="docComment;method#getLeaderOsdOfPg#0;class#CrushMap#0" />
-            <element signature="method#getLeaderOsdOfPg#0;class#CrushMap#0" />
-            <element signature="method#printPGs#0;class#CrushMap#0" />
-            <element signature="method#printOSDs#0;class#CrushMap#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2122,27 +1280,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/FileSystem/FSTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="207" column="32" selection-start-line="207" selection-start-column="32" selection-end-line="207" selection-end-column="32" />
-          <folding>
-            <element signature="method#mkFile#0;class#FSTree#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/ObjectData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/RemoveFileCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -2171,37 +1312,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="89" column="24" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
-          <folding>
-            <element signature="initializer##0;class#FileSystemClient#0" />
-            <element signature="method#FileSystemClient#0;class#FileSystemClient#0" />
-            <element signature="e#1244#1332#0" />
-            <element signature="method#FileSystemClient#1;class#FileSystemClient#0" />
-            <element signature="method#UpdateAttribute#0;class#FileSystemClient#0" />
-            <element signature="method#ReadDir#0;class#FileSystemClient#0" />
-            <element signature="method#CreateFile#0;class#FileSystemClient#0" />
-            <element signature="method#CreateDir#0;class#FileSystemClient#0" />
-            <element signature="method#RemoveDir#0;class#FileSystemClient#0" />
-            <element signature="method#ReleaseWriteLock#0;class#FileSystemClient#0" />
-            <element signature="method#GetLatestCrushMap#0;class#FileSystemClient#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/WriteRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/proto/OSD/OSD.proto">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -2239,16 +1353,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="193" column="30" lean-forward="true" selection-start-line="193" selection-start-column="30" selection-end-line="193" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/iNodeAttributes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -2260,49 +1364,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="487" selection-start-line="487" selection-end-line="487" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
-          <folding>
-            <element signature="class#State#0;class#OSDImpl#0" />
-            <element signature="method#ping#0;class#OSDImpl#0" />
-            <element signature="method#pushMapUpdate#0;class#OSDImpl#0" />
-            <element signature="method#getInstance#0;class#OSDServer#0" />
-            <element signature="method#OSDServer#0;class#OSDServer#0" />
-            <element signature="method#start#0;class#OSDServer#0" />
-            <element signature="method#printOSDs#0;class#OSDServer#0" />
-            <element signature="method#stop#0;class#OSDServer#0" />
-            <element signature="method#blockUntilShutdown#0;class#OSDServer#0" />
-            <element signature="method#main#0;class#OSDServer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="235" selection-start-line="235" selection-end-line="235" />
-          <folding>
-            <element signature="method#getInstance#1;class#FileSystemService#0" />
-            <element signature="method#setChannel#0;class#FileSystemService#0" />
-            <element signature="class#Command#0;class#FileSystemService#0" />
-            <element signature="method#mkDir#0;class#FileSystemService#0" />
-            <element signature="method#mkFile#0;class#FileSystemService#0" />
-            <element signature="method#updateAttribute#0;class#FileSystemService#0" />
-            <element signature="method#ls#0;class#FileSystemService#0" />
-            <element signature="method#readDir#0;class#FileSystemService#0" />
-            <element signature="method#getNode#0;class#FileSystemService#0" />
-            <element signature="method#getNode#1;class#FileSystemService#0" />
-            <element signature="method#apply_deprecated#0;class#FileSystemService#0" />
-            <element signature="e#7377#7448#0" />
-            <element signature="method#apply#0;class#FileSystemService#0" />
-            <element signature="method#invoke#0;class#FileSystemService#0" />
-            <element signature="method#writeContentTo#0;class#FileSystemService#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2337,29 +1398,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="86" column="81" lean-forward="true" selection-start-line="86" selection-start-column="81" selection-end-line="86" selection-end-column="81" />
-          <folding>
-            <element signature="docComment;method#OSDClient#0;class#OSDClient#0" />
-            <element signature="method#OSDClient#0;class#OSDClient#0" />
-            <element signature="e#761#849#0" />
-            <element signature="docComment;method#OSDClient#1;class#OSDClient#0" />
-            <element signature="method#OSDClient#1;class#OSDClient#0" />
-            <element signature="method#putObject#0;class#OSDClient#0" />
-            <element signature="method#HashToBytes#0;class#OSDClient#0" />
-            <element signature="method#putObject#1;class#OSDClient#0" />
-            <element signature="method#putObject#2;class#OSDClient#0" />
-            <element signature="method#getObject#1;class#OSDClient#0" />
-            <element signature="method#deleteObject#0;class#OSDClient#0" />
-            <element signature="e#3184#3185#0" expanded="true" />
-            <element signature="e#3237#3238#0" expanded="true" />
-            <element signature="method#ping#0;class#OSDClient#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -2370,14 +1408,156 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/proto/OSD/OSD.proto">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1137">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/FileSystemGrpc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="596" column="66" selection-start-line="596" selection-start-column="66" selection-end-line="596" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/util/Hashtable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="51" column="26" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/FileSystem/FSTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="417" column="20" selection-start-line="417" selection-start-column="20" selection-end-line="417" selection-end-column="20" />
+          <folding>
+            <element signature="method#mkFile#0;class#FSTree#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/RemoveFileCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+          <folding>
+            <element signature="e#257#258#0" expanded="true" />
+            <element signature="e#289#290#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="86" column="37" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="37" />
+          <folding>
+            <element signature="initializer##0;class#FileSystemClient#0" />
+            <element signature="method#FileSystemClient#0;class#FileSystemClient#0" />
+            <element signature="e#1244#1332#0" />
+            <element signature="method#FileSystemClient#1;class#FileSystemClient#0" />
+            <element signature="method#UpdateAttribute#0;class#FileSystemClient#0" />
+            <element signature="method#ReadDir#0;class#FileSystemClient#0" />
+            <element signature="method#CreateFile#0;class#FileSystemClient#0" />
+            <element signature="method#CreateDir#0;class#FileSystemClient#0" />
+            <element signature="method#RemoveDir#0;class#FileSystemClient#0" />
+            <element signature="method#ReleaseWriteLock#0;class#FileSystemClient#0" />
+            <element signature="method#GetLatestCrushMap#0;class#FileSystemClient#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="880">
+          <caret line="184" column="9" selection-start-line="184" selection-start-column="9" selection-end-line="184" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="64" column="38" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
+          <folding>
+            <element signature="method#getInstance#1;class#FileSystemService#0" />
+            <element signature="method#setChannel#0;class#FileSystemService#0" />
+            <element signature="class#Command#0;class#FileSystemService#0" />
+            <element signature="method#mkDir#0;class#FileSystemService#0" />
+            <element signature="method#mkFile#0;class#FileSystemService#0" />
+            <element signature="method#updateAttribute#0;class#FileSystemService#0" />
+            <element signature="method#ls#0;class#FileSystemService#0" />
+            <element signature="method#readDir#0;class#FileSystemService#0" />
+            <element signature="method#getNode#0;class#FileSystemService#0" />
+            <element signature="method#getNode#1;class#FileSystemService#0" />
+            <element signature="method#apply_deprecated#0;class#FileSystemService#0" />
+            <element signature="e#7377#7448#0" />
+            <element signature="method#apply#0;class#FileSystemService#0" />
+            <element signature="method#invoke#0;class#FileSystemService#0" />
+            <element signature="method#readContentFrom#0;class#FileSystemService#0" />
+            <element signature="method#writeContentTo#0;class#FileSystemService#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="53" column="80" lean-forward="true" selection-start-line="53" selection-start-column="80" selection-end-line="53" selection-end-column="80" />
+        <state relative-caret-position="1566">
+          <caret line="315" column="43" selection-start-line="315" selection-start-column="43" selection-end-line="315" selection-end-column="43" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#handleFillingPrevious#0;class#FileRoute#0" />
+            <element signature="e#16678#16679#0" expanded="true" />
+            <element signature="e#16777#16778#0" expanded="true" />
+            <element signature="e#16808#16809#0" expanded="true" />
+            <element signature="e#16885#16886#0" expanded="true" />
+            <element signature="e#18376#18377#0" expanded="true" />
+            <element signature="e#18475#18476#0" expanded="true" />
+            <element signature="e#18506#18507#0" expanded="true" />
+            <element signature="e#18583#18584#0" expanded="true" />
+            <element signature="e#18766#18767#0" expanded="true" />
+            <element signature="e#18846#18847#0" expanded="true" />
+            <element signature="e#18878#18879#0" expanded="true" />
+            <element signature="e#18963#18964#0" expanded="true" />
             <element signature="method#handleWritingAtOffset#0;class#FileRoute#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="68" column="16" selection-start-line="68" selection-start-column="16" selection-end-line="68" selection-end-column="16" />
+          <folding>
+            <element signature="docComment;method#OSDClient#0;class#OSDClient#0" />
+            <element signature="method#OSDClient#0;class#OSDClient#0" />
+            <element signature="e#761#849#0" />
+            <element signature="docComment;method#OSDClient#1;class#OSDClient#0" />
+            <element signature="method#OSDClient#1;class#OSDClient#0" />
+            <element signature="method#putObject#0;class#OSDClient#0" />
+            <element signature="method#HashToBytes#0;class#OSDClient#0" />
+            <element signature="method#putObject#1;class#OSDClient#0" />
+            <element signature="method#putObject#2;class#OSDClient#0" />
+            <element signature="method#shutdown#0;class#OSDClient#0" />
+            <element signature="method#ForceUpdate#0;class#OSDClient#0" />
+            <element signature="method#ping#0;class#OSDClient#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="131" column="4" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="4" />
+          <folding>
+            <element signature="class#OSDServer#0" />
+            <element signature="method#getInstance#0;class#OSDServer#0" />
+            <element signature="method#OSDServer#0;class#OSDServer#0" />
+            <element signature="method#start#0;class#OSDServer#0" />
+            <element signature="method#printOSDs#0;class#OSDServer#0" />
+            <element signature="method#stop#0;class#OSDServer#0" />
+            <element signature="method#blockUntilShutdown#0;class#OSDServer#0" />
+            <element signature="method#main#0;class#OSDServer#0" />
           </folding>
         </state>
       </provider>

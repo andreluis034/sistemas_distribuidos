@@ -10,6 +10,7 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 import java.io.*;
+import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -123,6 +124,21 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
 
         File file = new File(Long.toHexString(args.getHash()));
         file.delete();
+
+        response.onNext(reply);
+        response.onCompleted();
+    }
+
+    @Override
+    public void truncate(GetObjectArgs args, StreamObserver<EmptyMessage> response) {
+        EmptyMessage reply = EmptyMessage.newBuilder().build();
+
+        File file = new File(Long.toHexString(args.getHash()));
+        try (FileChannel fc = new FileOutputStream(file, true).getChannel()) {
+            fc.truncate(args.getRelativeOffset());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         response.onNext(reply);
         response.onCompleted();

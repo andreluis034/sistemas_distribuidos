@@ -212,7 +212,8 @@ public class FileRoute {
         long fileSize = iNodeAttr.getSize();
 
         // Get the superBlocks and the smallerBlocks, to compute the blocks' hashes
-        List<BlockData> blocks = new LinkedList<>();
+        List<BlockData> blocksToDelete = new LinkedList<>();
+        List<BlockData> subBlocksToDelete = new LinkedList<>();
         List<Integer> superBlocks = getSuperBlocks(0, fileSize);
         long relativeOffset = tr.offset;
         int subBlockToEdit = 0, blockToEdit = 0;
@@ -233,11 +234,88 @@ public class FileRoute {
             blockToEdit = superBlock;
         }
 
-        // Get block 'subBlockToEdit' and truncate until offset 'relativeOffset'
+        BlockData toEdit = new BlockData(tr.path, blockToEdit, subBlockToEdit, iNodeAttr.getRedundancy());
 
-        return null;
+        List<Integer> bcks = getSmallerBlocks(blockToEdit, 0, fileSize);
+        for (int i = subBlockToEdit + 1; i < bcks.size(); i++) {
+            subBlocksToDelete.add(new BlockData(tr.path, blockToEdit, i, iNodeAttr.getRedundancy()));
+        }
 
-        // Delete all blocks with "id" higher than subBlockToEdit
+        for (int i = blockToEdit + 1; i < superBlocks.size(); i++) {
+            List<Integer> smallerBlocks = getSmallerBlocks(i,0, fileSize);
+            for (Integer j : smallerBlocks)
+                blocksToDelete.add(new BlockData(tr.path, i, j, iNodeAttr.getRedundancy()));
+        }
+
+        try {
+            // Get subBlock 'subBlockToEdit' of block 'blockToEdit' and truncate until offset 'relativeOffset'
+            long toEditHash = toEdit.getHashForPG();
+
+            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd;
+            CrushMapResponse.PlacementGroupProto pg = crushmap
+                    .getPGs((int) (toEditHash % crushmap.getPGsCount()));
+
+            if (iNodeAttr.getRedundancy().equals(RedundancyProto.Replication)) {
+                osd = pg.getOSDs(0);    //TODO: check if this is the leader
+            } else {
+                // For JErasure
+                String hash_str = Long.toHexString(toEditHash) + "_" + pg.getPGNumber();
+                toEditHash = Jenkins.hash64(hash_str.getBytes());
+
+                osd = pg.getOSDs((int) (toEditHash % pg.getOSDsCount()));
+            }
+
+            // Truncate the smaller block
+            String hostname = osd.getAddress().split(":")[0];
+            Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
+
+            OSDClient osdClient = new OSDClient(hostname, port);
+
+            osdClient.truncate(toEditHash, relativeOffset);
+            osdClient.shutdown();           // Maybe inefficient
+
+            // Delete all subBlocks with "id" higher than subBlockToEdit
+            deleteBlock(iNodeAttr, subBlocksToDelete);
+
+            //Delete all blocks with "id" higher than blockToEdit
+            deleteBlock(iNodeAttr, blocksToDelete);
+
+            return 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return -5;
+    }
+
+    private void deleteBlock(iNodeAttributes iNodeAttr, List<BlockData> blocksToDelete) throws InterruptedException {
+        for (BlockData bd : blocksToDelete) {
+            // Get the OSD in which each smallerBlock is placed
+            long bdHash = bd.getHashForPG();
+
+            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd;
+            CrushMapResponse.PlacementGroupProto pg = crushmap
+                    .getPGs((int)(bdHash % crushmap.getPGsCount()));
+
+            if (iNodeAttr.getRedundancy().equals(RedundancyProto.Replication)) {
+                osd = pg.getOSDs(0);    //TODO: check if this is the leader
+            } else {
+                // For JErasure
+                String hash_str = Long.toHexString(bdHash) + "_" + pg.getPGNumber();
+                bdHash = Jenkins.hash64(hash_str.getBytes());
+
+                osd = pg.getOSDs((int) (bdHash % pg.getOSDsCount()));
+            }
+
+            // Delete the smaller block
+            String hostname = osd.getAddress().split(":")[0];
+            Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
+
+            OSDClient osdClient = new OSDClient(hostname, port);
+
+            osdClient.deleteObject(bdHash, iNodeAttr.getRedundancy().equals(RedundancyProto.Replication));
+            osdClient.shutdown();           // Maybe inefficient
+        }
     }
 
     @DELETE

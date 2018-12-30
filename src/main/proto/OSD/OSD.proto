@@ -20,6 +20,8 @@ service OSD {
     rpc pushMapUpdate (OSDInSamePaG) returns (EmptyMessage) {}
 
     rpc deleteObject (GetObjectArgs) returns (EmptyMessage) {}
+
+    rpc truncate (GetObjectArgs) returns (EmptyMessage) {}
 }
 
 message OSDDetails {
@@ -46,8 +48,6 @@ message GetObjectArgs {
     bool hasDuplicate = 4;
 }
 
-
-
 message ObjectData{
     bool success = 1;
     bytes objectData = 2;
@@ -56,5 +56,6 @@ message ObjectData{
 message BooleanMessage {
     bool result = 1;
 }
+
 message EmptyMessage {
 }
