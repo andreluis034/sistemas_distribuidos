@@ -1,6 +1,8 @@
 package GrupoA.StorageController.Crush;
 
+import GrupoA.StorageController.RaftServices.CrushMap.CrushMapService;
 import GrupoA.StorageController.RaftServices.CrushMap.ICrushMap;
+import GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse;
 
 import java.io.File;
 import java.io.IOException;
@@ -91,7 +93,7 @@ public class CrushMap implements ICrushMap, Serializable {
 
     @Override
     public long getPgForHash(long hash) {
-        return hash % PGs.size();
+        return Math.abs(hash % PGs.size());
     }
 
     /**
@@ -122,6 +124,29 @@ public class CrushMap implements ICrushMap, Serializable {
 
         // Need to check if address is an empty string
         return leaderOSD_address;
+    }
+
+    public CrushMapResponse toCrushMapResponse() {
+        CrushMapResponse.Builder builder = CrushMapResponse.newBuilder().setVersion(-1);
+        try {
+            builder.setVersion(this.getVersion());
+            for (PlacementGroup pg : this.getPGs()) {
+                CrushMapResponse.PlacementGroupProto.Builder pgBuilder = CrushMapResponse.PlacementGroupProto.newBuilder();
+                pgBuilder.setPGNumber(pg.getPgID());
+                for(ObjectStorageDaemon osd : pg.getOSDs()){
+                    CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto.Builder
+                            osdBuilder = CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto.newBuilder();
+                    osdBuilder.setAddress(osd.getAddress()).setIsLeader(osd.isLeader);
+                    pgBuilder.addOSDs(osdBuilder);
+                }
+
+                builder.addPGs(pgBuilder);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return builder.build();
     }
 
     public void printPGs() {

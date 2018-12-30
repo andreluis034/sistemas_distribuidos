@@ -75,6 +75,10 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         return this.invoke(new ReadDirCommand(path));
     }
 
+    public boolean setCrushMapVersion(String path, long version) throws Exception {
+        return this.invoke(new setCrushMapVersionCommand(path, version));
+    }
+
     public FSTree.Node getNode(long iNode) throws Exception {
         GetNodeCommand command = new GetNodeCommand(iNode);
         FSTree.Node node = (FSTree.Node) this.invoke(command);
@@ -91,6 +95,9 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
     public boolean TryGetLock(String path, long id, long time) throws Exception {
         return invoke(new TryLockCommand(path, id, time));
+    }
+    public FSTree getFsTree() {
+        return this.fsTree;
     }
 
     public boolean  TryReleaseLock(String path, long id, boolean force) throws Exception {
