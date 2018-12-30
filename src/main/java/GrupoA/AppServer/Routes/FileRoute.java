@@ -515,8 +515,20 @@ public class FileRoute {
             return osd;
         }
 
-        public void writeToOsd(CrushMapResponse map) {
-            
+        public int writeToOsd(CrushMapResponse map) {
+            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd = this.getOSD(map);
+            String hostname = osd.getAddress().split(":")[0];
+            Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
+            OSDClient client = new OSDClient(hostname, port);
+            try {
+                client.WriteMiniObject(
+                        this.getFinalHash(map), this);
+                client.shutdown();
+                client.awaitTermination();
+            } catch (Exception e) {
+                return -5;// IO Error
+            }
+            return this.getActualSize();
         }
 
         public void deleteFromOsd(CrushMapResponse map) {}
