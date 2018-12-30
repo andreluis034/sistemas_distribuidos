@@ -24,6 +24,10 @@ service OSD {
     rpc truncate (GetObjectArgs) returns (EmptyMessage) {}
 }
 
+message IntMessage {
+    int64 int = 1;
+}
+
 message OSDDetails {
     string Address = 1;
     int32 Port = 2;

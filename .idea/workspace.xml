@@ -10,6 +10,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/JErasure_test_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/osd_server_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/osd_server_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDProto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDProto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -120,8 +121,8 @@
       <file leaf-file-name="FileRoute.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
-              <caret line="523" column="52" lean-forward="true" selection-start-line="523" selection-start-column="52" selection-end-line="523" selection-end-column="52" />
+            <state relative-caret-position="439">
+              <caret line="524" column="21" selection-start-line="524" selection-start-column="21" selection-end-line="524" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#createFile#0;class#FileRoute#0" />
@@ -324,7 +325,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1552" />
     <option name="y" value="205" />
     <option name="width" value="1485" />
@@ -1664,7 +1665,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163452000" />
+    <option name="totallyTimeSpent" value="163508000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1842,27 +1843,27 @@
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
       <expression>
-        <expression-string />
+        <expression-string>offset == 524288</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>currentGlobalOffset == 524288</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>smallerBlocks.size() &gt; 1</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>wbd.startRelativeOffset &lt; 0</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>this.startRelativeOffset &lt; 0</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -2294,8 +2295,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="523" column="52" lean-forward="true" selection-start-line="523" selection-start-column="52" selection-end-line="523" selection-end-column="52" />
+        <state relative-caret-position="439">
+          <caret line="524" column="21" selection-start-line="524" selection-start-column="21" selection-end-line="524" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#createFile#0;class#FileRoute#0" />
