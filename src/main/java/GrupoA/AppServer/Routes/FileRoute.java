@@ -3,6 +3,7 @@ package GrupoA.AppServer.Routes;
 import GrupoA.AppServer.ApplicationServer;
 import GrupoA.AppServer.Models.*;
 import GrupoA.OSD.OSDClient.OSDClient;
+import GrupoA.StorageController.Crush.CrushMap;
 import GrupoA.StorageController.gRPCService.FileSystem.CrushMapResponse;
 import GrupoA.StorageController.gRPCService.FileSystem.LockResponse;
 import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
@@ -384,7 +385,7 @@ public class FileRoute {
         return -5;  // I/O error
     }
 
-    public class BlockData {
+    private class BlockData {
         String path;
         int superBlock;
         int subBlock;
@@ -404,6 +405,22 @@ public class FileRoute {
 
         long getHashForPG() {
             return Jenkins.hash64(this.getPathForPG().getBytes());
+        }
+
+        CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto getOSD(CrushMapResponse map) {
+            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd;
+            long hashToUse = this.getHashForPG();
+
+            CrushMapResponse.PlacementGroupProto
+                    PG = map.getPGs((int) Math.abs(hashToUse % map.getPGsCount()));
+            if (red.equals(RedundancyProto.Replication)) {
+                osd = PG.getOSDs(0); //TODO actually check this is the leader??
+            } else { //FOR JERASURE
+                String hash_str = Long.toHexString(hashToUse) + "_" + PG.getPGNumber();
+                hashToUse = Jenkins.hash64(hash_str.getBytes());
+                osd = PG.getOSDs((int) (hashToUse % PG.getOSDsCount()));
+            }
+            return osd;
         }
     }
 
@@ -431,7 +448,7 @@ public class FileRoute {
         return out;
     }
 
-    public class WriteBlockData {
+    public static class WriteBlockData {
 
         String path;
         int superBlock;
@@ -441,7 +458,7 @@ public class FileRoute {
         public int endRelativeOffset = ApplicationServer.subBlockSize;
         public byte[] Data = new byte[ApplicationServer.subBlockSize];
 
-        WriteBlockData(String path, int superblock, int subblock, RedundancyProto red) {
+        public WriteBlockData(String path, int superblock, int subblock, RedundancyProto red) {
             this.path = path;
             this.superBlock = superblock;
             this.subBlock = subblock;
@@ -452,7 +469,7 @@ public class FileRoute {
             return this.path + "_" + superBlock + "_" + subBlock + "_" + red.toString();
         }
 
-        long getHashForPG() {
+        public long getHashForPG() {
             return Jenkins.hash64(this.getPathForPG().getBytes());
         }
 
@@ -482,7 +499,7 @@ public class FileRoute {
             return hashToUse;
         }
 
-        private CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto getOSD(CrushMapResponse map) {
+        public CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto getOSD(CrushMapResponse map) {
             CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd;
             long hashToUse = this.getHashForPG();
 
@@ -497,6 +514,12 @@ public class FileRoute {
             }
             return osd;
         }
+
+        public void writeToOsd(CrushMapResponse map) {
+            
+        }
+
+        public void deleteFromOsd(CrushMapResponse map) {}
 
         public int readFromOsd(CrushMapResponse map) { // TODO implement erasure
             CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd = this.getOSD(map);

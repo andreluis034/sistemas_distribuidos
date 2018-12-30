@@ -42,6 +42,25 @@ public class FSTree implements Serializable {
         return root;
     }
 
+    public List<FileNode> getAllFileNodes(){
+        List<FileNode> listOfNodes = new ArrayList<>();
+        addAllNodes(this.getRoot(), listOfNodes);
+        return listOfNodes;
+    }
+
+    private static void addAllNodes(FSTree.Node node, List<FileNode> listOfNodes) {
+        if (node != null) {
+            if (node.getNodeType() == FSTree.NodeType.FileNode)
+                listOfNodes.add((FileNode)node);
+            else {
+                List<FSTree.Node> children = (List<FSTree.Node>) ((DirNode)node).getChildren();
+                if (children != null)
+                    for (FSTree.Node child : children)
+                        addAllNodes(child, listOfNodes);
+            }
+        }
+    }
+
     public enum NodeType {
         FileNode,
         DirNode
@@ -325,7 +344,7 @@ public class FSTree implements Serializable {
         Long hash;
         public Long fileSize, blocks;
 
-        int CrushMapVersion = 0; //TODO set this
+        long CrushMapVersion = 0; //TODO set this
 
 
         public FileNode(String name) {
@@ -376,12 +395,16 @@ public class FSTree implements Serializable {
             return NodeType.FileNode;
         }
 
-        public int getCrushMapVersion() {
+        public RedundancyProto getRedundancy() {
+            return this.RedundancyType.toProto();
+        }
+
+        public long getCrushMapVersion() {
             return this.CrushMapVersion;
         }
 
-        public int setCrushMapVersion(int version) {
-            return this.CrushMapVersion = version;
+        public void setCrushMapVersion(long version) {
+            this.CrushMapVersion = version;
         }
     }
 
