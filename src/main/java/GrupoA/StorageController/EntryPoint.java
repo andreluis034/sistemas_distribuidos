@@ -1,14 +1,18 @@
 package GrupoA.StorageController;
 
+import GrupoA.ConfigurationHandler.ConfigHandlerService.ConfigReponse;
+import GrupoA.ConfigurationHandler.ConfigurationHandlerClient;
 import GrupoA.StorageController.RaftServices.CrushMap.CrushMapService;
 import GrupoA.StorageController.RaftServices.FileSystem.FileSystemService;
 import GrupoA.StorageController.gRPCService.FileSystemServer;
 import GrupoA.StorageController.gRPCService.GRPCServer;
-import GrupoA.StorageController.gRPCService.OSDListener.OSDListenerGrpc;
 import GrupoA.StorageController.gRPCService.OSDListenerServiceImpl;
 import org.jgroups.util.Util;
 
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -19,7 +23,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class EntryPoint {
-    private static List<String> getLocalAddresses() throws SocketException {
+    private static String getLocalAddress() throws SocketException {
         List<String> addresses = new ArrayList<>();
         Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
         while(networkInterfaces.hasMoreElements()) {
@@ -32,12 +36,11 @@ public class EntryPoint {
                 if(currentAddress instanceof Inet4Address && !currentAddress.isLoopbackAddress())
                 {
                     //System.out.println(currentAddress.toString().replace("/", ""));
-                    addresses.add(currentAddress.toString().replace("/", ""));
+                    return currentAddress.toString().replace("/", "");
                 }
             }
         }
-
-        return addresses;
+        return "";
     }
 
     protected static void loop(FileSystemService service) throws Exception {
@@ -78,17 +81,32 @@ public class EntryPoint {
         server.start();
     }
 
-    private static void startRaft(String raftId) throws Exception{
-        FileSystemService service = FileSystemService.getInstance("./fileSystem.xml", raftId);
-        CrushMapService crushMapService = CrushMapService.getInstance("./crushmap.xml", raftId + "0");
+    private static void startRaft(String fileSystemID, String crushMapID) throws Exception{
+        FileSystemService service = FileSystemService.getInstance("./fileSystem.xml", fileSystemID);
+        CrushMapService crushMapService = CrushMapService.getInstance("./crushmap.xml", crushMapID);
         loop(service);
     }
 
+    public static void write(String filename, String data) throws IOException {
+        File file = new File(filename);
+        FileWriter fileWriter = new FileWriter(file);
+        fileWriter.write(data);
+        fileWriter.close();
+    }
+
     public static void main(String[] args) throws Exception {
-        startOSDListener();
-        FileSystemServer fss = new FileSystemServer();
-        fss.start();
-        startRaft(args[0]);
+        String ConfigManagerIP = args[0];
+        String MyIP = getLocalAddress();
+        ConfigurationHandlerClient client = new ConfigurationHandlerClient(ConfigManagerIP);
+        ConfigReponse fsconfig = client.joinFileSystemConfig(MyIP);
+        ConfigReponse cmconfig = client.joinCrushMapConfig(MyIP);
+        if(fsconfig.getConfiguration().equals("") || fsconfig.getConfiguration().equals("")){
+            System.out.println("Could not get configuration from Config Manager");
+            return;
+        }
+        write("fileSystem.xml", fsconfig.getConfiguration());
+        write("crushmap.xml", cmconfig.getConfiguration());
+        startRaft(fsconfig.getId(), cmconfig.getId());
     }
 
     public static void foo(){

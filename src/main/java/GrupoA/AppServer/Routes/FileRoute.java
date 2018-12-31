@@ -515,6 +515,41 @@ public class FileRoute {
             return result;
         }
 
+        public void tryDeleteAllIndividually(CrushMapResponse map) {
+            try {
+                CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd = this.getOSD(map);
+                String hostname = osd.getAddress().split(":")[0];
+                Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
+                OSDClient client = new OSDClient(hostname, port);
+                //First attempt to delete on the leader
+                client.deleteObject(this.getFinalHash(map),this.red.equals(RedundancyProto.Replication));
+                client.shutdown();
+                client.awaitTermination();
+            } catch (InterruptedException e) {
+                //If the leader is down delete individually
+                if(this.red.equals(RedundancyProto.Replication)) {
+                    long hashToUse = this.getHashForPG();
+                    int selectedPG = (int) Math.abs(hashToUse % map.getPGsCount());
+                    CrushMapResponse.PlacementGroupProto
+                            PG = map.getPGs(selectedPG);
+                    for (CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd : PG.getOSDsList()) {
+                        try {
+                            String hostname = osd.getAddress().split(":")[0];
+                            Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
+                            OSDClient client = new OSDClient(hostname, port);
+                            //First attempt to delete on the leader
+                            client.deleteLocal(this.getFinalHash(map));
+                            client.shutdown();
+                            client.awaitTermination();
+                        } catch(Exception f) {
+
+                        }
+                    }
+
+                }
+            }
+        }
+
         public void delete(CrushMapResponse map) {
             CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd = this.getOSD(map);
             String hostname = osd.getAddress().split(":")[0];

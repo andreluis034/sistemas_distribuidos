@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_outer_classname = "ConfigurationHandlerProto";
+option objc_class_prefix = "O";
+
+package GrupoA.ConfigurationHandler.ConfigHandlerService;
+
+service ConfigHandler {
+    rpc joinFileSystemConfig (Requester) returns (ConfigReponse) {}
+    rpc leaveFileSystemConfig (Requester) returns (ConfigReponse) {}
+    rpc joinCrushMapConfig (Requester) returns (ConfigReponse) {}
+    rpc leaveCrushMapConfig (Requester) returns (ConfigReponse) {}
+
+
+}
+
+message ConfigReponse {
+    string configuration = 1;
+    string id = 2;
+}
+
+
+message Requester {
+    string ip = 1;
+}

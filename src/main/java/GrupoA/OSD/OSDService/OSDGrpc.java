@@ -124,6 +124,70 @@ public final class OSDGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
+      GrupoA.OSD.OSDService.EmptyMessage> getDeleteObjectMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "deleteObject",
+      requestType = GrupoA.OSD.OSDService.GetObjectArgs.class,
+      responseType = GrupoA.OSD.OSDService.EmptyMessage.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
+      GrupoA.OSD.OSDService.EmptyMessage> getDeleteObjectMethod() {
+    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.EmptyMessage> getDeleteObjectMethod;
+    if ((getDeleteObjectMethod = OSDGrpc.getDeleteObjectMethod) == null) {
+      synchronized (OSDGrpc.class) {
+        if ((getDeleteObjectMethod = OSDGrpc.getDeleteObjectMethod) == null) {
+          OSDGrpc.getDeleteObjectMethod = getDeleteObjectMethod = 
+              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.EmptyMessage>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "GrupoA.OSD.OSDService.OSD", "deleteObject"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.OSD.OSDService.GetObjectArgs.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.OSD.OSDService.EmptyMessage.getDefaultInstance()))
+                  .setSchemaDescriptor(new OSDMethodDescriptorSupplier("deleteObject"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteObjectMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
+      GrupoA.OSD.OSDService.EmptyMessage> getDeleteLocalMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "deleteLocal",
+      requestType = GrupoA.OSD.OSDService.GetObjectArgs.class,
+      responseType = GrupoA.OSD.OSDService.EmptyMessage.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
+      GrupoA.OSD.OSDService.EmptyMessage> getDeleteLocalMethod() {
+    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.EmptyMessage> getDeleteLocalMethod;
+    if ((getDeleteLocalMethod = OSDGrpc.getDeleteLocalMethod) == null) {
+      synchronized (OSDGrpc.class) {
+        if ((getDeleteLocalMethod = OSDGrpc.getDeleteLocalMethod) == null) {
+          OSDGrpc.getDeleteLocalMethod = getDeleteLocalMethod = 
+              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.EmptyMessage>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "GrupoA.OSD.OSDService.OSD", "deleteLocal"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.OSD.OSDService.GetObjectArgs.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  GrupoA.OSD.OSDService.EmptyMessage.getDefaultInstance()))
+                  .setSchemaDescriptor(new OSDMethodDescriptorSupplier("deleteLocal"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteLocalMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
       GrupoA.OSD.OSDService.ObjectData> getGetObjectMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
@@ -220,38 +284,6 @@ public final class OSDGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
-      GrupoA.OSD.OSDService.EmptyMessage> getDeleteObjectMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "deleteObject",
-      requestType = GrupoA.OSD.OSDService.GetObjectArgs.class,
-      responseType = GrupoA.OSD.OSDService.EmptyMessage.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
-      GrupoA.OSD.OSDService.EmptyMessage> getDeleteObjectMethod() {
-    io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.EmptyMessage> getDeleteObjectMethod;
-    if ((getDeleteObjectMethod = OSDGrpc.getDeleteObjectMethod) == null) {
-      synchronized (OSDGrpc.class) {
-        if ((getDeleteObjectMethod = OSDGrpc.getDeleteObjectMethod) == null) {
-          OSDGrpc.getDeleteObjectMethod = getDeleteObjectMethod = 
-              io.grpc.MethodDescriptor.<GrupoA.OSD.OSDService.GetObjectArgs, GrupoA.OSD.OSDService.EmptyMessage>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "GrupoA.OSD.OSDService.OSD", "deleteObject"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  GrupoA.OSD.OSDService.GetObjectArgs.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  GrupoA.OSD.OSDService.EmptyMessage.getDefaultInstance()))
-                  .setSchemaDescriptor(new OSDMethodDescriptorSupplier("deleteObject"))
-                  .build();
-          }
-        }
-     }
-     return getDeleteObjectMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<GrupoA.OSD.OSDService.GetObjectArgs,
       GrupoA.OSD.OSDService.LongMessage> getTruncateMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
@@ -333,6 +365,20 @@ public final class OSDGrpc {
 
     /**
      */
+    public void deleteObject(GrupoA.OSD.OSDService.GetObjectArgs request,
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
+      asyncUnimplementedUnaryCall(getDeleteObjectMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void deleteLocal(GrupoA.OSD.OSDService.GetObjectArgs request,
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
+      asyncUnimplementedUnaryCall(getDeleteLocalMethod(), responseObserver);
+    }
+
+    /**
+     */
     public void getObject(GrupoA.OSD.OSDService.GetObjectArgs request,
         io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.ObjectData> responseObserver) {
       asyncUnimplementedUnaryCall(getGetObjectMethod(), responseObserver);
@@ -350,13 +396,6 @@ public final class OSDGrpc {
     public void pushMapUpdate(GrupoA.OSD.OSDService.OSDInSamePaG request,
         io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
       asyncUnimplementedUnaryCall(getPushMapUpdateMethod(), responseObserver);
-    }
-
-    /**
-     */
-    public void deleteObject(GrupoA.OSD.OSDService.GetObjectArgs request,
-        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
-      asyncUnimplementedUnaryCall(getDeleteObjectMethod(), responseObserver);
     }
 
     /**
@@ -390,6 +429,20 @@ public final class OSDGrpc {
                 GrupoA.OSD.OSDService.ObjectData>(
                   this, METHODID_READ_MINI_OBJECT)))
           .addMethod(
+            getDeleteObjectMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                GrupoA.OSD.OSDService.GetObjectArgs,
+                GrupoA.OSD.OSDService.EmptyMessage>(
+                  this, METHODID_DELETE_OBJECT)))
+          .addMethod(
+            getDeleteLocalMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                GrupoA.OSD.OSDService.GetObjectArgs,
+                GrupoA.OSD.OSDService.EmptyMessage>(
+                  this, METHODID_DELETE_LOCAL)))
+          .addMethod(
             getGetObjectMethod(),
             asyncUnaryCall(
               new MethodHandlers<
@@ -410,13 +463,6 @@ public final class OSDGrpc {
                 GrupoA.OSD.OSDService.OSDInSamePaG,
                 GrupoA.OSD.OSDService.EmptyMessage>(
                   this, METHODID_PUSH_MAP_UPDATE)))
-          .addMethod(
-            getDeleteObjectMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                GrupoA.OSD.OSDService.GetObjectArgs,
-                GrupoA.OSD.OSDService.EmptyMessage>(
-                  this, METHODID_DELETE_OBJECT)))
           .addMethod(
             getTruncateMethod(),
             asyncUnaryCall(
@@ -472,6 +518,22 @@ public final class OSDGrpc {
 
     /**
      */
+    public void deleteObject(GrupoA.OSD.OSDService.GetObjectArgs request,
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getDeleteObjectMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void deleteLocal(GrupoA.OSD.OSDService.GetObjectArgs request,
+        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getDeleteLocalMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void getObject(GrupoA.OSD.OSDService.GetObjectArgs request,
         io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.ObjectData> responseObserver) {
       asyncUnaryCall(
@@ -492,14 +554,6 @@ public final class OSDGrpc {
         io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getPushMapUpdateMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void deleteObject(GrupoA.OSD.OSDService.GetObjectArgs request,
-        io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getDeleteObjectMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -552,6 +606,20 @@ public final class OSDGrpc {
 
     /**
      */
+    public GrupoA.OSD.OSDService.EmptyMessage deleteObject(GrupoA.OSD.OSDService.GetObjectArgs request) {
+      return blockingUnaryCall(
+          getChannel(), getDeleteObjectMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public GrupoA.OSD.OSDService.EmptyMessage deleteLocal(GrupoA.OSD.OSDService.GetObjectArgs request) {
+      return blockingUnaryCall(
+          getChannel(), getDeleteLocalMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
     public GrupoA.OSD.OSDService.ObjectData getObject(GrupoA.OSD.OSDService.GetObjectArgs request) {
       return blockingUnaryCall(
           getChannel(), getGetObjectMethod(), getCallOptions(), request);
@@ -569,13 +637,6 @@ public final class OSDGrpc {
     public GrupoA.OSD.OSDService.EmptyMessage pushMapUpdate(GrupoA.OSD.OSDService.OSDInSamePaG request) {
       return blockingUnaryCall(
           getChannel(), getPushMapUpdateMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public GrupoA.OSD.OSDService.EmptyMessage deleteObject(GrupoA.OSD.OSDService.GetObjectArgs request) {
-      return blockingUnaryCall(
-          getChannel(), getDeleteObjectMethod(), getCallOptions(), request);
     }
 
     /**
@@ -630,6 +691,22 @@ public final class OSDGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.EmptyMessage> deleteObject(
+        GrupoA.OSD.OSDService.GetObjectArgs request) {
+      return futureUnaryCall(
+          getChannel().newCall(getDeleteObjectMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.EmptyMessage> deleteLocal(
+        GrupoA.OSD.OSDService.GetObjectArgs request) {
+      return futureUnaryCall(
+          getChannel().newCall(getDeleteLocalMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.ObjectData> getObject(
         GrupoA.OSD.OSDService.GetObjectArgs request) {
       return futureUnaryCall(
@@ -654,14 +731,6 @@ public final class OSDGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.EmptyMessage> deleteObject(
-        GrupoA.OSD.OSDService.GetObjectArgs request) {
-      return futureUnaryCall(
-          getChannel().newCall(getDeleteObjectMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
     public com.google.common.util.concurrent.ListenableFuture<GrupoA.OSD.OSDService.LongMessage> truncate(
         GrupoA.OSD.OSDService.GetObjectArgs request) {
       return futureUnaryCall(
@@ -672,11 +741,12 @@ public final class OSDGrpc {
   private static final int METHODID_PUT_OBJECT = 0;
   private static final int METHODID_WRITE_MINI_OBJECT = 1;
   private static final int METHODID_READ_MINI_OBJECT = 2;
-  private static final int METHODID_GET_OBJECT = 3;
-  private static final int METHODID_PING = 4;
-  private static final int METHODID_PUSH_MAP_UPDATE = 5;
-  private static final int METHODID_DELETE_OBJECT = 6;
-  private static final int METHODID_TRUNCATE = 7;
+  private static final int METHODID_DELETE_OBJECT = 3;
+  private static final int METHODID_DELETE_LOCAL = 4;
+  private static final int METHODID_GET_OBJECT = 5;
+  private static final int METHODID_PING = 6;
+  private static final int METHODID_PUSH_MAP_UPDATE = 7;
+  private static final int METHODID_TRUNCATE = 8;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -707,6 +777,14 @@ public final class OSDGrpc {
           serviceImpl.readMiniObject((GrupoA.OSD.OSDService.GetObjectArgs) request,
               (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.ObjectData>) responseObserver);
           break;
+        case METHODID_DELETE_OBJECT:
+          serviceImpl.deleteObject((GrupoA.OSD.OSDService.GetObjectArgs) request,
+              (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage>) responseObserver);
+          break;
+        case METHODID_DELETE_LOCAL:
+          serviceImpl.deleteLocal((GrupoA.OSD.OSDService.GetObjectArgs) request,
+              (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage>) responseObserver);
+          break;
         case METHODID_GET_OBJECT:
           serviceImpl.getObject((GrupoA.OSD.OSDService.GetObjectArgs) request,
               (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.ObjectData>) responseObserver);
@@ -717,10 +795,6 @@ public final class OSDGrpc {
           break;
         case METHODID_PUSH_MAP_UPDATE:
           serviceImpl.pushMapUpdate((GrupoA.OSD.OSDService.OSDInSamePaG) request,
-              (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage>) responseObserver);
-          break;
-        case METHODID_DELETE_OBJECT:
-          serviceImpl.deleteObject((GrupoA.OSD.OSDService.GetObjectArgs) request,
               (io.grpc.stub.StreamObserver<GrupoA.OSD.OSDService.EmptyMessage>) responseObserver);
           break;
         case METHODID_TRUNCATE:
@@ -791,10 +865,11 @@ public final class OSDGrpc {
               .addMethod(getPutObjectMethod())
               .addMethod(getWriteMiniObjectMethod())
               .addMethod(getReadMiniObjectMethod())
+              .addMethod(getDeleteObjectMethod())
+              .addMethod(getDeleteLocalMethod())
               .addMethod(getGetObjectMethod())
               .addMethod(getPingMethod())
               .addMethod(getPushMapUpdateMethod())
-              .addMethod(getDeleteObjectMethod())
               .addMethod(getTruncateMethod())
               .build();
         }

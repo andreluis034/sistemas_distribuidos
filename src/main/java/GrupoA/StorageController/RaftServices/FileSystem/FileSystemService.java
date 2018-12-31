@@ -29,7 +29,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
         if(service == null) {
             JChannel ch = new JChannel(config).name(raftId);
             service = new FileSystemService(ch);
-            ch.connect("FSTreeCluster0");
+            ch.connect("FSTreeCluster");
         }
         return service;
     }

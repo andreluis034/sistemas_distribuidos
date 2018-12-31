@@ -26,6 +26,14 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
     }
     State state = State.Initializing;
 
+    private OSDDetails getMySelf(List<OSDDetails> OSDs) {
+        for (OSDDetails osd : OSDs) {
+            if (osd.getPort() == OSDServer.myPort && osd.getAddress().equals(OSDServer.myHost))
+                return osd;
+        }
+        return null;
+    }
+
     @Override
     public void ping(EmptyMessage args, StreamObserver<BooleanMessage> response) {
         response.onNext(BooleanMessage.newBuilder().setResult(true).build());
@@ -68,13 +76,7 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
     public void pushMapUpdate(OSDInSamePaG args, StreamObserver<EmptyMessage> response) {
         EmptyMessage reply = EmptyMessage.newBuilder().build();
 
-        OSDDetails osd = null;
-        for (OSDDetails _osd : args.getOSDsList()){
-            if (_osd.getPort() == OSDServer.myPort && _osd.getAddress().equals(OSDServer.myHost)) {
-                osd = _osd;
-                break;
-            }
-        }
+        OSDDetails osd = this.getMySelf(args.getOSDsList());
         if(osd != null) {
             OSDServer.getInstance().OSDs = args.getOSDsList();
             OSDServer.getInstance().IsLeader = osd.getLeader();
@@ -84,7 +86,7 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
         response.onCompleted();
     }
 
-
+    @Override
     public void readMiniObject(GetObjectArgs args, StreamObserver<ObjectData> data) {
         ObjectData.Builder reply = ObjectData.newBuilder().setSuccess(false);
 
@@ -102,23 +104,9 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
         data.onNext(reply.build());
         data.onCompleted();
     }
-    
+
     @Override
-    public void deleteObject(GetObjectArgs args, StreamObserver<EmptyMessage> response) {
-        if(OSDServer.getInstance().IsLeader && args.getHasDuplicate()) {
-            for (OSDDetails osd : OSDServer.getInstance().OSDs) {
-                if(osd.getLeader())
-                    continue;
-                OSDClient client = new OSDClient(osd.getAddress(), osd.getPort());
-                client.deleteObject(args.getHash(), args.getHasDuplicate());
-                try {
-                    client.shutdown();
-                    client.awaitTermination();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+    public void deleteLocal(GetObjectArgs args, StreamObserver<EmptyMessage> response) {
         System.out.println("Deleting object " + Long.toHexString(args.getHash()));
         EmptyMessage reply = EmptyMessage.newBuilder().build();
 
@@ -127,6 +115,25 @@ class OSDImpl extends OSDGrpc.OSDImplBase {
 
         response.onNext(reply);
         response.onCompleted();
+    }
+
+    @Override
+    public void deleteObject(GetObjectArgs args, StreamObserver<EmptyMessage> response) {
+        if(OSDServer.getInstance().IsLeader && args.getHasDuplicate()) {
+            for (OSDDetails osd : OSDServer.getInstance().OSDs) {
+                if(osd.getLeader())
+                    continue;
+                OSDClient client = new OSDClient(osd.getAddress(), osd.getPort());
+                client.deleteLocal(args.getHash());
+                try {
+                    client.shutdown();
+                    client.awaitTermination();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        this.deleteLocal(args, response);
     }
 
     @Override

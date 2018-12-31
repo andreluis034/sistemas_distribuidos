@@ -70,6 +70,10 @@ public class OSDClient {
         this.blockingStub.deleteObject(GetObjectArgs.newBuilder().setHash(hash).setHasDuplicate(hasDuplicate).build());
     }
 
+    public void deleteLocal(Long hash) {
+        this.blockingStub.deleteLocal(GetObjectArgs.newBuilder().setHash(hash).build());
+    }
+
     public long truncate(Long hash, long offset, boolean hasDuplicate) {
         return  this.blockingStub.truncate(GetObjectArgs.newBuilder()
                 .setHash(hash)

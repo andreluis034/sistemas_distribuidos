@@ -196,7 +196,7 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
 
             for (FileRoute.WriteBlockData wbd : datas){
                 wbd.read(old_cmr);
-                wbd.delete(old_cmr);
+                wbd.tryDeleteAllIndividually(old_cmr);
                 wbd.write(new_cmr);
                 //Easier to delete all and write them again... to replicate files to new OSD and etc
                 /*
