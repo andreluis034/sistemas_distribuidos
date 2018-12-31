@@ -12,6 +12,11 @@ service OSD {
 
     rpc writeMiniObject(MiniObject) returns (EmptyMessage) {}
     rpc readMiniObject(GetObjectArgs) returns (ObjectData) {}
+    rpc deleteObject (GetObjectArgs) returns (EmptyMessage) {}
+
+    rpc writeMiniObjectWithMap(MiniObjectWithMap) returns (EmptyMessage) {}
+    rpc readMiniObjectWithMap(GetObjectArgsWithMap) returns (ObjectData) {}
+    rpc deleteObjectWithMap(GetObjectArgsWithMap) returns (EmptyMessage) {}
 
     rpc getObject (GetObjectArgs) returns (ObjectData) {}
 
@@ -19,9 +24,18 @@ service OSD {
 
     rpc pushMapUpdate (OSDInSamePaG) returns (EmptyMessage) {}
 
-    rpc deleteObject (GetObjectArgs) returns (EmptyMessage) {}
 
     rpc truncate (GetObjectArgs) returns (LongMessage) {}
+}
+
+message MiniObjectWithMap {
+    OSDInSamePaG OSDs = 1;
+    MiniObject MiniObject = 2;
+}
+
+message GetObjectArgsWithMap {
+    OSDInSamePaG OSDs = 1;
+    GetObjectArgs GetObject = 2;
 }
 
 message IntMessage {

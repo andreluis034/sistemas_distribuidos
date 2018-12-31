@@ -66,10 +66,10 @@ public class CrushMap implements ICrushMap, Serializable {
             PlacementGroup pgToRemove = PGs.remove(PGs.size() - 1);
 
             List<ObjectStorageDaemon> newOSDList = pgToRemove.getOSDs();
-            newOSDList.addAll(copiedOSDs.subList(numberOfOSDs - leftover, numberOfOSDs));
-
-            PlacementGroup pgToInsert = new PlacementGroup(pgToRemove.getPgID(), newOSDList);
-            PGs.add(pgToInsert);
+            for(int i  = 0; i < newOSDList.size(); ++i) {
+                newOSDList.get(i).isLeader = PGs.get(i % REPLICATION).getOSDs().size() == 0;
+                PGs.get(i % REPLICATION).addOSD(newOSDList.get(i));
+            }
         }
         for (PlacementGroup pg : PGs) {
             pg.fixBelongingPGs();

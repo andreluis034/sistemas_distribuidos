@@ -29,4 +29,15 @@ public class PlacementGroup implements Serializable {
     public List<ObjectStorageDaemon> getOSDs() {
         return this.OSDs;
     }
+
+    public void addOSDs(List<ObjectStorageDaemon> osds) {
+        for(ObjectStorageDaemon osd : osds) {
+            this.addOSD(osd);
+        }
+    }
+
+    public void addOSD(ObjectStorageDaemon osd) {
+        osd.setBelongingPG(this);
+        this.OSDs.add(osd);
+    }
 }
