@@ -51,7 +51,7 @@ public class JErasure_Test {
      * @param toPad Array to pad
      * @return Padded array
      */
-    private static byte[] pad(byte[] toPad) {
+    public static byte[] pad(byte[] toPad) {
         int toPadLength = toPad.length;
         int rest = toPadLength % 4;
 
@@ -171,7 +171,7 @@ public class JErasure_Test {
      * TODO: If subBlock_loss > max_subBlock_loss, can't recover the full block
      */
     public static void main(String[]args) {
-        final int subBlockSize = 917504; // 3670016 / 4
+        final int blockSize = 3670016; // 3670016 / 4
         Random random = new Random();
 
         ErasureCodec codec = new ErasureCodec.Builder(ErasureCodec.Algorithm.Reed_Solomon)
@@ -180,7 +180,7 @@ public class JErasure_Test {
                 .wordSize(8)
                 .build();
 
-        byte[] bytes =  new byte[subBlockSize];
+        byte[] bytes =  new byte[blockSize];
         random.nextBytes(bytes);
 
         byte[] padded = pad(bytes);

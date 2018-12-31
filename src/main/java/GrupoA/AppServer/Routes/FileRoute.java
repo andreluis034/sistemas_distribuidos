@@ -10,6 +10,7 @@ import GrupoA.StorageController.gRPCService.FileSystem.RedundancyProto;
 import GrupoA.StorageController.gRPCService.FileSystem.iNodeAttributes;
 import GrupoA.Utility.Jenkins;
 import com.google.protobuf.ByteString;
+import com.xiaomi.infra.ec.ErasureCodec;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
+import static GrupoA.AppServer.ApplicationServer.subBlockSize;
 
 @Path("/file")
 public class FileRoute {
@@ -319,7 +322,7 @@ public class FileRoute {
         int superBlock;
         int subBlock;
         public RedundancyProto red;
-        public byte[] data = new byte[ApplicationServer.subBlockSize];
+        public byte[] data = new byte[subBlockSize];
 
         BlockData(String path, int superBlock, int subBlock, RedundancyProto red) {
             this.path = path;
@@ -367,9 +370,9 @@ public class FileRoute {
         List<Integer> out = new ArrayList<>();
         int start = superBlock * ApplicationServer.maxBlockSize;
         for (int i = 0; i < ApplicationServer.DivisionFactor; ++i) {
-            if ((start + (i + 1) * ApplicationServer.subBlockSize) < offset)
+            if ((start + (i + 1) * subBlockSize) < offset)
                 continue;
-            if (((start + i * ApplicationServer.subBlockSize) >= offset + size))
+            if (((start + i * subBlockSize) >= offset + size))
                 continue;
             out.add(i);
         }
@@ -384,8 +387,14 @@ public class FileRoute {
         int subBlock;
         public RedundancyProto red;
         public int startRelativeOffset = 0;
-        public int endRelativeOffset = ApplicationServer.subBlockSize;
-        public byte[] Data = new byte[ApplicationServer.subBlockSize];
+        public int endRelativeOffset = subBlockSize;
+        public byte[] Data = new byte[subBlockSize];
+
+        private final ErasureCodec codec = new ErasureCodec.Builder(ErasureCodec.Algorithm.Reed_Solomon)
+                .dataBlockNum(4)
+                .codingBlockNum(2)
+                .wordSize(8)
+                .build();
 
         public WriteBlockData(String path, int superblock, int subblock, RedundancyProto red) {
             this.path = path;
@@ -398,12 +407,20 @@ public class FileRoute {
             return this.path + "_" + superBlock + "_" + subBlock + "_" + red.toString();
         }
 
+        String getPathForPG(int subBlock) {
+            return this.path + "_" + this.superBlock + "_" + subBlock + "_" + this.red.toString();
+        }
+
         public long getHashForPG() {
             return Jenkins.hash64(this.getPathForPG().getBytes());
         }
 
+        private long getHashForPG(int subBlock) {
+            return Jenkins.hash64(this.getPathForPG(subBlock).getBytes());
+        }
+
         long getGlobalOffset() {
-            return ApplicationServer.maxBlockSize * superBlock + subBlock * ApplicationServer.subBlockSize;
+            return ApplicationServer.maxBlockSize * superBlock + subBlock * subBlockSize;
         }
 
         int getActualSize() {
@@ -411,7 +428,7 @@ public class FileRoute {
         }
 
         boolean isComplete() {
-            return ApplicationServer.subBlockSize == this.getActualSize();
+            return subBlockSize == this.getActualSize();
         }
 
         private long getFinalHash(CrushMapResponse map) {
@@ -428,6 +445,19 @@ public class FileRoute {
             return hashToUse;
         }
 
+        private long getFinalHash(CrushMapResponse map, int subBlock) {
+
+            long hashToUse = this.getHashForPG(subBlock);
+            int selectedPG = (int) Math.abs(hashToUse % map.getPGsCount());
+            CrushMapResponse.PlacementGroupProto
+                    PG = map.getPGs(selectedPG);
+            if (red.equals(RedundancyProto.ForwardErrorCorrection)) {
+                String hash_str = Long.toHexString(hashToUse) + "_" + PG.getPGNumber();
+                hashToUse = Jenkins.hash64(hash_str.getBytes());
+            }
+
+            return hashToUse;
+        }
 
         private List<CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto> getOSDReplication(CrushMapResponse map) {
             CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd;
@@ -493,11 +523,124 @@ public class FileRoute {
             return -5;//IO Error
         }
 
+        private byte[][] readJErasureMatrix(
+                CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd,
+                CrushMapResponse map,
+                List<Integer> failed) throws Exception {
+            byte[][] matrix = new byte[4][subBlockSize];
+            for (int i = 0; i < 4 /* NUMBER OF FILE SUBBLOCKS SAVED WITH JERASURE */; i++) {
+                if (!failed.contains(i)) {
+                    try {
+                        String hostname = osd.getAddress().split(":")[0];
+                        Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
+
+                        OSDClient client = new OSDClient(hostname, port);
+                        long otherSubBlockHash = this.getFinalHash(map, i);
+                        ByteString readData = client.ReadMiniObject(
+                                otherSubBlockHash, 0, this.getActualSize());
+                        client.shutdown();
+                        client.awaitTermination();
+                        readData.copyTo(matrix[i], 0);
+                    } catch (Exception e) {
+                        failed.add(i);
+                        throw e;
+                    }
+                }
+            }
+
+            return matrix;
+        }
+
+        private byte[][] readJErasureCoding(
+                CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd,
+                CrushMapResponse map,
+                List<Integer> failed) throws Exception {
+
+            byte[][] coding = new byte[2][subBlockSize];
+            for (int i = 4; i < 5 /* NUMBER OF FILE SUBBLOCKS SAVED WITH JERASURE */; i++) {
+                if (!failed.contains(i)) {
+                    try {
+                        String hostname = osd.getAddress().split(":")[0];
+                        Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
+
+                        OSDClient client = new OSDClient(hostname, port);
+                        long otherSubBlockHash = this.getFinalHash(map, i);
+                        ByteString readData = client.ReadMiniObject(
+                                otherSubBlockHash, 0, this.getActualSize());
+                        client.shutdown();
+                        client.awaitTermination();
+                        readData.copyTo(coding[i-4], 0);
+                    } catch (Exception e) {
+                        failed.add(i);
+                        throw e;
+                    }
+                }
+            }
+
+            return coding;
+        }
+
+        private void getData(byte[][] matrix, byte[][] coding, List<Integer> failed) {
+            int[] erasures = new int[2];
+            int cont = 0;
+            for (Integer i : failed) {
+                erasures[cont] = i;
+                cont++;
+            }
+
+            codec.decode(erasures, matrix, coding);
+            if (this.subBlock < 4)
+                this.Data = matrix[this.subBlock];
+            else
+                this.Data = coding[this.subBlock];
+        }
+
+        private int readWithJErasure(CrushMapResponse map) {
+            CrushMapResponse.PlacementGroupProto.ObjectStorageDaemonProto osd = this.getOSD(map);
+            List<Integer> failed = new LinkedList<>();
+
+            try {
+                String hostname = osd.getAddress().split(":")[0];
+                Integer port = Integer.parseInt(osd.getAddress().split(":")[1]);
+
+                OSDClient client = new OSDClient(hostname, port);
+
+                ByteString readData = client.ReadMiniObject(
+                        this.getFinalHash(map), this.startRelativeOffset, this.getActualSize());
+                client.shutdown();
+                client.awaitTermination();
+                readData.copyTo(this.Data, this.startRelativeOffset);
+            } catch (Exception e) {
+                failed.add(this.subBlock);      //This subBlock failed to be read
+
+                try {
+                    byte[][] matrix = readJErasureMatrix(osd, map, failed);
+                    byte[][] coding = readJErasureCoding(osd, map, failed);
+
+                    getData(matrix, coding, failed);
+                } catch (Exception ignored) {
+                    try {
+                        byte[][] matrix = readJErasureMatrix(osd, map, failed);
+                        byte[][] coding = readJErasureCoding(osd, map, failed);
+
+                        getData(matrix, coding, failed);
+                    } catch (Exception ignored2) {
+                        // JErasure is done for
+                        System.out.println("Couldn't retrieve enough blocks to perform error correction");
+                    }
+                }
+            }
+
+            return this.getActualSize();
+        }
+
         public int read(CrushMapResponse map) {
             if(this.red.equals(RedundancyProto.Replication)) {
                 return this.readWithReplication(map);
+            } else if (this.red.equals(RedundancyProto.ForwardErrorCorrection)) {
+                return this.readWithJErasure(map);
             }
-            return -5; //TODO JErause
+            return -5; //TODO JErasure
         }
 
         public long truncate(CrushMapResponse map) {
