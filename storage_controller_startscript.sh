@@ -3,8 +3,9 @@ apt-get update
 apt-get -y install openjdk-8-jre nginx
 
 #Download the application
-mkdir -p /opt/app_server
-wget http://35.242.231.101/app_server.jar -O /opt/app_server/app_server.jar
+mkdir -p /opt/storage_controller
+wget http://35.242.231.101/storage_controller.jar -O /opt/storage_controller/storage_controller.jar
+touch /opt/storage_controller/fileSystem.xml /opt/storage_controller/crushmap.xml
 
 #Create the user
 adduser --system --shell /bin/bash --home /opt/storage_controller --group storage_controller
