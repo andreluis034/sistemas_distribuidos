@@ -11,27 +11,35 @@ import org.jgroups.util.Util;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class ConfigurationHandlerImpl extends ConfigHandlerGrpc.ConfigHandlerImplBase {
 
     private List<String> FileSystemMembers = new LinkedList<>();
-    private static final String ClusterIPAddress = "";
     private static final Integer FileSystemPort = 45588;
     private static final Integer ClientFileSystemPort = 1965;
     private List<String> CrushMapMembers = new LinkedList<>();
+    private String Config;
     private static final Integer CrushMapPort = 45589;
     private static final Integer ClientCrushMapPort = 1966;
+
+    public ConfigurationHandlerImpl(boolean useGoogleConfig){
+        if(useGoogleConfig)
+            Config = GOOGLE_CLOUD;
+        else
+            Config = WITH_MULTICAST;
+        System.out.println("Using the following config:");
+        System.out.println(Config);
+    }
 
     private static String hashString(String string) {
         return Long.toHexString(Jenkins.hash64(string.getBytes()));
     }
 
-    private static String generateConfig(String[] members, String member, Integer port, Integer clientPort) {
+    private String generateConfig(String[] members, String member, Integer port, Integer clientPort) {
         return Config
-                .replace("${PORT}", port.toString())
+                .replace("${RAFT_PORT}", port.toString())
                 .replace("${MEMBERS}", String.join(",", members))
                 .replace("${RAFT_ID}", member)
                 .replace("${CLIENT_PORT}", clientPort.toString());
@@ -50,7 +58,7 @@ public class ConfigurationHandlerImpl extends ConfigHandlerGrpc.ConfigHandlerImp
     }
     private String generateCrushMapConfig(String member) {
         String[] members = getMembers(FileSystemMembers, "CM_");
-        return generateConfig(members, hashString("CM_" + member), FileSystemPort, ClientFileSystemPort);
+        return generateConfig(members, hashString("CM_" + member), CrushMapPort, ClientCrushMapPort);
     }
 
 
@@ -90,9 +98,21 @@ public class ConfigurationHandlerImpl extends ConfigHandlerGrpc.ConfigHandlerImp
         builder.setId(hashString("FS_" + request.getIp()));
         if(!FileSystemMembers.contains(request.getIp())) {
             try {
-                if(FileSystemMembers.size() > 0)
-                    addRemoveServer(FileSystemMembers.get(0), builder.getId(),
-                            CLIENT.RequestType.add_server, ClientFileSystemPort);
+                if(FileSystemMembers.size() >= 2){
+                    for (int i = 0; i < 3; ++i){
+                        try { //Wait for leader to get selected
+                            addRemoveServer(FileSystemMembers.get(0), builder.getId(),
+                                    CLIENT.RequestType.add_server, ClientFileSystemPort);
+                            break;
+                        } catch (Exception e) {
+                            if(i + 1 == 3) {
+                                throw e;
+                            }
+                            Thread.sleep(1000);
+                        }
+                    }
+                }
+
                 FileSystemMembers.add(request.getIp());
             } catch (Throwable throwable) {
                 responseObserver.onNext(builder.build());
@@ -100,6 +120,7 @@ public class ConfigurationHandlerImpl extends ConfigHandlerGrpc.ConfigHandlerImp
                 return;
             }
         }
+        builder.setMemberCount(FileSystemMembers.size());
         builder.setConfiguration(generateFileSystemConfig(request.getIp()));
         responseObserver.onNext(builder.build());
         responseObserver.onCompleted();
@@ -112,8 +133,20 @@ public class ConfigurationHandlerImpl extends ConfigHandlerGrpc.ConfigHandlerImp
         builder.setId(hashString("CM_" + request.getIp()));
         if(!CrushMapMembers.contains(request.getIp())) {
             try {
-                if(CrushMapMembers.size() > 0)
-                    addRemoveServer(CrushMapMembers.get(0),builder.getId(), CLIENT.RequestType.add_server, ClientCrushMapPort);
+                if(CrushMapMembers.size() >= 2){
+                    for (int i = 0; i < 3; ++i){
+                        try {
+                            addRemoveServer(CrushMapMembers.get(0), builder.getId(),
+                                    CLIENT.RequestType.add_server, ClientCrushMapPort);
+                            break;
+                        } catch (Exception e) {
+                            if(i + 1 == 3) {
+                                throw e;
+                            }
+                            Thread.sleep(1000);
+                        }
+                    }
+                }
                 CrushMapMembers.add(request.getIp());
             } catch (Throwable throwable) {
                 responseObserver.onNext(builder.build());
@@ -121,13 +154,78 @@ public class ConfigurationHandlerImpl extends ConfigHandlerGrpc.ConfigHandlerImp
                 return;
             }
         }
+        builder.setMemberCount(CrushMapMembers.size());
         builder.setConfiguration(generateCrushMapConfig(request.getIp()));
         responseObserver.onNext(builder.build());
         responseObserver.onCompleted();
     }
 
+    @Override
+    public void leaveFileSystemConfig(Requester request, StreamObserver<ConfigReponse> responseObserver) {
+        String id = hashString("FS_" + request.getIp());
 
-    private static final String Config ="<config xmlns=\"urn:org:jgroups\"\n"+
+        if(FileSystemMembers.contains(request.getIp())) {
+            FileSystemMembers.remove(request.getIp());
+            if(FileSystemMembers.size() >= 2) {
+                try {
+                    addRemoveServer(FileSystemMembers.get(0), id,
+                            CLIENT.RequestType.remove_server, ClientFileSystemPort);
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+
+        responseObserver.onNext(ConfigReponse.newBuilder().build());
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void leaveCrushMapConfig(Requester request, StreamObserver<ConfigReponse> responseObserver) {
+        String id = hashString("CM_" + request.getIp());
+
+        if(CrushMapMembers.contains(request.getIp())) {
+            CrushMapMembers.remove(request.getIp());
+            if(CrushMapMembers.size() >= 2) {
+                try {
+                    addRemoveServer(CrushMapMembers.get(0), id,
+                            CLIENT.RequestType.remove_server, ClientCrushMapPort);
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+
+        responseObserver.onNext(ConfigReponse.newBuilder().build());
+        responseObserver.onCompleted();
+    }
+
+    private static final String GOOGLE_CLOUD = "<config xmlns=\"urn:org:jgroups\"\n" +
+            "        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" +
+            "        xsi:schemaLocation=\"urn:org:jgroups http://www.jgroups.org/schema/jgroups.xsd\">\n" +
+            "    <TCP bind_port=\"${RAFT_PORT}\"/>\n" +
+            "   <GOOGLE_PING\n" +
+            "                location=\"jgroups-raft\"\n" +
+            "                access_key=\"GOOGXRKOX2T46TQABPO5ZC23\"\n" +
+            "                secret_access_key=\"GCz0SOVWwxfpiIKJsoBInMemeqLENWWghXEhka84\"/>\n" +
+            "    <MERGE3 />\n" +
+            "    <FD_SOCK/>\n" +
+            "    <FD_ALL/>\n" +
+            "    <VERIFY_SUSPECT timeout=\"1500\"  />\n" +
+            "    <pbcast.NAKACK2 xmit_interval=\"500\"/>\n" +
+            "    <UNICAST3 xmit_interval=\"500\"/>\n" +
+            "    <pbcast.STABLE desired_avg_gossip=\"50000\"\n" +
+            "                   max_bytes=\"4M\"/>\n" +
+            "    <raft.NO_DUPES/>\n" +
+            "    <pbcast.GMS print_local_addr=\"true\" join_timeout=\"2000\"/>\n" +
+            "    <UFC max_credits=\"2M\" min_threshold=\"0.4\"/>\n" +
+            "    <MFC max_credits=\"2M\" min_threshold=\"0.4\"/>\n" +
+            "    <FRAG2 frag_size=\"60K\"  />\n" +
+            "    <raft.ELECTION election_min_interval=\"100\" election_max_interval=\"500\"/>\n" +
+            "    <raft.RAFT members=\"${MEMBERS}\" raft_id=\"${RAFT_ID}\"/>\n" +
+            "    <raft.REDIRECT/>\n" +
+            "    <raft.CLIENT bind_addr=\"0.0.0.0\" port=\"${CLIENT_PORT}\" />\n" +
+            "</config>";
+
+    private static final String WITH_MULTICAST   ="<config xmlns=\"urn:org:jgroups\"\n"+
             "        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"+
             "        xsi:schemaLocation=\"urn:org:jgroups http://www.jgroups.org/schema/jgroups.xsd\">\n"+
             "    <UDP\n"+

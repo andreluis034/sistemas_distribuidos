@@ -9,11 +9,16 @@ public class ConfigurationHandlerServer {
     public static final int DEFAULT_PORT = 7000;
 
     private Server server;
+    private boolean useGoogleCloud = false;
+
+    public ConfigurationHandlerServer(boolean useGoogleCloud) {
+        this.useGoogleCloud = useGoogleCloud;
+    }
 
     public void start() throws IOException {
         /* The port on which the server should run */
         this.server = ServerBuilder.forPort(DEFAULT_PORT)
-                .addService(new ConfigurationHandlerImpl())
+                .addService(new ConfigurationHandlerImpl(useGoogleCloud))
                 .build()
                 .start();
         System.err.println("*** server start");

@@ -2,6 +2,7 @@ package GrupoA.StorageController;
 
 import GrupoA.ConfigurationHandler.ConfigHandlerService.ConfigReponse;
 import GrupoA.ConfigurationHandler.ConfigurationHandlerClient;
+import GrupoA.ConfigurationHandler.ConfigurationHandlerServer;
 import GrupoA.StorageController.RaftServices.CrushMap.CrushMapService;
 import GrupoA.StorageController.RaftServices.FileSystem.FileSystemService;
 import GrupoA.StorageController.gRPCService.FileSystemServer;
@@ -81,10 +82,12 @@ public class EntryPoint {
         server.start();
     }
 
-    private static void startRaft(String fileSystemID, String crushMapID) throws Exception{
+    private static void startRaft(String fileSystemID, String crushMapID, boolean interactive) throws Exception{
         FileSystemService service = FileSystemService.getInstance("./fileSystem.xml", fileSystemID);
         CrushMapService crushMapService = CrushMapService.getInstance("./crushmap.xml", crushMapID);
-        loop(service);
+        if(interactive) {
+            loop(service);
+        }
     }
 
     public static void write(String filename, String data) throws IOException {
@@ -100,13 +103,44 @@ public class EntryPoint {
         ConfigurationHandlerClient client = new ConfigurationHandlerClient(ConfigManagerIP);
         ConfigReponse fsconfig = client.joinFileSystemConfig(MyIP);
         ConfigReponse cmconfig = client.joinCrushMapConfig(MyIP);
-        if(fsconfig.getConfiguration().equals("") || fsconfig.getConfiguration().equals("")){
-            System.out.println("Could not get configuration from Config Manager");
+        while (fsconfig.getMemberCount() < 2 || cmconfig.getMemberCount() < 2) {
+            System.out.println("Waiting for second member");
+            Thread.sleep(250);
+            fsconfig = client.joinFileSystemConfig(MyIP);
+            cmconfig = client.joinFileSystemConfig(MyIP);
+        }
+        if(fsconfig.getConfiguration().equals("") || cmconfig.getConfiguration().equals("")){
+            System.out.println("Didn't receive proper configuration");
             return;
         }
+        client.shutdown();
+        client.awaitTermination();
         write("fileSystem.xml", fsconfig.getConfiguration());
         write("crushmap.xml", cmconfig.getConfiguration());
-        startRaft(fsconfig.getId(), cmconfig.getId());
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                // Use stderr here since the logger may have been reset by its JVM shutdown hook.
+                System.err.println("*** Leaving cluster since JVM is shutting down");
+                ConfigurationHandlerClient client = new ConfigurationHandlerClient(ConfigManagerIP);
+                client.leaveFileSystemConfig(MyIP);
+                client.leaveCrushMapConfig(MyIP);
+                try {
+                    client.shutdown();
+                    client.awaitTermination();
+                } catch (InterruptedException ignored) {
+                }
+                System.err.println("*** server shut down");
+            }
+        });
+        boolean useInteractive = false;
+        if(args.length > 1) {
+            useInteractive = args[1].equals("-interactive");
+        }
+        startOSDListener();
+        FileSystemServer fss = new FileSystemServer();
+        fss.start();
+        startRaft(fsconfig.getId(), cmconfig.getId(),useInteractive);
     }
 
     public static void foo(){

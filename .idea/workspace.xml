@@ -3,28 +3,29 @@
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="CephishFuse:jar" />
-      <artifact name="app_server:jar" />
-      <artifact name="osd_server:jar" />
-      <artifact name="storage_controller:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="455cb227-4467-4991-b677-1778cbe55071" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/config_handler_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/HealthCheck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/app_server_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/app_server_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandlerService/ConfigReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandlerService/ConfigReponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandlerService/ConfigReponseOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandlerService/ConfigReponseOrBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandlerService/ConfigurationHandlerProto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandlerService/ConfigurationHandlerProto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDGrpc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDGrpc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDProto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDProto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/CrushMapService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/CrushMapService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/buildOSD.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/buildOSD.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/proto/ConfigurationHandler/ConfigHandler.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/ConfigurationHandler/ConfigHandler.proto" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -61,72 +62,133 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FileSystemService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
-              <folding>
-                <element signature="method#setChannel#0;class#FileSystemService#0" />
-                <element signature="class#Command#0;class#FileSystemService#0" />
-                <element signature="method#mkDir#0;class#FileSystemService#0" />
-                <element signature="method#mkFile#0;class#FileSystemService#0" />
-                <element signature="method#removeDirectory#0;class#FileSystemService#0" />
-                <element signature="method#removeFile#0;class#FileSystemService#0" />
-                <element signature="method#ls#0;class#FileSystemService#0" />
-                <element signature="method#getNode#0;class#FileSystemService#0" />
-                <element signature="method#getNode#1;class#FileSystemService#0" />
-                <element signature="method#apply#0;class#FileSystemService#0" />
-                <element signature="method#invoke#0;class#FileSystemService#0" />
-                <element signature="method#readContentFrom#0;class#FileSystemService#0" />
-                <element signature="method#writeContentTo#0;class#FileSystemService#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="EntryPoint.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="84" column="57" selection-start-line="84" selection-start-column="57" selection-end-line="84" selection-end-column="57" />
+            <state relative-caret-position="100">
+              <caret line="26" selection-start-line="26" selection-end-line="44" selection-end-column="5" />
               <folding>
                 <element signature="method#loop#0;class#EntryPoint#0" />
+                <element signature="e#5050#5772#0" expanded="true" />
+                <element signature="e#5771#5772#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CrushMapService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/CrushMapService.java">
+      <file leaf-file-name="OSDListenerServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/OSDListenerServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
+            <state relative-caret-position="119">
+              <caret line="77" column="28" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CephishFuse.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="194" column="58" selection-start-line="194" selection-start-column="58" selection-end-line="194" selection-end-column="58" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#apply#0;class#CrushMapService#0" />
-                <element signature="method#invoke#1;class#CrushMapService#0" />
-                <element signature="method#addOSD#0;class#CrushMapService#0" />
-                <element signature="method#removeOSD#0;class#CrushMapService#0" />
-                <element signature="method#createNewMap#0;class#CrushMapService#0" />
-                <element signature="method#roleChanged#0;class#CrushMapService#0" />
+                <element signature="e#759#760#0" expanded="true" />
+                <element signature="e#811#812#0" expanded="true" />
+                <element signature="e#3314#3315#0" expanded="true" />
+                <element signature="e#3363#3364#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConfigurationHandlerClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerClient.java">
+      <file leaf-file-name="FileSystemServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+            <state relative-caret-position="199">
+              <caret line="222" column="13" selection-start-line="222" selection-start-column="13" selection-end-line="222" selection-end-column="29" />
+              <folding>
+                <element signature="method#rmDir#0;class#FileSystemServiceImpl#0" />
+                <element signature="method#rmFile#0;class#FileSystemServiceImpl#0" />
+                <element signature="method#getAttr#0;class#FileSystemServiceImpl#0" />
+                <element signature="method#setAttr#0;class#FileSystemServiceImpl#0" />
+                <element signature="method#readDir#0;class#FileSystemServiceImpl#0" />
+                <element signature="method#createNode#0;class#FileSystemServiceImpl#0" />
+                <element signature="method#start#0;class#FileSystemServer#0" />
+                <element signature="method#stop#0;class#FileSystemServer#0" />
+                <element signature="method#blockUntilShutdown#0;class#FileSystemServer#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApplicationServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="641">
+              <caret line="59" column="78" selection-start-line="59" selection-start-column="78" selection-end-line="59" selection-end-column="78" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#657#658#0" expanded="true" />
-                <element signature="e#677#678#0" expanded="true" />
-                <element signature="method#shutdown#0;class#ConfigurationHandlerClient#0" />
-                <element signature="method#shutdownNow#0;class#ConfigurationHandlerClient#0" />
-                <element signature="method#awaitTermination#0;class#ConfigurationHandlerClient#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FuseSupport.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RestClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-449">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthCheck.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/HealthCheck.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#130#131#0" expanded="true" />
+                <element signature="e#154#155#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cephish.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/Cephish.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OSDServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="314">
+              <caret line="255" column="33" selection-start-line="255" selection-start-column="33" selection-end-line="255" selection-end-column="33" />
+              <folding>
+                <element signature="method#ping#0;class#OSDImpl#0" />
+                <element signature="method#writeMiniObject#0;class#OSDImpl#0" />
+                <element signature="method#pushMapUpdate#0;class#OSDImpl#0" />
+                <element signature="method#truncate#0;class#OSDImpl#0" />
+                <element signature="method#getInstance#0;class#OSDServer#0" />
+                <element signature="method#printOSDs#0;class#OSDServer#0" />
+                <element signature="method#blockUntilShutdown#0;class#OSDServer#0" />
               </folding>
             </state>
           </provider>
@@ -143,10 +205,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>shutdown</find>
-      <find>236</find>
-      <find>shutdownNow</find>
-      <find>write</find>
       <find>monitor</find>
       <find>readFr</find>
       <find>createFile</find>
@@ -173,6 +231,10 @@
       <find>getGlobalOffset</find>
       <find>getFile</find>
       <find>write(</find>
+      <find>generateConfig</find>
+      <find>WITH_MULTICAST</find>
+      <find>getLocalAddress</find>
+      <find>client</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -181,8 +243,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMapConfigs.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMapService.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/AttributeRoute.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/ReadDirCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/MkdFileCommand.java" />
@@ -190,7 +250,6 @@
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/DirectoryContents.java" />
         <option value="$PROJECT_DIR$/src/test/java/JErasureTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/FileObjectManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/AttributeUpdateRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/CreateDirRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/CreateFileRequest.java" />
@@ -198,18 +257,15 @@
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/CreateRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/MkFileCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/MkDirCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/DirRoute.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/WriteRequest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/JErasure_Package/JErasure_Test.java" />
         <option value="$PROJECT_DIR$/src/main/proto/StorageController/FileSystem.proto" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/RemoveFileCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/Commands/RemoveDirCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/DeleteRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java" />
         <option value="$PROJECT_DIR$/src/main/proto/OSD/OSD.proto" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/TruncateRequest.java" />
@@ -222,16 +278,22 @@
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/Crush/PlacementGroup.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/Crush/CrushMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDClient/OSDClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/FileRoute.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/CrushMapService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandler.java" />
         <option value="$PROJECT_DIR$/src/main/resources/buildOSD.sh" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java" />
         <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/DefaultRoute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/HealthCheck.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java" />
       </list>
     </option>
   </component>
@@ -268,10 +330,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1552" />
-    <option name="y" value="205" />
-    <option name="width" value="1485" />
-    <option name="height" value="839" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -323,65 +385,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="ConfigurationHandler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="ConfigurationHandler" type="462c0819:PsiDirectoryNode" />
-              <item name="ConfigHandlerService" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="OSD" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="OSD" type="462c0819:PsiDirectoryNode" />
-              <item name="OSDClient" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="OSD" type="462c0819:PsiDirectoryNode" />
-              <item name="OSDServer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sistemas_distribuidos" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GrupoA" type="462c0819:PsiDirectoryNode" />
-              <item name="StorageController" type="462c0819:PsiDirectoryNode" />
-              <item name="Crush" type="462c0819:PsiDirectoryNode" />
+              <item name="FuseSupport" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SistemasDistribuidos" type="b2602c69:ProjectViewProjectNode" />
@@ -411,12 +415,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/java/JErasure_Package" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/GrupoA/AppServer" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.21621622" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
@@ -30657,7 +30661,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.JErasure_Test">
+  <component name="RunManager" selected="Application.FuseSupport">
     <configuration name="ApplicationServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -30667,6 +30671,17 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="GrupoA.AppServer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="ConfigHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GrupoA.ConfigurationHandler.ConfigHandler" />
+      <module name="sistemas_distribuidos" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GrupoA.ConfigurationHandler.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -30694,17 +30709,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="JErasure_Package.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
-    <configuration name="OSDServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GrupoA.OSD.OSDServer.OSDServer" />
-      <module name="sistemas_distribuidos" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="GrupoA.OSD.OSDServer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -30752,18 +30756,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.ApplicationServer" />
-      <item itemvalue="Application.OSDServer" />
       <item itemvalue="Application.FuseSupport" />
       <item itemvalue="Application.JErasureTest" />
       <item itemvalue="Application.JErasure_Test" />
+      <item itemvalue="Application.ConfigHandler" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.JErasure_Test" />
-        <item itemvalue="Application.ApplicationServer" />
-        <item itemvalue="Application.JErasureTest" />
         <item itemvalue="Application.FuseSupport" />
-        <item itemvalue="Application.OSDServer" />
+        <item itemvalue="Application.ApplicationServer" />
+        <item itemvalue="Application.ConfigHandler" />
+        <item itemvalue="Application.JErasure_Test" />
+        <item itemvalue="Application.JErasureTest" />
       </list>
     </recent_temporary>
   </component>
@@ -30879,7 +30883,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192520000" />
+    <option name="totallyTimeSpent" value="210045000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -30904,7 +30908,7 @@
       <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info id="UI Designer" order="11" />
-      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49500498" visible="true" weight="0.3242972" />
+      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49500498" visible="true" weight="0.46586347" />
       <window_info anchor="bottom" id="TODO" order="15" weight="0.32831326" />
       <window_info anchor="bottom" id="Messages" order="16" sideWeight="0.493007" weight="0.2821285" />
       <window_info anchor="right" id="Palette&#9;" order="11" />
@@ -30912,7 +30916,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="22" />
       <window_info anchor="right" id="Capture Analysis" order="15" />
       <window_info anchor="bottom" id="Version Control" order="19" weight="0.33935744" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.4995005" weight="0.32931727" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.4995005" weight="0.32909605" />
       <window_info anchor="bottom" id="Terminal" order="20" weight="0.3172691" />
       <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.4989154" visible="true" weight="0.23976023" />
       <window_info anchor="right" id="Bean Validation" order="17" />
@@ -31017,22 +31021,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java</url>
-          <line>22</line>
+          <line>25</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java</url>
-          <line>17</line>
+          <line>19</line>
           <properties />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java</url>
+          <line>20</line>
+          <properties />
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="51" />
+      <option name="time" value="60" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="((ArrayIndexOutOfBoundsException)e).cause" custom="java.lang.ArrayIndexOutOfBoundsException" />
+        <watch expression="fileSize" />
       </configuration>
     </watches-manager>
   </component>
@@ -31070,66 +31080,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/ObjectData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#main#0;class#FuseSupport#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/github/serceman/jnr-fuse/0.5.2.1/jnr-fuse-0.5.2.1.jar!/ru/serce/jnrfuse/FuseStubFS.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="43" column="78" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/WriteRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/glassfish/jersey/core/jersey-server/2.27/jersey-server-2.27.jar!/org/glassfish/jersey/server/model/internal/AbstractJavaResourceMethodDispatcher.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/glassfish/jersey/core/jersey-server/2.27/jersey-server-2.27.jar!/org/glassfish/jersey/server/model/internal/ResourceMethodInvocationHandlerFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/OSDGrpc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="487" selection-start-line="487" selection-end-line="487" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/proto/OSD/OSD.proto">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1137">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/FileSystemGrpc.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
@@ -31169,37 +31119,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/Cephish.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="166" column="41" selection-start-line="166" selection-start-column="41" selection-end-line="166" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Models/TruncateRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="184" column="9" selection-start-line="184" selection-start-column="9" selection-end-line="184" selection-end-column="9" />
-          <folding>
-            <element signature="e#759#760#0" expanded="true" />
-            <element signature="e#811#812#0" expanded="true" />
-            <element signature="e#3314#3315#0" expanded="true" />
-            <element signature="e#3363#3364#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -31211,25 +31134,6 @@
       </provider>
     </entry>
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/util/List.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="170" column="9" lean-forward="true" selection-start-line="152" selection-start-column="8" selection-end-line="170" selection-end-column="9" />
-          <folding>
-            <element signature="method#rmDir#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#rmFile#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#getAttr#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#setAttr#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#readDir#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#createNode#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#setWriteLock#0;class#FileSystemServiceImpl#0" />
-            <element signature="method#start#0;class#FileSystemServer#0" />
-            <element signature="method#stop#0;class#FileSystemServer#0" />
-            <element signature="method#blockUntilShutdown#0;class#FileSystemServer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystem/CrushMapResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1558">
@@ -31407,13 +31311,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="35" selection-start-column="15" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/buildOSD.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -31435,64 +31332,6 @@
             <element signature="method#putObject#2;class#OSDClient#0" />
             <element signature="method#getObject#1;class#OSDClient#0" />
             <element signature="method#ping#0;class#OSDClient#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandlerService/ConfigHandlerGrpc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1377">
-          <caret line="200" column="16" lean-forward="true" selection-start-line="200" selection-start-column="16" selection-end-line="200" selection-end-column="16" />
-          <folding>
-            <element signature="e#2661#2785#0" expanded="true" />
-            <element signature="e#4987#5111#0" expanded="true" />
-            <element signature="e#7286#7410#0" expanded="true" />
-            <element signature="e#9586#9710#0" expanded="true" />
-            <element signature="e#10720#10721#0" expanded="true" />
-            <element signature="e#10767#10768#0" expanded="true" />
-            <element signature="e#14449#14450#0" expanded="true" />
-            <element signature="e#14477#14478#0" expanded="true" />
-            <element signature="e#16531#16532#0" expanded="true" />
-            <element signature="e#16559#16560#0" expanded="true" />
-            <element signature="e#18327#18328#0" expanded="true" />
-            <element signature="e#18355#18356#0" expanded="true" />
-            <element signature="e#21034#21074#0" expanded="true" />
-            <element signature="e#22501#22541#0" expanded="true" />
-            <element signature="e#23838#23839#0" expanded="true" />
-            <element signature="e#23880#23881#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="56" column="125" selection-start-line="56" selection-start-column="125" selection-end-line="56" selection-end-column="125" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1113#1114#0" expanded="true" />
-            <element signature="e#1143#1144#0" expanded="true" />
-            <element signature="method#generateConfig#0;class#ConfigurationHandlerImpl#0" />
-            <element signature="method#getMembers#0;class#ConfigurationHandlerImpl#0" />
-            <element signature="method#generateFileSystemConfig#0;class#ConfigurationHandlerImpl#0" />
-            <element signature="method#generateCrushMapConfig#0;class#ConfigurationHandlerImpl#0" />
-            <element signature="method#addRemoveServer#0;class#ConfigurationHandlerImpl#0" />
-            <element signature="method#joinFileSystemConfig#0;class#ConfigurationHandlerImpl#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#start#0;class#ConfigurationHandlerServer#0" />
-            <element signature="e#703#1049#0" expanded="true" />
-            <element signature="e#1048#1049#0" expanded="true" />
-            <element signature="method#stop#0;class#ConfigurationHandlerServer#0" />
-            <element signature="method#blockUntilShutdown#0;class#ConfigurationHandlerServer#0" />
           </folding>
         </state>
       </provider>
@@ -31526,48 +31365,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
-          <folding>
-            <element signature="method#startJetty#0;class#ApplicationServer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="249" selection-start-line="249" selection-end-line="251" selection-end-column="53" />
-          <folding>
-            <element signature="method#ping#0;class#OSDImpl#0" />
-            <element signature="method#writeMiniObject#0;class#OSDImpl#0" />
-            <element signature="method#pushMapUpdate#0;class#OSDImpl#0" />
-            <element signature="method#truncate#0;class#OSDImpl#0" />
-            <element signature="method#getInstance#0;class#OSDServer#0" />
-            <element signature="method#OSDServer#0;class#OSDServer#0" />
-            <element signature="method#printOSDs#0;class#OSDServer#0" />
-            <element signature="method#blockUntilShutdown#0;class#OSDServer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#657#658#0" expanded="true" />
-            <element signature="e#677#678#0" expanded="true" />
-            <element signature="method#shutdown#0;class#ConfigurationHandlerClient#0" />
-            <element signature="method#shutdownNow#0;class#ConfigurationHandlerClient#0" />
-            <element signature="method#awaitTermination#0;class#ConfigurationHandlerClient#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/CrushMap/CrushMapService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
@@ -31584,20 +31381,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDService/MiniObjectWithMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="84" column="57" selection-start-line="84" selection-start-column="57" selection-end-line="84" selection-end-column="57" />
+        <state relative-caret-position="229">
+          <caret line="330" column="44" selection-start-line="330" selection-start-column="44" selection-end-line="330" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandlerService/ConfigReponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1215">
+          <caret line="592" selection-start-line="592" selection-end-line="592" />
           <folding>
-            <element signature="method#loop#0;class#EntryPoint#0" />
+            <element signature="e#883#884#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+            <element signature="e#5400#5401#0" expanded="true" />
+            <element signature="e#5429#5430#0" expanded="true" />
+            <element signature="e#11772#11773#0" expanded="true" />
+            <element signature="e#11817#11818#0" expanded="true" />
+            <element signature="e#13698#13699#0" expanded="true" />
+            <element signature="e#13745#13746#0" expanded="true" />
+            <element signature="e#15571#15572#0" expanded="true" />
+            <element signature="e#15615#15616#0" expanded="true" />
+            <element signature="e#17699#17700#0" expanded="true" />
+            <element signature="e#17724#17725#0" expanded="true" />
+            <element signature="e#22050#22051#0" expanded="true" />
+            <element signature="e#22083#22084#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandlerService/ConfigHandlerGrpc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="605">
+          <caret line="428" selection-start-line="428" selection-end-line="428" />
+          <folding>
+            <element signature="e#2661#2785#0" expanded="true" />
+            <element signature="e#4987#5111#0" expanded="true" />
+            <element signature="e#7286#7410#0" expanded="true" />
+            <element signature="e#9586#9710#0" expanded="true" />
+            <element signature="e#10720#10721#0" expanded="true" />
+            <element signature="e#10767#10768#0" expanded="true" />
+            <element signature="e#14449#14450#0" expanded="true" />
+            <element signature="e#14477#14478#0" expanded="true" />
+            <element signature="e#16531#16532#0" expanded="true" />
+            <element signature="e#16559#16560#0" expanded="true" />
+            <element signature="e#18327#18328#0" expanded="true" />
+            <element signature="e#18355#18356#0" expanded="true" />
+            <element signature="e#23838#23839#0" expanded="true" />
+            <element signature="e#23880#23881#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/jre/lib/rt.jar!/java/lang/Thread.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="83" column="30" selection-start-line="83" selection-start-column="30" selection-end-line="83" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
+        <state relative-caret-position="207">
+          <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
           <folding>
             <element signature="method#setChannel#0;class#FileSystemService#0" />
             <element signature="class#Command#0;class#FileSystemService#0" />
@@ -31616,17 +31463,200 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="542">
+          <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#657#658#0" expanded="true" />
+            <element signature="e#677#678#0" expanded="true" />
+            <element signature="method#shutdown#0;class#ConfigurationHandlerClient#0" />
+            <element signature="method#shutdownNow#0;class#ConfigurationHandlerClient#0" />
+            <element signature="method#awaitTermination#0;class#ConfigurationHandlerClient#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="89" selection-start-line="11" selection-start-column="89" selection-end-line="11" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#347#348#0" expanded="true" />
+            <element signature="e#399#400#0" expanded="true" />
+            <element signature="method#stop#0;class#ConfigurationHandlerServer#0" />
+            <element signature="method#blockUntilShutdown#0;class#ConfigurationHandlerServer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/ConfigurationHandlerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="203" column="50" selection-start-line="203" selection-start-column="50" selection-end-line="203" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getMembers#0;class#ConfigurationHandlerImpl#0" />
+            <element signature="method#generateFileSystemConfig#0;class#ConfigurationHandlerImpl#0" />
+            <element signature="method#generateCrushMapConfig#0;class#ConfigurationHandlerImpl#0" />
+            <element signature="method#addRemoveServer#0;class#ConfigurationHandlerImpl#0" />
+            <element signature="method#joinFileSystemConfig#0;class#ConfigurationHandlerImpl#0" />
+            <element signature="method#joinCrushMapConfig#0;class#ConfigurationHandlerImpl#0" />
+            <element signature="method#leaveFileSystemConfig#0;class#ConfigurationHandlerImpl#0" />
+            <element signature="method#leaveFileSystemConfig#1;class#ConfigurationHandlerImpl#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/DirRoute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="11" selection-start-line="11" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/HealthCheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#130#131#0" expanded="true" />
+            <element signature="e#154#155#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/OSDListenerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="77" column="28" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/FileSystemServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="222" column="13" selection-start-line="222" selection-start-column="13" selection-end-line="222" selection-end-column="29" />
+          <folding>
+            <element signature="method#rmDir#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#rmFile#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#getAttr#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#setAttr#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#readDir#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#createNode#0;class#FileSystemServiceImpl#0" />
+            <element signature="method#start#0;class#FileSystemServer#0" />
+            <element signature="method#stop#0;class#FileSystemServer#0" />
+            <element signature="method#blockUntilShutdown#0;class#FileSystemServer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/EntryPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="26" selection-start-line="26" selection-end-line="44" selection-end-column="5" />
+          <folding>
+            <element signature="method#loop#0;class#EntryPoint#0" />
+            <element signature="e#5050#5772#0" expanded="true" />
+            <element signature="e#5771#5772#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/gRPCService/OSDListenerClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/OSD/OSDServer/OSDServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="255" column="33" selection-start-line="255" selection-start-column="33" selection-end-line="255" selection-end-column="33" />
+          <folding>
+            <element signature="method#ping#0;class#OSDImpl#0" />
+            <element signature="method#writeMiniObject#0;class#OSDImpl#0" />
+            <element signature="method#pushMapUpdate#0;class#OSDImpl#0" />
+            <element signature="method#truncate#0;class#OSDImpl#0" />
+            <element signature="method#getInstance#0;class#OSDServer#0" />
+            <element signature="method#printOSDs#0;class#OSDServer#0" />
+            <element signature="method#blockUntilShutdown#0;class#OSDServer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/Routes/Cephish.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/AppServer/ApplicationServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="641">
+          <caret line="59" column="78" selection-start-line="59" selection-start-column="78" selection-end-line="59" selection-end-column="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/FuseSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/RestClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-449">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/FuseSupport/CephishFuse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="194" column="58" selection-start-line="194" selection-start-column="58" selection-end-line="194" selection-end-column="58" />
+          <folding>
+            <element signature="e#759#760#0" expanded="true" />
+            <element signature="e#811#812#0" expanded="true" />
+            <element signature="e#3314#3315#0" expanded="true" />
+            <element signature="e#3363#3364#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>JErasure_test:jar</last-edited>
+          <last-edited>CephishFuse:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.21621622" />
+                <option value="0.2" />
                 <option value="0.5" />
               </list>
             </option>
@@ -31639,7 +31669,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.20421754" />
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -31647,7 +31677,6 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Python 3.6 interpreter library</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -31671,7 +31700,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>SistemasDistribuidos</last-edited>
+          <last-edited>sistemas_distribuidos</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -31684,11 +31713,11 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: com.esotericsoftware:kryo:4.0.2</last-edited>
+          <last-edited>jlowfuse</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.21621622" />
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>

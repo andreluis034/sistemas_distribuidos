@@ -1,9 +1,9 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="app_server:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/app_server_jar</output-path>
+  <artifact type="jar" name="config_handler:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/config_handler_jar</output-path>
     <root id="archive" name="sistemas_distribuidos.jar">
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/GrupoA/AppServer/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/GrupoA/ConfigurationHandler/META-INF/MANIFEST.MF" />
       </element>
       <element id="module-output" name="sistemas_distribuidos" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar" path-in-jar="/" />

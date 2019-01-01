@@ -46,15 +46,19 @@ public class ConfigurationHandlerClient {
 
     public ConfigReponse joinFileSystemConfig(String IPAddress) {
         Requester.Builder req = Requester.newBuilder().setIp(IPAddress);
-
         return this.blockingStub.joinFileSystemConfig(req.build());
     }
 
     public ConfigReponse joinCrushMapConfig(String IPAddress) {
         Requester.Builder req = Requester.newBuilder().setIp(IPAddress);
-
         return this.blockingStub.joinCrushMapConfig(req.build());
     }
 
+    public void leaveFileSystemConfig(String IPAddress) {
+        this.blockingStub.leaveFileSystemConfig(Requester.newBuilder().setIp(IPAddress).build());
+    }
 
+    public void leaveCrushMapConfig(String IPAddress) {
+        this.blockingStub.leaveCrushMapConfig(Requester.newBuilder().setIp(IPAddress).build());
+    }
 }

@@ -18,6 +18,7 @@ private static final long serialVersionUID = 0L;
   private ConfigReponse() {
     configuration_ = "";
     id_ = "";
+    memberCount_ = 0;
   }
 
   @java.lang.Override
@@ -54,6 +55,11 @@ private static final long serialVersionUID = 0L;
             java.lang.String s = input.readStringRequireUtf8();
 
             id_ = s;
+            break;
+          }
+          case 24: {
+
+            memberCount_ = input.readInt32();
             break;
           }
           default: {
@@ -156,6 +162,15 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int MEMBERCOUNT_FIELD_NUMBER = 3;
+  private int memberCount_;
+  /**
+   * <code>int32 memberCount = 3;</code>
+   */
+  public int getMemberCount() {
+    return memberCount_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -176,6 +191,9 @@ private static final long serialVersionUID = 0L;
     if (!getIdBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, id_);
     }
+    if (memberCount_ != 0) {
+      output.writeInt32(3, memberCount_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -190,6 +208,10 @@ private static final long serialVersionUID = 0L;
     }
     if (!getIdBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, id_);
+    }
+    if (memberCount_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(3, memberCount_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -211,6 +233,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getConfiguration());
     result = result && getId()
         .equals(other.getId());
+    result = result && (getMemberCount()
+        == other.getMemberCount());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -226,6 +250,8 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getConfiguration().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + getId().hashCode();
+    hash = (37 * hash) + MEMBERCOUNT_FIELD_NUMBER;
+    hash = (53 * hash) + getMemberCount();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -363,6 +389,8 @@ private static final long serialVersionUID = 0L;
 
       id_ = "";
 
+      memberCount_ = 0;
+
       return this;
     }
 
@@ -391,6 +419,7 @@ private static final long serialVersionUID = 0L;
       GrupoA.ConfigurationHandler.ConfigHandlerService.ConfigReponse result = new GrupoA.ConfigurationHandler.ConfigHandlerService.ConfigReponse(this);
       result.configuration_ = configuration_;
       result.id_ = id_;
+      result.memberCount_ = memberCount_;
       onBuilt();
       return result;
     }
@@ -446,6 +475,9 @@ private static final long serialVersionUID = 0L;
       if (!other.getId().isEmpty()) {
         id_ = other.id_;
         onChanged();
+      }
+      if (other.getMemberCount() != 0) {
+        setMemberCount(other.getMemberCount());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -610,6 +642,32 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       id_ = value;
+      onChanged();
+      return this;
+    }
+
+    private int memberCount_ ;
+    /**
+     * <code>int32 memberCount = 3;</code>
+     */
+    public int getMemberCount() {
+      return memberCount_;
+    }
+    /**
+     * <code>int32 memberCount = 3;</code>
+     */
+    public Builder setMemberCount(int value) {
+      
+      memberCount_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 memberCount = 3;</code>
+     */
+    public Builder clearMemberCount() {
+      
+      memberCount_ = 0;
       onChanged();
       return this;
     }

@@ -12,15 +12,17 @@ service ConfigHandler {
     rpc leaveFileSystemConfig (Requester) returns (ConfigReponse) {}
     rpc joinCrushMapConfig (Requester) returns (ConfigReponse) {}
     rpc leaveCrushMapConfig (Requester) returns (ConfigReponse) {}
+}
 
-
+message IntMessage {
+    int32 Value = 1;
 }
 
 message ConfigReponse {
     string configuration = 1;
     string id = 2;
+    int32 memberCount = 3;
 }
-
 
 message Requester {
     string ip = 1;

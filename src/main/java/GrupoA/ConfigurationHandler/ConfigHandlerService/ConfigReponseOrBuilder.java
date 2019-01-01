@@ -26,4 +26,9 @@ public interface ConfigReponseOrBuilder extends
    */
   com.google.protobuf.ByteString
       getIdBytes();
+
+  /**
+   * <code>int32 memberCount = 3;</code>
+   */
+  int getMemberCount();
 }

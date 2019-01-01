@@ -15,6 +15,11 @@ public final class ConfigurationHandlerProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_IntMessage_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_IntMessage_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_ConfigReponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -34,26 +39,27 @@ public final class ConfigurationHandlerProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\023ConfigHandler.proto\0220GrupoA.Configurat" +
-      "ionHandler.ConfigHandlerService\"2\n\rConfi" +
-      "gReponse\022\025\n\rconfiguration\030\001 \001(\t\022\n\n\002id\030\002 " +
-      "\001(\t\"\027\n\tRequester\022\n\n\002ip\030\001 \001(\t2\361\004\n\rConfigH" +
-      "andler\022\226\001\n\024joinFileSystemConfig\022;.GrupoA" +
-      ".ConfigurationHandler.ConfigHandlerServi" +
-      "ce.Requester\032?.GrupoA.ConfigurationHandl" +
-      "er.ConfigHandlerService.ConfigReponse\"\000\022" +
-      "\227\001\n\025leaveFileSystemConfig\022;.GrupoA.Confi" +
-      "gurationHandler.ConfigHandlerService.Req" +
-      "uester\032?.GrupoA.ConfigurationHandler.Con" +
-      "figHandlerService.ConfigReponse\"\000\022\224\001\n\022jo" +
-      "inCrushMapConfig\022;.GrupoA.ConfigurationH" +
-      "andler.ConfigHandlerService.Requester\032?." +
-      "GrupoA.ConfigurationHandler.ConfigHandle" +
-      "rService.ConfigReponse\"\000\022\225\001\n\023leaveCrushM" +
-      "apConfig\022;.GrupoA.ConfigurationHandler.C" +
-      "onfigHandlerService.Requester\032?.GrupoA.C" +
-      "onfigurationHandler.ConfigHandlerService" +
-      ".ConfigReponse\"\000B!B\031ConfigurationHandler" +
-      "ProtoP\001\242\002\001Ob\006proto3"
+      "ionHandler.ConfigHandlerService\"\033\n\nIntMe" +
+      "ssage\022\r\n\005Value\030\001 \001(\005\"G\n\rConfigReponse\022\025\n" +
+      "\rconfiguration\030\001 \001(\t\022\n\n\002id\030\002 \001(\t\022\023\n\013memb" +
+      "erCount\030\003 \001(\005\"\027\n\tRequester\022\n\n\002ip\030\001 \001(\t2\361" +
+      "\004\n\rConfigHandler\022\226\001\n\024joinFileSystemConfi" +
+      "g\022;.GrupoA.ConfigurationHandler.ConfigHa" +
+      "ndlerService.Requester\032?.GrupoA.Configur" +
+      "ationHandler.ConfigHandlerService.Config" +
+      "Reponse\"\000\022\227\001\n\025leaveFileSystemConfig\022;.Gr" +
+      "upoA.ConfigurationHandler.ConfigHandlerS" +
+      "ervice.Requester\032?.GrupoA.ConfigurationH" +
+      "andler.ConfigHandlerService.ConfigRepons" +
+      "e\"\000\022\224\001\n\022joinCrushMapConfig\022;.GrupoA.Conf" +
+      "igurationHandler.ConfigHandlerService.Re" +
+      "quester\032?.GrupoA.ConfigurationHandler.Co" +
+      "nfigHandlerService.ConfigReponse\"\000\022\225\001\n\023l" +
+      "eaveCrushMapConfig\022;.GrupoA.Configuratio" +
+      "nHandler.ConfigHandlerService.Requester\032" +
+      "?.GrupoA.ConfigurationHandler.ConfigHand" +
+      "lerService.ConfigReponse\"\000B!B\031Configurat" +
+      "ionHandlerProtoP\001\242\002\001Ob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -67,14 +73,20 @@ public final class ConfigurationHandlerProto {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_ConfigReponse_descriptor =
+    internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_IntMessage_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_IntMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_IntMessage_descriptor,
+        new java.lang.String[] { "Value", });
+    internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_ConfigReponse_descriptor =
+      getDescriptor().getMessageTypes().get(1);
     internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_ConfigReponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_ConfigReponse_descriptor,
-        new java.lang.String[] { "Configuration", "Id", });
+        new java.lang.String[] { "Configuration", "Id", "MemberCount", });
     internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_Requester_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_Requester_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GrupoA_ConfigurationHandler_ConfigHandlerService_Requester_descriptor,

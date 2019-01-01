@@ -143,8 +143,16 @@ public class CephishFuse extends FuseStubFS {
     public int flush(String path, FuseFileInfo fi) {
         System.out.println("flushing");
         List<WriteRequest> wrs = this.mergeRequests(path);
+        System.out.println(wrs.size());
         for (WriteRequest wr : wrs) {
-            restClient.write(path, wr);
+            try{
+                System.out.println("Flushing with size " + wr.data.length);
+                System.out.println("Flushing with offset " + wr.offset);
+                restClient.write(path, wr);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return -ErrorCodes.ENONET();
+            }
         }
         return 0;
     }
@@ -184,7 +192,7 @@ public class CephishFuse extends FuseStubFS {
                 return -ErrorCodes.EISDIR();
         }
         Long pendingSize = addWriteRequest(path, buf, size, offset);
-        if(pendingSize >= ApplicationServer.subBlockSize) {
+        if(pendingSize >= ApplicationServer.subBlockSize/2) {
             try {
                 int status = this.flush(path, fi);
                 if (status < 0)

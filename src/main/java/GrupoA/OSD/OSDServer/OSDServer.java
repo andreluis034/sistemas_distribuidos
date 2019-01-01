@@ -10,13 +10,15 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 import java.io.*;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.RandomAccess;
+import java.util.*;
 
 class OSDImpl extends OSDGrpc.OSDImplBase {
 
@@ -179,6 +181,7 @@ public class OSDServer {
     public boolean IsLeader = false;
 
     public static String myHost = "";
+    public static String announcingHost = "192.168.10.70";
     public static int myPort = 50051;
 
     private Server server;
@@ -194,7 +197,7 @@ public class OSDServer {
 
     public OSDServer() {
         this.impl = new OSDImpl();
-        client = new OSDListenerClient("192.168.10.70");
+        client = new OSDListenerClient(announcingHost);
     }
     private void start() throws IOException {
         /* The port on which the server should run */
@@ -219,7 +222,7 @@ public class OSDServer {
                 System.err.println("*** server shut down");
             }
         });
-        System.out.println("Announcing "+ myHost + ":" + 50051 + " to " + "192.168.10.70");
+        System.out.println("Announcing "+ myHost + ":" + 50051 + " to " + announcingHost);
         client.announce(myHost, myPort);
 
     }
@@ -246,9 +249,34 @@ public class OSDServer {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        myHost = args[0];
+        if(args.length < 2 || !args[0].equals("-cip")) {
+            System.out.println("Usage: -cip <clusterip>");
+            return;
+        }
+        announcingHost = args[1];
+        myHost = getLocalAddress();
         OSDServer.getInstance().start();
 
         OSDServer.getInstance().blockUntilShutdown();
+    }
+
+    private static String getLocalAddress() throws SocketException {
+        List<String> addresses = new ArrayList<>();
+        Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+        while(networkInterfaces.hasMoreElements()) {
+            NetworkInterface networkInterface = networkInterfaces.nextElement();
+            Enumeration<InetAddress> inetAddress = networkInterface.getInetAddresses();
+            while(inetAddress.hasMoreElements())
+            {
+                InetAddress currentAddress;
+                currentAddress = inetAddress.nextElement();
+                if(currentAddress instanceof Inet4Address && !currentAddress.isLoopbackAddress())
+                {
+                    //System.out.println(currentAddress.toString().replace("/", ""));
+                    return currentAddress.toString().replace("/", "");
+                }
+            }
+        }
+        return "";
     }
 }

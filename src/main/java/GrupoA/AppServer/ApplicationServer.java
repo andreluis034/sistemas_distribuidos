@@ -38,7 +38,8 @@ public class ApplicationServer {
                 GrupoA.AppServer.Routes.INodeRoute.class.getCanonicalName() + ", " +
                         GrupoA.AppServer.Routes.AttributeRoute.class.getCanonicalName() + ", " +
                         GrupoA.AppServer.Routes.DirRoute.class.getCanonicalName() + ", " +
-                        GrupoA.AppServer.Routes.FileRoute.class.getCanonicalName());
+                        GrupoA.AppServer.Routes.FileRoute.class.getCanonicalName()+ ", " +
+                        GrupoA.AppServer.Routes.HealthCheck.class.getCanonicalName());
         try {
             jettyServer.start();
             jettyServer.join();
@@ -52,38 +53,11 @@ public class ApplicationServer {
 
     public static void main(String[] args) throws Exception {
 
-        FileSystemClient = new FileSystemClient("172.20.100.1", FileSystemServer.DEFAULT_PORT);
-        startJetty(9595);
-        Path currentRelativePath = Paths.get("");
-        String s = currentRelativePath.toAbsolutePath().toString();
-        System.out.println("Current relative path is: " + s);
-
-        Path path = Paths.get(s, "cenas.dat");
-        byte[] fileContents =  Files.readAllBytes(path);
-
-        //long hash = GrupoA.Utility.Jenkins.hash32(fileContents);
-        OSDClient client = new OSDClient("localhost", 50051);
-
-        //TODO Send to client
-        try {
-            List<byte[]> parts = FileObjectManager.SplitByteArray(fileContents);
-            int i = 0;
-            for(byte[] part : parts) {
-                client.putObject(part, path.toString(), i);
-                i++;
-            }
-
-            int fileSize = fileContents.length;
-            parts.clear();
-
-            for(int j = 0; j < parts.size(); ++j)
-                parts.add(client.getObject(path.toString(), j).getObjectData().toByteArray());
-
-            System.out.println(Arrays.equals(FileObjectManager.JoinByteArrays(parts, fileSize), fileContents));
-        } catch (StatusRuntimeException e) {
-            System.err.println("RPC failed: " + e.getStatus());
-        } finally {
-            client.shutdown();
+        if(args.length < 2 || !args[0].equals("-cip")) {
+            System.out.println("Usage: -cip <clusterip>");
+            return;
         }
+        FileSystemClient = new FileSystemClient(args[1], FileSystemServer.DEFAULT_PORT);
+        startJetty(9595);
     }
 }
