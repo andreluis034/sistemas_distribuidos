@@ -148,7 +148,7 @@ public class FileSystemService implements StateMachine, RAFT.RoleChange {
 
         byte[] byteArray = bos.toByteArray();
 
-        dataOutput.write(byteArray.length);
+        dataOutput.writeInt(byteArray.length);
         dataOutput.write(byteArray);
     }
 
