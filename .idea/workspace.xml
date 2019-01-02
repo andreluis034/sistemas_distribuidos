@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
+      <artifact name="CephishFuse:jar" />
+      <artifact name="app_server:jar" />
+      <artifact name="config_handler:jar" />
+      <artifact name="osd_server:jar" />
       <artifact name="storage_controller:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="455cb227-4467-4991-b677-1778cbe55071" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java" afterDir="false" />
-    </list>
+    <list default="true" id="455cb227-4467-4991-b677-1778cbe55071" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -90,8 +92,8 @@
       <file leaf-file-name="FileSystemService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="725">
-              <caret line="151" column="24" selection-start-line="151" selection-start-column="24" selection-end-line="151" selection-end-column="24" />
+            <state relative-caret-position="45">
+              <caret line="97" column="5" lean-forward="true" selection-start-line="97" selection-start-column="5" selection-end-line="97" selection-end-column="5" />
               <folding>
                 <element signature="method#setChannel#0;class#FileSystemService#0" />
                 <element signature="class#Command#0;class#FileSystemService#0" />
@@ -292,7 +294,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1939" />
@@ -613,7 +615,7 @@
       <workItem from="1546091850752" duration="1530000" />
       <workItem from="1546093424732" duration="2204000" />
       <workItem from="1546095660156" duration="8745000" />
-      <workItem from="1546439619405" duration="757000" />
+      <workItem from="1546439619405" duration="1399000" />
     </task>
     <task id="LOCAL-00001" summary="Added Atomix in pom file">
       <created>1544099776275</created>
@@ -703,7 +705,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="211405000" />
+    <option name="totallyTimeSpent" value="212047000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -715,7 +717,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
+    <frame x="-7" y="-7" width="2062" height="1126" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="5" />
@@ -1354,8 +1356,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GrupoA/StorageController/RaftServices/FileSystem/FileSystemService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="151" column="24" selection-start-line="151" selection-start-column="24" selection-end-line="151" selection-end-column="24" />
+        <state relative-caret-position="45">
+          <caret line="97" column="5" lean-forward="true" selection-start-line="97" selection-start-column="5" selection-end-line="97" selection-end-column="5" />
           <folding>
             <element signature="method#setChannel#0;class#FileSystemService#0" />
             <element signature="class#Command#0;class#FileSystemService#0" />
