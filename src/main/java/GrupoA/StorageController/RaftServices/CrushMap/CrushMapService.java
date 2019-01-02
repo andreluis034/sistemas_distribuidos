@@ -231,8 +231,11 @@ public class CrushMapService implements StateMachine, RAFT.RoleChange {
         System.out.println("Starting monitor");
         timer.schedule(new TimerTask() {
             public void run() {
-                if (!isLeader)
+                if (!isLeader){
                     timer.cancel();
+                    return;
+                }
+
                 System.out.println("Checking up OSDs");
                 List<ObjectStorageDaemon> offlineOSDs = new LinkedList<>();
 

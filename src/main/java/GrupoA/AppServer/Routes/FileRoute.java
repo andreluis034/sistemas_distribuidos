@@ -525,7 +525,7 @@ public class FileRoute {
                 client.deleteObject(this.getFinalHash(map),this.red.equals(RedundancyProto.Replication));
                 client.shutdown();
                 client.awaitTermination();
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 //If the leader is down delete individually
                 if(this.red.equals(RedundancyProto.Replication)) {
                     long hashToUse = this.getHashForPG();
